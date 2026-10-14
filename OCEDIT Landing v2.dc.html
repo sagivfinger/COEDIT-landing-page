@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&amp;family=Roboto:wght@900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#121212;color:#ececec;font-family:Heebo,sans-serif;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+a{color:#e2504a;text-decoration:none}a:hover{color:#ff6b64}
+*{box-sizing:border-box}
+input[type=range]{accent-color:#d93a35;width:100%}
+@keyframes mqL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes mqR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#121212;overflow:hidden">
+
+<dc-import name="SiteNav" style="position:sticky;top:0;z-index:40;display:block" hint-size="100%,66px"></dc-import>
+
+<header style="position:relative;overflow:hidden;padding:clamp(48px,8vw,90px) 24px clamp(56px,9vw,100px);background:linear-gradient(180deg,#1a0f0f,#121212 70%)">
+  <div data-px="0.5" style="position:absolute;inset:-10% -10% auto;height:90%;background:radial-gradient(ellipse 50% 55% at 30% 40%,rgba(217,58,53,.28),transparent 70%);pointer-events:none"></div>
+  <div data-px="0.3" dir="ltr" style="position:absolute;top:40px;left:0;right:0;text-align:center;font-family:Roboto,sans-serif;font-weight:900;font-size:22vw;line-height:1;color:transparent;-webkit-text-stroke:1px #2e1817;pointer-events:none;user-select:none">OCEDIT</div>
+  <div data-px="0.1" style="position:relative;max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px;align-items:center">
+    <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:22px">
+      
+      
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="width:1px;align-self:stretch;background:#3a3a3a"></div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <div dir="ltr" style="display:flex;gap:3px;align-self:center"><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;right:0;bottom:0;width:50%;overflow:hidden;display:flex;justify-content:flex-end;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span></div>
+        <span style="font-size:14px;color:#fff">אהוב מאוד אצל עורכי ווידאו</span>
+      </div>
+      </div>
+      <h1 style="margin:0;font-size:clamp(42px,5.6vw,78px);font-weight:900;line-height:1.02;letter-spacing:-.02em">הטיימליין שלכם.<br><span style="color:#e2504a">בלי השומן.</span></h1>
+      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">התחילו ניסיון חינם</a><span style="font-size: 13px; color: #FFFAFA; letter-spacing: .02em; width: 141px; height: 15px">ללא צורך בכרטיס אשראי</span>
+      
+    </div>
+    <div data-px="-0.08" style="position:relative;flex:1.6 1 560px;min-width:0;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid #3a2222;background:#0c0c0c;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(217,58,53,.12)"><iframe src="https://www.youtube.com/embed/wZPgfeMTX3k?enablejsapi=0&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=wZPgfeMTX3k&amp;controls=0&amp;modestbranding=1&amp;rel=0&amp;playsinline=1&amp;disablekb=1&amp;iv_load_policy=3&amp;vq=hd2160&amp;hd=1" title="OCEDIT demo" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; web-share" frameborder="0" style="position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%) scale(1.02);border:0;pointer-events:none"></iframe></div>
+  </div>
+</header>
+
+
+
+<section style="position:relative;overflow:hidden;padding:60px 0 0">
+  <div dir="ltr" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px">
+      <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqL 60s linear infinite" style-hover="animation-play-state:paused">
+        <sc-for list="{{ mqRow1 }}" as="r" hint-placeholder-count="8">
+            <div dir="rtl" style="flex:none;width:300px;margin-right:14px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;flex:none;border-radius:50%;background:repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px);border:1px solid #3a2222"></span><div style="display:flex;flex-direction:column"><b style="font-size:14px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:12px;color:#888;text-align:right">{{ r.user }}</span></div></div>
+              <p style="margin:0;font-size:14px;line-height:1.55;color:#ccc;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ r.body }}</p>
+            </div>
+        </sc-for>
+      </div>
+      <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqR 60s linear infinite" style-hover="animation-play-state:paused">
+        <sc-for list="{{ mqRow2 }}" as="r" hint-placeholder-count="8">
+            <div dir="rtl" style="flex:none;width:300px;margin-right:14px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;flex:none;border-radius:50%;background:repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px);border:1px solid #3a2222"></span><div style="display:flex;flex-direction:column"><b style="font-size:14px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:12px;color:#888;text-align:right">{{ r.user }}</span></div></div>
+              <p style="margin:0;font-size:14px;line-height:1.55;color:#ccc;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ r.body }}</p>
+            </div>
+        </sc-for>
+      </div>
+    <div style="position:absolute;inset:0 auto 0 0;width:22%;background:linear-gradient(90deg,#121212,transparent);pointer-events:none"></div>
+    <div style="position:absolute;inset:0 0 0 auto;width:22%;background:linear-gradient(270deg,#121212,transparent);pointer-events:none"></div>
+  </div>
+</section>
+
+<section style="position:relative;overflow:hidden;padding:0">
+  <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));align-items:stretch">
+    <div data-px="0.06" style="display:flex;flex-direction:column;justify-content:center;gap:22px;padding:clamp(64px,10vw,110px) 24px;padding-inline-start:max(24px,calc(50vw - 600px));padding-inline-end:clamp(24px,4vw,48px)">
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">שעות על חיתוך שתיקות וכתוביות ידניות? <span style="color:#e2504a">זו הדרך הישנה.</span></h2>
+      <p style="margin:0;font-size:18px;line-height:1.7;color:#a5a5a5;text-wrap:pretty">אתם מכירים את זה: גוללים בטיימליין, מחפשים כל נשימה, חותכים טייק אחרי טייק, מקלידים כתוביות מילה-מילה ומזיזים קיפריימים לזום. העבודה השחורה הזאת אוכלת את רוב הזמן — והיא לא מה שעושה את הסרטון טוב. OCEDIT לוקח אותה מכם, כדי שתתעסקו בקצב, בסיפור ובלקוח הבא.</p>
+      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">התחילו ניסיון חינם</a>
+    </div>
+    <div style="position:relative;min-height:clamp(420px,95vw,760px);overflow:hidden">
+      <div style="position:absolute;left:-10%;right:-10%;bottom:-30%;height:80%;background:radial-gradient(ellipse 60% 55% at 50% 100%,rgba(217,58,53,.45) 0%,rgba(217,58,53,.12) 45%,transparent 75%);pointer-events:none"></div>
+      <img data-px="0.04" src="assets/coedit-panel.png" alt="פאנל OCEDIT בתוך Premiere Pro" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(-4deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)">
+    </div>
+  </div>
+</section>
+
+<section style="padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:64px;align-items:center">
+    <div data-px="-0.06" style="background:#181818;border:1px solid #2a2a2a;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:16px;box-shadow:0 30px 80px rgba(0,0,0,.5)">
+      <div style="display:flex;align-items:center;gap:12px"><span style="width:48px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#777">לפני</span><div style="flex:1;display:flex;gap:2px;height:44px"><sc-for list="{{ clipsBefore }}" as="c" hint-placeholder-count="14"><div style="flex:{{ c.w }};border-radius:3px;background:{{ c.bg }};border:1px solid {{ c.bd }}"></div></sc-for></div><span dir="ltr" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#999">03:44</span></div>
+      <div style="display:flex;align-items:center;gap:12px"><span style="width:48px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#e2504a">אחרי</span><div style="flex:1;display:flex"><div style="width:{{ afterPct }};display:flex;gap:2px;height:44px"><sc-for list="{{ clipsAfter }}" as="c" hint-placeholder-count="7"><div style="flex:{{ c.w }};border-radius:3px;background:#3d6fa8;border:1px solid #5b8fc9"></div></sc-for></div></div><span dir="ltr" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#5fd068">02:31</span></div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#999;border-top:1px solid #262626;padding-top:14px">
+        <span style="display:flex;align-items:center;gap:6px"><i style="width:12px;height:12px;border-radius:2px;background:#3d6fa8"></i>טייק טוב</span>
+        <span style="display:flex;align-items:center;gap:6px"><i style="width:12px;height:12px;border-radius:2px;background:#5a1d1b"></i>טייק גרוע</span>
+        <span style="display:flex;align-items:center;gap:6px"><i style="width:12px;height:12px;border-radius:2px;background:repeating-linear-gradient(135deg,#2a2a2a 0 3px,#1c1c1c 3px 6px)"></i>שתיקה</span>
+      </div>
+    </div>
+    <div data-px="0.06" style="display:flex;flex-direction:column;gap:18px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.3em;color:#d93a35">חיתוך שתיקות + Smart Cuts</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">חומר גלם נכנס. <span style="color:#e2504a">רק הטייקים הטובים יוצאים.</span></h2>
+      <p style="margin:0;font-size:18px;line-height:1.65;color:#a5a5a5;text-wrap:pretty">OCEDIT מזהה כל שתיקה, כל התחלת שווא וכל טייק כפול — ומשאיר רק את הגרסה הטובה. אתם רואים הכל בתצוגה מקדימה ומאשרים בלחיצה.</p>
+      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">התחילו ניסיון חינם</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:clamp(64px,10vw,110px) 24px">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:64px;align-items:center">
+    <div data-px="0.06" style="display:flex;flex-direction:column;gap:18px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.3em;color:#d93a35">זומים + סאונד + כתוביות</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">נראה כמו עריכה של שעות. <span style="color:#e2504a">לקח דקות.</span></h2>
+      <p style="margin:0;font-size:18px;line-height:1.65;color:#a5a5a5;text-wrap:pretty">זומים אוטומטיים על הרגעים החזקים עם אפקט סאונד מסונכרן, וכתוביות מעוצבות בעברית עם תזמון מילה-מילה — מוכנות לייצוא כ-MOGRT או SRT.</p>
+      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">התחילו ניסיון חינם</a>
+    </div>
+    <div data-px="-0.06" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+      <sc-for list="{{ capStyles }}" as="s" hint-placeholder-count="4">
+        <div style="border-radius:12px;overflow:hidden;border:1px solid {{ s.bd }};background:#1d1d1d">
+          <div style="background:#0c0c0c;padding:30px 16px;text-align:center;font-size:26px;font-weight:900;color:{{ s.c }}">{{ s.he }}</div>
+          <div style="padding:10px 14px;display:flex;flex-direction:column"><b style="font-size:14px">{{ s.en }}</b><span style="font-size:12px;color:#777">{{ s.k }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
+    <div data-px="0.08" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <span style="font-family: Open Sans; font-size: 20px; letter-spacing: 0em; color: #d93a35">למה OCEDIT</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;max-width:760px">לא עוד כלי AI&nbsp;&nbsp;<span style="color: rgb(226, 80, 74);">נבנה לחסוך כאב ראש&nbsp;</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">ישירות בתוך פרמייר</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">בלי לייצא, להעלות ולהוריד. הכל קורה בפאנל, על הרצף שלכם.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">אתם מאשרים כל חיתוך</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">תצוגה מקדימה של כל חיתוך וכל מילה לפני שמשהו נוגע בטיימליין.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">עברית מלאה</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">תמלול מדויק וכתוביות מימין לשמאל, כמו שצריך.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">זום עם סאונד מסונכרן</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">כל תנועת מצלמה מקבלת אפקט סאונד מתוזמן — בלי לגעת בקיפריים.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">כתוביות שניתנות לעריכה</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">ייצוא MOGRT לעריכה ב-Essential Graphics, או SRT סטנדרטי.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px;color:#e2504a">COFRAMES במתנה</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">תוסף החלקת קיפריימים — כלול בכל מנוי.</p></div>
+    </div>
+    <a href="#pricing" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">התחילו ניסיון חינם</a>
+  </div>
+</section>
+
+<section style="padding:clamp(64px,10vw,110px) 24px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
+    <div data-px="0.08" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.3em;color:#d93a35">עורכים מספרים</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">מהטיימליין <span style="color:#e2504a">שלהם.</span></h2>
+    </div>
+    <div onMouseEnter="{{ carHoverOn }}" onMouseLeave="{{ carHoverOff }}" style="position:relative;width:100%;max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:26px">
+      <div onPointerDown="{{ dragStart }}" onPointerUp="{{ dragEnd }}" onPointerLeave="{{ dragCancel }}" style="position:relative;width:100%;height:clamp(400px,110vw,440px);perspective:1100px;cursor:grab;touch-action:pan-y;user-select:none">
+        <sc-for list="{{ slides }}" as="sl" hint-placeholder-count="7">
+          <div onClick="{{ sl.go }}" style="position:absolute;top:0;left:50%;width:280px;height:420px;margin-left:-140px;border-radius:16px;overflow:hidden;background:#0c0c0c;border:1px solid {{ sl.bd }};transform:{{ sl.tf }};z-index:{{ sl.z }};opacity:{{ sl.o }};transition:transform .45s cubic-bezier(.22,.8,.3,1),opacity .4s,border-color .3s;box-shadow:0 30px 70px rgba(0,0,0,.6)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#171717 0 12px,#1c1c1c 12px 24px);display:flex;align-items:center;justify-content:center"><span dir="ltr" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5a5a5a;letter-spacing:.1em">{{ sl.label }}</span></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,{{ sl.shL }}),transparent 60%,rgba(0,0,0,{{ sl.shR }}));pointer-events:none;transition:background .5s"></div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:70px 18px 18px;background:linear-gradient(0deg,#000 20%,transparent);display:flex;flex-direction:column;gap:8px">
+              <p style="margin:0;font-size:15px;font-weight:600;line-height:1.5;color:#fff;border-bottom:1px solid #3a3a3a;padding-bottom:12px">"{{ sl.quote }}"</p>
+              <span style="font-size:14px;color:#ddd">— {{ sl.name }}</span>
+              <span style="font-size:12px;font-weight:700;color:#e2504a">{{ sl.role }}</span>
+            </div>
+            <sc-if value="{{ sl.active }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:14px;right:14px;width:42px;height:42px;border-radius:50%;background:linear-gradient(180deg,#e2504a,#c42e2a);box-shadow:0 0 18px rgba(217,58,53,.6);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;padding-left:3px">▶</span></sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px">
+        <button onClick="{{ slideNext }}" style="width:42px;height:42px;border-radius:50%;background:#1d1d1d;border:1px solid #333;color:#eee;font-size:18px;cursor:pointer" style-hover="border-color:#d93a35">›</button>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ slides }}" as="d" hint-placeholder-count="7">
+            <button onClick="{{ d.go }}" style="width:{{ d.dotW }};height:8px;border-radius:999px;border:none;padding:0;cursor:pointer;background:{{ d.dotBg }};transition:width .3s,background .3s"></button>
+          </sc-for>
+        </div>
+        <button onClick="{{ slidePrev }}" style="width:42px;height:42px;border-radius:50%;background:#1d1d1d;border:1px solid #333;color:#eee;font-size:18px;cursor:pointer" style-hover="border-color:#d93a35">‹</button>
+      </div>
+    </div>
+    <a href="#pricing" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">התחילו ניסיון חינם</a>
+  </div>
+</section>
+
+<section id="how" style="padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
+    <div data-px="0.08" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <span style="font-family: Open Sans; font-size: 12px; letter-spacing: 0em; color: #d93a35">איך זה עובד</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">שלושה שלבים&nbsp;<span style="color: rgb(226, 80, 74);">והסרטון מוכן</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+        <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;min-height:220px;justify-content:center">
+          <span style="width:44px;height:44px;border-radius:50%;background:linear-gradient(180deg,#e2504a,#c42e2a);box-shadow:0 0 16px rgba(217,58,53,.5);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px">{{ s.n }}</span>
+          <b style="font-size:19px">{{ s.t }}</b>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#999">{{ s.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+    <a href="#pricing" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">התחילו ניסיון חינם</a>
+  </div>
+</section>
+
+<section id="pricing" style="position:relative;padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f;overflow:hidden">
+  <div data-px="0.4" style="position:absolute;top:0;left:10%;right:10%;height:100%;background:radial-gradient(circle at center,rgba(217,58,53,.28) 0%,transparent 65%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-direction:column;gap:18px;text-align:center;align-items:center">
+      <h2 style="margin:0;font-size:clamp(32px,5vw,60px);font-weight:900;line-height:1.15;opacity:{{ rv.o }};filter:blur({{ rv.b }});transform:translateY({{ rv.y }});transition:opacity .5s ease 0s,filter .5s ease 0s,transform .5s ease 0s">המסלול שעובד הכי טוב <span style="display:inline-block;border:1px dashed #e2504a;background:#2a1716;color:#ff6b64;padding:2px 14px;border-radius:12px">בשבילכם</span></h2>
+      
+      <div style="display:flex;gap:28px;border-bottom:1px solid #2a2a2a;opacity:{{ rv.o }};filter:blur({{ rv.b }});transform:translateY({{ rv.y }});transition:opacity .5s ease 0.6s,filter .5s ease 0.6s,transform .5s ease 0.6s">
+        <button onClick="{{ tabSubs }}" style="font-family:Heebo;font-size:17px;font-weight:800;padding:10px 4px;background:none;border:none;cursor:pointer;color:{{ tsColor }};border-bottom:2px solid {{ tsLine }};margin-bottom:-1px">מנויים</button>
+        <button onClick="{{ tabCredits }}" style="font-family:Heebo;font-size:17px;font-weight:800;padding:10px 4px;background:none;border:none;cursor:pointer;color:{{ tcColor }};border-bottom:2px solid {{ tcLine }};margin-bottom:-1px">חבילות דקות</button>
+      </div>
+      <sc-if value="{{ isSubs }}" hint-placeholder-val="{{ true }}">
+      <div style="position:relative;display:flex;padding:4px;border-radius:999px;background:#1b1b1b;border:1px solid #2e2e2e;opacity:{{ rv.o }};filter:blur({{ rv.b }});transform:translateY({{ rv.y }});transition:opacity .5s ease 0.8s,filter .5s ease 0.8s,transform .5s ease 0.8s">
+        <span style="position:absolute;top:4px;bottom:4px;right:{{ pillRight }};width:140px;border-radius:999px;border:3px solid #d93a35;background:linear-gradient(0deg,#c42e2a,#e2504a 55%,#d93a35);box-shadow:0 0 18px rgba(217,58,53,.55);transition:right .45s cubic-bezier(.34,1.45,.64,1)"></span>
+        <button onClick="{{ setMonthly }}" style="position:relative;width:140px;height:48px;border:none;background:none;border-radius:999px;font-family:Heebo;font-size:16px;font-weight:700;cursor:pointer;color:{{ mColor }};transition:color .3s">חודשי</button>
+        <button onClick="{{ setYearly }}" style="position:relative;width:140px;height:48px;border:none;background:none;border-radius:999px;font-family:Heebo;font-size:16px;font-weight:700;cursor:pointer;color:{{ yColor }};transition:color .3s;display:flex;align-items:center;justify-content:center;gap:8px">שנתי <span style="font-size:11px;font-weight:800;background:#2a1716;color:#fff;border:1px solid #6e2622;padding:2px 7px;border-radius:999px">20%-</span></button>
+      </div>
+      </sc-if>
+    </div>
+    <sc-if value="{{ isSubs }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;align-items:stretch">
+      <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+        <div style="position:relative;border-radius:14px;display:flex;flex-direction:column;background:{{ t.bg }};border:1px solid {{ t.bd }};box-shadow:{{ t.sh }};opacity:{{ rv.o }};filter:blur({{ rv.b }});transform:translateY({{ rv.y }});transition:opacity .5s ease {{ t.delay }},filter .5s ease {{ t.delay }},transform .5s ease {{ t.delay }}">
+          <div style="padding:28px 28px 0;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+              <h3 dir="ltr" style="margin:0;font-family:Roboto,sans-serif;font-weight:900;font-size:30px;letter-spacing:.06em">{{ t.name }}</h3>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+                <sc-if value="{{ t.rec }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;font-weight:700;background:#d93a35;color:#fff;padding:4px 12px;border-radius:999px">הכי פופולרי</span></sc-if>
+                <sc-if value="{{ t.match }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;font-weight:700;background:#5fd068;color:#0c1a10;padding:4px 12px;border-radius:999px">לפי המחשבון</span></sc-if>
+              </div>
+            </div>
+            <p style="margin:0;font-size:15px;color:#999;line-height:1.5">{{ t.who }}</p>
+            <div style="display:flex;align-items:baseline;gap:6px;margin-top:8px">
+              <b style="font-size:46px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums">₪{{ t.shown }}</b>
+              <span style="font-size:15px;color:#888">/ חודש</span>
+              <s style="font-size:16px;color:#666;margin-inline-start:6px">{{ t.strike }}</s>
+            </div>
+            <span style="font-size:13px;color:#777">{{ t.billNote }}</span>
+          </div>
+          <div style="padding:22px 28px 28px;display:flex;flex-direction:column;gap:0;flex:1">
+            <a href="{{ t.cartHref }}" style="display:block;text-align:center;font-weight:800;font-size:19px;padding:16px;border-radius:12px;color:#fff;background:{{ t.btnBg }};border:1px solid {{ t.btnBd }};box-shadow:{{ t.btnSh }}">התחילו עם {{ t.name }}</a>
+            <span style="font-size:12px;color:#777;text-align:center;margin-top:8px">ניסיון חינם · עובד ישירות בתוך Premiere Pro</span>
+            <div style="display:flex;flex-direction:column;gap:12px;padding:22px 0">
+              <div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;flex:none;border-radius:7px;background:#2a1716;border:1px solid #5a2220;color:#e2504a;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center">Aa</span><span style="font-size:15px;font-weight:700;color:#ddd"><b dir="ltr" style="color:#fff">{{ t.cap }}</b> דק' כתוביות וזומים</span></div>
+              <div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;flex:none;border-radius:7px;background:#2a1716;border:1px solid #5a2220;color:#e2504a;font-size:14px;display:flex;align-items:center;justify-content:center">✂</span><span style="font-size:15px;font-weight:700;color:#ddd"><b dir="ltr" style="color:#fff">{{ t.cuts }}</b> דק' Smart Cuts + חיתוך רגיל</span></div>
+              <sc-if value="{{ t.showSave }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;flex:none;border-radius:7px;background:#14231a;border:1px solid #2a5a36;color:#5fd068;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center">₪</span><span style="font-size:15px;font-weight:700;color:#5fd068">חוסכים ₪{{ t.save }} בשנה</span></div></sc-if>
+            </div>
+            <div style="border-top:1px solid #2a2a2a;padding-top:20px;display:flex;flex-direction:column;gap:11px">
+              <h4 style="margin:0 0 4px;font-size:15px;font-weight:700;color:#fff">כלול בכל מסלול:</h4>
+              <sc-for list="{{ includes }}" as="inc" hint-placeholder-count="5">
+                <div style="display:flex;align-items:center;gap:12px"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center">✓</span><span style="font-size:14px;font-weight:600;color:{{ inc.c }}">{{ inc.t }}</span></div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    </sc-if>
+    <sc-if value="{{ isCredits }}" hint-placeholder-val="{{ false }}">
+    <div id="credits" style="display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:12px">
+        <div style="display:flex;flex-direction:column;gap:6px"><h3 style="margin:0;font-size:28px;font-weight:900">נגמרו הדקות? <span style="color:#e2504a">קנו קרדיטים.</span></h3><span style="font-size:15px;color:#888">חבילות חד-פעמיות, בלי מנוי. עורכים באופן קבוע? <a href="#pricing" onClick="{{ tabSubs }}">מנוי משתלם יותר ←</a></span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px">
+        <sc-for list="{{ packs }}" as="p" hint-placeholder-count="4">
+          <div style="position:relative;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:14px;background:{{ p.bg }};border:1px solid {{ p.bd }}">
+            <sc-if value="{{ p.best }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-11px;left:18px;font-size:11px;font-weight:800;background:#d93a35;color:#fff;padding:3px 8px;border-radius:5px">הכי משתלם</span></sc-if>
+            <div style="display:flex;flex-direction:column;gap:2px"><b dir="ltr" style="font-size:32px;font-weight:900;text-align:right">{{ p.n }}</b><span style="font-size:14px;color:#888">קרדיטים</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:24px">₪{{ p.price }}</b><span dir="ltr" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#777">₪{{ p.per }} / credit</span></div>
+            <a href="{{ p.cartHref }}" style="text-align:center;font-weight:700;font-size:15px;padding:10px;border-radius:7px;background:#232323;border:1px solid #333;color:#eee;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">קנו עכשיו</a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+  </div>
+</section>
+
+<section id="faq" style="padding:clamp(64px,10vw,110px) 24px">
+  <div style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:30px">
+    <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;text-align:center">שאלות נפוצות</h2>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+        <div style="border-bottom:1px solid #2e2e2e">
+          <button onClick="{{ f.toggle }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;background:none;border:none;color:#eee;font-family:Heebo;font-size:17px;font-weight:700;text-align:right;cursor:pointer"><span>{{ f.q }}</span><span style="color:#d93a35;font-size:16px">{{ f.sign }}</span></button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:0 0 22px;font-size:16px;line-height:1.7;color:#aaa">{{ f.a }}</p></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="position:relative;overflow:hidden;padding:0;background:#151515;border-top:1px solid #1f1f1f">
+  <div data-px="0.4" style="position:absolute;inset:-20% 0 -40%;background:radial-gradient(ellipse 60% 50% at 70% 70%,rgba(217,58,53,.22),transparent 70%);pointer-events:none"></div>
+  <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));align-items:stretch">
+    <div data-px="0.06" style="display:flex;flex-direction:column;justify-content:center;gap:20px;padding:110px max(24px,calc(50vw - 600px)) 110px 48px;padding-inline-start:max(24px,calc(50vw - 600px));padding-inline-end:48px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.3em;color:#d93a35">הסרטון הבא שלכם</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">כל סרטון שאתם עורכים ידנית <span style="color:#e2504a">זה עוד ערב בטיימליין.</span></h2>
+      
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#ddd"><i style="width:22px;height:22px;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>שתיקות וטייקים גרועים — נחתכים אוטומטית</span>
+        <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#ddd"><i style="width:22px;height:22px;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>זומים עם סאונד — בלי קיפריימים</span>
+        <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#ddd"><i style="width:22px;height:22px;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>כתוביות מעוצבות בעברית — מוכנות לייצוא</span>
+      </div>
+      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">התחילו ניסיון חינם</a>
+      
+    </div>
+    <div style="position:relative;min-height:clamp(420px,95vw,760px);overflow:hidden;background:transparent">
+      <div style="position:absolute;left:-10%;right:-10%;bottom:-30%;height:80%;background:radial-gradient(ellipse 60% 55% at 50% 100%,rgba(217,58,53,.45) 0%,rgba(217,58,53,.12) 45%,transparent 75%);pointer-events:none"></div>
+      <img data-px="0.04" src="assets/coframes-panel.png" alt="פאנל COFRAMES — עורך עקומות תנועה" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(3deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)">
+      
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ showBar }}" hint-placeholder-val="{{ false }}">
+
+</sc-if>
+<footer style="border-top:1px solid #222;padding:30px 24px 90px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+    <img src="assets/logo.png" alt="COEDIT" style="height:24px;width:auto;display:block">
+    <div style="display:flex;gap:20px;font-size:14px"><a href="OCEDIT%20Info.dc.html#terms" style="color:#888">תנאי שימוש</a><a href="OCEDIT%20Info.dc.html#privacy" style="color:#888">פרטיות</a><a href="OCEDIT%20Info.dc.html#contact" style="color:#888">צור קשר</a></div>
+    
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const W = () => document.defaultView || window;
+class Component extends DCLogic {
+  state = { yearly: false, after: false, videos: 12, raw: 15, manual: 90, openFaq: 0, tab: 'subs', showBar: false };
+    shown = { NOOB: 99, PRO: 179, HACKER: 349 };
+  componentDidMount() { this._vw = () => this.setState({ vw: W().innerWidth }); this._vw(); W().addEventListener('resize', this._vw); try { const c = JSON.parse((document.defaultView || window).localStorage.getItem('ocedit-cart') || '{}'); this.setState({ navCart: (c.plan ? 1 : 0) + (c.packs || []).length, navLogged: !!c.loggedIn }); } catch (e) {}
+    const w = W(); this._t = [];
+    const reduce = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const frame = () => {
+      const vh = w.innerHeight, sy = w.scrollY || document.documentElement.scrollTop || 0;
+      if (!reduce) document.querySelectorAll('[data-px]').forEach(el => { const sp = parseFloat(el.dataset.px) || 0; const host = el.closest('section,header') || el.parentElement; const r = host.getBoundingClientRect(); let y; if (host.tagName === 'HEADER') { y = Math.max(0, -r.top) * sp; } else { const prog = (vh - r.top) / (vh + r.height); y = (Math.max(0, Math.min(1, prog)) - 0.5) * -sp * 1400; } el.style.translate = '0 ' + y.toFixed(1) + 'px'; });
+      const p = document.getElementById('pricing');
+      if (p) { const r = p.getBoundingClientRect(); if (!this.state.revealed && r.top < vh * 0.85 && r.bottom > 0) this.setState({ revealed: true }); const inP = r.top < vh && r.bottom > 0; const sb = sy > 600 && !inP; if (sb !== this.state.showBar) this.setState({ showBar: sb }); }
+    };
+    let queued = false;
+    this._on = () => { if (queued) return; queued = true; w.requestAnimationFrame(() => { queued = false; frame(); }); };
+    w.addEventListener('scroll', this._on, { passive: true });
+    document.addEventListener('scroll', this._on, { passive: true, capture: true });
+    w.addEventListener('resize', this._on);
+    if (!reduce) {
+      const items = [];
+      document.querySelectorAll('header, section').forEach(sec => {
+        if (sec.id === 'pricing' || sec.querySelector('[style*="perspective"]') || sec.querySelector('[style*="animation:mq"]')) return;
+        let n = 0;
+        sec.querySelectorAll('h1, h2, p, a[href="#pricing"], [style*="grid-template-columns:repeat"] > *, img, [style*="aspect-ratio:16/9"]').forEach(el => {
+          if (el.closest('[data-rvd]') || el.closest('nav') || el.parentElement.closest('[style*="grid-template-columns:repeat(2"]')) return;
+          el.setAttribute('data-rvd', '0'); const d = Math.min(n++ * 0.12, 0.9);
+          const isImg = el.tagName === 'IMG';
+          el.style.opacity = '0'; el.style.filter = (el.style.filter && isImg ? el.style.filter + ' ' : '') + 'blur(10px)';
+          if (!isImg) el.style.transform = 'translateY(-20px)';
+          el.style.transition = 'opacity .6s ease ' + d + 's, filter .6s ease ' + d + 's, transform .6s ease ' + d + 's';
+          items.push({ el, isImg, d });
+        });
+      });
+      this._rvItems = items;
+    }
+    const revealAll = () => { if (!this._rvItems) return; const vh = w.innerHeight; this._rvItems = this._rvItems.filter(({ el, isImg, d }) => { const r = el.getBoundingClientRect(); if (r.top < vh * 0.9 && r.bottom > 0) { el.style.opacity = '1'; el.style.filter = el.style.filter.replace(/\s*blur\(10px\)/, ''); if (!isImg) el.style.transform = 'none'; w.setTimeout(() => { el.style.transition = 'transform .2s ease, box-shadow .2s ease, border-color .2s ease'; }, ((d || 0) + 0.7) * 1000); return false; } return true; }); };
+    const prevOn = this._on;
+    this._on = () => { prevOn(); w.requestAnimationFrame(revealAll); };
+    w.removeEventListener('scroll', prevOn); document.removeEventListener('scroll', prevOn, { capture: true }); w.removeEventListener('resize', prevOn);
+    w.addEventListener('scroll', this._on, { passive: true }); document.addEventListener('scroll', this._on, { passive: true, capture: true }); w.addEventListener('resize', this._on);
+    w.requestAnimationFrame(() => w.requestAnimationFrame(revealAll));
+    this._t.push(w.setTimeout(() => { (this._rvItems || []).forEach(({ el, isImg }) => { el.style.opacity = '1'; el.style.filter = el.style.filter.replace(/\s*blur\(10px\)/, ''); if (!isImg) el.style.transform = 'none'; }); this._rvItems = []; }, 15000));
+    frame();
+    this._t.push(w.setTimeout(frame, 400), w.setTimeout(() => { if (!this.state.revealed) this.setState({ revealed: true }); }, 2500));
+    this.setState({ armed: true });
+    this._car = w.setInterval(() => { if (this._carHover || document.hidden) return; this.setState(st => ({ slide: ((st.slide ?? 3) + 1) % 7 })); }, 1800);
+  }
+  animPrices(yearly) { const w = W(), f = yearly ? 0.8 : 1, base = { NOOB: 99, PRO: 179, HACKER: 349 }, from = this.state.anim || (yearly ? base : { NOOB: 79, PRO: 143, HACKER: 279 }), t0 = w.performance.now(); w.cancelAnimationFrame(this._raf); const step = now => { const k = Math.min(1, (now - t0) / 600), e = 1 - Math.pow(1 - k, 3); const next = {}; for (const n in base) next[n] = Math.round(from[n] + (Math.round(base[n] * f) - from[n]) * e); this.setState({ anim: k < 1 ? next : null }); if (k < 1) this._raf = w.requestAnimationFrame(step); }; this._raf = w.requestAnimationFrame(step); }
+  componentWillUnmount() { const w = W(); w.removeEventListener('scroll', this._on); document.removeEventListener('scroll', this._on, { capture: true }); w.removeEventListener('resize', this._on); (this._t || []).forEach(t => w.clearTimeout(t)); w.clearInterval(this._car); w.cancelAnimationFrame(this._raf); }
+  renderVals() {
+    const s = this.state, v = this.props.heroVariant ?? 'C';
+    const on = { c: '#fff', bg: '#2a1716', bd: '#8a2c28' }, off = { c: '#777', bg: 'transparent', bd: 'transparent' };
+    const B = (w, t) => t === 'g' ? { w, bg: '#3d6fa8', bd: '#5b8fc9', label: '' } : t === 'b' ? { w, bg: '#5a1d1b', bd: '#8a2c28', label: 'טייק גרוע' } : { w, bg: 'repeating-linear-gradient(135deg,#2a2a2a 0 4px,#1c1c1c 4px 8px)', bd: '#2a2a2a', label: '' };
+    const seq = [[8,'g'],[3,'s'],[6,'b'],[9,'g'],[2,'s'],[7,'g'],[4,'s'],[5,'b'],[10,'g'],[3,'s'],[6,'g'],[2,'s'],[8,'g'],[3,'s']];
+    const before = seq.map(([w, t]) => B(w, t)), afterC = seq.filter(x => x[1] === 'g').map(([w]) => B(w, 'g'));
+    const tot = seq.reduce((a, x) => a + x[0], 0), good = seq.filter(x => x[1] === 'g').reduce((a, x) => a + x[0], 0);
+    const afterPct = Math.round(good / tot * 100) + '%';
+    const wave = Array.from({ length: 70 }, (_, i) => { const cut = [5,6,14,22,23,31,40,41,49,57,63].includes(i); const h = cut ? 100 : 15 + Math.abs(Math.sin(i * 1.7) * 70) + (i % 3) * 5; return { h: h + '%', c: cut ? '#d93a35' : '#5b8fc9' }; });
+    const tdata = [['חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה.', 'שם העורך/ת', 'עורך יוטיוב'], ['הכתוביות בעברית פשוט עובדות. בלי לתקן כל מילה.', 'שם העורך/ת', 'עורכת רילס'], ['הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.', 'שם העורך/ת', 'עורך פודקאסטים'], ['התחלתי לערוך לפני חודש והלקוחות חושבים שאני ותיק.', 'שם העורך/ת', 'עורך מתחיל'], ['מקבלת יותר פרויקטים בשבוע, באותן שעות.', 'שם העורך/ת', 'פרילנסרית'], ['ה-Smart Cuts מוצא טייקים שאני הייתי מפספס.', 'שם העורך/ת', 'עורך תוכן'], ['חוסך לי ערב שלם על כל פרויקט.', 'שם העורך/ת', 'עורך סושיאל']];
+    const N = tdata.length, cur = s.slide ?? 3;
+    const mq = [['שם העורך/ת', '@editor1', 'חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.'], ['שם העורך/ת', '@editor2', 'הכתוביות בעברית פשוט עובדות — בלי לתקן כל מילה מחדש.'], ['שם העורך/ת', '@editor3', 'הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.'], ['שם העורך/ת', '@editor4', 'התחלתי לערוך לפני חודש והלקוחות חושבים שאני ותיק.'], ['שם העורך/ת', '@editor5', 'מקבלת יותר פרויקטים בשבוע, באותן שעות עבודה.'], ['שם העורך/ת', '@editor6', 'ה-Smart Cuts מוצא טייקים כפולים שאני הייתי מפספס.'], ['שם העורך/ת', '@editor7', 'חוסך לי ערב שלם על כל פרויקט. לא חוזר אחורה.'], ['שם העורך/ת', '@editor8', 'הכל בתוך פרמייר — בלי לייצא ולהעלות לשום מקום.']].map(([name, user, body]) => ({ name, user, body }));
+    const half1 = mq.slice(0, 4), half2 = mq.slice(4);
+    const rep = (a, n) => Array.from({ length: n }, () => a).flat();
+    const mqRow1 = rep(half1, 8), mqRow2 = rep(half2, 8);
+    const slides = tdata.map(([quote, name, role], i) => { let off = i - cur; if (off > N / 2) off -= N; if (off < -N / 2) off += N; const ab = Math.abs(off), sg = Math.sign(off); const active = off === 0;
+      return { quote, name, role, active, label: 'VIDEO ' + String(i + 1).padStart(2, '0'),
+        tf: 'translateX(' + (off * (s.vw < 640 ? 120 : 230)) + 'px) translateZ(' + (-ab * (s.vw < 640 ? 160 : 120)) + 'px) rotateY(' + (-sg * Math.min(ab, 1) * 40) + 'deg) scale(' + (s.vw < 640 ? 0.86 : 1) + ')',
+        z: 10 - ab, o: ab > (s.vw < 640 ? 1 : 2) ? 0 : 1, bd: active ? '#8a2c28' : '#2a2a2a', shL: off > 0 ? Math.min(.7, ab * .45) : 0, shR: off < 0 ? Math.min(.7, ab * .45) : 0,
+        go: () => this.setState({ slide: i }), dotW: active ? '26px' : '8px', dotBg: active ? '#d93a35' : '#3a3a3a' }; });
+    const total = s.videos * s.raw;
+    const rec = total <= 90 ? 'NOOB' : total <= 300 ? 'PRO' : 'HACKER';
+    const recNote = total > 1000 ? 'יותר מ-1,000 דקות בחודש? HACKER + חבילת קרדיטים.' : 'לפי דקות חומר גלם לחיתוך בחודש. הערכה — 10 דקות עבודה לסרטון עם OCEDIT.';
+    const hours = Math.max(0, s.videos * (s.manual - 10) / 60);
+    const base = [
+      { name: 'NOOB', who: 'למי שרק מתחיל', m: 99, cap: 30, cuts: 90 },
+      { name: 'PRO', who: 'לעורכים שעובדים על זה כל יום', m: 179, cap: 90, cuts: 300, rec: true },
+      { name: 'HACKER', who: 'לאולפנים ועורכים בנפח גבוה', m: 349, cap: 500, cuts: '1,000' }];
+    const tiers = base.map((t, i) => ({ ...t, rec: !!t.rec, cartHref: 'OCEDIT%20Store.dc.html#cart?plan=' + t.name + '&yearly=' + (s.yearly ? 1 : 0), shown: s.anim ? s.anim[t.name] : (s.yearly ? Math.round(t.m * 0.8) : t.m), delay: (1 + i * 0.25) + 's', match: false, showSave: s.yearly, save: Math.round(t.m * 0.2 * 12).toLocaleString(),
+      price: s.yearly ? Math.round(t.m * 0.8) : t.m, strike: s.yearly ? '₪' + t.m : '',
+      billNote: s.yearly ? 'מחויב שנתית · ₪' + Math.round(t.m * 0.8 * 12).toLocaleString() + ' לשנה' : 'מחויב חודשית',
+      bg: t.rec ? '#1f1414' : '#1a1a1a', bd: t.rec ? '#8a2c28' : '#2a2a2a', sh: t.rec ? '0 0 60px rgba(217,58,53,.18)' : 'none',
+      btnBg: t.rec ? 'linear-gradient(180deg,#e2504a,#c42e2a)' : '#232323', btnBd: t.rec ? '#c42e2a' : '#333', btnSh: t.rec ? '0 0 24px rgba(220,60,55,.4)' : 'none' }));
+    const packs = [[50,20],[150,50],[400,100],[1000,200]].map(([n, p], i) => ({ cartHref: 'OCEDIT%20Store.dc.html#cart?pack=' + n, n: n.toLocaleString(), price: p, per: (p / n).toFixed(2), best: i === 3, bg: i === 3 ? '#1f1414' : '#1a1a1a', bd: i === 3 ? '#8a2c28' : '#2a2a2a' }));
+    const faqData = [
+      ['זה מתאים גם למי שרק מתחיל לערוך?', 'כן. ברירות המחדל כבר מכוונות לתוצאה מקצועית — פותחים את הפאנל, מאשרים, וממשיכים. NOOB נבנה בדיוק בשביל זה.'],
+      ['האם החיתוכים מתבצעים בלי שאראה אותם?', 'לא. כל כלי מציג תצוגה מקדימה — ציר זמן עם החיתוכים או תמליל עם המילים המסומנות. אפשר לבטל סימון, לשנות הגדרות ולאשר רק כשזה נראה נכון.'],
+      ['זה עובד בעברית?', 'כן. התמלול מזהה את השפה אוטומטית ותומך בעברית מלאה, כולל כתוביות מימין לשמאל.'],
+      ['מה ההבדל בין כתוביות וזומים לבין Smart Cuts?', 'לכל מסלול שתי מכסות דקות: אחת לכתוביות וזומים, ואחת לחיתוך שתיקות וטייקים חכמים. הדקות נספרות לפי אורך החומר שעובד.'],
+      ['מה קורה כשנגמרות לי הדקות?', 'אפשר לקנות חבילת קרדיטים חד-פעמית בכל רגע, או לשדרג מסלול.'],
+            ['מה זה Smoothen Keyframes?', 'תוסף נוסף שמחליק קיפריימים כך שזומים ותנועות נראים רכים. הוא כלול בכל מנוי, וזמין גם לרכישה בנפרד.']];
+    const faqs = faqData.map(([q, a], i) => { const open = s.openFaq === i; return { q, a, open, sign: open ? '▴' : '▾', bg: open ? '#1f1414' : '#1a1a1a', bd: open ? '#5a2220' : '#2a2a2a', toggle: () => this.setState({ openFaq: open ? -1 : i }) }; });
+    const ba = s.after ? on : off, bb = s.after ? off : on, ym = s.yearly ? on : off, mm = s.yearly ? off : on;
+    return {
+      rv: (s.revealed || !s.armed) ? { o: 1, b: '0px', y: '0px' } : { o: 0, b: '10px', y: '-20px' }, pillRight: s.yearly ? '144px' : '4px',
+      includes: [{ t: 'חיתוך שתיקות וטייקים חכמים', c: '#bbb' }, { t: 'זומים אוטומטיים עם אפקטי סאונד', c: '#bbb' }, { t: 'כתוביות מעוצבות בעברית', c: '#bbb' }, { t: 'ייצוא MOGRT ו-SRT', c: '#bbb' }, { t: 'COFRAMES במתנה', c: '#fff' }],
+      navAccountHref: s.navLogged ? 'OCEDIT%20Store.dc.html#account' : 'OCEDIT%20Store.dc.html#login', navAccountLabel: s.navLogged ? 'החשבון שלי' : 'התחברות', navCartCount: s.navCart || 0, navHasCart: (s.navCart || 0) > 0, showBar: s.showBar, isA: v === 'A', isB: v === 'B', isC: v === 'C',
+      panelItems: [{ icon: '✦', t: 'AutoEdit', d: 'חיתוך וכתוביות בלחיצה אחת' }, { icon: 'Aa', t: 'כתוביות חכמות', d: 'תמלל, סקור, עצב וייצא' }, { icon: '✳', t: 'טייקים חכמים', d: 'זהה טייקים כפולים' }, { icon: '✂', t: 'חיתוך שתיקות', d: 'הסר חלקים שקטים' }],
+      clipsBefore: before, clipsAfter: afterC, afterPct,
+      baClips: s.after ? afterC : before, baWidth: s.after ? afterPct : '100%', baDuration: s.after ? '02:31' : '03:44',
+      baZooms: s.after ? [{ gap: '6%', w: '9%' }, { gap: '14%', w: '7%' }, { gap: '12%', w: '10%' }] : [],
+      baCaps: s.after ? ['מוכן?', 'שלוש ארבע צה', 'אוקיי יש לי ניסוח', 'כאילו יותר נכון'] : [],
+      showBefore: () => this.setState({ after: false }), showAfter: () => this.setState({ after: true }),
+      baBeforeColor: bb.c, baBeforeBg: bb.bg, baBeforeBd: bb.bd, baAfterColor: ba.c, baAfterBg: ba.bg, baAfterBd: ba.bd,
+      wave, badWords: ['ואלה', 'שממש', 'רוצים', 'להעלות', 'פרופיל', 'כי'],
+      capStyles: [{ he: 'פופ', en: 'Smooth Pop', k: 'משפט שלם', c: '#fff', bd: '#2a2a2a' }, { he: 'הדרגתי', en: 'Smooth Fade', k: 'משפט שלם', c: '#fff', bd: '#c42e2a' }, { he: 'מילה', en: 'Smooth Text WBW', k: 'מילה במילה', c: '#fff', bd: '#2a2a2a' }, { he: 'צבע', en: 'Smooth Color WBW', k: 'מילה במילה', c: '#f3d36b', bd: '#2a2a2a' }],
+      steps: [
+        { n: 1, tab: 'הגדרות', t: 'פותחים את הפאנל', d: 'בוחרים כלי — AutoEdit, כתוביות, טייקים או שתיקות — ומגדירים סגנון. ברירות המחדל כבר מומלצות.', bg: '#d93a35', sh: '0 0 16px rgba(217,58,53,.5)' },
+        { n: 2, tab: 'סקירה', t: 'בודקים את התצוגה המקדימה', d: 'רואים בדיוק מה ייחתך ומה ייכתב. לחיצה על מילה או קטע משנה את ההחלטה.', bg: '#2a1716', sh: 'none' },
+        { n: 3, tab: 'סיום', t: 'מאשרים — וזה בטיימליין', d: 'החיתוכים, הזומים והכתוביות נכנסים ישר לרצף. ממשיכים לערוך כרגיל.', bg: '#2a1716', sh: 'none' }],
+      videos: s.videos, raw: s.raw, manual: s.manual,
+      setVideos: e => this.setState({ videos: +e.target.value }), setRaw: e => this.setState({ raw: +e.target.value }), setManual: e => this.setState({ manual: +e.target.value }),
+      hoursSaved: hours.toFixed(hours < 10 ? 1 : 0), totalMin: total.toLocaleString(), recTier: rec, recNote,
+      carHoverOn: () => { this._carHover = true; }, carHoverOff: () => { this._carHover = false; },
+      mqRow1, mqRow2,
+      slides, slideNext: () => this.setState({ slide: (cur + 1) % N }), slidePrev: () => this.setState({ slide: (cur - 1 + N) % N }),
+      dragStart: e => { this._dx = e.clientX; }, dragCancel: () => { this._dx = null; },
+      dragEnd: e => { if (this._dx == null) return; const d = e.clientX - this._dx; this._dx = null; if (Math.abs(d) > 40) this.setState({ slide: (cur + (d < 0 ? 1 : -1) + N) % N }); },
+      tiers, packs, faqs,
+      setMonthly: () => { if (s.yearly) { this.setState({ yearly: false }); this.animPrices(false); } }, setYearly: () => { if (!s.yearly) { this.setState({ yearly: true }); this.animPrices(true); } },
+      isSubs: s.tab === 'subs', isCredits: s.tab === 'credits', tabSubs: () => this.setState({ tab: 'subs' }), tabCredits: () => this.setState({ tab: 'credits' }), tsColor: s.tab === 'subs' ? '#fff' : '#777', tsLine: s.tab === 'subs' ? '#d93a35' : 'transparent', tcColor: s.tab === 'credits' ? '#fff' : '#777', tcLine: s.tab === 'credits' ? '#d93a35' : 'transparent',
+      mColor: s.yearly ? '#888' : '#fff', mBg: mm.bg, mBd: mm.bd, yColor: s.yearly ? '#fff' : '#888', yBg: ym.bg, yBd: ym.bd
+    };
+  }
+}
+</script>
+</body>
+</html>
