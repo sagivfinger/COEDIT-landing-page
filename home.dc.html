@@ -28,6 +28,15 @@ input[type=range]{accent-color:#d93a35;width:100%}
   <div data-px="0.3" dir="ltr" style="position:absolute;top:40px;left:0;right:0;text-align:center;font-family:Roboto,sans-serif;font-weight:900;font-size:22vw;line-height:1;color:transparent;-webkit-text-stroke:1px #2e1817;pointer-events:none;user-select:none">COEDIT</div>
   <div data-px="0.1" style="position:relative;max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px;align-items:center">
     <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:22px">
+      
+      
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="width:1px;align-self:stretch;background:#3a3a3a"></div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <div dir="ltr" style="display:flex;gap:3px;align-self:center"><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;right:0;bottom:0;width:50%;overflow:hidden;display:flex;justify-content:flex-end;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span></div>
+        <span style="font-size:14px;color:#fff">אהוב מאוד אצל עורכי ווידאו</span>
+      </div>
+      </div>
       <h1 style="margin:0;font-size:clamp(42px,5.6vw,78px);font-weight:900;line-height:1.02;letter-spacing:-.02em">הטיימליין שלכם.<br><span style="color:#e2504a">בלי השומן.</span></h1>
       <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">לצפייה במסלולים</a>
       
@@ -37,6 +46,29 @@ input[type=range]{accent-color:#d93a35;width:100%}
 </header>
 
 
+
+<section style="position:relative;overflow:hidden;padding:60px 0 0">
+  <div dir="ltr" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px">
+      <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqL 60s linear infinite" style-hover="animation-play-state:paused">
+        <sc-for list="{{ mqRow1 }}" as="r" hint-placeholder-count="8">
+            <div dir="rtl" style="flex:none;width:300px;margin-right:14px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;flex:none;border-radius:50%;background:repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px);border:1px solid #3a2222"></span><div style="display:flex;flex-direction:column"><b style="font-size:14px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:12px;color:#888;text-align:right">{{ r.user }}</span></div></div>
+              <p style="margin:0;font-size:14px;line-height:1.55;color:#ccc;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ r.body }}</p>
+            </div>
+        </sc-for>
+      </div>
+      <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqR 60s linear infinite" style-hover="animation-play-state:paused">
+        <sc-for list="{{ mqRow2 }}" as="r" hint-placeholder-count="8">
+            <div dir="rtl" style="flex:none;width:300px;margin-right:14px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;flex:none;border-radius:50%;background:repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px);border:1px solid #3a2222"></span><div style="display:flex;flex-direction:column"><b style="font-size:14px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:12px;color:#888;text-align:right">{{ r.user }}</span></div></div>
+              <p style="margin:0;font-size:14px;line-height:1.55;color:#ccc;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ r.body }}</p>
+            </div>
+        </sc-for>
+      </div>
+    <div style="position:absolute;inset:0 auto 0 0;width:22%;background:linear-gradient(90deg,#121212,transparent);pointer-events:none"></div>
+    <div style="position:absolute;inset:0 0 0 auto;width:22%;background:linear-gradient(270deg,#121212,transparent);pointer-events:none"></div>
+  </div>
+</section>
 
 <section style="position:relative;overflow:hidden;padding:0">
   <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));align-items:stretch">
@@ -104,6 +136,41 @@ input[type=range]{accent-color:#d93a35;width:100%}
       <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">זום עם סאונד מסונכרן</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">כל תנועת מצלמה מקבלת אפקט סאונד מתוזמן — בלי לגעת בקיפריים.</p></div>
       <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">כתוביות שניתנות לעריכה</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">ייצוא MOGRT לעריכה ב-Essential Graphics, או SRT סטנדרטי.</p></div>
       <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px;color:#e2504a">COFRAMES כלול בכל מנוי</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">תוסף שמחליק קיפריימים כך שזומים ותנועות נראים רכים.</p></div>
+    </div>
+    <a href="#pricing" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">לצפייה במסלולים</a>
+  </div>
+</section>
+
+<section style="padding:clamp(64px,10vw,110px) 24px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
+    <div data-px="0.08" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.3em;color:#d93a35">עורכים מספרים</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">מהטיימליין <span style="color:#e2504a">שלהם.</span></h2>
+    </div>
+    <div onMouseEnter="{{ carHoverOn }}" onMouseLeave="{{ carHoverOff }}" style="position:relative;width:100%;max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:26px">
+      <div onPointerDown="{{ dragStart }}" onPointerUp="{{ dragEnd }}" onPointerLeave="{{ dragCancel }}" style="position:relative;width:100%;height:clamp(400px,110vw,440px);perspective:1100px;cursor:grab;touch-action:pan-y;user-select:none">
+        <sc-for list="{{ slides }}" as="sl" hint-placeholder-count="7">
+          <div onClick="{{ sl.go }}" style="position:absolute;top:0;left:50%;width:280px;height:420px;margin-left:-140px;border-radius:16px;overflow:hidden;background:#0c0c0c;border:1px solid {{ sl.bd }};transform:{{ sl.tf }};z-index:{{ sl.z }};opacity:{{ sl.o }};transition:transform .45s cubic-bezier(.22,.8,.3,1),opacity .4s,border-color .3s;box-shadow:0 30px 70px rgba(0,0,0,.6)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#171717 0 12px,#1c1c1c 12px 24px);display:flex;align-items:center;justify-content:center"><span dir="ltr" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5a5a5a;letter-spacing:.1em">{{ sl.label }}</span></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,{{ sl.shL }}),transparent 60%,rgba(0,0,0,{{ sl.shR }}));pointer-events:none;transition:background .5s"></div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:70px 18px 18px;background:linear-gradient(0deg,#000 20%,transparent);display:flex;flex-direction:column;gap:8px">
+              <p style="margin:0;font-size:15px;font-weight:600;line-height:1.5;color:#fff;border-bottom:1px solid #3a3a3a;padding-bottom:12px">"{{ sl.quote }}"</p>
+              <span style="font-size:14px;color:#ddd">— {{ sl.name }}</span>
+              <span style="font-size:12px;font-weight:700;color:#e2504a">{{ sl.role }}</span>
+            </div>
+            <sc-if value="{{ sl.active }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:14px;right:14px;width:42px;height:42px;border-radius:50%;background:linear-gradient(180deg,#e2504a,#c42e2a);box-shadow:0 0 18px rgba(217,58,53,.6);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;padding-left:3px">▶</span></sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px">
+        <button onClick="{{ slideNext }}" style="width:42px;height:42px;border-radius:50%;background:#1d1d1d;border:1px solid #333;color:#eee;font-size:18px;cursor:pointer" style-hover="border-color:#d93a35">›</button>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ slides }}" as="d" hint-placeholder-count="7">
+            <button onClick="{{ d.go }}" style="width:{{ d.dotW }};height:8px;border-radius:999px;border:none;padding:0;cursor:pointer;background:{{ d.dotBg }};transition:width .3s,background .3s"></button>
+          </sc-for>
+        </div>
+        <button onClick="{{ slidePrev }}" style="width:42px;height:42px;border-radius:50%;background:#1d1d1d;border:1px solid #333;color:#eee;font-size:18px;cursor:pointer" style-hover="border-color:#d93a35">‹</button>
+      </div>
     </div>
     <a href="#pricing" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">לצפייה במסלולים</a>
   </div>
@@ -265,6 +332,13 @@ input[type=range]{accent-color:#d93a35;width:100%}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const W = () => document.defaultView || window;
+// ── Testimonial template data ── DEVELOPMENT PLACEHOLDERS, not real customer reviews.
+// Replace both lists with real, approved testimonials before publishing. The markup, marquee animation and
+// carousel logic below only read these two constants.
+// Carousel cards: [quote, name, role]. The carousel shows 7 (its autoplay timer cycles % 7).
+const TESTIMONIAL_SLIDES = [['חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה.', 'שם העורך/ת', 'עורך יוטיוב'], ['הכתוביות בעברית פשוט עובדות. בלי לתקן כל מילה.', 'שם העורך/ת', 'עורכת רילס'], ['הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.', 'שם העורך/ת', 'עורך פודקאסטים'], ['התחלתי לערוך לפני חודש והלקוחות חושבים שאני ותיק.', 'שם העורך/ת', 'עורך מתחיל'], ['מקבלת יותר פרויקטים בשבוע, באותן שעות.', 'שם העורך/ת', 'פרילנסרית'], ['ה-Smart Cuts מוצא טייקים שאני הייתי מפספס.', 'שם העורך/ת', 'עורך תוכן'], ['חוסך לי ערב שלם על כל פרויקט.', 'שם העורך/ת', 'עורך סושיאל']];
+// Marquee cards: [name, handle, quote]. The first 4 fill the top row, the rest the bottom row.
+const TESTIMONIAL_MARQUEE = [['שם העורך/ת', '@editor1', 'חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.'], ['שם העורך/ת', '@editor2', 'הכתוביות בעברית פשוט עובדות — בלי לתקן כל מילה מחדש.'], ['שם העורך/ת', '@editor3', 'הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.'], ['שם העורך/ת', '@editor4', 'התחלתי לערוך לפני חודש והלקוחות חושבים שאני ותיק.'], ['שם העורך/ת', '@editor5', 'מקבלת יותר פרויקטים בשבוע, באותן שעות עבודה.'], ['שם העורך/ת', '@editor6', 'ה-Smart Cuts מוצא טייקים כפולים שאני הייתי מפספס.'], ['שם העורך/ת', '@editor7', 'חוסך לי ערב שלם על כל פרויקט. לא חוזר אחורה.'], ['שם העורך/ת', '@editor8', 'הכל בתוך פרמייר — בלי לייצא ולהעלות לשום מקום.']];
 class Component extends DCLogic {
   state = { yearly: false, after: false, videos: 12, raw: 15, manual: 90, openFaq: 0, tab: 'subs', showBar: false, packCat: 'cz' };
     shown = { NOOB: 99, PRO: 179, HACKER: 349 };
@@ -309,6 +383,7 @@ class Component extends DCLogic {
     frame();
     this._t.push(w.setTimeout(frame, 400), w.setTimeout(() => { if (!this.state.revealed) this.setState({ revealed: true }); }, 2500));
     this.setState({ armed: true });
+    this._car = w.setInterval(() => { if (this._carHover || document.hidden) return; this.setState(st => ({ slide: ((st.slide ?? 3) + 1) % 7 })); }, 1800);
   }
   animPrices(yearly) { const w = W(), f = yearly ? 0.8 : 1, base = { NOOB: 99, PRO: 179, HACKER: 349 }, from = this.state.anim || (yearly ? base : { NOOB: 79, PRO: 143, HACKER: 279 }), t0 = w.performance.now(); w.cancelAnimationFrame(this._raf); const step = now => { const k = Math.min(1, (now - t0) / 600), e = 1 - Math.pow(1 - k, 3); const next = {}; for (const n in base) next[n] = Math.round(from[n] + (Math.round(base[n] * f) - from[n]) * e); this.setState({ anim: k < 1 ? next : null }); if (k < 1) this._raf = w.requestAnimationFrame(step); }; this._raf = w.requestAnimationFrame(step); }
   componentWillUnmount() { const w = W(); w.removeEventListener('scroll', this._on); document.removeEventListener('scroll', this._on, { capture: true }); w.removeEventListener('resize', this._on); (this._t || []).forEach(t => w.clearTimeout(t)); w.clearInterval(this._car); w.cancelAnimationFrame(this._raf); }
@@ -321,6 +396,17 @@ class Component extends DCLogic {
     const tot = seq.reduce((a, x) => a + x[0], 0), good = seq.filter(x => x[1] === 'g').reduce((a, x) => a + x[0], 0);
     const afterPct = Math.round(good / tot * 100) + '%';
     const wave = Array.from({ length: 70 }, (_, i) => { const cut = [5,6,14,22,23,31,40,41,49,57,63].includes(i); const h = cut ? 100 : 15 + Math.abs(Math.sin(i * 1.7) * 70) + (i % 3) * 5; return { h: h + '%', c: cut ? '#d93a35' : '#5b8fc9' }; });
+    const tdata = TESTIMONIAL_SLIDES;
+    const N = tdata.length, cur = s.slide ?? 3;
+    const mq = TESTIMONIAL_MARQUEE.map(([name, user, body]) => ({ name, user, body }));
+    const half1 = mq.slice(0, 4), half2 = mq.slice(4);
+    const rep = (a, n) => Array.from({ length: n }, () => a).flat();
+    const mqRow1 = rep(half1, 8), mqRow2 = rep(half2, 8);
+    const slides = tdata.map(([quote, name, role], i) => { let off = i - cur; if (off > N / 2) off -= N; if (off < -N / 2) off += N; const ab = Math.abs(off), sg = Math.sign(off); const active = off === 0;
+      return { quote, name, role, active, label: 'VIDEO ' + String(i + 1).padStart(2, '0'),
+        tf: 'translateX(' + (off * (s.vw < 640 ? 120 : 230)) + 'px) translateZ(' + (-ab * (s.vw < 640 ? 160 : 120)) + 'px) rotateY(' + (-sg * Math.min(ab, 1) * 40) + 'deg) scale(' + (s.vw < 640 ? 0.86 : 1) + ')',
+        z: 10 - ab, o: ab > (s.vw < 640 ? 1 : 2) ? 0 : 1, bd: active ? '#8a2c28' : '#2a2a2a', shL: off > 0 ? Math.min(.7, ab * .45) : 0, shR: off < 0 ? Math.min(.7, ab * .45) : 0,
+        go: () => this.setState({ slide: i }), dotW: active ? '26px' : '8px', dotBg: active ? '#d93a35' : '#3a3a3a' }; });
     const total = s.videos * s.raw;
     const rec = total <= 90 ? 'NOOB' : total <= 300 ? 'PRO' : 'HACKER';
     const recNote = total > 1000 ? 'יותר מ-1,000 דקות בחודש? HACKER + חבילת קרדיטים.' : 'לפי דקות חומר גלם לחיתוך בחודש. הערכה — 10 דקות עבודה לסרטון עם COEDIT.';
@@ -366,6 +452,11 @@ class Component extends DCLogic {
       videos: s.videos, raw: s.raw, manual: s.manual,
       setVideos: e => this.setState({ videos: +e.target.value }), setRaw: e => this.setState({ raw: +e.target.value }), setManual: e => this.setState({ manual: +e.target.value }),
       hoursSaved: hours.toFixed(hours < 10 ? 1 : 0), totalMin: total.toLocaleString(), recTier: rec, recNote,
+      carHoverOn: () => { this._carHover = true; }, carHoverOff: () => { this._carHover = false; },
+      mqRow1, mqRow2,
+      slides, slideNext: () => this.setState({ slide: (cur + 1) % N }), slidePrev: () => this.setState({ slide: (cur - 1 + N) % N }),
+      dragStart: e => { this._dx = e.clientX; }, dragCancel: () => { this._dx = null; },
+      dragEnd: e => { if (this._dx == null) return; const d = e.clientX - this._dx; this._dx = null; if (Math.abs(d) > 40) this.setState({ slide: (cur + (d < 0 ? 1 : -1) + N) % N }); },
       tiers, packs, faqs,
       setMonthly: () => { if (s.yearly) { this.setState({ yearly: false }); this.animPrices(false); } }, setYearly: () => { if (!s.yearly) { this.setState({ yearly: true }); this.animPrices(true); } },
       isSubs: s.tab === 'subs', isCredits: s.tab === 'credits',
