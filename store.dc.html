@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Roboto:wght@900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#121212;color:#ececec;font-family:Heebo,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#e2504a;text-decoration:none}a:hover{color:#ff6b64}
+*{box-sizing:border-box}
+input,textarea,select,button{font-family:Heebo,sans-serif}
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#121212;display:flex;flex-direction:column">
+
+<dc-import name="SiteNav" style="position:sticky;top:0;z-index:40;display:block" hint-size="100%,66px"></dc-import>
+
+<main style="flex:1;padding:clamp(28px,6vw,50px) clamp(16px,4vw,24px) 80px">
+<div style="max-width:1100px;margin:0 auto">
+
+
+<sc-if value="{{ isCart }}" hint-placeholder-val="{{ true }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:24px;align-items:start">
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <h1 style="margin:0;font-size:clamp(30px,4vw,44px);font-weight:900">הסל שלכם</h1>
+    <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:clamp(16px,4.5vw,24px);display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <b style="font-size:18px">בחרו מסלול</b>
+        <div style="display:flex;padding:4px;gap:4px;border-radius:999px;background:#141414;border:1px solid #2e2e2e">
+          <button onClick="{{ setMonthly }}" style="border:none;cursor:pointer;font-size:14px;font-weight:700;padding:8px 18px;border-radius:999px;color:{{ mC }};background:{{ mBg }}">חודשי</button>
+          <button onClick="{{ setYearly }}" style="border:none;cursor:pointer;font-size:14px;font-weight:700;padding:8px 18px;border-radius:999px;color:{{ yC }};background:{{ yBg }}">שנתי · 20%-</button>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ planCards }}" as="p" hint-placeholder-count="3">
+          <button onClick="{{ p.pick }}" style="display:flex;align-items:center;gap:14px;text-align:right;cursor:pointer;padding:16px 18px;border-radius:11px;background:{{ p.bg }};border:1px solid {{ p.bd }};color:#fff;transition:border-color .2s,background .2s">
+            <span style="width:20px;height:20px;flex:none;border-radius:50%;border:2px solid {{ p.ring }};display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:{{ p.dot }}"></span></span>
+            <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+              <div style="display:flex;align-items:center;gap:8px"><b dir="ltr" style="font-family:Roboto,sans-serif;font-weight:900;font-size:18px;letter-spacing:.06em">{{ p.name }}</b><sc-if value="{{ p.rec }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:800;background:#d93a35;padding:2px 8px;border-radius:999px">מומלץ</span></sc-if></div>
+              <span style="font-size:13px;color:#999">{{ p.cap }} דק' כתוביות וזומים · {{ p.cuts }} דק' חיתוכים</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end"><b style="font-size:20px">₪{{ p.price }}</b><span style="font-size:12px;color:#888">לחודש</span></div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:clamp(16px,4.5vw,24px);display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:4px"><b style="font-size:18px">רוצים דקות נוספות מראש?</b><span style="font-size:14px;color:#999">חבילות קרדיטים חד-פעמיות, בלי מנוי.</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span id="credit-cat-label" style="font-size:14px;font-weight:700;color:#ddd">קטגוריית הקרדיטים</span>
+        <div role="radiogroup" aria-labelledby="credit-cat-label" style="display:flex;align-self:flex-start;flex-wrap:wrap;padding:4px;gap:4px;border-radius:999px;background:#141414;border:1px solid #2e2e2e">
+          <button type="button" role="radio" aria-checked="{{ czOn }}" data-credit-cat="cz" onClick="{{ setCz }}" style="border:none;cursor:pointer;font-size:14px;font-weight:700;padding:8px 18px;border-radius:999px;color:{{ czC }};background:{{ czBg }}">כתוביות וזומים</button>
+          <button type="button" role="radio" aria-checked="{{ cutsOn }}" data-credit-cat="cuts" onClick="{{ setCuts }}" style="border:none;cursor:pointer;font-size:14px;font-weight:700;padding:8px 18px;border-radius:999px;color:{{ cutsC }};background:{{ cutsBg }}">חיתוכים</button>
+        </div>
+        <span data-credit-cat-note style="font-size:13px;color:#999;line-height:1.6">{{ catNote }}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
+        <sc-for list="{{ packCards }}" as="k" hint-placeholder-count="4">
+          <button type="button" onClick="{{ k.toggle }}" aria-pressed="{{ k.on }}" data-pack="{{ k.key }}" style="position:relative;display:flex;flex-direction:column;gap:6px;text-align:right;cursor:pointer;padding:14px;border-radius:10px;background:{{ k.bg }};border:1px solid {{ k.bd }};color:#fff">
+            <span style="position:absolute;top:12px;left:12px;width:18px;height:18px;border-radius:5px;border:1px solid {{ k.ring }};background:{{ k.dot }};font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center">{{ k.check }}</span>
+            <b dir="ltr" style="font-size:22px;font-weight:900;text-align:right">{{ k.n }}</b>
+            <span style="font-size:12px;color:#888">קרדיטים · {{ k.catLabel }}</span>
+            <b style="font-size:16px">₪{{ k.price }}</b>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  <aside style="position:relative;top:0;background:#1f1414;border:1px solid #5a2220;border-radius:14px;padding:clamp(16px,4.5vw,24px);display:flex;flex-direction:column;gap:16px;box-shadow:0 0 60px rgba(217,58,53,.1)">
+    <b style="font-size:20px">סיכום הזמנה</b>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ lines }}" as="l" hint-placeholder-count="3">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:700;color:#eee">{{ l.label }}</span><span style="font-size:12px;color:#888">{{ l.sub }}</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><b style="font-size:15px;color:{{ l.c }}">{{ l.amount }}</b><sc-if value="{{ l.removable }}" hint-placeholder-val="{{ false }}"><button onClick="{{ l.remove }}" style="background:none;border:none;color:#777;cursor:pointer;font-size:16px;padding:0 2px">×</button></sc-if></div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="height:1px;background:#3a1c1b"></div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:17px">סה״כ</b><b style="font-size:32px;font-weight:900">₪{{ total }}</b></div>
+    <span style="font-size:12px;color:#888;margin-top:-8px">כל המחירים כוללים מע"מ</span>
+    <div role="note" style="text-align:center;background:#2a1716;border:1px solid #5a2220;color:#ff9a95;font-weight:800;font-size:18px;padding:15px;border-radius:9px;cursor:default">רכישות ייפתחו בקרוב</div>
+    <span style="font-size:12px;color:#777;text-align:center">עדיין לא ניתן לבצע תשלום באתר · הבחירה שלכם נשמרת בסל</span>
+  </aside>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSoon }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:620px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center">
+  <span style="width:76px;height:76px;border-radius:50%;background:#1f1414;border:1px solid #5a2220;color:#e2504a;display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(217,58,53,.2)"><svg width="34" height="34" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg></span>
+  <h1 style="margin:0;font-size:clamp(30px,4.5vw,46px);font-weight:900;line-height:1.1">רכישות באתר <span style="color:#e2504a">ייפתחו בקרוב</span></h1>
+  <p style="margin:0;font-size:17px;color:#aaa;line-height:1.7">אנחנו משלימים את הקמת מערכת התשלומים. בינתיים לא ניתן לבצע הזמנה או תשלום דרך האתר, ולא נגבה מכם דבר. הבחירה שלכם נשמרת בסל בדפדפן הזה.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+    <a href="#cart" onClick="{{ nav.cart }}" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:17px;padding:14px 30px;border-radius:9px;box-shadow:0 0 26px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">חזרה לסל</a>
+    <a href="home.dc.html#pricing" style="background:#1d1d1d;border:1px solid #333;color:#ddd;font-weight:700;font-size:17px;padding:14px 26px;border-radius:9px;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">למסלולים</a>
+  </div>
+</div>
+</sc-if>
+
+
+<sc-if value="{{ isAcct }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:620px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center">
+  <span style="width:76px;height:76px;border-radius:50%;background:#1f1414;border:1px solid #5a2220;color:#e2504a;display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(217,58,53,.2)"><svg width="34" height="34" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg></span>
+  <h1 style="margin:0;font-size:clamp(30px,4.5vw,46px);font-weight:900;line-height:1.1">אזור החשבון <span style="color:#e2504a">ייפתח בקרוב</span></h1>
+  <p style="margin:0;font-size:17px;color:#aaa;line-height:1.7">התחברות, הרשמה וניהול חשבון באתר עדיין לא זמינים. הם ייפתחו יחד עם הרכישות באתר.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+    <a href="home.dc.html#pricing" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:17px;padding:14px 30px;border-radius:9px;box-shadow:0 0 26px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">למסלולים</a>
+    <a href="home.dc.html" style="background:#1d1d1d;border:1px solid #333;color:#ddd;font-weight:700;font-size:17px;padding:14px 26px;border-radius:9px;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">לדף הבית</a>
+  </div>
+</div>
+</sc-if>
+
+
+<sc-if value="{{ is404 }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(217,58,53,.18),transparent 70%);pointer-events:none"></div>
+  <span dir="ltr" style="position:relative;font-family:Roboto,sans-serif;font-weight:900;font-size:clamp(120px,22vw,240px);line-height:.9;color:transparent;-webkit-text-stroke:2px #d93a35;text-shadow:0 0 40px rgba(217,58,53,.35)">404</span>
+  <div style="position:relative;display:flex;gap:2px;width:min(420px,80vw);height:28px">
+    <div style="flex:5;border-radius:3px;background:#3d6fa8;border:1px solid #5b8fc9"></div>
+    <div style="flex:3;border-radius:3px;background:repeating-linear-gradient(135deg,#2a2a2a 0 4px,#1c1c1c 4px 8px);border:1px dashed #d93a35"></div>
+    <div style="flex:6;border-radius:3px;background:#3d6fa8;border:1px solid #5b8fc9"></div>
+  </div>
+  <h1 style="position:relative;margin:0;font-size:clamp(28px,4vw,42px);font-weight:900">הקטע הזה <span style="color:#e2504a">נחתך.</span></h1>
+  <p style="position:relative;margin:0;font-size:17px;color:#999;max-width:440px">כנראה זיהינו אותו כשתיקה. העמוד שחיפשתם לא קיים או הועבר.</p>
+  <div style="position:relative;display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+    <a href="home.dc.html" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:17px;padding:14px 30px;border-radius:9px;box-shadow:0 0 26px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">חזרה לדף הבית</a>
+    <a href="home.dc.html#pricing" style="background:#1d1d1d;border:1px solid #333;color:#ddd;font-weight:700;font-size:17px;padding:14px 26px;border-radius:9px;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">מחירים</a>
+  </div>
+</div>
+</sc-if>
+
+</div>
+</main>
+
+<footer style="border-top:1px solid #222;padding:30px 24px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+    <img src="assets/logo.png" alt="COEDIT" style="height:24px;width:auto;display:block">
+    <div style="display:flex;gap:20px;font-size:14px;flex-wrap:wrap"><a href="terms/" style="color:#888">תנאי שימוש</a><a href="privacy/" style="color:#888">מדיניות פרטיות</a><a href="info.dc.html#contact" style="color:#888">צור קשר</a></div>
+    <span style="font-size:13px;color:#555">© COEDIT</span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const W = () => document.defaultView || window;
+const PLANS = [{ name: 'NOOB', m: 99, cap: 30, cuts: 90 }, { name: 'PRO', m: 179, cap: 90, cuts: 300, rec: true }, { name: 'HACKER', m: 349, cap: 500, cuts: '1,000' }];
+const PACKS = [[50, 20], [150, 50], [400, 100], [1000, 200]];
+// Credits belong to ONE usage category (Terms §8). A cart pack is the key "<size>:<cat>", so the category
+// travels with the pack into the cart, the nav drawer and any future checkout. Older entries without a
+// category are dropped: their category would be a guess.
+const CATS = { cz: 'כתוביות וזומים', cuts: 'חיתוכים' };
+const CAT_ONLY = { cz: 'לכתוביות ולזומים בלבד', cuts: 'לחיתוכים בלבד (Smart Cuts וחיתוך שתיקות)' };
+const DEFAULT_CAT = 'cz';
+// Only these two values: a lookup like CATS[x] would also accept 'constructor', 'toString', '__proto__'.
+const validCat = c => (c === 'cz' || c === 'cuts') ? c : null;
+const packKey = (n, cat) => n + ':' + cat;
+const parsePack = k => { const m = /^(\d+):(cz|cuts)$/.exec(String(k)); return m && PACKS.some(x => x[0] === +m[1]) ? { n: +m[1], cat: m[2] } : null; };
+const cleanPacks = a => (Array.isArray(a) ? a : []).filter(k => parsePack(k));
+const packPrice = k => { const p = parsePack(k); return p ? (PACKS.find(x => x[0] === p.n) || [0, 0])[1] : 0; };
+const VIEWS = ['cart', 'checkout', 'success', 'login', 'signup', 'reset', 'account', '404'];
+class Component extends DCLogic {
+  state = { view: 'cart', plan: 'PRO', yearly: false, packs: [], loggedIn: false, cat: DEFAULT_CAT };
+  componentDidMount() { this._prevSnap = this.state;
+    const w = W();
+    try { const s = JSON.parse(w.localStorage.getItem('ocedit-cart') || '{}'); this.setState({ plan: 'plan' in s ? s.plan : 'PRO', yearly: !!s.yearly, packs: cleanPacks(s.packs), loggedIn: !!s.loggedIn }); } catch (e) {}
+    this._cl = () => { try { const c = JSON.parse(w.localStorage.getItem('ocedit-cart') || '{}'); const st = this.state; const cur = JSON.stringify({ plan: st.plan ?? null, yearly: !!st.yearly, packs: st.packs || [], loggedIn: !!st.loggedIn }); const nx = { plan: c.plan ?? null, yearly: !!c.yearly, packs: cleanPacks(c.packs), loggedIn: !!c.loggedIn }; if (cur !== JSON.stringify(nx)) this.setState(nx); } catch (e) {} }; w.addEventListener('ocedit-cart', this._cl);
+    this._h = () => this.readHash(); this._h(); w.addEventListener('hashchange', this._h);
+    w.requestAnimationFrame(() => w.requestAnimationFrame(() => this.animateIn()));
+  }
+  animateIn(root) { const w = document.defaultView || window; if (w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches) return; const sel = 'h1, h2, p, aside, form > *, article > *, [style*="border-radius:14px"], [style*="border-radius:12px"], [style*="border-radius:11px"], [style*="border-radius:10px"], main a[style*="linear-gradient(180deg,#e2504a"]'; const all = [...(root || document).querySelectorAll(sel)].filter(el => !el.closest('nav') && !el.closest('[data-sitenav]') && !el.closest('footer')); const set = new Set(all); const items = all.filter(el => { let p = el.parentElement; while (p) { if (set.has(p)) return false; p = p.parentElement; } return true; }).slice(0, 40); items.forEach((el, i) => { if (el.animate) el.animate([{ opacity: 0, filter: 'blur(8px)', transform: 'translateY(-16px)' }, { opacity: 1, filter: 'blur(0px)', transform: 'translateY(0)' }], { duration: 550, delay: Math.min(i * 70, 700), easing: 'cubic-bezier(.22,.8,.3,1)', fill: 'backwards' }); }); }
+  popBadge() { const b = document.querySelector('[data-cart-badge]'); if (b && b.animate) b.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.45)' }, { transform: 'scale(1)' }], { duration: 380, easing: 'cubic-bezier(.34,1.56,.64,1)' }); }
+
+  componentWillUnmount() { W().removeEventListener('hashchange', this._h); W().removeEventListener('ocedit-cart', this._cl); }
+  animOut(key, done) { const el = document.querySelector('[data-ci="' + key + '"]'); if (!el || !el.animate) return done(); el.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(.96)' }], { duration: 180, easing: 'ease', fill: 'forwards' }).finished.then(done, done); }
+  tot(s) { return (s.packs || []).reduce((a, k) => a + packPrice(k), 0); }
+  flowTo(from, to) { const w = W(), t0 = w.performance.now(); w.cancelAnimationFrame(this._fr); const step = now => { const k = Math.min(1, (now - t0) / 500), e = 1 - Math.pow(1 - k, 3); this.setState({ flow: k < 1 ? Math.round(from + (to - from) * e) : null }); if (k < 1) this._fr = w.requestAnimationFrame(step); }; this._fr = w.requestAnimationFrame(step); }
+  cnt(s) { return (s.plan ? 1 : 0) + (s.packs || []).length; }
+  componentDidUpdate(pp, ps) { if (ps === this._lastPs) return; this._lastPs = ps; { const a = this.tot(ps), b = this.tot(this.state); if (a !== b && this.state.flow == null) this.flowTo(a, b); else if (a !== b) this.flowTo(this.state.flow, b); } { const before = new Set([...document.querySelectorAll('[data-ci]')].map(e => e.getAttribute('data-ci'))); const prevKeys = this._ciKeys || before; W().requestAnimationFrame(() => { const now = [...document.querySelectorAll('[data-ci]')]; now.forEach(el => { const k = el.getAttribute('data-ci'); if (!prevKeys.has(k) && el.animate) el.animate([{ opacity: 0, transform: 'scale(.96)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 220, easing: 'ease' }); }); this._ciKeys = new Set(now.map(e => e.getAttribute('data-ci'))); }); } const w = W(); if (ps.view !== this.state.view) w.requestAnimationFrame(() => this.animateIn(document.querySelector('main')));  const s = this.state; try { const nv = JSON.stringify({ plan: s.plan ?? null, yearly: !!s.yearly, packs: s.packs || [], loggedIn: !!s.loggedIn }); if (W().localStorage.getItem('ocedit-cart') !== nv) { W().localStorage.setItem('ocedit-cart', nv); W().dispatchEvent(new CustomEvent('ocedit-cart')); } } catch (e) {} }
+  readHash() {
+    const raw = (W().location.hash || '#cart').slice(1); const [v, q] = raw.split('?'); const p = new URLSearchParams(q || ''); const up = {};
+    up.view = VIEWS.includes(v || 'cart') ? (v || 'cart') : '404';
+    if (p.get('plan') && PLANS.some(x => x.name === p.get('plan'))) up.plan = p.get('plan');
+    if (p.has('yearly')) up.yearly = p.get('yearly') === '1';
+    const cat = validCat(p.get('cat'));
+    if (cat) up.cat = cat; else if (p.has('cat')) up.cat = DEFAULT_CAT;
+    if (p.get('pack')) { const n = +p.get('pack'); up.cat = cat || DEFAULT_CAT; if (PACKS.some(x => x[0] === n)) up.packs = [packKey(n, up.cat)]; if (!p.get('plan')) up.plan = null; }
+    this.setState(st => ({ ...up, packs: up.packs ? Array.from(new Set([...(st.packs || []), ...up.packs])) : st.packs, plan: up.plan === undefined ? st.plan : up.plan }));
+  }
+  go(view, e) { if (e) e.preventDefault(); const w = W(); try { w.history.replaceState(null, '', '#' + view); } catch (x) {} this.setState({ view }); w.scrollTo(0, 0); }
+  _after() { if (this._afterQ) return; this._afterQ = true; (document.defaultView || window).setTimeout(() => { this._afterQ = false; const ps = this._prevSnap || this.state; this._prevSnap = this.state; if (ps !== this.state) this.componentDidUpdate(this.props, ps); }, 0); }
+  renderVals() {
+    this._after();
+    const s = this.state, v = s.view, fmt = n => n.toLocaleString('he-IL');
+    const plan = PLANS.find(x => x.name === s.plan) || null;
+    const mo = p => s.yearly ? Math.round(p.m * 0.8) : p.m;
+    const planDue = plan ? (s.yearly ? mo(plan) * 12 : plan.m) : 0;
+    const packsTotal = s.packs.reduce((a, k) => a + packPrice(k), 0);
+    const lines = [];
+    if (plan) lines.push({ label: 'COEDIT ' + plan.name, sub: s.yearly ? 'שנתי · ₪' + mo(plan) + ' לחודש' : 'חודשי', amount: '₪' + fmt(planDue) + (s.yearly ? ' לשנה' : ' לחודש'), c: '#fff', removable: true, remove: () => this.setState({ plan: null }) });
+    if (plan) lines.push({ label: 'COFRAMES · החלקת קיפריימים', sub: 'כלול בכל מנוי', amount: 'כלול', c: '#5fd068', removable: false, remove: null });
+    [...new Set(s.packs)].forEach(key => { const pk = parsePack(key); if (!pk) return; const q = s.packs.filter(x => x === key).length; lines.push({ label: fmt(pk.n) + ' קרדיטים · ' + CATS[pk.cat] + (q > 1 ? ' ×' + q : ''), sub: 'חד-פעמי · ' + CAT_ONLY[pk.cat], amount: '₪' + fmt(packPrice(key) * q), c: '#fff', removable: true, remove: () => this.setState(st => ({ packs: st.packs.filter(x => x !== key) })) }); });
+    const on = '#fff', off = '#888', onBg = 'linear-gradient(180deg,#e2504a,#c42e2a)';
+    return {
+      nav: { cart: e => this.go('cart', e) },
+      isCart: v === 'cart', isSoon: v === 'checkout' || v === 'success', isAcct: ['login', 'signup', 'reset', 'account'].includes(v), is404: v === '404',
+      setMonthly: () => this.setState({ yearly: false }), setYearly: () => this.setState({ yearly: true }),
+      mC: s.yearly ? off : on, mBg: s.yearly ? 'transparent' : onBg, yC: s.yearly ? on : off, yBg: s.yearly ? onBg : 'transparent',
+      planCards: PLANS.map(p => { const sel = p.name === s.plan; return { ...p, rec: !!p.rec, price: mo(p), pick: () => this.setState({ plan: p.name }), bg: sel ? '#1f1414' : '#141414', bd: sel ? '#d93a35' : '#2a2a2a', ring: sel ? '#d93a35' : '#444', dot: sel ? '#d93a35' : 'transparent' }; }),
+      setCz: () => this.setState({ cat: 'cz' }), setCuts: () => this.setState({ cat: 'cuts' }),
+      czOn: s.cat === 'cz' ? 'true' : 'false', cutsOn: s.cat === 'cuts' ? 'true' : 'false',
+      czC: s.cat === 'cz' ? on : off, czBg: s.cat === 'cz' ? onBg : 'transparent', cutsC: s.cat === 'cuts' ? on : off, cutsBg: s.cat === 'cuts' ? onBg : 'transparent',
+      catNote: 'כל קרדיט שווה לדקה אחת של אודיו שעובד, ונספר רק בקטגוריה שבחרתם. החבילות שתבחרו עכשיו ישמשו ' + CAT_ONLY[s.cat] + '.',
+      packCards: PACKS.map(([n, price]) => { const key = packKey(n, s.cat); const sel = s.packs.includes(key); return { n: fmt(n), price, key, on: sel ? 'true' : 'false', catLabel: CATS[s.cat], check: sel ? '✓' : '', toggle: () => this.setState(st => ({ packs: sel ? st.packs.filter(x => x !== key) : [...st.packs, key] })), bg: sel ? '#1f1414' : '#141414', bd: sel ? '#d93a35' : '#2a2a2a', ring: sel ? '#d93a35' : '#444', dot: sel ? '#d93a35' : 'transparent' }; }),
+      lines, total: fmt(planDue + packsTotal)
+    };
+  }
+}
+</script>
+</body>
+</html>

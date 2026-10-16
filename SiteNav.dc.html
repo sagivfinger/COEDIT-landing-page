@@ -10,42 +10,14 @@
 <div data-sitenav="1" dir="rtl" style="position:relative;font-family:Heebo,sans-serif;overflow-x:clip">
 <nav style="background:rgba(18,18,18,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #2a1a1a">
   <div style="position:relative;max-width:1200px;margin:0 auto;padding:12px clamp(14px,4vw,24px);display:flex;align-items:center;justify-content:space-between;gap:12px">
-    <a href="OCEDIT%20Landing%20v2.dc.html#top" style="display:block"><img src="assets/logo.png" alt="COEDIT" style="height:clamp(22px,6vw,30px);width:auto;display:block"></a>
+    <a href="home.dc.html#top" style="display:block"><img src="assets/logo.png" alt="COEDIT" style="height:clamp(22px,6vw,30px);width:auto;display:block"></a>
     <div style="display:flex;align-items:center;gap:clamp(6px,2vw,10px)">
 
-      <sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ false }}">
-      <div data-pmenu="1" style="position:static">
-        <button onClick="{{ toggleMenu }}" aria-label="פרופיל" style="position:relative;width:42px;height:42px;border-radius:50%;border:2px solid {{ avatarRing }};padding:0;cursor:pointer;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-family:Heebo;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(217,58,53,.35);transition:transform .2s,border-color .2s" style-hover="transform:translateY(-2px)">{{ initials }}<span style="position:absolute;right:-1px;bottom:-1px;width:11px;height:11px;border-radius:50%;background:#5fd068;border:2px solid #121212"></span></button>
-        <div style="position:absolute;top:62px;left:clamp(14px,4vw,24px);width:min(256px,calc(100% - 28px));visibility:{{ menuVis }};padding:6px;border-radius:16px;background:#1a1a1a;border:1px solid #2e2e2e;box-shadow:0 24px 60px rgba(0,0,0,.6);opacity:{{ menuO }};transform:translateY({{ menuY }});pointer-events:{{ menuPE }};transition:opacity .4s ease,transform .4s cubic-bezier(.22,.8,.3,1);z-index:5">
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 12px 14px">
-            <div style="position:relative;width:40px;height:40px;flex:none;border-radius:50%;background:linear-gradient(180deg,#e2504a,#c42e2a);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff">{{ initials }}<span style="position:absolute;right:0;bottom:0;width:9px;height:9px;border-radius:50%;background:#5fd068;border:2px solid #1a1a1a"></span></div>
-            <div style="display:flex;flex-direction:column;min-width:0"><b style="font-size:14px;color:#fff">[שם מלא]</b><span dir="ltr" style="font-size:13px;color:#888;text-align:right;overflow:hidden;text-overflow:ellipsis">[email@domain.com]</span></div>
-          </div>
-          <div style="height:1px;background:#2a2a2a;margin:0 -6px"></div>
-          <div style="display:flex;flex-direction:column;padding:6px 0">
-            <a href="OCEDIT%20Store.dc.html#account" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;font-size:14px;font-weight:600;color:#ddd;transition:background .15s" style-hover="background:#252525;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M18 20a6 6 0 0 0-12 0"></path><circle cx="12" cy="10" r="4"></circle><circle cx="12" cy="12" r="10"></circle></svg><span>הפרופיל שלי</span></a>
-            <a href="OCEDIT%20Store.dc.html#account" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;font-size:14px;font-weight:600;color:#ddd;transition:background .15s" style-hover="background:#252525;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg><span>המנוי שלי</span></a>
-            <a href="OCEDIT%20Store.dc.html#account" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;font-size:14px;font-weight:600;color:#ddd;transition:background .15s" style-hover="background:#252525;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M14 8H8"></path><path d="M16 12H8"></path><path d="M13 16H8"></path></svg><span>החשבוניות שלי</span></a>
-          </div>
-          <div style="height:1px;background:#2a2a2a;margin:0 -6px"></div>
-          <div style="display:flex;flex-direction:column;padding:6px 0">
-            <a href="OCEDIT%20Store.dc.html#account" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;font-size:14px;font-weight:600;color:#ddd;transition:background .15s" style-hover="background:#252525;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.830-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.510 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg><span>הגדרות חשבון</span></a>
-          </div>
-          <div style="height:1px;background:#2a2a2a;margin:0 -6px"></div>
-          <div style="display:flex;flex-direction:column;padding:6px 0 0">
-            <button onClick="{{ logout }}" style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;font-family:Heebo;font-size:14px;font-weight:600;color:#ff6b64;background:none;border:none;cursor:pointer;text-align:right;transition:background .15s" style-hover="background:#2a1716"><svg width="20" height="20" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" x2="9" y1="12" y2="12"></line></svg><span>התנתקות</span></button>
-          </div>
-        </div>
-      </div>
-      </sc-if>
-
-      <sc-if value="{{ loggedOut }}" hint-placeholder-val="{{ true }}">
-        <a href="OCEDIT%20Store.dc.html#login" style="display:flex;align-items:center;gap:8px;height:42px;min-width:42px;justify-content:center;padding:0 {{ loginPad }};border-radius:9px;font-size:15px;font-weight:700;color:#ddd;border:1px solid {{ loginBd }};transition:border-color .2s,color .2s" style-hover="border-color:#333;color:#fff"><svg width="18" height="18" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg><sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}"><span>התחברות</span></sc-if></a>
-      </sc-if>
+        <a href="store.dc.html#login" style="display:flex;align-items:center;gap:8px;height:42px;min-width:42px;justify-content:center;padding:0 {{ loginPad }};border-radius:9px;font-size:15px;font-weight:700;color:#ddd;border:1px solid {{ loginBd }};transition:border-color .2s,color .2s" style-hover="border-color:#333;color:#fff"><svg width="18" height="18" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg><sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}"><span>התחברות</span></sc-if></a>
 
       <button onClick="{{ openDrawer }}" aria-label="סל" style="position:relative;width:42px;height:42px;border-radius:9px;background:#1d1d1d;border:1px solid #333;color:#eee;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:border-color .2s,transform .2s" style-hover="border-color:#d93a35;transform:translateY(-2px)"><svg width="20" height="20" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"></path></svg><sc-if value="{{ hasItems }}" hint-placeholder-val="{{ false }}"><span data-cart-badge="1" style="position:absolute;top:-7px;left:-7px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#d93a35;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(217,58,53,.6)">{{ count }}</span></sc-if></button>
 
-      <a href="OCEDIT%20Landing%20v2.dc.html#pricing" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:700;font-size:clamp(14px,3.6vw,15px);height:42px;padding:0 clamp(14px,4vw,20px);white-space:nowrap;border-radius:9px;display:flex;align-items:center;box-shadow:0 0 22px rgba(220,60,55,.35);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 34px rgba(220,60,55,.6)">נסו בחינם</a>
+      <a href="home.dc.html#pricing" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:700;font-size:clamp(14px,3.6vw,15px);height:42px;padding:0 clamp(14px,4vw,20px);white-space:nowrap;border-radius:9px;display:flex;align-items:center;box-shadow:0 0 22px rgba(220,60,55,.35);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 34px rgba(220,60,55,.6)">מחירים</a>
     </div>
   </div>
 </nav>
@@ -56,7 +28,7 @@
     <div style="margin:10px auto 0;width:96px;height:6px;border-radius:999px;background:#3a3a3a"></div>
     <div style="max-width:480px;margin:0 auto;padding:14px 20px 14px;display:flex;flex-direction:column;gap:4px;border-bottom:1px solid #262626">
       <b style="display:flex;align-items:center;gap:10px;font-size:19px;color:#fff"><svg width="20" height="20" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"></path></svg>הסל שלכם ({{ count }} פריטים)</b>
-      <span style="font-size:14px;color:#888">בדקו את ההזמנה לפני התשלום.</span>
+      <span style="font-size:14px;color:#888">רכישות באתר ייפתחו בקרוב.</span>
     </div>
   </div>
   <div style="flex:1;overflow-y:auto">
@@ -65,7 +37,7 @@
       <div style="display:flex;flex-direction:column;align-items:center;gap:14px;padding:30px 0;text-align:center">
         <svg width="64" height="64" viewBox="0 0 24 24" style="fill:none;stroke:#3a3a3a;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"></path></svg>
         <span style="font-size:16px;color:#999">הסל ריק</span>
-        <a href="OCEDIT%20Landing%20v2.dc.html#pricing" onClick="{{ closeDrawer }}" style="background:#1d1d1d;border:1px solid #333;color:#eee;font-weight:700;font-size:15px;padding:11px 22px;border-radius:9px;transition:border-color .2s" style-hover="border-color:#d93a35">לבחירת מסלול</a>
+        <a href="home.dc.html#pricing" onClick="{{ closeDrawer }}" style="background:#1d1d1d;border:1px solid #333;color:#eee;font-weight:700;font-size:15px;padding:11px 22px;border-radius:9px;transition:border-color .2s" style-hover="border-color:#d93a35">לבחירת מסלול</a>
       </div>
     </sc-if>
     <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ false }}">
@@ -85,14 +57,7 @@
         <div style="display:flex;justify-content:space-between;font-size:14px;color:#aaa"><span>חבילות קרדיטים</span><span>₪{{ packsTotal }}</span></div>
         <div style="display:flex;justify-content:space-between;font-size:14px;color:#aaa"><span>{{ planDueLabel }}</span><span>₪{{ planDue }}</span></div>
         <div style="display:flex;justify-content:space-between;font-size:14px;color:#aaa"><span>מע"מ</span><span>כלול</span></div>
-        <div style="border-top:1px solid #262626;padding-top:10px;display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:16px;color:#fff">לתשלום היום</b><b style="font-size:26px;font-weight:900;color:#fff">₪{{ dueToday }}</b></div>
-      </div>
-      <div style="border-top:1px solid #262626;margin-top:16px;padding-top:16px;display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;gap:8px">
-          <input value="{{ promo }}" onChange="{{ setPromo }}" placeholder="קוד קופון" style="flex:1;min-width:0;height:42px;background:#141414;border:1px solid #333;border-radius:9px;padding:0 14px;color:#fff;font-family:Heebo;font-size:16px;outline:none" style-focus="border-color:#d93a35">
-          <button onClick="{{ applyPromo }}" style="height:42px;padding:0 18px;background:#1d1d1d;border:1px solid #333;border-radius:9px;color:#eee;font-family:Heebo;font-size:15px;font-weight:700;cursor:pointer;transition:border-color .2s" style-hover="border-color:#d93a35">החלה</button>
-        </div>
-        <sc-if value="{{ hasPromoMsg }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#5fd068">{{ promoMsg }}</span></sc-if>
+        <div style="border-top:1px solid #262626;padding-top:10px;display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:16px;color:#fff">סה״כ</b><b style="font-size:26px;font-weight:900;color:#fff">₪{{ total }}</b></div>
       </div>
     </sc-if>
   </div>
@@ -100,7 +65,7 @@
   <div style="flex:none;border-top:1px solid #262626">
     <div style="max-width:480px;margin:0 auto;padding:12px 20px max(18px,env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr;gap:10px">
       <button onClick="{{ closeDrawer }}" style="height:48px;background:#1d1d1d;border:1px solid #333;border-radius:10px;color:#eee;font-family:Heebo;font-size:15px;font-weight:700;cursor:pointer;transition:border-color .2s" style-hover="border-color:#d93a35">המשך בקנייה</button>
-      <a href="OCEDIT%20Store.dc.html#checkout" onClick="{{ goCheckout }}" style="height:48px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#e2504a,#c42e2a);border-radius:10px;color:#fff;font-size:15px;font-weight:800;box-shadow:0 0 22px rgba(220,60,55,.4);opacity:{{ coO }};pointer-events:{{ coPE }};transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-2px);box-shadow:0 0 32px rgba(220,60,55,.6)">{{ coLabel }}</a>
+      <a href="store.dc.html#cart" onClick="{{ goCheckout }}" style="height:48px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#e2504a,#c42e2a);border-radius:10px;color:#fff;font-size:15px;font-weight:800;box-shadow:0 0 22px rgba(220,60,55,.4);opacity:{{ coO }};pointer-events:{{ coPE }};transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-2px);box-shadow:0 0 32px rgba(220,60,55,.6)">{{ coLabel }}</a>
     </div>
   </div>
 </div>
@@ -110,7 +75,10 @@
 const W = () => document.defaultView || window;
 const PLANS = { NOOB: { m: 99, cap: 30, cuts: 90 }, PRO: { m: 179, cap: 90, cuts: 300 }, HACKER: { m: 349, cap: 500, cuts: '1,000' } };
 const PACKS = { 50: 20, 150: 50, 400: 100, 1000: 200 };
-const norm = c => ({ plan: c.plan ?? null, yearly: !!c.yearly, packs: Array.isArray(c.packs) ? c.packs : [], loggedIn: !!c.loggedIn });
+// Cart packs are "<size>:<cat>" (see store.dc.html): credits belong to one usage category.
+const CATS = { cz: 'כתוביות וזומים', cuts: 'חיתוכים' };
+const parsePack = k => { const m = /^(\d+):(cz|cuts)$/.exec(String(k)); return m && PACKS[m[1]] ? { n: +m[1], cat: m[2] } : null; };
+const norm = c => ({ plan: c.plan ?? null, yearly: !!c.yearly, packs: (Array.isArray(c.packs) ? c.packs : []).filter(k => parsePack(k)), loggedIn: !!c.loggedIn });
 class Component extends DCLogic {
   state = { cart: norm({}), drawer: false, menu: false, promo: '', promoMsg: '', dragY: 0, dragging: false };
   load() { try { this.setState({ cart: norm(JSON.parse(W().localStorage.getItem('ocedit-cart') || '{}')) }); } catch (e) {} }
@@ -134,11 +102,11 @@ class Component extends DCLogic {
     this._after();
     const s = this.state, c = s.cart, plan = c.plan ? PLANS[c.plan] : null, n = this.count(c), fmt = x => x.toLocaleString('he-IL');
     const mo = plan ? (c.yearly ? Math.round(plan.m * 0.8) : plan.m) : 0;
-    const packsTotal = c.packs.reduce((a, k) => a + (PACKS[k] || 0), 0);
+    const packsTotal = c.packs.reduce((a, k) => { const p = parsePack(k); return a + (p ? PACKS[p.n] : 0); }, 0);
     const items = [];
-    if (plan) items.push({ icon: 'CO', iconBg: 'linear-gradient(180deg,#e2504a,#c42e2a)', name: 'COEDIT ' + c.plan, sub: (c.yearly ? 'שנתי' : 'חודשי') + ' · ' + plan.cap + "/" + plan.cuts + " דק' · ניסיון חינם", price: '₪' + mo + ' / חודש', priceC: '#fff', bd: '#5a2220', removable: true, remove: () => this.save({ ...c, plan: null }) });
-    if (plan) items.push({ icon: '◆', iconBg: '#14231a', name: 'COFRAMES', sub: 'החלקת קיפריימים · כלול במנוי', price: 'מתנה', priceC: '#5fd068', bd: '#2a2a2a', removable: false, remove: null });
-    [...new Set(c.packs)].forEach(k => { const q = c.packs.filter(z => z === k).length; items.push({ icon: '⚡', iconBg: '#2a1716', name: fmt(+k) + ' קרדיטים' + (q > 1 ? ' ×' + q : ''), sub: 'חבילה חד-פעמית', price: '₪' + fmt((PACKS[k] || 0) * q), priceC: '#fff', bd: '#2a2a2a', removable: true, remove: () => this.save({ ...c, packs: c.packs.filter(x => x !== k) }) }); });
+    if (plan) items.push({ icon: 'CO', iconBg: 'linear-gradient(180deg,#e2504a,#c42e2a)', name: 'COEDIT ' + c.plan, sub: (c.yearly ? 'שנתי' : 'חודשי') + ' · ' + plan.cap + "/" + plan.cuts + " דק'", price: '₪' + mo + ' / חודש', priceC: '#fff', bd: '#5a2220', removable: true, remove: () => this.save({ ...c, plan: null }) });
+    if (plan) items.push({ icon: '◆', iconBg: '#14231a', name: 'COFRAMES', sub: 'החלקת קיפריימים · כלול במנוי', price: 'כלול', priceC: '#5fd068', bd: '#2a2a2a', removable: false, remove: null });
+    [...new Set(c.packs)].forEach(k => { const p = parsePack(k); if (!p) return; const q = c.packs.filter(z => z === k).length; items.push({ icon: '⚡', iconBg: '#2a1716', name: fmt(p.n) + ' קרדיטים · ' + CATS[p.cat] + (q > 1 ? ' ×' + q : ''), sub: 'חבילה חד-פעמית · ' + (p.cat === 'cz' ? 'לכתוביות ולזומים בלבד' : 'לחיתוכים בלבד'), price: '₪' + fmt(PACKS[p.n] * q), priceC: '#fff', bd: '#2a2a2a', removable: true, remove: () => this.save({ ...c, packs: c.packs.filter(x => x !== k) }) }); });
     const planDue = plan ? (c.yearly ? mo * 12 : plan.m) : 0;
     const open = s.drawer, dy = s.dragging ? s.dragY : 0;
     const initials = 'ש';
@@ -154,11 +122,8 @@ class Component extends DCLogic {
       dragStart: e => { this._y0 = e.clientY; try { e.currentTarget.setPointerCapture(e.pointerId); } catch (x) {} this.setState({ dragging: true, dragY: 0 }); },
       dragMove: e => { if (!s.dragging) return; this.setState({ dragY: Math.max(0, e.clientY - this._y0) }); },
       dragEnd: () => { if (!s.dragging) return; const close = s.dragY > 110; this.setState({ dragging: false, dragY: 0, drawer: close ? false : s.drawer }); },
-      items, packsTotal: fmt(packsTotal), planDue: fmt(planDue), planDueLabel: plan ? (c.yearly ? 'מנוי לאחר הניסיון (לשנה)' : 'מנוי לאחר הניסיון (לחודש)') : 'מנוי', dueToday: fmt(packsTotal),
-      promo: s.promo, setPromo: e => this.setState({ promo: e.target.value, promoMsg: '' }),
-      applyPromo: () => this.setState(st => ({ promoMsg: st.promo.trim() ? 'הקוד "' + st.promo.trim() + '" יאומת בשלב התשלום' : '' })),
-      hasPromoMsg: !!s.promoMsg, promoMsg: s.promoMsg,
-      coLabel: packsTotal ? 'לתשלום (₪' + fmt(packsTotal) + ')' : 'התחלת ניסיון חינם', coO: n ? 1 : 0.4, coPE: n ? 'auto' : 'none',
+      items, packsTotal: fmt(packsTotal), planDue: fmt(planDue), planDueLabel: plan ? (c.yearly ? 'מנוי (לשנה)' : 'מנוי (לחודש)') : 'מנוי', total: fmt(planDue + packsTotal),
+      coLabel: 'לסיכום ההזמנה', coO: n ? 1 : 0.4, coPE: n ? 'auto' : 'none',
       goCheckout: () => this.setState({ drawer: false })
     };
   }

@@ -1,0 +1,3 @@
+# Legal source documents and tooling: never commit or deploy. legal-drafts/build_legal.py --static renders them
+# into terms/index.html and privacy/index.html (the only published copies).
+legal-drafts/
