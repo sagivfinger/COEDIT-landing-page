@@ -3,6 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+// The COEDIT panel's "buy minutes" packs land here as ?pack=c150&bucket=editing
+// (the Cloud's pack code and allowance). Forward them to the store cart with that
+// pack in the matching category; anything else stays on this page.
+(function () { try {
+  var q = new URLSearchParams(location.search), m = /^c?(50|150|400|1000)$/.exec(q.get('pack') || '');
+  if (!m) return;
+  location.replace('store.dc.html#cart?pack=' + m[1] + '&cat=' + (q.get('bucket') === 'editing' ? 'cuts' : 'cz'));
+} catch (e) {} })();
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -52,7 +62,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
       <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqL 60s linear infinite" style-hover="animation-play-state:paused">
         <sc-for list="{{ mqRow1 }}" as="r" hint-placeholder-count="8">
             <div dir="rtl" style="flex:none;width:300px;margin-right:14px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
-              <div style="display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;flex:none;border-radius:50%;background:repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px);border:1px solid #3a2222"></span><div style="display:flex;flex-direction:column"><b style="font-size:14px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:12px;color:#888;text-align:right">{{ r.user }}</span></div></div>
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;flex:none;border-radius:50%;background:{{ r.av }};border:1px solid #3a2222"></span><div style="display:flex;flex-direction:column"><b style="font-size:14px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:12px;color:#888;text-align:right">{{ r.user }}</span></div></div>
               <p style="margin:0;font-size:14px;line-height:1.55;color:#ccc;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ r.body }}</p>
             </div>
         </sc-for>
@@ -60,7 +70,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
       <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqR 60s linear infinite" style-hover="animation-play-state:paused">
         <sc-for list="{{ mqRow2 }}" as="r" hint-placeholder-count="8">
             <div dir="rtl" style="flex:none;width:300px;margin-right:14px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
-              <div style="display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;flex:none;border-radius:50%;background:repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px);border:1px solid #3a2222"></span><div style="display:flex;flex-direction:column"><b style="font-size:14px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:12px;color:#888;text-align:right">{{ r.user }}</span></div></div>
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;flex:none;border-radius:50%;background:{{ r.av }};border:1px solid #3a2222"></span><div style="display:flex;flex-direction:column"><b style="font-size:14px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:12px;color:#888;text-align:right">{{ r.user }}</span></div></div>
               <p style="margin:0;font-size:14px;line-height:1.55;color:#ccc;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ r.body }}</p>
             </div>
         </sc-for>
@@ -337,12 +347,15 @@ const W = () => document.defaultView || window;
 // carousel logic below only read these two constants.
 // Carousel cards: [quote, name, role]. The carousel shows 7 (its autoplay timer cycles % 7).
 const TESTIMONIAL_SLIDES = [['חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה.', 'שם העורך/ת', 'עורך יוטיוב'], ['הכתוביות בעברית פשוט עובדות. בלי לתקן כל מילה.', 'שם העורך/ת', 'עורכת רילס'], ['הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.', 'שם העורך/ת', 'עורך פודקאסטים'], ['התחלתי לערוך לפני חודש והלקוחות חושבים שאני ותיק.', 'שם העורך/ת', 'עורך מתחיל'], ['מקבלת יותר פרויקטים בשבוע, באותן שעות.', 'שם העורך/ת', 'פרילנסרית'], ['ה-Smart Cuts מוצא טייקים שאני הייתי מפספס.', 'שם העורך/ת', 'עורך תוכן'], ['חוסך לי ערב שלם על כל פרויקט.', 'שם העורך/ת', 'עורך סושיאל']];
+// Review photos, one person per marquee card, by position: assets/reviews/<name>-avatar.webp is the round
+// avatar. A card with no photo keeps the striped placeholder. The carousel cards have no photos.
+const TESTIMONIAL_PHOTOS = ['review-1', 'review-2', 'review-3'];
 // Marquee cards: [name, handle, quote]. The first 4 fill the top row, the rest the bottom row.
-const TESTIMONIAL_MARQUEE = [['שם העורך/ת', '@editor1', 'חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.'], ['שם העורך/ת', '@editor2', 'הכתוביות בעברית פשוט עובדות — בלי לתקן כל מילה מחדש.'], ['שם העורך/ת', '@editor3', 'הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.'], ['שם העורך/ת', '@editor4', 'התחלתי לערוך לפני חודש והלקוחות חושבים שאני ותיק.'], ['שם העורך/ת', '@editor5', 'מקבלת יותר פרויקטים בשבוע, באותן שעות עבודה.'], ['שם העורך/ת', '@editor6', 'ה-Smart Cuts מוצא טייקים כפולים שאני הייתי מפספס.'], ['שם העורך/ת', '@editor7', 'חוסך לי ערב שלם על כל פרויקט. לא חוזר אחורה.'], ['שם העורך/ת', '@editor8', 'הכל בתוך פרמייר — בלי לייצא ולהעלות לשום מקום.']];
+const TESTIMONIAL_MARQUEE = [['תמר יחזקל אורון', '@tamar.yeheskeloron','חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.'], ['נטע דבח', '@neta_photography','הכתוביות בעברית פשוט עובדות — בלי לתקן כל מילה מחדש.'], ['Solair Motion', '@solair.motion','הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.'], ['שם העורך/ת', '@editor4', 'התחלתי לערוך לפני חודש והלקוחות חושבים שאני ותיק.'], ['שם העורך/ת', '@editor5', 'מקבלת יותר פרויקטים בשבוע, באותן שעות עבודה.'], ['שם העורך/ת', '@editor6', 'ה-Smart Cuts מוצא טייקים כפולים שאני הייתי מפספס.'], ['שם העורך/ת', '@editor7', 'חוסך לי ערב שלם על כל פרויקט. לא חוזר אחורה.'], ['שם העורך/ת', '@editor8', 'הכל בתוך פרמייר — בלי לייצא ולהעלות לשום מקום.']];
 class Component extends DCLogic {
   state = { yearly: false, after: false, videos: 12, raw: 15, manual: 90, openFaq: 0, tab: 'subs', showBar: false, packCat: 'cz' };
     shown = { NOOB: 99, PRO: 179, HACKER: 349 };
-  componentDidMount() { this._vw = () => this.setState({ vw: W().innerWidth }); this._vw(); W().addEventListener('resize', this._vw); try { const c = JSON.parse((document.defaultView || window).localStorage.getItem('ocedit-cart') || '{}'); this.setState({ navCart: (c.plan ? 1 : 0) + (c.packs || []).filter(k => /^\d+:(cz|cuts)$/.test(String(k))).length, navLogged: !!c.loggedIn }); } catch (e) {}
+  componentDidMount() { { const h = (W().location.hash || '').slice(1); if (h === 'pricing' || h === 'credits') { let n = 0; const go = () => { const el = document.getElementById(h); if (el) { W().setTimeout(() => document.getElementById('pricing').scrollIntoView({ behavior: 'instant' }), 100); return; } if (h === 'credits' && document.getElementById('pricing')) this.setState({ tab: 'credits' }); if (++n < 30) W().setTimeout(go, 100); }; W().setTimeout(go, 50); } } this._vw = () => this.setState({ vw: W().innerWidth }); this._vw(); W().addEventListener('resize', this._vw); try { const c = JSON.parse((document.defaultView || window).localStorage.getItem('ocedit-cart') || '{}'); this.setState({ navCart: (c.plan ? 1 : 0) + (c.packs || []).filter(k => /^\d+:(cz|cuts)$/.test(String(k))).length, navLogged: !!c.loggedIn }); } catch (e) {}
     const w = W(); this._t = [];
     const reduce = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const frame = () => {
@@ -398,7 +411,7 @@ class Component extends DCLogic {
     const wave = Array.from({ length: 70 }, (_, i) => { const cut = [5,6,14,22,23,31,40,41,49,57,63].includes(i); const h = cut ? 100 : 15 + Math.abs(Math.sin(i * 1.7) * 70) + (i % 3) * 5; return { h: h + '%', c: cut ? '#d93a35' : '#5b8fc9' }; });
     const tdata = TESTIMONIAL_SLIDES;
     const N = tdata.length, cur = s.slide ?? 3;
-    const mq = TESTIMONIAL_MARQUEE.map(([name, user, body]) => ({ name, user, body }));
+    const mq = TESTIMONIAL_MARQUEE.map(([name, user, body], i) => ({ name, user, body, av: TESTIMONIAL_PHOTOS[i] ? 'center/cover no-repeat url(assets/reviews/' + TESTIMONIAL_PHOTOS[i] + '-avatar.webp)' : 'repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px)' }));
     const half1 = mq.slice(0, 4), half2 = mq.slice(4);
     const rep = (a, n) => Array.from({ length: n }, () => a).flat();
     const mqRow1 = rep(half1, 8), mqRow2 = rep(half2, 8);
