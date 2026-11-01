@@ -93,7 +93,7 @@ class Component extends DCLogic {
     document.addEventListener('keydown', this._key);
   }
   componentWillUnmount() { const w = W(); w.removeEventListener('ocedit-cart', this._l); w.removeEventListener('storage', this._l); document.removeEventListener('pointerdown', this._doc); document.removeEventListener('keydown', this._key); document.body.style.overflow = ''; }
-  componentDidUpdate(pp, ps) { if (ps === this._lastPs) return; this._lastPs = ps;
+  componentDidUpdate(pp, ps) { if (!ps) return; if (ps === this._lastPs) return; this._lastPs = ps;
     if (this.count(ps.cart) !== this.count(this.state.cart)) W().requestAnimationFrame(() => { const b = document.querySelector('[data-cart-badge]'); if (b && b.animate) b.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.45)' }, { transform: 'scale(1)' }], { duration: 380, easing: 'cubic-bezier(.34,1.56,.64,1)' }); });
     if (ps.drawer !== this.state.drawer) document.body.style.overflow = this.state.drawer ? 'hidden' : '';
   }
