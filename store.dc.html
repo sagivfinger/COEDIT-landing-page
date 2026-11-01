@@ -15,6 +15,110 @@
         t.parentNode.insertBefore(e,t)}();
 </script>
 <script src="./support.js"></script>
+<script defer data-domain="getcoedit.com" src="https://plausible.io/js/script.js"></script>
+<script>
+  window.plausible = window.plausible || function () {
+    (window.plausible.q = window.plausible.q || []).push(arguments);
+  };
+</script>
+<script>
+(function () {
+  var KEY = 'ocedit-cart';
+  function read() {
+    try {
+      var c = JSON.parse(localStorage.getItem(KEY) || '{}');
+      return {
+        plan: typeof c.plan === 'string' ? c.plan : null,
+        packs: Array.isArray(c.packs) ? c.packs.slice().sort() : []
+      };
+    } catch (e) { return { plan: null, packs: [] }; }
+  }
+  function tally(list) {
+    var m = {};
+    for (var i = 0; i < list.length; i++) {
+      var k = String(list[i]);
+      if (!/^\d+:(cz|cuts)$/.test(k)) continue;
+      m[k] = (m[k] || 0) + 1;
+    }
+    return m;
+  }
+  function send(name, item, after) {
+    window.plausible(name, { props: {
+      item: item,
+      cart_size: (after.plan ? 1 : 0) + after.packs.length
+    } });
+  }
+  var prev = read();
+
+  // A FIRST-TIME VISITOR NEEDS A BASELINE STEP; A RETURNING ONE MUST NOT GET ONE.
+  // On mount the store writes its initial state, which pre-selects a plan. For a browser
+  // with no stored cart that write is the app's default and must not be reported as an
+  // add. But when a cart is already stored, the component rehydrates to the same value and
+  // writes nothing, so no event arrives at mount - and a baseline step would then swallow
+  // the visitor's FIRST REAL ACTION of the page view instead. Measured: with a stored
+  // cart, removing a pack produced no event and only the second action was reported.
+  // So the baseline is owed only when there was nothing stored to begin with.
+  var baselined = false;
+  try { baselined = localStorage.getItem(KEY) !== null; } catch (e) { baselined = true; }
+
+  // What the URL asked to put in the cart. home.dc.html links here as
+  // #cart?plan=PRO&yearly=0 and #cart?pack=150&cat=cz, and readHash() acts on it, so this
+  // is a deliberate add by the visitor even though no click happened on this page.
+  function intent() {
+    var q = (location.hash.split('?')[1] || ''), out = [];
+    var p = new URLSearchParams(q);
+    if (p.get('plan')) out.push('plan:' + p.get('plan'));
+    if (p.get('pack')) out.push('pack:' + p.get('pack') + ':' + (p.get('cat') === 'cuts' ? 'cuts' : 'cz'));
+    return out;
+  }
+
+  function diff() {
+    var now = read();
+
+    // The store's own default plan is not the visitor's choice, so it is not reported.
+    // Packs are never part of that default, so anything else here came from the URL -
+    // a buy link, which IS deliberate - and is reported once confirmed to have landed.
+    //
+    // This runs BEFORE the visibility check on purpose. A store opened in a background
+    // tab - a middle-clicked buy link - mounts while hidden, and that first write is
+    // still this page's own default, not another tab's change. Checked the other way
+    // round, the hidden branch swallowed it without settling the baseline, and the
+    // visitor's first real action was then consumed as the baseline instead.
+    if (!baselined) {
+      baselined = true;
+      var inCart = [], i;
+      if (now.plan) inCart.push('plan:' + now.plan);
+      for (i = 0; i < now.packs.length; i++) inCart.push('pack:' + now.packs[i]);
+      var want = intent();
+      for (i = 0; i < want.length; i++) {
+        if (inCart.indexOf(want[i]) !== -1) send('add_to_cart', want[i], now);
+      }
+      prev = now;
+      return;
+    }
+    // Once settled, a change that arrives while this tab is hidden came from another
+    // tab (the nav re-dispatches 'storage' events). Re-sync, report nothing here.
+    if (document.visibilityState !== 'visible') { prev = now; return; }
+    if (now.plan !== prev.plan) {
+      if (prev.plan) send('remove_from_cart', 'plan:' + prev.plan, now);
+      if (now.plan) send('add_to_cart', 'plan:' + now.plan, now);
+    }
+    var a = tally(prev.packs), b = tally(now.packs), k;
+    for (k in b) { var up = (b[k] || 0) - (a[k] || 0); while (up-- > 0) send('add_to_cart', 'pack:' + k, now); }
+    for (k in a) { var dn = (a[k] || 0) - (b[k] || 0); while (dn-- > 0) send('remove_from_cart', 'pack:' + k, now); }
+    prev = now;
+  }
+  window.addEventListener('ocedit-cart', diff);
+  var lastView = null;
+  function view() {
+    var v = (location.hash || '#cart').slice(1).split('?')[0] || 'cart';
+    if (v === 'cart' && lastView !== 'cart') window.plausible('cart_viewed');
+    lastView = v;
+  }
+  view();
+  window.addEventListener('hashchange', view);
+})();
+</script>
 </head>
 <body>
 <x-dc>
