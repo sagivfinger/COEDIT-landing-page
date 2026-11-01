@@ -229,11 +229,12 @@ input[type=range]{accent-color:#d93a35;width:100%}
       <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">סרטונים אמיתיים. <span style="color:#e2504a">נערכו עם התוסף.</span></h2>
     </div>
     <div onMouseEnter="{{ carHoverOn }}" onMouseLeave="{{ carHoverOff }}" style="position:relative;width:100%;max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:26px">
-      <div onPointerDown="{{ dragStart }}" onPointerUp="{{ dragEnd }}" onPointerLeave="{{ dragCancel }}" style="position:relative;width:100%;height:clamp(400px,110vw,440px);perspective:1100px;cursor:grab;touch-action:pan-y;user-select:none">
+      <div onPointerDown="{{ dragStart }}" onPointerUp="{{ dragEnd }}" onPointerLeave="{{ dragCancel }}" style="position:relative;width:100%;height:clamp(450px,130vw,520px);perspective:1100px;cursor:grab;touch-action:pan-y;user-select:none">
         <sc-for list="{{ slides }}" as="sl" hint-placeholder-count="7">
-          <div onClick="{{ sl.go }}" style="position:absolute;top:0;left:50%;width:280px;height:420px;margin-left:-140px;border-radius:16px;overflow:hidden;background:#0c0c0c;border:1px solid {{ sl.bd }};transform:{{ sl.tf }};z-index:{{ sl.z }};opacity:{{ sl.o }};transition:transform .45s cubic-bezier(.22,.8,.3,1),opacity .4s,border-color .3s;box-shadow:0 30px 70px rgba(0,0,0,.6)">
+          <div onClick="{{ sl.go }}" style="position:absolute;top:0;left:50%;width:280px;height:498px;margin-left:-140px;border-radius:16px;overflow:hidden;background:#0c0c0c;border:1px solid {{ sl.bd }};transform:{{ sl.tf }};z-index:{{ sl.z }};opacity:{{ sl.o }};transition:transform .45s cubic-bezier(.22,.8,.3,1),opacity .4s,border-color .3s;box-shadow:0 30px 70px rgba(0,0,0,.6)">
             <div style="position:absolute;inset:0;background:#0c0c0c center/cover no-repeat;background-image:{{ sl.posterBg }}"></div>
-            <sc-if value="{{ sl.active }}" hint-placeholder-val="{{ false }}"><video src="{{ sl.src }}" onCanPlay="{{ sl.play }}" autoplay muted loop playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video></sc-if>
+            <sc-if value="{{ sl.active }}" hint-placeholder-val="{{ false }}"><video src="{{ sl.src }}" onCanPlay="{{ sl.play }}" onEnded="{{ sl.ended }}" autoplay muted playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video></sc-if>
+            <sc-if value="{{ sl.active }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleSound }}" onPointerDown="{{ stopEv }}" aria-label="{{ soundLabel }}" style="position:absolute;bottom:14px;left:14px;z-index:3;height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.6);color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">{{ soundIcon }} {{ soundText }}</button></sc-if>
             <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,{{ sl.shL }}),transparent 60%,rgba(0,0,0,{{ sl.shR }}));pointer-events:none;transition:background .5s"></div>
             <sc-if value="{{ sl.hasTitle }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:0;right:0;bottom:0;padding:50px 18px 16px;background:linear-gradient(0deg,rgba(0,0,0,.85) 20%,transparent);pointer-events:none"><span style="font-size:14px;font-weight:700;color:#fff">{{ sl.title }}</span></div></sc-if>
           </div>
@@ -422,8 +423,9 @@ input[type=range]{accent-color:#d93a35;width:100%}
 const W = () => document.defaultView || window;
 // ── Showcase videos ── videos edited with the plugin, shown in the "נערך עם COEDIT" carousel.
 // { src: 'assets/videos/<name>.mp4', poster: 'assets/videos/<name>.jpg', title: 'short caption or empty' }.
-// Only the centred card plays its video; the others show the poster. With no videos the section is hidden.
-const SHOWCASE_VIDEOS = [];
+// Only the centred card plays its video; the others show the poster. It moves on when the video ends.
+// With no videos the section is hidden.
+const SHOWCASE_VIDEOS = [1, 2, 3, 4, 5, 6, 7, 8].map(n => ({ src: 'assets/videos/edit-' + n + '.mp4', poster: 'assets/videos/edit-' + n + '.jpg', title: '' }));
 // Review photos, one person per review card, by position: assets/reviews/<name>-avatar.webp is the round
 // avatar. A card with no photo keeps the striped placeholder.
 const TESTIMONIAL_PHOTOS = ['review-1', 'review-2', 'review-3'];
@@ -473,7 +475,7 @@ class Component extends DCLogic {
     frame();
     this._t.push(w.setTimeout(frame, 400), w.setTimeout(() => { if (!this.state.revealed) this.setState({ revealed: true }); }, 2500));
     this.setState({ armed: true });
-    this._car = w.setInterval(() => { const n = SHOWCASE_VIDEOS.length; if (!n || this._carHover || document.hidden) return; this.setState(st => ({ slide: ((st.slide ?? 0) + 1) % n })); }, 8000);
+    this._car = w.setInterval(() => { const n = SHOWCASE_VIDEOS.length; if (!n || this._carHover || this._vidOn || document.hidden) return; this.setState(st => ({ slide: ((st.slide ?? 0) + 1) % n })); }, 8000);
   }
   animPrices(yearly) { const w = W(), f = yearly ? 0.8 : 1, base = { NOOB: 99, PRO: 179, HACKER: 349 }, from = this.state.anim || (yearly ? base : { NOOB: 79, PRO: 143, HACKER: 279 }), t0 = w.performance.now(); w.cancelAnimationFrame(this._raf); const step = now => { const k = Math.min(1, (now - t0) / 600), e = 1 - Math.pow(1 - k, 3); const next = {}; for (const n in base) next[n] = Math.round(from[n] + (Math.round(base[n] * f) - from[n]) * e); this.setState({ anim: k < 1 ? next : null }); if (k < 1) this._raf = w.requestAnimationFrame(step); }; this._raf = w.requestAnimationFrame(step); }
   componentWillUnmount() { const w = W(); w.removeEventListener('scroll', this._on); document.removeEventListener('scroll', this._on, { capture: true }); w.removeEventListener('resize', this._on); (this._t || []).forEach(t => w.clearTimeout(t)); w.clearInterval(this._car); w.cancelAnimationFrame(this._raf); }
@@ -495,10 +497,12 @@ class Component extends DCLogic {
     const mqRow1 = rep(mq, Math.max(4, 2 * Math.ceil(12 / Math.max(1, mq.length))));
     const slides = tdata.map((vid, i) => { let off = i - cur; if (off > N / 2) off -= N; if (off < -N / 2) off += N; const ab = Math.abs(off), sg = Math.sign(off); const active = off === 0;
       // React leaves the muted attribute off, and browsers only autoplay muted video: mute and start it here.
-      return { src: vid.src, play: e => { const el = e.target; el.muted = true; const p = el.play(); if (p && p.catch) p.catch(() => {}); }, posterBg: vid.poster ? 'url(' + vid.poster + ')' : 'none', title: vid.title || '', hasTitle: !!vid.title, active,
+      // While a video plays the timer waits for it to end; if the browser blocks it, the timer moves on.
+      return { src: vid.src, play: e => { const el = e.target; if (this._vid === el && !el.paused) return; this._vid = el; el.muted = !s.sound; const p = el.play(); if (p && p.then) p.then(() => { this._vidOn = true; }, () => { el.muted = true; el.play().then(() => { this._vidOn = true; }, () => {}); }); },
+        ended: () => { this._vidOn = false; this.setState(st => ({ slide: ((st.slide ?? 0) + 1) % N })); }, posterBg: vid.poster ? 'url(' + vid.poster + ')' : 'none', title: vid.title || '', hasTitle: !!vid.title, active,
         tf: 'translateX(' + (off * (s.vw < 640 ? 120 : 230)) + 'px) translateZ(' + (-ab * (s.vw < 640 ? 160 : 120)) + 'px) rotateY(' + (-sg * Math.min(ab, 1) * 40) + 'deg) scale(' + (s.vw < 640 ? 0.86 : 1) + ')',
         z: 10 - ab, o: ab > (s.vw < 640 ? 1 : 2) ? 0 : 1, bd: active ? '#8a2c28' : '#2a2a2a', shL: off > 0 ? Math.min(.7, ab * .45) : 0, shR: off < 0 ? Math.min(.7, ab * .45) : 0,
-        go: () => this.setState({ slide: i }), dotW: active ? '26px' : '8px', dotBg: active ? '#d93a35' : '#3a3a3a' }; });
+        go: () => { if (!active) { this._vidOn = false; this.setState({ slide: i }); } }, dotW: active ? '26px' : '8px', dotBg: active ? '#d93a35' : '#3a3a3a' }; });
     const total = s.videos * s.raw;
     const rec = total <= 90 ? 'NOOB' : total <= 300 ? 'PRO' : 'HACKER';
     const recNote = total > 1000 ? 'יותר מ-1,000 דקות בחודש? HACKER + חבילת קרדיטים.' : 'לפי דקות חומר גלם לחיתוך בחודש. הערכה — 10 דקות עבודה לסרטון עם COEDIT.';
@@ -547,9 +551,11 @@ class Component extends DCLogic {
       hoursSaved: hours.toFixed(hours < 10 ? 1 : 0), totalMin: total.toLocaleString(), recTier: rec, recNote,
       carHoverOn: () => { this._carHover = true; }, carHoverOff: () => { this._carHover = false; },
       mqRow1, heroFaces, hasVideos: N > 0,
-      slides, slideNext: () => this.setState({ slide: (cur + 1) % N }), slidePrev: () => this.setState({ slide: (cur - 1 + N) % N }),
+      slides, slideNext: () => { this._vidOn = false; this.setState({ slide: (cur + 1) % N }); }, slidePrev: () => { this._vidOn = false; this.setState({ slide: (cur - 1 + N) % N }); },
+      toggleSound: e => { e.stopPropagation(); const on = !s.sound; if (this._vid) { this._vid.muted = !on; if (on && this._vid.paused) this._vid.play().catch(() => {}); } this.setState({ sound: on }); }, stopEv: e => e.stopPropagation(),
+      soundIcon: s.sound ? '🔊' : '🔇', soundText: s.sound ? 'כיבוי סאונד' : 'הפעלת סאונד', soundLabel: s.sound ? 'כיבוי סאונד' : 'הפעלת סאונד',
       dragStart: e => { this._dx = e.clientX; }, dragCancel: () => { this._dx = null; },
-      dragEnd: e => { if (this._dx == null) return; const d = e.clientX - this._dx; this._dx = null; if (Math.abs(d) > 40) this.setState({ slide: (cur + (d < 0 ? 1 : -1) + N) % N }); },
+      dragEnd: e => { if (this._dx == null) return; const d = e.clientX - this._dx; this._dx = null; if (Math.abs(d) > 40) { this._vidOn = false; this.setState({ slide: (cur + (d < 0 ? 1 : -1) + N) % N }); } },
       tiers, packs, faqs,
       setMonthly: () => { if (s.yearly) { this.setState({ yearly: false }); this.animPrices(false); } }, setYearly: () => { if (!s.yearly) { this.setState({ yearly: true }); this.animPrices(true); } },
       isSubs: s.tab === 'subs', isCredits: s.tab === 'credits',
