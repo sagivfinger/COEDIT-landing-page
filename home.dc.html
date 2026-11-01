@@ -51,16 +51,17 @@ input[type=range]{accent-color:#d93a35;width:100%}
     <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:22px">
       
       
-      <div style="display:flex;align-items:center;gap:14px">
-        <div style="width:1px;align-self:stretch;background:#3a3a3a"></div>
-      <div style="display:flex;flex-direction:column;gap:4px">
-        <div dir="ltr" style="display:flex;gap:3px;align-self:center"><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;right:0;bottom:0;width:50%;overflow:hidden;display:flex;justify-content:flex-end;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span></div>
-        <span style="font-size:14px;color:#fff">אהוב מאוד אצל עורכי ווידאו</span>
-      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="display:flex">
+          <sc-for list="{{ heroFaces }}" as="f" hint-placeholder-count="3"><span style="width:40px;height:40px;flex:none;border-radius:50%;background:{{ f.av }};border:2px solid #1a0f0f;margin-inline-start:-10px"></span></sc-for>
+        </div>
+        <span style="font-size:15px;color:#fff;line-height:1.4">עורכים כבר חותכים, מתמללים ומזיזים<br>את הטיימליין עם COEDIT</span>
       </div>
       <h1 style="margin:0;font-size:clamp(42px,5.6vw,78px);font-weight:900;line-height:1.02;letter-spacing:-.02em">הטיימליין שלכם.<br><span style="color:#e2504a">בלי השומן.</span></h1>
-      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">לצפייה במסלולים</a>
-      
+      <p style="margin:0;font-size:19px;line-height:1.6;color:#bbb;max-width:520px;text-wrap:pretty">חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד — ישירות בתוך Premiere Pro, בכמה לחיצות.</p>
+      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">בחרו מסלול — מ-₪99 לחודש</a>
+      <div style="display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:#999"><span>✓ ביטול בכל עת</span><span>✓ עברית מלאה</span><span>✓ עובד בתוך Premiere Pro</span></div>
+
     </div>
     <div data-px="-0.08" style="position:relative;flex:1.6 1 560px;min-width:0;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid #3a2222;background:#0c0c0c;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(217,58,53,.12)"><iframe src="https://www.youtube-nocookie.com/embed/wZPgfeMTX3k?enablejsapi=0&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=wZPgfeMTX3k&amp;controls=0&amp;modestbranding=1&amp;rel=0&amp;playsinline=1&amp;disablekb=1&amp;iv_load_policy=3&amp;vq=hd2160&amp;hd=1" title="COEDIT demo" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; web-share" frameborder="0" style="position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%) scale(1.02);border:0;pointer-events:none"></iframe></div>
   </div>
@@ -72,17 +73,9 @@ input[type=range]{accent-color:#d93a35;width:100%}
   <div dir="ltr" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px">
       <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqL 60s linear infinite" style-hover="animation-play-state:paused">
         <sc-for list="{{ mqRow1 }}" as="r" hint-placeholder-count="8">
-            <div dir="rtl" style="flex:none;width:300px;margin-right:14px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
-              <div style="display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;flex:none;border-radius:50%;background:{{ r.av }};border:1px solid #3a2222"></span><div style="display:flex;flex-direction:column"><b style="font-size:14px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:12px;color:#888;text-align:right">{{ r.user }}</span></div></div>
-              <p style="margin:0;font-size:14px;line-height:1.55;color:#ccc;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ r.body }}</p>
-            </div>
-        </sc-for>
-      </div>
-      <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqR 60s linear infinite" style-hover="animation-play-state:paused">
-        <sc-for list="{{ mqRow2 }}" as="r" hint-placeholder-count="8">
-            <div dir="rtl" style="flex:none;width:300px;margin-right:14px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
-              <div style="display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;flex:none;border-radius:50%;background:{{ r.av }};border:1px solid #3a2222"></span><div style="display:flex;flex-direction:column"><b style="font-size:14px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:12px;color:#888;text-align:right">{{ r.user }}</span></div></div>
-              <p style="margin:0;font-size:14px;line-height:1.55;color:#ccc;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ r.body }}</p>
+            <div dir="rtl" style="flex:none;width:360px;margin-right:16px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
+              <div style="display:flex;align-items:center;gap:14px"><span style="width:64px;height:64px;flex:none;border-radius:50%;background:{{ r.av }};border:2px solid #3a2222"></span><div style="display:flex;flex-direction:column;gap:2px"><b style="font-size:17px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:14px;color:#999;text-align:right">{{ r.user }}</span></div></div>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:#ddd">{{ r.body }}</p>
             </div>
         </sc-for>
       </div>
@@ -162,24 +155,21 @@ input[type=range]{accent-color:#d93a35;width:100%}
   </div>
 </section>
 
+<sc-if value="{{ hasVideos }}" hint-placeholder-val="{{ true }}">
 <section style="padding:clamp(64px,10vw,110px) 24px">
   <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
     <div data-px="0.08" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.3em;color:#d93a35">עורכים מספרים</span>
-      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">מהטיימליין <span style="color:#e2504a">שלהם.</span></h2>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.3em;color:#d93a35">נערך עם COEDIT</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">סרטונים אמיתיים. <span style="color:#e2504a">נערכו עם התוסף.</span></h2>
     </div>
     <div onMouseEnter="{{ carHoverOn }}" onMouseLeave="{{ carHoverOff }}" style="position:relative;width:100%;max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:26px">
       <div onPointerDown="{{ dragStart }}" onPointerUp="{{ dragEnd }}" onPointerLeave="{{ dragCancel }}" style="position:relative;width:100%;height:clamp(400px,110vw,440px);perspective:1100px;cursor:grab;touch-action:pan-y;user-select:none">
         <sc-for list="{{ slides }}" as="sl" hint-placeholder-count="7">
           <div onClick="{{ sl.go }}" style="position:absolute;top:0;left:50%;width:280px;height:420px;margin-left:-140px;border-radius:16px;overflow:hidden;background:#0c0c0c;border:1px solid {{ sl.bd }};transform:{{ sl.tf }};z-index:{{ sl.z }};opacity:{{ sl.o }};transition:transform .45s cubic-bezier(.22,.8,.3,1),opacity .4s,border-color .3s;box-shadow:0 30px 70px rgba(0,0,0,.6)">
-            <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#171717 0 12px,#1c1c1c 12px 24px);display:flex;align-items:center;justify-content:center"><span dir="ltr" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5a5a5a;letter-spacing:.1em">{{ sl.label }}</span></div>
+            <div style="position:absolute;inset:0;background:#0c0c0c center/cover no-repeat;background-image:{{ sl.posterBg }}"></div>
+            <sc-if value="{{ sl.active }}" hint-placeholder-val="{{ false }}"><video src="{{ sl.src }}" onCanPlay="{{ sl.play }}" autoplay muted loop playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video></sc-if>
             <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,{{ sl.shL }}),transparent 60%,rgba(0,0,0,{{ sl.shR }}));pointer-events:none;transition:background .5s"></div>
-            <div style="position:absolute;left:0;right:0;bottom:0;padding:70px 18px 18px;background:linear-gradient(0deg,#000 20%,transparent);display:flex;flex-direction:column;gap:8px">
-              <p style="margin:0;font-size:15px;font-weight:600;line-height:1.5;color:#fff;border-bottom:1px solid #3a3a3a;padding-bottom:12px">"{{ sl.quote }}"</p>
-              <span style="font-size:14px;color:#ddd">— {{ sl.name }}</span>
-              <span style="font-size:12px;font-weight:700;color:#e2504a">{{ sl.role }}</span>
-            </div>
-            <sc-if value="{{ sl.active }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:14px;right:14px;width:42px;height:42px;border-radius:50%;background:linear-gradient(180deg,#e2504a,#c42e2a);box-shadow:0 0 18px rgba(217,58,53,.6);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;padding-left:3px">▶</span></sc-if>
+            <sc-if value="{{ sl.hasTitle }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:0;right:0;bottom:0;padding:50px 18px 16px;background:linear-gradient(0deg,rgba(0,0,0,.85) 20%,transparent);pointer-events:none"><span style="font-size:14px;font-weight:700;color:#fff">{{ sl.title }}</span></div></sc-if>
           </div>
         </sc-for>
       </div>
@@ -193,9 +183,10 @@ input[type=range]{accent-color:#d93a35;width:100%}
         <button onClick="{{ slidePrev }}" style="width:42px;height:42px;border-radius:50%;background:#1d1d1d;border:1px solid #333;color:#eee;font-size:18px;cursor:pointer" style-hover="border-color:#d93a35">‹</button>
       </div>
     </div>
-    <a href="#pricing" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">לצפייה במסלולים</a>
+    <a href="#pricing" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">רוצים את זה בסרטון שלכם? למסלולים</a>
   </div>
 </section>
+</sc-if>
 
 <section id="how" style="padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
   <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
@@ -298,7 +289,12 @@ input[type=range]{accent-color:#d93a35;width:100%}
       </div>
     </div>
     </sc-if>
-    <div data-vat-note style="text-align:center;font-size:13px;color:#888">כל המחירים כוללים מע"מ</div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;font-size:15px;font-weight:600;color:#ccc">
+      <span style="display:flex;align-items:center;gap:8px"><i style="width:22px;height:22px;border-radius:50%;background:#14231a;border:1px solid #2a5a36;color:#5fd068;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>בלי התחייבות — מבטלים חידוש בכל עת</span>
+      <span style="display:flex;align-items:center;gap:8px"><i style="width:22px;height:22px;border-radius:50%;background:#14231a;border:1px solid #2a5a36;color:#5fd068;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>אפשר לבקש החזר תוך 14 יום מהרכישה</span>
+      <span style="display:flex;align-items:center;gap:8px"><i style="width:22px;height:22px;border-radius:50%;background:#14231a;border:1px solid #2a5a36;color:#5fd068;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>מפתח רישיון ומדריך התקנה נשלחים במייל</span>
+    </div>
+    <div data-vat-note style="text-align:center;font-size:13px;color:#888">כל המחירים כוללים מע"מ · <a href="terms/" style="color:#888;text-decoration:underline">תנאי ביטול והחזרים</a></div>
   </div>
 </section>
 
@@ -340,7 +336,12 @@ input[type=range]{accent-color:#d93a35;width:100%}
 </section>
 
 <sc-if value="{{ showBar }}" hint-placeholder-val="{{ false }}">
-
+<div style="position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(18,18,18,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid #3a1c1b;padding:12px 16px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px">
+    <div style="display:flex;flex-direction:column;min-width:0"><b style="font-size:16px;color:#fff">COEDIT · מ-₪99 לחודש</b><span style="font-size:13px;color:#999">בלי התחייבות · ביטול בכל עת</span></div>
+    <a href="#pricing" style="flex:none;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:16px;padding:12px 22px;border-radius:9px;box-shadow:0 0 24px rgba(220,60,55,.4)">בחרו מסלול</a>
+  </div>
+</div>
 </sc-if>
 <footer style="border-top:1px solid #222;padding:30px 24px 90px">
   <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
@@ -353,16 +354,15 @@ input[type=range]{accent-color:#d93a35;width:100%}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const W = () => document.defaultView || window;
-// ── Testimonial template data ── DEVELOPMENT PLACEHOLDERS, not real customer reviews.
-// Replace both lists with real, approved testimonials before publishing. The markup, marquee animation and
-// carousel logic below only read these two constants.
-// Carousel cards: [quote, name, role]. The carousel shows 7 (its autoplay timer cycles % 7).
-const TESTIMONIAL_SLIDES = [['חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה.', 'שם העורך/ת', 'עורך יוטיוב'], ['הכתוביות בעברית פשוט עובדות. בלי לתקן כל מילה.', 'שם העורך/ת', 'עורכת רילס'], ['הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.', 'שם העורך/ת', 'עורך פודקאסטים'], ['התחלתי לערוך לפני חודש והלקוחות חושבים שאני ותיק.', 'שם העורך/ת', 'עורך מתחיל'], ['מקבלת יותר פרויקטים בשבוע, באותן שעות.', 'שם העורך/ת', 'פרילנסרית'], ['ה-Smart Cuts מוצא טייקים שאני הייתי מפספס.', 'שם העורך/ת', 'עורך תוכן'], ['חוסך לי ערב שלם על כל פרויקט.', 'שם העורך/ת', 'עורך סושיאל']];
-// Review photos, one person per marquee card, by position: assets/reviews/<name>-avatar.webp is the round
-// avatar. A card with no photo keeps the striped placeholder. The carousel cards have no photos.
+// ── Showcase videos ── videos edited with the plugin, shown in the "נערך עם COEDIT" carousel.
+// { src: 'assets/videos/<name>.mp4', poster: 'assets/videos/<name>.jpg', title: 'short caption or empty' }.
+// Only the centred card plays its video; the others show the poster. With no videos the section is hidden.
+const SHOWCASE_VIDEOS = [];
+// Review photos, one person per review card, by position: assets/reviews/<name>-avatar.webp is the round
+// avatar. A card with no photo keeps the striped placeholder.
 const TESTIMONIAL_PHOTOS = ['review-1', 'review-2', 'review-3'];
-// Marquee cards: [name, handle, quote]. The first 4 fill the top row, the rest the bottom row.
-const TESTIMONIAL_MARQUEE = [['תמר יחזקל אורון', '@tamar.yeheskeloron','חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.'], ['נטע דבח', '@neta_photography','הכתוביות בעברית פשוט עובדות — בלי לתקן כל מילה מחדש.'], ['Solair Motion', '@solair.motion','הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.'], ['שם העורך/ת', '@editor4', 'התחלתי לערוך לפני חודש והלקוחות חושבים שאני ותיק.'], ['שם העורך/ת', '@editor5', 'מקבלת יותר פרויקטים בשבוע, באותן שעות עבודה.'], ['שם העורך/ת', '@editor6', 'ה-Smart Cuts מוצא טייקים כפולים שאני הייתי מפספס.'], ['שם העורך/ת', '@editor7', 'חוסך לי ערב שלם על כל פרויקט. לא חוזר אחורה.'], ['שם העורך/ת', '@editor8', 'הכל בתוך פרמייר — בלי לייצא ולהעלות לשום מקום.']];
+// Review cards: [name, handle, quote]. Real reviewers only; add a new person here (and a photo above).
+const TESTIMONIAL_MARQUEE = [['תמר יחזקל אורון', '@tamar.yeheskeloron','חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.'], ['נטע דבח', '@neta_photography','הכתוביות בעברית פשוט עובדות — בלי לתקן כל מילה מחדש.'], ['Solair Motion', '@solair.motion','הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.']];
 class Component extends DCLogic {
   state = { yearly: false, after: false, videos: 12, raw: 15, manual: 90, openFaq: 0, tab: 'subs', showBar: false, packCat: 'cz' };
     shown = { NOOB: 99, PRO: 179, HACKER: 349 };
@@ -407,7 +407,7 @@ class Component extends DCLogic {
     frame();
     this._t.push(w.setTimeout(frame, 400), w.setTimeout(() => { if (!this.state.revealed) this.setState({ revealed: true }); }, 2500));
     this.setState({ armed: true });
-    this._car = w.setInterval(() => { if (this._carHover || document.hidden) return; this.setState(st => ({ slide: ((st.slide ?? 3) + 1) % 7 })); }, 1800);
+    this._car = w.setInterval(() => { const n = SHOWCASE_VIDEOS.length; if (!n || this._carHover || document.hidden) return; this.setState(st => ({ slide: ((st.slide ?? 0) + 1) % n })); }, 8000);
   }
   animPrices(yearly) { const w = W(), f = yearly ? 0.8 : 1, base = { NOOB: 99, PRO: 179, HACKER: 349 }, from = this.state.anim || (yearly ? base : { NOOB: 79, PRO: 143, HACKER: 279 }), t0 = w.performance.now(); w.cancelAnimationFrame(this._raf); const step = now => { const k = Math.min(1, (now - t0) / 600), e = 1 - Math.pow(1 - k, 3); const next = {}; for (const n in base) next[n] = Math.round(from[n] + (Math.round(base[n] * f) - from[n]) * e); this.setState({ anim: k < 1 ? next : null }); if (k < 1) this._raf = w.requestAnimationFrame(step); }; this._raf = w.requestAnimationFrame(step); }
   componentWillUnmount() { const w = W(); w.removeEventListener('scroll', this._on); document.removeEventListener('scroll', this._on, { capture: true }); w.removeEventListener('resize', this._on); (this._t || []).forEach(t => w.clearTimeout(t)); w.clearInterval(this._car); w.cancelAnimationFrame(this._raf); }
@@ -420,14 +420,16 @@ class Component extends DCLogic {
     const tot = seq.reduce((a, x) => a + x[0], 0), good = seq.filter(x => x[1] === 'g').reduce((a, x) => a + x[0], 0);
     const afterPct = Math.round(good / tot * 100) + '%';
     const wave = Array.from({ length: 70 }, (_, i) => { const cut = [5,6,14,22,23,31,40,41,49,57,63].includes(i); const h = cut ? 100 : 15 + Math.abs(Math.sin(i * 1.7) * 70) + (i % 3) * 5; return { h: h + '%', c: cut ? '#d93a35' : '#5b8fc9' }; });
-    const tdata = TESTIMONIAL_SLIDES;
-    const N = tdata.length, cur = s.slide ?? 3;
+    const tdata = SHOWCASE_VIDEOS;
+    const N = tdata.length, cur = N ? (s.slide ?? 0) % N : 0;
     const mq = TESTIMONIAL_MARQUEE.map(([name, user, body], i) => ({ name, user, body, av: TESTIMONIAL_PHOTOS[i] ? 'center/cover no-repeat url(assets/reviews/' + TESTIMONIAL_PHOTOS[i] + '-avatar.webp)' : 'repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px)' }));
-    const half1 = mq.slice(0, 4), half2 = mq.slice(4);
+    const heroFaces = mq.filter((r, i) => TESTIMONIAL_PHOTOS[i]).map(r => ({ av: r.av }));
     const rep = (a, n) => Array.from({ length: n }, () => a).flat();
-    const mqRow1 = rep(half1, 8), mqRow2 = rep(half2, 8);
-    const slides = tdata.map(([quote, name, role], i) => { let off = i - cur; if (off > N / 2) off -= N; if (off < -N / 2) off += N; const ab = Math.abs(off), sg = Math.sign(off); const active = off === 0;
-      return { quote, name, role, active, label: 'VIDEO ' + String(i + 1).padStart(2, '0'),
+    // The row slides by half its width, so it must hold an even number of copies, each wider than the screen.
+    const mqRow1 = rep(mq, Math.max(4, 2 * Math.ceil(12 / Math.max(1, mq.length))));
+    const slides = tdata.map((vid, i) => { let off = i - cur; if (off > N / 2) off -= N; if (off < -N / 2) off += N; const ab = Math.abs(off), sg = Math.sign(off); const active = off === 0;
+      // React leaves the muted attribute off, and browsers only autoplay muted video: mute and start it here.
+      return { src: vid.src, play: e => { const el = e.target; el.muted = true; const p = el.play(); if (p && p.catch) p.catch(() => {}); }, posterBg: vid.poster ? 'url(' + vid.poster + ')' : 'none', title: vid.title || '', hasTitle: !!vid.title, active,
         tf: 'translateX(' + (off * (s.vw < 640 ? 120 : 230)) + 'px) translateZ(' + (-ab * (s.vw < 640 ? 160 : 120)) + 'px) rotateY(' + (-sg * Math.min(ab, 1) * 40) + 'deg) scale(' + (s.vw < 640 ? 0.86 : 1) + ')',
         z: 10 - ab, o: ab > (s.vw < 640 ? 1 : 2) ? 0 : 1, bd: active ? '#8a2c28' : '#2a2a2a', shL: off > 0 ? Math.min(.7, ab * .45) : 0, shR: off < 0 ? Math.min(.7, ab * .45) : 0,
         go: () => this.setState({ slide: i }), dotW: active ? '26px' : '8px', dotBg: active ? '#d93a35' : '#3a3a3a' }; });
@@ -452,6 +454,7 @@ class Component extends DCLogic {
       ['האם החיתוכים מתבצעים בלי שאראה אותם?', 'לא. כל כלי מציג תצוגה מקדימה — ציר זמן עם החיתוכים או תמליל עם המילים המסומנות. אפשר לבטל סימון, לשנות הגדרות ולאשר רק כשזה נראה נכון.'],
       ['זה עובד בעברית?', 'כן. התמלול מזהה את השפה אוטומטית ותומך בעברית מלאה, כולל כתוביות מימין לשמאל.'],
       ['מה ההבדל בין כתוביות וזומים לבין Smart Cuts?', 'לכל מסלול שתי מכסות דקות: אחת לכתוביות וזומים, ואחת לחיתוך שתיקות וטייקים חכמים. הדקות נספרות לפי אורך החומר שעובד.'],
+      ['אפשר לבטל?', 'כן. מבטלים בכל עת, והביטול עוצר את החידושים והחיובים הבאים. הגישה נמשכת עד סוף התקופה שכבר שולמה. אפשר גם לבקש החזר תוך 14 יום מהרכישה — הפרטים בתנאי השימוש.'],
       ['מה קורה כשנגמרות לי הדקות?', 'אפשר לקנות חבילת קרדיטים חד-פעמית בכל רגע, לקטגוריה שבה נגמרו הדקות (כתוביות וזומים, או חיתוכים), או לשדרג מסלול.'],
             ['מה זה COFRAMES?', 'תוסף נוסף שמחליק קיפריימים כך שזומים ותנועות נראים רכים. הוא כלול בכל מנוי.']];
     const faqs = faqData.map(([q, a], i) => { const open = s.openFaq === i; return { q, a, open, sign: open ? '▴' : '▾', bg: open ? '#1f1414' : '#1a1a1a', bd: open ? '#5a2220' : '#2a2a2a', toggle: () => this.setState({ openFaq: open ? -1 : i }) }; });
@@ -477,7 +480,7 @@ class Component extends DCLogic {
       setVideos: e => this.setState({ videos: +e.target.value }), setRaw: e => this.setState({ raw: +e.target.value }), setManual: e => this.setState({ manual: +e.target.value }),
       hoursSaved: hours.toFixed(hours < 10 ? 1 : 0), totalMin: total.toLocaleString(), recTier: rec, recNote,
       carHoverOn: () => { this._carHover = true; }, carHoverOff: () => { this._carHover = false; },
-      mqRow1, mqRow2,
+      mqRow1, heroFaces, hasVideos: N > 0,
       slides, slideNext: () => this.setState({ slide: (cur + 1) % N }), slidePrev: () => this.setState({ slide: (cur - 1 + N) % N }),
       dragStart: e => { this._dx = e.clientX; }, dragCancel: () => { this._dx = null; },
       dragEnd: e => { if (this._dx == null) return; const d = e.clientX - this._dx; this._dx = null; if (Math.abs(d) > 40) this.setState({ slide: (cur + (d < 0 ? 1 : -1) + N) % N }); },
