@@ -25,6 +25,72 @@
         t.parentNode.insertBefore(e,t)}();
 </script>
 <script src="./support.js"></script>
+<script defer data-domain="getcoedit.com" src="https://plausible.io/js/script.js"></script>
+<script>
+  window.plausible = window.plausible || function () {
+    (window.plausible.q = window.plausible.q || []).push(arguments);
+  };
+</script>
+<script>
+(function () {
+  // The pricing section is the only place on this site where plans and credit packs are
+  // presented as products.
+  //
+  // THE SECTION IN THE PARSED HTML IS NOT THE ONE ON SCREEN. support.js throws the parsed
+  // markup away and renders a fresh tree into #dc-root, so the #pricing that exists at
+  // DOMContentLoaded is detached moments later and replaced by a different node. An
+  // observer attached to it can never fire - measured: at DOMContentLoaded the node
+  // exists, and after load it is neither the current #pricing nor still connected. The
+  // site's own code polls for this element with thirty retries for the same reason.
+  // So the element is re-acquired whenever the DOM changes, until one of them reports in.
+  var io = null, watched = null, fired = false, mo = null;
+
+  function stop() {
+    if (io) { io.disconnect(); io = null; }
+    if (mo) { mo.disconnect(); mo = null; }
+  }
+
+  function attach() {
+    if (fired) return;
+    var el = document.getElementById('pricing');
+    if (!el || el === watched) return;
+    if (io) io.disconnect();
+    watched = el;
+    io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          fired = true;
+          // Once per page view: scrolling back up is not a second viewing and would
+          // inflate the funnel's second stage.
+          window.plausible('product_viewed');
+          stop();
+          return;
+        }
+      }
+    // threshold is a fraction of the TARGET, not of the viewport. This section is ~1828px
+    // tall against a ~768px viewport, so its ratio tops out near 0.42 on desktop and is
+    // lower on a phone - a 0.4 threshold would never be reached. Any intersection counts,
+    // and the negative bottom margin means the section has to reach the upper three
+    // quarters of the screen rather than peek in at the bottom edge.
+    }, { threshold: 0, rootMargin: '0px 0px -25% 0px' });
+    io.observe(el);
+  }
+
+  function begin() {
+    attach();
+    if (!('MutationObserver' in window)) return;
+    mo = new MutationObserver(attach);
+    mo.observe(document.documentElement, { childList: true, subtree: true });
+    // The swap happens during the first render. Watching every mutation for the whole
+    // session would mean running on each of this page's scroll animations, so once the
+    // page has settled the IntersectionObserver carries on alone.
+    setTimeout(function () { if (mo) { mo.disconnect(); mo = null; } }, 15000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', begin);
+  else begin();
+})();
+</script>
 </head>
 <body>
 <x-dc>
