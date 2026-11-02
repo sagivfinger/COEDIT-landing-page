@@ -24,6 +24,11 @@
         var t=document.getElementsByTagName("script")[0];
         t.parentNode.insertBefore(e,t)}();
 </script>
+<style>
+/* Omnisend has no Hebrew fonts, so its popups take the site's Heebo (loaded below). */
+html body [class*="omnisend-form-"], html body [class*="omnisend-form-"] *, html body [class*="omnisend-form-"] input::placeholder { font-family: Heebo, Arial, sans-serif !important; }
+html body [class*="omnisend-form-"] button { font-weight: 700 !important; }
+</style>
 <script src="./support.js"></script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-hw61AMuMfcT7n7xry4d3u.js"></script>
