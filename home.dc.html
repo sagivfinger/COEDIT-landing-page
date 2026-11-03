@@ -136,8 +136,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
       <h1 style="margin:0;font-size:clamp(42px,5.6vw,78px);font-weight:900;line-height:1.02;letter-spacing:-.02em">הטיימליין שלכם.<br><span style="color:#e2504a">בלי השומן.</span></h1>
       <p style="margin:0;font-size:19px;line-height:1.6;color:#bbb;max-width:520px;text-wrap:pretty">חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד — ישירות בתוך Premiere Pro, בכמה לחיצות.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-        <a href="#pricing" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">בחרו מסלול — מ-₪99 לחודש</a>
-        <button type="button" onClick="{{ openTrial }}" style="font-family:Heebo;cursor:pointer;background:transparent;color:#fff;font-weight:800;font-size:18px;padding:16px 30px;border-radius:9px;border:1.5px solid #4a2826;transition:border-color .2s ease,background .2s ease" style-hover="border-color:#e2504a;background:rgba(226,80,74,.08)">נסו בחינם ⬇</button>
+        <a href="#trial" onClick="{{ ctaTrial }}" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:#999"><span>✓ ביטול בכל עת</span><span>✓ עברית מלאה</span><span>✓ עובד בתוך Premiere Pro</span></div>
 
@@ -168,7 +167,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
     <div data-px="0.06" style="display:flex;flex-direction:column;justify-content:center;gap:22px;padding:clamp(64px,10vw,110px) 24px;padding-inline-start:max(24px,calc(50vw - 600px));padding-inline-end:clamp(24px,4vw,48px)">
       <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">שעות על חיתוך שתיקות וכתוביות ידניות? <span style="color:#e2504a">זו הדרך הישנה.</span></h2>
       <p style="margin:0;font-size:18px;line-height:1.7;color:#a5a5a5;text-wrap:pretty">אתם מכירים את זה: גוללים בטיימליין, מחפשים כל נשימה, חותכים טייק אחרי טייק, מקלידים כתוביות מילה-מילה ומזיזים קיפריימים לזום. העבודה השחורה הזאת אוכלת את רוב הזמן — והיא לא מה שעושה את הסרטון טוב. COEDIT לוקח אותה מכם, כדי שתתעסקו בקצב, בסיפור ובלקוח הבא.</p>
-      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">לצפייה במסלולים</a>
+      <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
     </div>
     <div style="position:relative;min-height:clamp(420px,95vw,760px);overflow:hidden">
       <div style="position:absolute;left:-10%;right:-10%;bottom:-30%;height:80%;background:radial-gradient(ellipse 60% 55% at 50% 100%,rgba(217,58,53,.45) 0%,rgba(217,58,53,.12) 45%,transparent 75%);pointer-events:none"></div>
@@ -192,7 +191,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
       <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.3em;color:#d93a35">חיתוך שתיקות + Smart Cuts</span>
       <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">חומר גלם נכנס. <span style="color:#e2504a">רק הטייקים הטובים יוצאים.</span></h2>
       <p style="margin:0;font-size:18px;line-height:1.65;color:#a5a5a5;text-wrap:pretty">COEDIT מזהה שתיקות, התחלות שווא וטייקים כפולים — ומשאיר רק את הגרסה הטובה. אתם רואים הכל בתצוגה מקדימה ומאשרים בלחיצה.</p>
-      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">לצפייה במסלולים</a>
+      <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
     </div>
   </div>
 </section>
@@ -203,7 +202,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
       <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.3em;color:#d93a35">זומים + סאונד + כתוביות</span>
       <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">נראה כמו עריכה של שעות. <span style="color:#e2504a">לקח דקות.</span></h2>
       <p style="margin:0;font-size:18px;line-height:1.65;color:#a5a5a5;text-wrap:pretty">זומים אוטומטיים על הרגעים החזקים עם אפקט סאונד מסונכרן, וכתוביות מעוצבות בעברית עם תזמון מילה-מילה — מוכנות לייצוא כ-MOGRT או SRT.</p>
-      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">לצפייה במסלולים</a>
+      <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
     </div>
     <div data-px="-0.06" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
       <sc-for list="{{ capStyles }}" as="s" hint-placeholder-count="4">
@@ -230,7 +229,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
       <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">כתוביות שניתנות לעריכה</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">ייצוא MOGRT לעריכה ב-Essential Graphics, או SRT סטנדרטי.</p></div>
       <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px;color:#e2504a">COFRAMES כלול בכל מנוי</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">תוסף שמחליק קיפריימים כך שזומים ותנועות נראים רכים.</p></div>
     </div>
-    <a href="#pricing" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">לצפייה במסלולים</a>
+    <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
   </div>
 </section>
 
@@ -263,7 +262,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
         <button onClick="{{ slidePrev }}" style="width:42px;height:42px;border-radius:50%;background:#1d1d1d;border:1px solid #333;color:#eee;font-size:18px;cursor:pointer" style-hover="border-color:#d93a35">‹</button>
       </div>
     </div>
-    <a href="#pricing" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">רוצים את זה בסרטון שלכם? למסלולים</a>
+    <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
   </div>
 </section>
 </sc-if>
@@ -283,7 +282,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
         </div>
       </sc-for>
     </div>
-    <a href="#pricing" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">לצפייה במסלולים</a>
+    <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
   </div>
 </section>
 
@@ -404,7 +403,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
         <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#ddd"><i style="width:22px;height:22px;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>זומים עם סאונד — בלי קיפריימים</span>
         <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#ddd"><i style="width:22px;height:22px;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>כתוביות מעוצבות בעברית — מוכנות לייצוא</span>
       </div>
-      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">לצפייה במסלולים</a>
+      <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
       
     </div>
     <div style="position:relative;min-height:clamp(420px,95vw,760px);overflow:hidden;background:transparent">
@@ -418,8 +417,8 @@ input[type=range]{accent-color:#d93a35;width:100%}
 <sc-if value="{{ showBar }}" hint-placeholder-val="{{ false }}">
 <div style="position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(18,18,18,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid #3a1c1b;padding:12px 16px">
   <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px">
-    <div style="display:flex;flex-direction:column;min-width:0"><b style="font-size:16px;color:#fff">COEDIT · מ-₪99 לחודש</b><span style="font-size:13px;color:#999">בלי התחייבות · ביטול בכל עת</span></div>
-    <a href="#pricing" style="flex:none;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:16px;padding:12px 22px;border-radius:9px;box-shadow:0 0 24px rgba(220,60,55,.4)">בחרו מסלול</a>
+    <div style="display:flex;flex-direction:column;min-width:0"><b style="font-size:16px;color:#fff">נסו את COEDIT בחינם</b><span style="font-size:13px;color:#999">התקנה בכמה דקות · עובד בתוך Premiere Pro</span></div>
+    <a href="#trial" onClick="{{ ctaTrial }}" style="flex:none;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:16px;padding:12px 22px;border-radius:9px;box-shadow:0 0 24px rgba(220,60,55,.4)">נסו בחינם עכשיו!</a>
   </div>
 </div>
 </sc-if>
@@ -523,7 +522,7 @@ class Component extends DCLogic {
     try { const w = W(); if (w.location.hash === '#trial') w.history.replaceState(null, '', w.location.pathname + w.location.search); } catch (e) {}
   }
     shown = { NOOB: 99, PRO: 179, HACKER: 349 };
-  componentDidMount() { if ((W().location.hash || '') === '#trial') this.openTrial('link'); this._esc = e => { if (e.key === 'Escape' && this.state.trialOpen) this.closeTrial(); }; W().addEventListener('keydown', this._esc); { const h = (W().location.hash || '').slice(1); if (h === 'pricing' || h === 'credits') { let n = 0; const go = () => { const el = document.getElementById(h); if (el) { W().setTimeout(() => document.getElementById('pricing').scrollIntoView({ behavior: 'instant' }), 100); return; } if (h === 'credits' && document.getElementById('pricing')) this.setState({ tab: 'credits' }); if (++n < 30) W().setTimeout(go, 100); }; W().setTimeout(go, 50); } } this._vw = () => this.setState({ vw: W().innerWidth }); this._vw(); W().addEventListener('resize', this._vw); try { const c = JSON.parse((document.defaultView || window).localStorage.getItem('ocedit-cart') || '{}'); this.setState({ navCart: (c.plan ? 1 : 0) + (c.packs || []).filter(k => /^\d+:(cz|cuts)$/.test(String(k))).length, navLogged: !!c.loggedIn }); } catch (e) {}
+  componentDidMount() { if ((W().location.hash || '') === '#trial') this.openTrial('link'); this._esc = e => { if (e.key === 'Escape' && this.state.trialOpen) this.closeTrial(); }; W().addEventListener('keydown', this._esc); this._hash = () => { if (W().location.hash === '#trial' && !this.state.trialOpen) this.openTrial('nav'); }; W().addEventListener('hashchange', this._hash); { const h = (W().location.hash || '').slice(1); if (h === 'pricing' || h === 'credits') { let n = 0; const go = () => { const el = document.getElementById(h); if (el) { W().setTimeout(() => document.getElementById('pricing').scrollIntoView({ behavior: 'instant' }), 100); return; } if (h === 'credits' && document.getElementById('pricing')) this.setState({ tab: 'credits' }); if (++n < 30) W().setTimeout(go, 100); }; W().setTimeout(go, 50); } } this._vw = () => this.setState({ vw: W().innerWidth }); this._vw(); W().addEventListener('resize', this._vw); try { const c = JSON.parse((document.defaultView || window).localStorage.getItem('ocedit-cart') || '{}'); this.setState({ navCart: (c.plan ? 1 : 0) + (c.packs || []).filter(k => /^\d+:(cz|cuts)$/.test(String(k))).length, navLogged: !!c.loggedIn }); } catch (e) {}
     const w = W(); this._t = [];
     const reduce = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const frame = () => {
@@ -542,7 +541,7 @@ class Component extends DCLogic {
       document.querySelectorAll('header, section').forEach(sec => {
         if (sec.id === 'pricing' || sec.querySelector('[style*="perspective"]') || sec.querySelector('[style*="animation:mq"]')) return;
         let n = 0;
-        sec.querySelectorAll('h1, h2, p, a[href="#pricing"], [style*="grid-template-columns:repeat"] > *, img, [style*="aspect-ratio:16/9"]').forEach(el => {
+        sec.querySelectorAll('h1, h2, p, a[href="#trial"], [style*="grid-template-columns:repeat"] > *, img, [style*="aspect-ratio:16/9"]').forEach(el => {
           if (el.closest('[data-rvd]') || el.closest('nav') || el.parentElement.closest('[style*="grid-template-columns:repeat(2"]')) return;
           el.setAttribute('data-rvd', '0'); const d = Math.min(n++ * 0.12, 0.9);
           const isImg = el.tagName === 'IMG';
@@ -567,7 +566,7 @@ class Component extends DCLogic {
     this._car = w.setInterval(() => { const n = SHOWCASE_VIDEOS.length; if (!n || this._carHover || this._vidOn || document.hidden) return; this.setState(st => ({ slide: ((st.slide ?? 0) + 1) % n })); }, 8000);
   }
   animPrices(yearly) { const w = W(), f = yearly ? 0.8 : 1, base = { NOOB: 99, PRO: 179, HACKER: 349 }, from = this.state.anim || (yearly ? base : { NOOB: 79, PRO: 143, HACKER: 279 }), t0 = w.performance.now(); w.cancelAnimationFrame(this._raf); const step = now => { const k = Math.min(1, (now - t0) / 600), e = 1 - Math.pow(1 - k, 3); const next = {}; for (const n in base) next[n] = Math.round(from[n] + (Math.round(base[n] * f) - from[n]) * e); this.setState({ anim: k < 1 ? next : null }); if (k < 1) this._raf = w.requestAnimationFrame(step); }; this._raf = w.requestAnimationFrame(step); }
-  componentWillUnmount() { const w = W(); if (this._esc) w.removeEventListener('keydown', this._esc); w.removeEventListener('scroll', this._on); document.removeEventListener('scroll', this._on, { capture: true }); w.removeEventListener('resize', this._on); (this._t || []).forEach(t => w.clearTimeout(t)); w.clearInterval(this._car); w.cancelAnimationFrame(this._raf); }
+  componentWillUnmount() { const w = W(); if (this._esc) w.removeEventListener('keydown', this._esc); if (this._hash) w.removeEventListener('hashchange', this._hash); w.removeEventListener('scroll', this._on); document.removeEventListener('scroll', this._on, { capture: true }); w.removeEventListener('resize', this._on); (this._t || []).forEach(t => w.clearTimeout(t)); w.clearInterval(this._car); w.cancelAnimationFrame(this._raf); }
   renderVals() {
     const s = this.state, v = this.props.heroVariant ?? 'C';
     const on = { c: '#fff', bg: '#2a1716', bd: '#8a2c28' }, off = { c: '#777', bg: 'transparent', bd: 'transparent' };
@@ -646,7 +645,7 @@ class Component extends DCLogic {
       dragStart: e => { this._dx = e.clientX; }, dragCancel: () => { this._dx = null; },
       dragEnd: e => { if (this._dx == null) return; const d = e.clientX - this._dx; this._dx = null; if (Math.abs(d) > 40) { this._vidOn = false; this.setState({ slide: (cur + (d < 0 ? 1 : -1) + N) % N }); } },
       tiers, packs, faqs,
-      trialOpen: !!s.trialOpen, openTrial: () => this.openTrial('hero'), closeTrial: () => this.closeTrial(),
+      trialOpen: !!s.trialOpen, openTrial: () => this.openTrial('hero'), ctaTrial: e => { e.preventDefault(); const t = e.currentTarget, sec = t && t.closest && t.closest('section,header'); this.openTrial(sec ? (sec.id || (sec.tagName === 'HEADER' ? 'hero' : 'section')) : 'bar'); }, closeTrial: () => this.closeTrial(),
       pluginReady: s.pluginState === 'ready', pluginLoading: s.pluginState === 'loading', pluginFailed: s.pluginState === 'failed',
       pluginVersion: s.plugin ? s.plugin.version : '', pluginUrl: s.plugin ? s.plugin.url : '#',
       pluginFile: s.plugin ? s.plugin.url.split('/').pop() : '', pluginSize: s.plugin && s.plugin.bytes ? (s.plugin.bytes / 1048576).toFixed(1) : '—',
