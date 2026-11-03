@@ -1,5 +1,7 @@
 {
-  "version": "0.1.2",
-  "url": "https://getcoedit.com/download/COEDIT-v0.1.2.zxp",
-  "notes": "חלון השימוש והחיוב מסודר יותר, והתוסף יודיע מעכשיו כשיש גרסה חדשה."
+  "version": "0.1.3",
+  "url": "https://getcoedit.com/download/COEDIT-v0.1.3.zxp",
+  "sha256": "cfd3630f4b6f694ca689e5c8439d5f3a728815d523dce5736f5e7ffa1b11f9e0",
+  "bytes": 14790384,
+  "notes": "מעכשיו עדכונים מותקנים בלחיצה אחת, ישר מתוך התוסף."
 }
