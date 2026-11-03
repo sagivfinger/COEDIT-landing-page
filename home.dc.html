@@ -135,7 +135,10 @@ input[type=range]{accent-color:#d93a35;width:100%}
       </div>
       <h1 style="margin:0;font-size:clamp(42px,5.6vw,78px);font-weight:900;line-height:1.02;letter-spacing:-.02em">הטיימליין שלכם.<br><span style="color:#e2504a">בלי השומן.</span></h1>
       <p style="margin:0;font-size:19px;line-height:1.6;color:#bbb;max-width:520px;text-wrap:pretty">חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד — ישירות בתוך Premiere Pro, בכמה לחיצות.</p>
-      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">בחרו מסלול — מ-₪99 לחודש</a>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <a href="#pricing" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">בחרו מסלול — מ-₪99 לחודש</a>
+        <button type="button" onClick="{{ openTrial }}" style="font-family:Heebo;cursor:pointer;background:transparent;color:#fff;font-weight:800;font-size:18px;padding:16px 30px;border-radius:9px;border:1.5px solid #4a2826;transition:border-color .2s ease,background .2s ease" style-hover="border-color:#e2504a;background:rgba(226,80,74,.08)">נסו בחינם ⬇</button>
+      </div>
       <div style="display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:#999"><span>✓ ביטול בכל עת</span><span>✓ עברית מלאה</span><span>✓ עובד בתוך Premiere Pro</span></div>
 
     </div>
@@ -420,6 +423,60 @@ input[type=range]{accent-color:#d93a35;width:100%}
   </div>
 </div>
 </sc-if>
+<sc-if value="{{ trialOpen }}" hint-placeholder-val="{{ false }}">
+<div id="trial-modal" onClick="{{ closeTrial }}" role="dialog" aria-modal="true" aria-labelledby="trial-title" style="position:fixed;inset:0;z-index:60;background:rgba(6,6,6,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;padding:clamp(12px,4vh,48px) 14px;overflow-y:auto">
+  <div onClick="{{ stopEv }}" style="position:relative;width:100%;max-width:620px;background:#161616;border:1px solid #2c2c2c;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.6);padding:clamp(20px,4vw,32px);display:flex;flex-direction:column;gap:20px">
+    <button type="button" onClick="{{ closeTrial }}" aria-label="סגירה" style="position:absolute;top:14px;left:14px;width:36px;height:36px;border-radius:50%;border:1px solid #333;background:#1f1f1f;color:#ccc;font-size:18px;cursor:pointer;line-height:1">✕</button>
+    <div style="display:flex;flex-direction:column;gap:6px;padding-left:40px">
+      <span style="font-size:13px;font-weight:800;color:#e2504a;letter-spacing:.02em">התקנה ב-4 צעדים</span>
+      <h2 id="trial-title" style="margin:0;font-size:clamp(24px,3.4vw,32px);font-weight:900;line-height:1.15">מתחילים לעבוד עם COEDIT</h2>
+      <p style="margin:0;font-size:15px;color:#aaa;line-height:1.6">עובד עם Premiere Pro ב-Windows וב-Mac. ההתקנה לוקחת כמה דקות.</p>
+    </div>
+
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <span style="flex:none;width:30px;height:30px;border-radius:50%;background:#2a1716;color:#e2504a;font-weight:900;display:flex;align-items:center;justify-content:center">1</span>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+        <b style="font-size:17px">מורידים את התוסף</b>
+        <sc-if value="{{ pluginReady }}" hint-placeholder-val="{{ true }}">
+          <a href="{{ pluginUrl }}" download onClick="{{ trackPluginDownload }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:16px;padding:13px 22px;border-radius:9px;box-shadow:0 0 24px rgba(220,60,55,.35)">⬇ הורדת COEDIT {{ pluginVersion }}</a>
+          <span style="font-size:13px;color:#888">{{ pluginFile }} · {{ pluginSize }} MB · חתום דיגיטלית</span>
+        </sc-if>
+        <sc-if value="{{ pluginLoading }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;color:#888">טוענים את הגרסה האחרונה…</span></sc-if>
+        <sc-if value="{{ pluginFailed }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;color:#c9a227">לא הצלחנו לטעון את פרטי הגרסה. רעננו את הדף ונסו שוב.</span></sc-if>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <span style="flex:none;width:30px;height:30px;border-radius:50%;background:#2a1716;color:#e2504a;font-weight:900;display:flex;align-items:center;justify-content:center">2</span>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+        <b style="font-size:17px">מורידים את ZXP Installer (חינם)</b>
+        <span style="font-size:14px;color:#aaa;line-height:1.6">התוכנה החינמית שמתקינה תוספים ל-Premiere. צריך להתקין אותה רק פעם אחת.</span>
+        <a href="https://aescripts.com/learn/zxp-installer/" target="_blank" rel="noopener" onClick="{{ trackInstallerClick }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;border:1.5px solid #4a2826;color:#fff;font-weight:700;font-size:15px;padding:11px 18px;border-radius:9px">הורדת ZXP Installer ↗</a>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <span style="flex:none;width:30px;height:30px;border-radius:50%;background:#2a1716;color:#e2504a;font-weight:900;display:flex;align-items:center;justify-content:center">3</span>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:10px">
+        <b style="font-size:17px">מתקינים</b>
+        <span style="font-size:14px;color:#aaa;line-height:1.6">פותחים את ZXP Installer, גוררים לתוכו את הקובץ של COEDIT שהורדתם, ומחכים להודעה שההתקנה הצליחה.</span>
+        <sc-if value="{{ hasInstallVideo }}" hint-placeholder-val="{{ false }}">
+          <video src="{{ installVideoSrc }}" poster="{{ installVideoPoster }}" controls playsinline preload="metadata" style="display:block;width:100%;max-height:60vh;object-fit:contain;border-radius:12px;background:#000;border:1px solid #2a2a2a"></video>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <span style="flex:none;width:30px;height:30px;border-radius:50%;background:#2a1716;color:#e2504a;font-weight:900;display:flex;align-items:center;justify-content:center">4</span>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
+        <b style="font-size:17px">פותחים את Premiere Pro</b>
+        <span style="font-size:14px;color:#aaa;line-height:1.6">בתפריט <span dir="ltr">Window → Extensions → COEDIT</span>, ומזינים את מפתח הרישיון. עדכונים עתידיים יותקנו מתוך התוסף בלחיצה אחת.</span>
+        <span style="font-size:14px;color:#aaa">אין לכם מפתח? <a href="contact/">כתבו לנו</a> ונשמח לעזור.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
 <footer style="border-top:1px solid #222;padding:30px 24px 90px">
   <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
     <img src="assets/logo.png" alt="COEDIT" style="height:24px;width:auto;display:block">
@@ -436,15 +493,37 @@ const W = () => document.defaultView || window;
 // Only the centred card plays its video; the others show the poster. It moves on when the video ends.
 // With no videos the section is hidden.
 const SHOWCASE_VIDEOS = [1, 2, 3, 4, 5, 6, 7, 8].map(n => ({ src: 'assets/videos/edit-' + n + '.mp4', poster: 'assets/videos/edit-' + n + '.jpg', title: '' }));
+// ── "Try for free" install guide ── the video in step 3 of the popup. Leave src empty to hide it.
+// e.g. { src: 'assets/videos/install-guide.mp4', poster: 'assets/videos/install-guide.jpg' }
+const INSTALL_VIDEO = { src: '', poster: '' };
+// The plugin offered in step 1 is whatever plugin/latest.json names (the file the plugin's own update check
+// reads), so publishing a new version updates this popup too.
+const PLUGIN_LATEST = 'plugin/latest.json';
 // Review photos, one person per review card, by position: assets/reviews/<name>-avatar.webp is the round
 // avatar. A card with no photo keeps the striped placeholder.
 const TESTIMONIAL_PHOTOS = ['review-1', 'review-2', 'review-3'];
 // Review cards: [name, handle, quote]. Real reviewers only; add a new person here (and a photo above).
 const TESTIMONIAL_MARQUEE = [['תמר יחזקל אורון', '@tamar.yeheskeloron','חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.'], ['נטע דבח', '@neta_photography','הכתוביות בעברית פשוט עובדות — בלי לתקן כל מילה מחדש.'], ['Solair Motion', '@solair.motion','הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.']];
 class Component extends DCLogic {
-  state = { yearly: false, after: false, videos: 12, raw: 15, manual: 90, openFaq: 0, tab: 'subs', showBar: false, packCat: 'cz' };
+  state = { yearly: false, after: false, videos: 12, raw: 15, manual: 90, openFaq: 0, tab: 'subs', showBar: false, packCat: 'cz', trialOpen: false, plugin: null, pluginState: 'idle' };
+  track(name, props) { try { const w = W(); if (w.plausible) w.plausible(name, props ? { props } : undefined); } catch (e) {} }
+  openTrial(source) {
+    this.setState({ trialOpen: true });
+    this.track('trial_opened', { source: source || 'hero' });
+    if (this.state.pluginState === 'ready' || this.state.pluginState === 'loading') return;
+    this.setState({ pluginState: 'loading' });
+    fetch(PLUGIN_LATEST, { cache: 'no-store' }).then(r => r.ok ? r.json() : Promise.reject(r.status)).then(j => {
+      const ok = j && /^\d+\.\d+\.\d+$/.test(j.version) && typeof j.url === 'string' && j.url.indexOf('https://getcoedit.com/') === 0;
+      if (!ok) throw new Error('bad latest.json');
+      this.setState({ plugin: { version: j.version, url: j.url, bytes: j.bytes || 0 }, pluginState: 'ready' });
+    }).catch(() => this.setState({ pluginState: 'failed' }));
+  }
+  closeTrial() {
+    this.setState({ trialOpen: false });
+    try { const w = W(); if (w.location.hash === '#trial') w.history.replaceState(null, '', w.location.pathname + w.location.search); } catch (e) {}
+  }
     shown = { NOOB: 99, PRO: 179, HACKER: 349 };
-  componentDidMount() { { const h = (W().location.hash || '').slice(1); if (h === 'pricing' || h === 'credits') { let n = 0; const go = () => { const el = document.getElementById(h); if (el) { W().setTimeout(() => document.getElementById('pricing').scrollIntoView({ behavior: 'instant' }), 100); return; } if (h === 'credits' && document.getElementById('pricing')) this.setState({ tab: 'credits' }); if (++n < 30) W().setTimeout(go, 100); }; W().setTimeout(go, 50); } } this._vw = () => this.setState({ vw: W().innerWidth }); this._vw(); W().addEventListener('resize', this._vw); try { const c = JSON.parse((document.defaultView || window).localStorage.getItem('ocedit-cart') || '{}'); this.setState({ navCart: (c.plan ? 1 : 0) + (c.packs || []).filter(k => /^\d+:(cz|cuts)$/.test(String(k))).length, navLogged: !!c.loggedIn }); } catch (e) {}
+  componentDidMount() { if ((W().location.hash || '') === '#trial') this.openTrial('link'); this._esc = e => { if (e.key === 'Escape' && this.state.trialOpen) this.closeTrial(); }; W().addEventListener('keydown', this._esc); { const h = (W().location.hash || '').slice(1); if (h === 'pricing' || h === 'credits') { let n = 0; const go = () => { const el = document.getElementById(h); if (el) { W().setTimeout(() => document.getElementById('pricing').scrollIntoView({ behavior: 'instant' }), 100); return; } if (h === 'credits' && document.getElementById('pricing')) this.setState({ tab: 'credits' }); if (++n < 30) W().setTimeout(go, 100); }; W().setTimeout(go, 50); } } this._vw = () => this.setState({ vw: W().innerWidth }); this._vw(); W().addEventListener('resize', this._vw); try { const c = JSON.parse((document.defaultView || window).localStorage.getItem('ocedit-cart') || '{}'); this.setState({ navCart: (c.plan ? 1 : 0) + (c.packs || []).filter(k => /^\d+:(cz|cuts)$/.test(String(k))).length, navLogged: !!c.loggedIn }); } catch (e) {}
     const w = W(); this._t = [];
     const reduce = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const frame = () => {
@@ -488,7 +567,7 @@ class Component extends DCLogic {
     this._car = w.setInterval(() => { const n = SHOWCASE_VIDEOS.length; if (!n || this._carHover || this._vidOn || document.hidden) return; this.setState(st => ({ slide: ((st.slide ?? 0) + 1) % n })); }, 8000);
   }
   animPrices(yearly) { const w = W(), f = yearly ? 0.8 : 1, base = { NOOB: 99, PRO: 179, HACKER: 349 }, from = this.state.anim || (yearly ? base : { NOOB: 79, PRO: 143, HACKER: 279 }), t0 = w.performance.now(); w.cancelAnimationFrame(this._raf); const step = now => { const k = Math.min(1, (now - t0) / 600), e = 1 - Math.pow(1 - k, 3); const next = {}; for (const n in base) next[n] = Math.round(from[n] + (Math.round(base[n] * f) - from[n]) * e); this.setState({ anim: k < 1 ? next : null }); if (k < 1) this._raf = w.requestAnimationFrame(step); }; this._raf = w.requestAnimationFrame(step); }
-  componentWillUnmount() { const w = W(); w.removeEventListener('scroll', this._on); document.removeEventListener('scroll', this._on, { capture: true }); w.removeEventListener('resize', this._on); (this._t || []).forEach(t => w.clearTimeout(t)); w.clearInterval(this._car); w.cancelAnimationFrame(this._raf); }
+  componentWillUnmount() { const w = W(); if (this._esc) w.removeEventListener('keydown', this._esc); w.removeEventListener('scroll', this._on); document.removeEventListener('scroll', this._on, { capture: true }); w.removeEventListener('resize', this._on); (this._t || []).forEach(t => w.clearTimeout(t)); w.clearInterval(this._car); w.cancelAnimationFrame(this._raf); }
   renderVals() {
     const s = this.state, v = this.props.heroVariant ?? 'C';
     const on = { c: '#fff', bg: '#2a1716', bd: '#8a2c28' }, off = { c: '#777', bg: 'transparent', bd: 'transparent' };
@@ -567,6 +646,13 @@ class Component extends DCLogic {
       dragStart: e => { this._dx = e.clientX; }, dragCancel: () => { this._dx = null; },
       dragEnd: e => { if (this._dx == null) return; const d = e.clientX - this._dx; this._dx = null; if (Math.abs(d) > 40) { this._vidOn = false; this.setState({ slide: (cur + (d < 0 ? 1 : -1) + N) % N }); } },
       tiers, packs, faqs,
+      trialOpen: !!s.trialOpen, openTrial: () => this.openTrial('hero'), closeTrial: () => this.closeTrial(),
+      pluginReady: s.pluginState === 'ready', pluginLoading: s.pluginState === 'loading', pluginFailed: s.pluginState === 'failed',
+      pluginVersion: s.plugin ? s.plugin.version : '', pluginUrl: s.plugin ? s.plugin.url : '#',
+      pluginFile: s.plugin ? s.plugin.url.split('/').pop() : '', pluginSize: s.plugin && s.plugin.bytes ? (s.plugin.bytes / 1048576).toFixed(1) : '—',
+      trackPluginDownload: () => this.track('plugin_download', { version: s.plugin ? s.plugin.version : '' }),
+      trackInstallerClick: () => this.track('zxp_installer_click'),
+      hasInstallVideo: !!INSTALL_VIDEO.src, installVideoSrc: INSTALL_VIDEO.src, installVideoPoster: INSTALL_VIDEO.poster,
       setMonthly: () => { if (s.yearly) { this.setState({ yearly: false }); this.animPrices(false); } }, setYearly: () => { if (!s.yearly) { this.setState({ yearly: true }); this.animPrices(true); } },
       isSubs: s.tab === 'subs', isCredits: s.tab === 'credits',
       setCz: () => this.setState({ packCat: 'cz' }), setCuts: () => this.setState({ packCat: 'cuts' }),
