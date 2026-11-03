@@ -6,11 +6,16 @@
 <script>
 // The COEDIT panel's "buy minutes" packs land here as ?pack=c150&bucket=editing
 // (the Cloud's pack code and allowance). Forward them to the store cart with that
-// pack in the matching category; anything else stays on this page.
+// pack in the matching category; anything else stays on this page. utm_* tags
+// travel along, so analytics on the store page still sees the plugin as the source.
 (function () { try {
   var q = new URLSearchParams(location.search), m = /^c?(50|150|400|1000)$/.exec(q.get('pack') || '');
   if (!m) return;
-  location.replace('store.dc.html#cart?pack=' + m[1] + '&cat=' + (q.get('bucket') === 'editing' ? 'cuts' : 'cz'));
+  var utm = new URLSearchParams();
+  q.forEach(function (v, k) { if (/^utm_/.test(k)) utm.append(k, v); });
+  var s = utm.toString();
+  location.replace('store.dc.html' + (s ? '?' + s : '') + '#cart?pack=' + m[1] +
+                   '&cat=' + (q.get('bucket') === 'editing' ? 'cuts' : 'cz'));
 } catch (e) {} })();
 </script>
 <!-- Omnisend: page tracking and signup forms (brand 6adb869716c3179619233e43). Same snippet on every page. -->
