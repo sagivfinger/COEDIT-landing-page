@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>הורדת COFRAMES</title>
+<!-- A fixed link to the newest COFRAMES, for the purchase email: the file it downloads is whatever
+     coframes/latest.json names (the same file COFRAMES's own update check reads). -->
+<style>
+html,body{margin:0;background:#121212;color:#ececec;font-family:Heebo,'Segoe UI',-apple-system,Roboto,Arial,sans-serif}
+main{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center}
+a{color:#e2504a}
+.btn{display:inline-block;background:#e5403a;color:#fff;font-weight:700;text-decoration:none;padding:14px 26px;border-radius:10px}
+.muted{color:#8a8a8a;font-size:14px}
+</style>
+</head>
+<body>
+<main>
+  <h1 style="margin:0;font-size:24px">ההורדה של COFRAMES מתחילה…</h1>
+  <p class="muted" id="status">אם ההורדה לא מתחילה תוך כמה שניות, לחצו על הכפתור.</p>
+  <a class="btn" id="dl" href="https://getcoedit.com/coframes/COFRAMES-v1.0.0.zxp">הורדת COFRAMES</a>
+  <p class="muted">אחרי ההורדה: <a href="https://getcoedit.com/home.dc.html#install">מדריך ההתקנה</a></p>
+</main>
+<script>
+(function () {
+  var dl = document.getElementById('dl'), status = document.getElementById('status');
+  fetch('../latest.json', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (j) {
+      if (!j || !/^\d+\.\d+\.\d+$/.test(j.version) || typeof j.url !== 'string' || j.url.indexOf('https://getcoedit.com/') !== 0) throw new Error('bad latest.json');
+      dl.href = j.url;
+      dl.textContent = 'הורדת COFRAMES ' + j.version;
+      window.location.href = j.url;
+    })
+    .catch(function () { status.textContent = 'לא הצלחנו למצוא את הגרסה האחרונה. אפשר להוריד דרך הכפתור.'; });
+})();
+</script>
+</body>
+</html>
