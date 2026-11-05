@@ -118,7 +118,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
 </helmet>
 <div dir="rtl" style="min-height:100vh;background:#121212;overflow:clip">
 
-<dc-import name="SiteNav" style="position:sticky;top:0;z-index:40;display:block" hint-size="100%,66px"></dc-import>
+<dc-import name="SiteNav" style="position:relative;z-index:40;display:block" hint-size="100%,66px"></dc-import>
 
 <header style="position:relative;overflow:hidden;padding:clamp(48px,8vw,90px) 24px clamp(56px,9vw,100px);background:linear-gradient(180deg,#1a0f0f,#121212 70%)">
   <div data-px="0.5" style="position:absolute;inset:-10% -10% auto;height:90%;background:radial-gradient(ellipse 50% 55% at 30% 40%,rgba(217,58,53,.28),transparent 70%);pointer-events:none"></div>
@@ -539,9 +539,10 @@ const TRIAL_MSG = {
 // avatar. A card with no photo keeps the striped placeholder.
 const TESTIMONIAL_PHOTOS = ['review-1', 'review-2', 'review-3'];
 // The second row, sliding the other way: same shape, its own photos (assets/reviews/<name>-avatar.webp).
-// It stays hidden while empty. Real reviewers only.
-const TESTIMONIAL_PHOTOS_2 = [];
-const TESTIMONIAL_MARQUEE_2 = [];
+// A card shows only once its quote is filled in, and the row stays hidden while no card has one.
+// Real reviewers only, in their own words.
+const TESTIMONIAL_PHOTOS_2 = ['review-4', 'review-5', 'review-6'];
+const TESTIMONIAL_MARQUEE_2 = [['שקד רחימי', '@_shaked_rahimi', ''], ['שקד דיקשטיין', '@_shaked_dickstein', ''], ['נטי טוליינסונג', '@netity123', '']];
 // Review cards: [name, handle, quote]. Real reviewers only; add a new person here (and a photo above).
 const TESTIMONIAL_MARQUEE = [['תמר יחזקל אורון', '@tamar.yeheskeloron','חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.'], ['נטע דבח', '@neta_photography','הכתוביות בעברית פשוט עובדות, בלי לתקן כל מילה מחדש.'], ['Solair Motion', '@solair.motion','הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.']];
 class Component extends DCLogic {
@@ -650,7 +651,8 @@ class Component extends DCLogic {
     // The row slides by half its width, so it must hold an even number of copies, each wider than the screen.
     const mqRow1 = rep(mq, Math.max(4, 2 * Math.ceil(12 / Math.max(1, mq.length))));
     const mq2 = TESTIMONIAL_MARQUEE_2.map(([name, user, body], i) => ({ name, user, body, av: TESTIMONIAL_PHOTOS_2[i] ? 'center/cover no-repeat url(assets/reviews/' + TESTIMONIAL_PHOTOS_2[i] + '-avatar.webp)' : 'repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px)' }));
-    const mqRow2 = mq2.length ? rep(mq2, Math.max(4, 2 * Math.ceil(12 / mq2.length))) : [];
+    const mq2Ready = mq2.filter(r => r.body && r.body.trim());
+    const mqRow2 = mq2Ready.length ? rep(mq2Ready, Math.max(4, 2 * Math.ceil(12 / mq2Ready.length))) : [];
     const slides = tdata.map((vid, i) => { let off = i - cur; if (off > N / 2) off -= N; if (off < -N / 2) off += N; const ab = Math.abs(off), sg = Math.sign(off); const active = off === 0;
       // React leaves the muted attribute off, and browsers only autoplay muted video: mute and start it here.
       // While a video plays the timer waits for it to end; if the browser blocks it, the timer moves on.

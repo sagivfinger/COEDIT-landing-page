@@ -9,7 +9,15 @@
 <x-dc>
 <div data-sitenav="1" dir="rtl" style="position:relative;font-family:Heebo,sans-serif;overflow-x:clip">
 <sc-if value="{{ offerOn }}" hint-placeholder-val="{{ true }}">
-<a href="home.dc.html#pricing" data-launch-offer="1" style="display:block;background:linear-gradient(90deg,#3a1312,#5a1d1b 50%,#3a1312);border-bottom:1px solid #6b2522;color:#fff;text-decoration:none">
+<!-- Only the offer bar stays on screen while scrolling: it is fixed to the top of the window, and an
+     invisible copy of it holds its place in the page so nothing below jumps up under it. -->
+<div aria-hidden="true" style="visibility:hidden;border-bottom:1px solid transparent">
+  <div style="max-width:1200px;margin:0 auto;padding:8px clamp(12px,4vw,24px);display:flex;align-items:center;justify-content:center;gap:clamp(8px,2vw,14px);flex-wrap:wrap;font-size:clamp(13px,3.4vw,15px);line-height:1.4;text-align:center">
+    <span style="font-weight:800">🎁 {{ offerText }}</span>
+    <span style="display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;font-weight:700">נגמר בקרוב<span dir="ltr" style="font-variant-numeric:tabular-nums;border:1px solid transparent;padding:2px 8px;font-weight:800;letter-spacing:.5px">{{ offerClock }}</span></span>
+  </div>
+</div>
+<a href="home.dc.html#pricing" data-launch-offer="1" style="position:fixed;top:0;left:0;right:0;z-index:55;display:block;background:linear-gradient(90deg,#3a1312,#5a1d1b 50%,#3a1312);border-bottom:1px solid #6b2522;color:#fff;text-decoration:none">
   <div style="max-width:1200px;margin:0 auto;padding:8px clamp(12px,4vw,24px);display:flex;align-items:center;justify-content:center;gap:clamp(8px,2vw,14px);flex-wrap:wrap;font-size:clamp(13px,3.4vw,15px);line-height:1.4;text-align:center">
     <span style="font-weight:800">🎁 {{ offerText }}</span>
     <span style="display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;color:#ffb4ae;font-weight:700">נגמר בקרוב<span dir="ltr" style="font-variant-numeric:tabular-nums;background:rgba(0,0,0,.35);border:1px solid #7a2a27;border-radius:6px;padding:2px 8px;color:#fff;font-weight:800;letter-spacing:.5px">{{ offerClock }}</span></span>
