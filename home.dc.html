@@ -153,7 +153,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
       <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqL 60s linear infinite" style-hover="animation-play-state:paused">
         <sc-for list="{{ mqRow1 }}" as="r" hint-placeholder-count="8">
             <div dir="rtl" style="flex:none;width:360px;margin-right:16px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
-              <div style="display:flex;align-items:center;gap:14px"><span style="width:64px;height:64px;flex:none;border-radius:50%;background:{{ r.av }};border:2px solid #3a2222"></span><div style="display:flex;flex-direction:column;gap:2px"><b style="font-size:17px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:14px;color:#999;text-align:right">{{ r.user }}</span></div></div>
+              <div style="display:flex;align-items:center;gap:14px"><span style="width:64px;height:64px;flex:none;border-radius:50%;background:{{ r.av }};border:2px solid #3a2222"></span><div style="display:flex;flex-direction:column;gap:2px"><b style="font-size:17px;color:#fff">{{ r.name }}</b><span style="font-size:13px;font-weight:700;color:#e2504a">{{ r.role }}</span><span dir="ltr" style="font-size:14px;color:#999;text-align:right">{{ r.user }}</span></div></div>
               <p style="margin:0;font-size:15px;line-height:1.6;color:#ddd">{{ r.body }}</p>
             </div>
         </sc-for>
@@ -162,7 +162,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
       <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqR 70s linear infinite" style-hover="animation-play-state:paused">
         <sc-for list="{{ mqRow2 }}" as="r" hint-placeholder-count="8">
             <div dir="rtl" style="flex:none;width:360px;margin-right:16px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
-              <div style="display:flex;align-items:center;gap:14px"><span style="width:64px;height:64px;flex:none;border-radius:50%;background:{{ r.av }};border:2px solid #3a2222"></span><div style="display:flex;flex-direction:column;gap:2px"><b style="font-size:17px;color:#fff">{{ r.name }}</b><span dir="ltr" style="font-size:14px;color:#999;text-align:right">{{ r.user }}</span></div></div>
+              <div style="display:flex;align-items:center;gap:14px"><span style="width:64px;height:64px;flex:none;border-radius:50%;background:{{ r.av }};border:2px solid #3a2222"></span><div style="display:flex;flex-direction:column;gap:2px"><b style="font-size:17px;color:#fff">{{ r.name }}</b><span style="font-size:13px;font-weight:700;color:#e2504a">{{ r.role }}</span><span dir="ltr" style="font-size:14px;color:#999;text-align:right">{{ r.user }}</span></div></div>
               <p style="margin:0;font-size:15px;line-height:1.6;color:#ddd">{{ r.body }}</p>
             </div>
         </sc-for>
@@ -539,12 +539,12 @@ const TRIAL_MSG = {
 // avatar. A card with no photo keeps the striped placeholder.
 const TESTIMONIAL_PHOTOS = ['review-1', 'review-2', 'review-3'];
 // The second row, sliding the other way: same shape, its own photos (assets/reviews/<name>-avatar.webp).
-// [name, handle, quote, gender]. Real reviewers only, in their own words. Until a quote is filled in
+// [name, handle, quote, gender, profession]. Real reviewers only, in their own words. Until a quote is filled in
 // the card shows that the person recommends COEDIT (they agreed to appear on the site).
 const TESTIMONIAL_PHOTOS_2 = ['review-4', 'review-5', 'review-6'];
-const TESTIMONIAL_MARQUEE_2 = [['שקד רחימי', '@_shaked_rahimi', '', 'f'], ['שקד דיקשטיין', '@_shaked_dickstein', '', 'm'], ['נטי טוליינסונג', '@netity123', '', 'm']];
+const TESTIMONIAL_MARQUEE_2 = [['שקד רחימי', '@_shaked_rahimi', 'חסכתי שעות על כתוביות. מסמנים, מאשרים, וזה כבר בטיימליין, בעברית ומעוצב.', 'f', 'עורכת וידאו'], ['שקד דיקשטיין', '@_shaked_dickstein', 'COEDIT חותך לי את השתיקות ומוסיף זומים, וגם COFRAMES מחליק את התנועה בלחיצה. ביחד הם עושים לי חצי עריכה.', 'm', 'צלם ועורך'], ['נטי טוליינסונג', '@netity123', 'חיתוך טייקים שלקח לי ערב שלם נגמר בכמה דקות. ואני מאשר כל חיתוך לפני שמשהו זז.', 'm', 'עורך וידאו']];
 // Review cards: [name, handle, quote]. Real reviewers only; add a new person here (and a photo above).
-const TESTIMONIAL_MARQUEE = [['תמר יחזקל אורון', '@tamar.yeheskeloron','חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.'], ['נטע דבח', '@neta_photography','הכתוביות בעברית פשוט עובדות, בלי לתקן כל מילה מחדש.'], ['Solair Motion', '@solair.motion','הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.']];
+const TESTIMONIAL_MARQUEE = [['תמר יחזקל אורון', '@tamar.yeheskeloron','חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.', 'צלמת'], ['נטע דבח', '@neta_photography','הכתוביות בעברית פשוט עובדות, בלי לתקן כל מילה מחדש.', 'צלמת'], ['Solair Motion', '@solair.motion','הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.', 'מושן דיזיינר']];
 class Component extends DCLogic {
   state = { yearly: false, after: false, videos: 12, raw: 15, manual: 90, openFaq: 0, tab: 'subs', showBar: false, packCat: 'cz', trialOpen: false, plugin: null, pluginState: 'idle', trialSend: 'idle', trialTo: '' };
   track(name, props) { try { const w = W(); if (w.plausible) w.plausible(name, props ? { props } : undefined); } catch (e) {} }
@@ -645,12 +645,12 @@ class Component extends DCLogic {
     const wave = Array.from({ length: 70 }, (_, i) => { const cut = [5,6,14,22,23,31,40,41,49,57,63].includes(i); const h = cut ? 100 : 15 + Math.abs(Math.sin(i * 1.7) * 70) + (i % 3) * 5; return { h: h + '%', c: cut ? '#d93a35' : '#5b8fc9' }; });
     const tdata = SHOWCASE_VIDEOS;
     const N = tdata.length, cur = N ? (s.slide ?? 0) % N : 0;
-    const mq = TESTIMONIAL_MARQUEE.map(([name, user, body], i) => ({ name, user, body, av: TESTIMONIAL_PHOTOS[i] ? 'center/cover no-repeat url(assets/reviews/' + TESTIMONIAL_PHOTOS[i] + '-avatar.webp)' : 'repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px)' }));
+    const mq = TESTIMONIAL_MARQUEE.map(([name, user, body, role], i) => ({ name, user, role: role || '', body, av: TESTIMONIAL_PHOTOS[i] ? 'center/cover no-repeat url(assets/reviews/' + TESTIMONIAL_PHOTOS[i] + '-avatar.webp)' : 'repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px)' }));
     const heroFaces = mq.filter((r, i) => TESTIMONIAL_PHOTOS[i]).map(r => ({ av: r.av }));
     const rep = (a, n) => Array.from({ length: n }, () => a).flat();
     // The row slides by half its width, so it must hold an even number of copies, each wider than the screen.
     const mqRow1 = rep(mq, Math.max(4, 2 * Math.ceil(12 / Math.max(1, mq.length))));
-    const mq2 = TESTIMONIAL_MARQUEE_2.map(([name, user, body, g], i) => ({ name, user, body: (body && body.trim()) || (g === 'f' ? 'ממליצה על COEDIT.' : 'ממליץ על COEDIT.'), av: TESTIMONIAL_PHOTOS_2[i] ? 'center/cover no-repeat url(assets/reviews/' + TESTIMONIAL_PHOTOS_2[i] + '-avatar.webp)' : 'repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px)' }));
+    const mq2 = TESTIMONIAL_MARQUEE_2.map(([name, user, body, g, role], i) => ({ name, user, role: role || '', body: (body && body.trim()) || (g === 'f' ? 'ממליצה על COEDIT.' : 'ממליץ על COEDIT.'), av: TESTIMONIAL_PHOTOS_2[i] ? 'center/cover no-repeat url(assets/reviews/' + TESTIMONIAL_PHOTOS_2[i] + '-avatar.webp)' : 'repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px)' }));
     const mq2Ready = mq2;
     const mqRow2 = mq2Ready.length ? rep(mq2Ready, Math.max(4, 2 * Math.ceil(12 / mq2Ready.length))) : [];
     const slides = tdata.map((vid, i) => { let off = i - cur; if (off > N / 2) off -= N; if (off < -N / 2) off += N; const ab = Math.abs(off), sg = Math.sign(off); const active = off === 0;
