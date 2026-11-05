@@ -323,7 +323,7 @@ class Component extends DCLogic {
     const packsTotal = s.packs.reduce((a, k) => a + packPrice(k), 0);
     const lines = [];
     if (plan) lines.push({ label: 'COEDIT ' + plan.name, sub: s.yearly ? 'שנתי · ₪' + mo(plan) + ' לחודש' : 'חודשי', amount: '₪' + fmt(planDue) + (s.yearly ? ' לשנה' : ' לחודש'), c: '#fff', removable: true, remove: () => this.setState({ plan: null }) });
-    if (plan) lines.push({ label: 'COFRAMES · החלקת קיפריימים', sub: 'כלול בכל מנוי', amount: 'כלול', c: '#5fd068', removable: false, remove: null });
+    if (plan) lines.push({ label: 'COFRAMES · החלקת קיפריימים', sub: 'מתנת השקה', amount: 'מתנה', c: '#5fd068', removable: false, remove: null });
     [...new Set(s.packs)].forEach(key => { const pk = parsePack(key); if (!pk) return; const q = s.packs.filter(x => x === key).length; lines.push({ label: fmt(pk.n) + ' קרדיטים · ' + CATS[pk.cat] + (q > 1 ? ' ×' + q : ''), sub: 'חד-פעמי · ' + CAT_ONLY[pk.cat], amount: '₪' + fmt(packPrice(key) * q), c: '#fff', removable: true, remove: () => this.setState(st => ({ packs: st.packs.filter(x => x !== key) })) }); });
     const on = '#fff', off = '#888', onBg = 'linear-gradient(180deg,#e2504a,#c42e2a)';
     return {

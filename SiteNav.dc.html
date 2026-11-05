@@ -8,7 +8,15 @@
 <body>
 <x-dc>
 <div data-sitenav="1" dir="rtl" style="position:relative;font-family:Heebo,sans-serif;overflow-x:clip">
-<nav style="background:rgba(18,18,18,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #2a1a1a">
+<sc-if value="{{ offerOn }}" hint-placeholder-val="{{ true }}">
+<a href="home.dc.html#pricing" data-launch-offer="1" style="display:block;background:linear-gradient(90deg,#3a1312,#5a1d1b 50%,#3a1312);border-bottom:1px solid #6b2522;color:#fff;text-decoration:none">
+  <div style="max-width:1200px;margin:0 auto;padding:8px clamp(12px,4vw,24px);display:flex;align-items:center;justify-content:center;gap:clamp(8px,2vw,14px);flex-wrap:wrap;font-size:clamp(13px,3.4vw,15px);line-height:1.4;text-align:center">
+    <span style="font-weight:800">🎁 {{ offerText }}</span>
+    <span style="display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;color:#ffb4ae;font-weight:700">נגמר בקרוב · {{ offerDays }}<span dir="ltr" style="font-variant-numeric:tabular-nums;background:rgba(0,0,0,.35);border:1px solid #7a2a27;border-radius:6px;padding:2px 8px;color:#fff;font-weight:800;letter-spacing:.5px">{{ offerClock }}</span></span>
+  </div>
+</a>
+</sc-if>
+<navstyle="background:rgba(18,18,18,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #2a1a1a">
   <div style="position:relative;max-width:1200px;margin:0 auto;padding:12px clamp(14px,4vw,24px);display:flex;align-items:center;justify-content:space-between;gap:12px">
     <a href="home.dc.html#top" style="display:block"><img src="assets/logo.png" alt="COEDIT" style="height:clamp(22px,6vw,30px);width:auto;display:block"></a>
     <div style="display:flex;align-items:center;gap:clamp(6px,2vw,10px)">
@@ -78,6 +86,13 @@ const PACKS = { 50: 20, 150: 50, 400: 100, 1000: 200 };
 // Cart packs are "<size>:<cat>" (see store.dc.html): credits belong to one usage category.
 const CATS = { cz: 'כתוביות וזומים', cuts: 'חיתוכים' };
 const parsePack = k => { const m = /^(\d+):(cz|cuts)$/.exec(String(k)); return m && PACKS[m[1]] ? { n: +m[1], cat: m[2] } : null; };
+// The launch offer: COFRAMES free with every plan bought before this moment (Israel time).
+// A real deadline: the bar counts down to it and disappears once it has passed.
+// To extend the offer, move this date; to end it early, set a date in the past.
+const LAUNCH_OFFER_ENDS = Date.parse('2026-11-15T23:59:59+02:00');
+const pad2 = n => String(n).padStart(2, '0');
+const offerClock = ms => { const s = Math.floor(ms / 1000); return pad2(Math.floor(s % 86400 / 3600)) + ':' + pad2(Math.floor(s % 3600 / 60)) + ':' + pad2(s % 60); };
+const offerDays = ms => { const d = Math.floor(ms / 86400000); return d > 1 ? d + ' ימים ו-' : d === 1 ? 'יום ו-' : ''; };
 const norm = c => ({ plan: c.plan ?? null, yearly: !!c.yearly, packs: (Array.isArray(c.packs) ? c.packs : []).filter(k => parsePack(k)), loggedIn: !!c.loggedIn });
 class Component extends DCLogic {
   state = { cart: norm({}), drawer: false, menu: false, promo: '', promoMsg: '', dragY: 0, dragging: false };
@@ -91,8 +106,10 @@ class Component extends DCLogic {
     document.addEventListener('pointerdown', this._doc);
     this._key = e => { if (e.key === 'Escape') this.setState({ menu: false, drawer: false }); };
     document.addEventListener('keydown', this._key);
+    this._tick = () => this.setState({ now: Date.now() }); this._tick();
+    if (Date.now() < LAUNCH_OFFER_ENDS) this._offerT = w.setInterval(this._tick, 1000);
   }
-  componentWillUnmount() { const w = W(); w.removeEventListener('ocedit-cart', this._l); w.removeEventListener('storage', this._l); document.removeEventListener('pointerdown', this._doc); document.removeEventListener('keydown', this._key); document.body.style.overflow = ''; }
+  componentWillUnmount() { const w = W(); if (this._offerT) w.clearInterval(this._offerT); w.removeEventListener('ocedit-cart', this._l); w.removeEventListener('storage', this._l); document.removeEventListener('pointerdown', this._doc); document.removeEventListener('keydown', this._key); document.body.style.overflow = ''; }
   componentDidUpdate(pp, ps) { if (!ps) return; if (ps === this._lastPs) return; this._lastPs = ps;
     if (this.count(ps.cart) !== this.count(this.state.cart)) W().requestAnimationFrame(() => { const b = document.querySelector('[data-cart-badge]'); if (b && b.animate) b.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.45)' }, { transform: 'scale(1)' }], { duration: 380, easing: 'cubic-bezier(.34,1.56,.64,1)' }); });
     if (ps.drawer !== this.state.drawer) document.body.style.overflow = this.state.drawer ? 'hidden' : '';
@@ -105,12 +122,16 @@ class Component extends DCLogic {
     const packsTotal = c.packs.reduce((a, k) => { const p = parsePack(k); return a + (p ? PACKS[p.n] : 0); }, 0);
     const items = [];
     if (plan) items.push({ icon: 'CO', iconBg: 'linear-gradient(180deg,#e2504a,#c42e2a)', name: 'COEDIT ' + c.plan, sub: (c.yearly ? 'שנתי' : 'חודשי') + ' · ' + plan.cap + "/" + plan.cuts + " דק'", price: '₪' + mo + ' / חודש', priceC: '#fff', bd: '#5a2220', removable: true, remove: () => this.save({ ...c, plan: null }) });
-    if (plan) items.push({ icon: '◆', iconBg: '#14231a', name: 'COFRAMES', sub: 'החלקת קיפריימים · כלול במנוי', price: 'כלול', priceC: '#5fd068', bd: '#2a2a2a', removable: false, remove: null });
+    if (plan) items.push({ icon: '◆', iconBg: '#14231a', name: 'COFRAMES', sub: 'החלקת קיפריימים · מתנת השקה', price: 'מתנה', priceC: '#5fd068', bd: '#2a2a2a', removable: false, remove: null });
     [...new Set(c.packs)].forEach(k => { const p = parsePack(k); if (!p) return; const q = c.packs.filter(z => z === k).length; items.push({ icon: '⚡', iconBg: '#2a1716', name: fmt(p.n) + ' קרדיטים · ' + CATS[p.cat] + (q > 1 ? ' ×' + q : ''), sub: 'חבילה חד-פעמית · ' + (p.cat === 'cz' ? 'לכתוביות ולזומים בלבד' : 'לחיתוכים בלבד'), price: '₪' + fmt(PACKS[p.n] * q), priceC: '#fff', bd: '#2a2a2a', removable: true, remove: () => this.save({ ...c, packs: c.packs.filter(x => x !== k) }) }); });
     const planDue = plan ? (c.yearly ? mo * 12 : plan.m) : 0;
     const open = s.drawer, dy = s.dragging ? s.dragY : 0;
     const initials = 'ש';
+    const left = LAUNCH_OFFER_ENDS - (s.now || Date.now());
+    if (left <= 0 && this._offerT) { W().clearInterval(this._offerT); this._offerT = null; }
     return {
+      offerOn: left > 0, offerClock: offerClock(Math.max(0, left)), offerDays: offerDays(Math.max(0, left)),
+      offerText: (s.vw || 1024) >= 520 ? 'קנו את הפלאגין וקבלו פלאגין בונוס, רק בהשקה' : 'פלאגין בונוס, רק בהשקה',
       wide: (s.vw || 1024) >= 520, loginPad: (s.vw || 1024) >= 520 ? '14px' : '0', loginBd: (s.vw || 1024) >= 520 ? 'transparent' : '#333', loggedIn: c.loggedIn, loggedOut: !c.loggedIn, initials, avatarRing: s.menu ? '#fff' : '#121212',
       toggleMenu: () => this.setState(st => ({ menu: !st.menu })), closeMenu: () => this.setState({ menu: false }),
       menuVis: s.menu ? 'visible' : 'hidden', menuO: s.menu ? 1 : 0, menuY: s.menu ? '0px' : '20px', menuPE: s.menu ? 'auto' : 'none',
