@@ -539,10 +539,10 @@ const TRIAL_MSG = {
 // avatar. A card with no photo keeps the striped placeholder.
 const TESTIMONIAL_PHOTOS = ['review-1', 'review-2', 'review-3'];
 // The second row, sliding the other way: same shape, its own photos (assets/reviews/<name>-avatar.webp).
-// A card shows only once its quote is filled in, and the row stays hidden while no card has one.
-// Real reviewers only, in their own words.
+// [name, handle, quote, gender]. Real reviewers only, in their own words. Until a quote is filled in
+// the card shows that the person recommends COEDIT (they agreed to appear on the site).
 const TESTIMONIAL_PHOTOS_2 = ['review-4', 'review-5', 'review-6'];
-const TESTIMONIAL_MARQUEE_2 = [['שקד רחימי', '@_shaked_rahimi', ''], ['שקד דיקשטיין', '@_shaked_dickstein', ''], ['נטי טוליינסונג', '@netity123', '']];
+const TESTIMONIAL_MARQUEE_2 = [['שקד רחימי', '@_shaked_rahimi', '', 'f'], ['שקד דיקשטיין', '@_shaked_dickstein', '', 'm'], ['נטי טוליינסונג', '@netity123', '', 'm']];
 // Review cards: [name, handle, quote]. Real reviewers only; add a new person here (and a photo above).
 const TESTIMONIAL_MARQUEE = [['תמר יחזקל אורון', '@tamar.yeheskeloron','חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.'], ['נטע דבח', '@neta_photography','הכתוביות בעברית פשוט עובדות, בלי לתקן כל מילה מחדש.'], ['Solair Motion', '@solair.motion','הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.']];
 class Component extends DCLogic {
@@ -650,8 +650,8 @@ class Component extends DCLogic {
     const rep = (a, n) => Array.from({ length: n }, () => a).flat();
     // The row slides by half its width, so it must hold an even number of copies, each wider than the screen.
     const mqRow1 = rep(mq, Math.max(4, 2 * Math.ceil(12 / Math.max(1, mq.length))));
-    const mq2 = TESTIMONIAL_MARQUEE_2.map(([name, user, body], i) => ({ name, user, body, av: TESTIMONIAL_PHOTOS_2[i] ? 'center/cover no-repeat url(assets/reviews/' + TESTIMONIAL_PHOTOS_2[i] + '-avatar.webp)' : 'repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px)' }));
-    const mq2Ready = mq2.filter(r => r.body && r.body.trim());
+    const mq2 = TESTIMONIAL_MARQUEE_2.map(([name, user, body, g], i) => ({ name, user, body: (body && body.trim()) || (g === 'f' ? 'ממליצה על COEDIT.' : 'ממליץ על COEDIT.'), av: TESTIMONIAL_PHOTOS_2[i] ? 'center/cover no-repeat url(assets/reviews/' + TESTIMONIAL_PHOTOS_2[i] + '-avatar.webp)' : 'repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px)' }));
+    const mq2Ready = mq2;
     const mqRow2 = mq2Ready.length ? rep(mq2Ready, Math.max(4, 2 * Math.ceil(12 / mq2Ready.length))) : [];
     const slides = tdata.map((vid, i) => { let off = i - cur; if (off > N / 2) off -= N; if (off < -N / 2) off += N; const ab = Math.abs(off), sg = Math.sign(off); const active = off === 0;
       // React leaves the muted attribute off, and browsers only autoplay muted video: mute and start it here.
