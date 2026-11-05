@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COEDIT</title>
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <!-- Omnisend: page tracking and signup forms (brand 6adb869716c3179619233e43). Same snippet on every page. -->
 <script type="text/javascript">
         window.omnisend = window.omnisend || [];
@@ -66,7 +69,7 @@ html body [class*="omnisend-form-"] button { font-weight: 700 !important; }
   var baselined = false;
   try { baselined = localStorage.getItem(KEY) !== null; } catch (e) { baselined = true; }
 
-  // What the URL asked to put in the cart. home.dc.html links here as
+  // What the URL asked to put in the cart. the home page links here as
   // #cart?plan=PRO&yearly=0 and #cart?pack=150&cat=cz, and readHash() acts on it, so this
   // is a deliberate add by the visitor even though no click happened on this page.
   function intent() {
@@ -218,7 +221,7 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
   <p style="margin:0;font-size:17px;color:#aaa;line-height:1.7">אנחנו משלימים את הקמת מערכת התשלומים. בינתיים לא ניתן לבצע הזמנה או תשלום דרך האתר, ולא נגבה מכם דבר. הבחירה שלכם נשמרת בסל בדפדפן הזה.</p>
   <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
     <a href="#cart" onClick="{{ nav.cart }}" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:17px;padding:14px 30px;border-radius:9px;box-shadow:0 0 26px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">חזרה לסל</a>
-    <a href="home.dc.html#pricing" style="background:#1d1d1d;border:1px solid #333;color:#ddd;font-weight:700;font-size:17px;padding:14px 26px;border-radius:9px;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">למסלולים</a>
+    <a href="/#pricing" style="background:#1d1d1d;border:1px solid #333;color:#ddd;font-weight:700;font-size:17px;padding:14px 26px;border-radius:9px;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">למסלולים</a>
   </div>
 </div>
 </sc-if>
@@ -230,8 +233,8 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
   <h1 style="margin:0;font-size:clamp(30px,4.5vw,46px);font-weight:900;line-height:1.1">אזור החשבון <span style="color:#e2504a">ייפתח בקרוב</span></h1>
   <p style="margin:0;font-size:17px;color:#aaa;line-height:1.7">התחברות, הרשמה וניהול חשבון באתר עדיין לא זמינים. הם ייפתחו יחד עם הרכישות באתר.</p>
   <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
-    <a href="home.dc.html#pricing" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:17px;padding:14px 30px;border-radius:9px;box-shadow:0 0 26px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">למסלולים</a>
-    <a href="home.dc.html" style="background:#1d1d1d;border:1px solid #333;color:#ddd;font-weight:700;font-size:17px;padding:14px 26px;border-radius:9px;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">לדף הבית</a>
+    <a href="/#pricing" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:17px;padding:14px 30px;border-radius:9px;box-shadow:0 0 26px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">למסלולים</a>
+    <a href="/" style="background:#1d1d1d;border:1px solid #333;color:#ddd;font-weight:700;font-size:17px;padding:14px 26px;border-radius:9px;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">לדף הבית</a>
   </div>
 </div>
 </sc-if>
@@ -249,8 +252,8 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
   <h1 style="position:relative;margin:0;font-size:clamp(28px,4vw,42px);font-weight:900">הקטע הזה <span style="color:#e2504a">נחתך.</span></h1>
   <p style="position:relative;margin:0;font-size:17px;color:#999;max-width:440px">כנראה זיהינו אותו כשתיקה. העמוד שחיפשתם לא קיים או הועבר.</p>
   <div style="position:relative;display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
-    <a href="home.dc.html" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:17px;padding:14px 30px;border-radius:9px;box-shadow:0 0 26px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">חזרה לדף הבית</a>
-    <a href="home.dc.html#pricing" style="background:#1d1d1d;border:1px solid #333;color:#ddd;font-weight:700;font-size:17px;padding:14px 26px;border-radius:9px;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">מחירים</a>
+    <a href="/" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:17px;padding:14px 30px;border-radius:9px;box-shadow:0 0 26px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">חזרה לדף הבית</a>
+    <a href="/#pricing" style="background:#1d1d1d;border:1px solid #333;color:#ddd;font-weight:700;font-size:17px;padding:14px 26px;border-radius:9px;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">מחירים</a>
   </div>
 </div>
 </sc-if>

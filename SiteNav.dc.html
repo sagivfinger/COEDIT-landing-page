@@ -17,7 +17,7 @@
     <span style="display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;font-weight:700">נגמר בקרוב<span dir="ltr" style="font-variant-numeric:tabular-nums;border:1px solid transparent;padding:2px 8px;font-weight:800;letter-spacing:.5px">{{ offerClock }}</span></span>
   </div>
 </div>
-<a href="home.dc.html#pricing" data-launch-offer="1" style="position:fixed;top:0;left:0;right:0;z-index:55;display:block;background:linear-gradient(90deg,#3a1312,#5a1d1b 50%,#3a1312);border-bottom:1px solid #6b2522;color:#fff;text-decoration:none">
+<a href="/#pricing" data-launch-offer="1" style="position:fixed;top:0;left:0;right:0;z-index:55;display:block;background:linear-gradient(90deg,#3a1312,#5a1d1b 50%,#3a1312);border-bottom:1px solid #6b2522;color:#fff;text-decoration:none">
   <div style="max-width:1200px;margin:0 auto;padding:8px clamp(12px,4vw,24px);display:flex;align-items:center;justify-content:center;gap:clamp(8px,2vw,14px);flex-wrap:wrap;font-size:clamp(13px,3.4vw,15px);line-height:1.4;text-align:center">
     <span style="font-weight:800">🎁 {{ offerText }}</span>
     <span style="display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;color:#ffb4ae;font-weight:700">נגמר בקרוב<span dir="ltr" style="font-variant-numeric:tabular-nums;background:rgba(0,0,0,.35);border:1px solid #7a2a27;border-radius:6px;padding:2px 8px;color:#fff;font-weight:800;letter-spacing:.5px">{{ offerClock }}</span></span>
@@ -26,14 +26,14 @@
 </sc-if>
 <navstyle="background:rgba(18,18,18,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #2a1a1a">
   <div style="position:relative;max-width:1200px;margin:0 auto;padding:12px clamp(14px,4vw,24px);display:flex;align-items:center;justify-content:space-between;gap:12px">
-    <a href="home.dc.html#top" style="display:block"><img src="assets/logo.png" alt="COEDIT" style="height:clamp(22px,6vw,30px);width:auto;display:block"></a>
+    <a href="/#top" style="display:block"><img src="assets/logo.png" alt="COEDIT" style="height:clamp(22px,6vw,30px);width:auto;display:block"></a>
     <div style="display:flex;align-items:center;gap:clamp(6px,2vw,10px)">
 
         <a href="store.dc.html#login" style="display:flex;align-items:center;gap:8px;height:42px;min-width:42px;justify-content:center;padding:0 {{ loginPad }};border-radius:9px;font-size:15px;font-weight:700;color:#ddd;border:1px solid {{ loginBd }};transition:border-color .2s,color .2s" style-hover="border-color:#333;color:#fff"><svg width="18" height="18" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg><sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}"><span>התחברות</span></sc-if></a>
 
       <button onClick="{{ openDrawer }}" aria-label="סל" style="position:relative;width:42px;height:42px;border-radius:9px;background:#1d1d1d;border:1px solid #333;color:#eee;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:border-color .2s,transform .2s" style-hover="border-color:#d93a35;transform:translateY(-2px)"><svg width="20" height="20" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"></path></svg><sc-if value="{{ hasItems }}" hint-placeholder-val="{{ false }}"><span data-cart-badge="1" style="position:absolute;top:-7px;left:-7px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#d93a35;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(217,58,53,.6)">{{ count }}</span></sc-if></button>
 
-      <a href="home.dc.html#trial" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:700;font-size:clamp(14px,3.6vw,15px);height:42px;padding:0 clamp(14px,4vw,20px);white-space:nowrap;border-radius:9px;display:flex;align-items:center;box-shadow:0 0 22px rgba(220,60,55,.35);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 34px rgba(220,60,55,.6)">נסו בחינם</a>
+      <a href="/#trial" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:700;font-size:clamp(14px,3.6vw,15px);height:42px;padding:0 clamp(14px,4vw,20px);white-space:nowrap;border-radius:9px;display:flex;align-items:center;box-shadow:0 0 22px rgba(220,60,55,.35);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 34px rgba(220,60,55,.6)">נסו בחינם</a>
     </div>
   </div>
 </nav>
@@ -53,7 +53,7 @@
       <div style="display:flex;flex-direction:column;align-items:center;gap:14px;padding:30px 0;text-align:center">
         <svg width="64" height="64" viewBox="0 0 24 24" style="fill:none;stroke:#3a3a3a;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"></path></svg>
         <span style="font-size:16px;color:#999">הסל ריק</span>
-        <a href="home.dc.html#pricing" onClick="{{ closeDrawer }}" style="background:#1d1d1d;border:1px solid #333;color:#eee;font-weight:700;font-size:15px;padding:11px 22px;border-radius:9px;transition:border-color .2s" style-hover="border-color:#d93a35">לבחירת מסלול</a>
+        <a href="/#pricing" onClick="{{ closeDrawer }}" style="background:#1d1d1d;border:1px solid #333;color:#eee;font-weight:700;font-size:15px;padding:11px 22px;border-radius:9px;transition:border-color .2s" style-hover="border-color:#d93a35">לבחירת מסלול</a>
       </div>
     </sc-if>
     <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ false }}">
