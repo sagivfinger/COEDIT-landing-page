@@ -129,7 +129,7 @@ html body [class*="omnisend-form-"] button { font-weight: 700 !important; }
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Roboto:wght@900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
 html,body{margin:0;background:#121212;color:#ececec;font-family:Heebo,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:#e2504a;text-decoration:none}a:hover{color:#ff6b64}
@@ -154,7 +154,7 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
         <b style="font-size:18px">בחרו מסלול</b>
         <div style="display:flex;padding:4px;gap:4px;border-radius:999px;background:#141414;border:1px solid #2e2e2e">
           <button onClick="{{ setMonthly }}" style="border:none;cursor:pointer;font-size:14px;font-weight:700;padding:8px 18px;border-radius:999px;color:{{ mC }};background:{{ mBg }}">חודשי</button>
-          <button onClick="{{ setYearly }}" style="border:none;cursor:pointer;font-size:14px;font-weight:700;padding:8px 18px;border-radius:999px;color:{{ yC }};background:{{ yBg }}">שנתי · 20%-</button>
+          <button onClick="{{ setYearly }}" style="border:none;cursor:pointer;font-size:14px;font-weight:700;padding:8px 18px;border-radius:999px;color:{{ yC }};background:{{ yBg }}">שנתי · 20% הנחה</button>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px">
@@ -162,7 +162,7 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
           <button onClick="{{ p.pick }}" style="display:flex;align-items:center;gap:14px;text-align:right;cursor:pointer;padding:16px 18px;border-radius:11px;background:{{ p.bg }};border:1px solid {{ p.bd }};color:#fff;transition:border-color .2s,background .2s">
             <span style="width:20px;height:20px;flex:none;border-radius:50%;border:2px solid {{ p.ring }};display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:{{ p.dot }}"></span></span>
             <div style="flex:1;display:flex;flex-direction:column;gap:2px">
-              <div style="display:flex;align-items:center;gap:8px"><b dir="ltr" style="font-family:Roboto,sans-serif;font-weight:900;font-size:18px;letter-spacing:.06em">{{ p.name }}</b><sc-if value="{{ p.rec }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:800;background:#d93a35;padding:2px 8px;border-radius:999px">מומלץ</span></sc-if></div>
+              <div style="display:flex;align-items:center;gap:8px"><b dir="ltr" style="font-family:Heebo,sans-serif;font-weight:900;font-size:18px;letter-spacing:.06em">{{ p.name }}</b><sc-if value="{{ p.rec }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:800;background:#d93a35;padding:2px 8px;border-radius:999px">מומלץ</span></sc-if></div>
               <span style="font-size:13px;color:#999">{{ p.cap }} דק' כתוביות וזומים · {{ p.cuts }} דק' חיתוכים</span>
             </div>
             <div style="display:flex;flex-direction:column;align-items:flex-end"><b style="font-size:20px">₪{{ p.price }}</b><span style="font-size:12px;color:#888">לחודש</span></div>
@@ -171,7 +171,7 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
       </div>
     </div>
     <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:clamp(16px,4.5vw,24px);display:flex;flex-direction:column;gap:14px">
-      <div style="display:flex;flex-direction:column;gap:4px"><b style="font-size:18px">רוצים דקות נוספות מראש?</b><span style="font-size:14px;color:#999">חבילות קרדיטים חד-פעמיות, בלי מנוי.</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px"><b style="font-size:18px">רוצים דקות נוספות מראש?</b><span style="font-size:14px;color:#999">חבילות קרדיטים חד פעמיות, בלי מנוי.</span></div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <span id="credit-cat-label" style="font-size:14px;font-weight:700;color:#ddd">קטגוריית הקרדיטים</span>
         <div role="radiogroup" aria-labelledby="credit-cat-label" style="display:flex;align-self:flex-start;flex-wrap:wrap;padding:4px;gap:4px;border-radius:999px;background:#141414;border:1px solid #2e2e2e">
@@ -240,7 +240,7 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
 <sc-if value="{{ is404 }}" hint-placeholder-val="{{ false }}">
 <div style="position:relative;min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(217,58,53,.18),transparent 70%);pointer-events:none"></div>
-  <span dir="ltr" style="position:relative;font-family:Roboto,sans-serif;font-weight:900;font-size:clamp(120px,22vw,240px);line-height:.9;color:transparent;-webkit-text-stroke:2px #d93a35;text-shadow:0 0 40px rgba(217,58,53,.35)">404</span>
+  <span dir="ltr" style="position:relative;font-family:Heebo,sans-serif;font-weight:900;font-size:clamp(120px,22vw,240px);line-height:.9;color:transparent;-webkit-text-stroke:2px #d93a35;text-shadow:0 0 40px rgba(217,58,53,.35)">404</span>
   <div style="position:relative;display:flex;gap:2px;width:min(420px,80vw);height:28px">
     <div style="flex:5;border-radius:3px;background:#3d6fa8;border:1px solid #5b8fc9"></div>
     <div style="flex:3;border-radius:3px;background:repeating-linear-gradient(135deg,#2a2a2a 0 4px,#1c1c1c 4px 8px);border:1px dashed #d93a35"></div>
@@ -324,7 +324,7 @@ class Component extends DCLogic {
     const lines = [];
     if (plan) lines.push({ label: 'COEDIT ' + plan.name, sub: s.yearly ? 'שנתי · ₪' + mo(plan) + ' לחודש' : 'חודשי', amount: '₪' + fmt(planDue) + (s.yearly ? ' לשנה' : ' לחודש'), c: '#fff', removable: true, remove: () => this.setState({ plan: null }) });
     if (plan) lines.push({ label: 'COFRAMES · החלקת קיפריימים', sub: 'מתנת השקה', amount: 'מתנה', c: '#5fd068', removable: false, remove: null });
-    [...new Set(s.packs)].forEach(key => { const pk = parsePack(key); if (!pk) return; const q = s.packs.filter(x => x === key).length; lines.push({ label: fmt(pk.n) + ' קרדיטים · ' + CATS[pk.cat] + (q > 1 ? ' ×' + q : ''), sub: 'חד-פעמי · ' + CAT_ONLY[pk.cat], amount: '₪' + fmt(packPrice(key) * q), c: '#fff', removable: true, remove: () => this.setState(st => ({ packs: st.packs.filter(x => x !== key) })) }); });
+    [...new Set(s.packs)].forEach(key => { const pk = parsePack(key); if (!pk) return; const q = s.packs.filter(x => x === key).length; lines.push({ label: fmt(pk.n) + ' קרדיטים · ' + CATS[pk.cat] + (q > 1 ? ' ×' + q : ''), sub: 'חד פעמי · ' + CAT_ONLY[pk.cat], amount: '₪' + fmt(packPrice(key) * q), c: '#fff', removable: true, remove: () => this.setState(st => ({ packs: st.packs.filter(x => x !== key) })) }); });
     const on = '#fff', off = '#888', onBg = 'linear-gradient(180deg,#e2504a,#c42e2a)';
     return {
       nav: { cart: e => this.go('cart', e) },
