@@ -1,7 +1,7 @@
 {
-  "version": "1.1.0",
-  "url": "https://getcoedit.com/coframes/COFRAMES-v1.1.0.zxp",
-  "sha256": "47efd0a33227a74efed942f89c7f01fd0d6fc4b10e021fa8dc71ce55120728d9",
-  "bytes": 251632,
-  "notes": "COFRAMES 1.1.0: עובד עכשיו גם בAfter Effects, לצד Premiere Pro."
+  "version": "1.1.1",
+  "url": "https://getcoedit.com/coframes/COFRAMES-v1.1.1.zxp",
+  "sha256": "9b88f6f5fb21678ebb07ce18737640b6b84d770b4814925f8c03e7cae5227748",
+  "bytes": 248203,
+  "notes": "COFRAMES 1.1.1: תיקונים ושיפורים, בPremiere Pro ובAfter Effects."
 }
