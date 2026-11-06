@@ -1,7 +1,7 @@
 {
-  "version": "0.1.5",
-  "url": "https://getcoedit.com/download/COEDIT-v0.1.5.zxp",
-  "sha256": "0005ab60c99e76cd6a20644b2f180c9c3a63a0f6eb9a14304f12709a763281ef",
-  "bytes": 14906703,
-  "notes": "הלוגו בגופן החדש של COEDIT, ובזום האוטומטי מופיעות רק הודעות שדורשות את תשומת הלב שלכם."
+  "version": "0.1.6",
+  "url": "https://getcoedit.com/download/COEDIT-v0.1.6.zxp",
+  "sha256": "44935d0335684583c6113dbdd541354eb7b7da3b16315fdb188085709979427a",
+  "bytes": 14908044,
+  "notes": "תיקון לכתוביות מילה במילה בייצוא, ומעבר חלק בין המסכים בכל התוסף."
 }
