@@ -1,7 +1,7 @@
 {
-  "version": "0.1.6",
-  "url": "https://getcoedit.com/download/COEDIT-v0.1.6.zxp",
-  "sha256": "44935d0335684583c6113dbdd541354eb7b7da3b16315fdb188085709979427a",
-  "bytes": 14908044,
-  "notes": "תיקון לכתוביות מילה במילה בייצוא, ומעבר חלק בין המסכים בכל התוסף."
+  "version": "0.1.7",
+  "url": "https://getcoedit.com/download/COEDIT-v0.1.7.zxp",
+  "sha256": "2d97a0df64c0dd422004b972a096653a4f7580580822e7e61cc6430bf6b80323",
+  "bytes": 15403014,
+  "notes": "חדש: COEDIT גם ב-After Effects. אותו פאנל, אותם כלים ואותו חשבון, ועדכון אחד לשניהם."
 }
