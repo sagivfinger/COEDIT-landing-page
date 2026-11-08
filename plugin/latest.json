@@ -1,7 +1,7 @@
 {
-  "version": "0.1.7",
-  "url": "https://getcoedit.com/download/COEDIT-v0.1.7.zxp",
-  "sha256": "2d97a0df64c0dd422004b972a096653a4f7580580822e7e61cc6430bf6b80323",
-  "bytes": 15403014,
-  "notes": "חדש: COEDIT גם ב-After Effects. אותו פאנל, אותם כלים ואותו חשבון, ועדכון אחד לשניהם."
+  "version": "0.1.8",
+  "url": "https://getcoedit.com/download/COEDIT-v0.1.8.zxp",
+  "sha256": "04098964efbb523fc5ff7594c3cc6403e54a1ba64e77553d1eee8747eff5e59a",
+  "bytes": 18206130,
+  "notes": "ב-Mac כבר לא צריך להתקין FFmpeg בנפרד: הוא כלול בתוסף, ל-Premiere ול-After Effects."
 }
