@@ -97,7 +97,7 @@ const parsePack = k => { const m = /^(\d+):(cz|cuts)$/.exec(String(k)); return m
 // The launch offer: COFRAMES free with every plan bought before this moment (Israel time).
 // A real deadline: the bar counts down to it and disappears once it has passed.
 // To extend the offer, move this date; to end it early, set a date in the past.
-const LAUNCH_OFFER_ENDS = Date.parse('2026-11-08T21:00:00+02:00');
+const LAUNCH_OFFER_ENDS = Date.parse('2026-11-11T13:00:00+02:00');
 const pad2 = n => String(n).padStart(2, '0');
 // Hours only (72:00:00 counts down from three days), never days.
 const offerClock = ms => { const s = Math.floor(ms / 1000); return pad2(Math.floor(s / 3600)) + ':' + pad2(Math.floor(s % 3600 / 60)) + ':' + pad2(s % 60); };
