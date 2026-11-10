@@ -22,12 +22,16 @@
 html body [class*="omnisend-form-"], html body [class*="omnisend-form-"] *, html body [class*="omnisend-form-"] input::placeholder { font-family: Heebo, Arial, sans-serif !important; }
 html body [class*="omnisend-form-"] button { font-weight: 700 !important; }
 </style>
+<!-- Site settings (text, offer, audiences) and where the visitor came from; both before support.js. -->
+<script src="./site-config.js"></script>
+<script src="./site-attribution.js"></script>
 <script src="./support.js"></script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-hw61AMuMfcT7n7xry4d3u.js"></script>
 <script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-  plausible.init()
+  // Audience and campaign (site-attribution.js) ride along on every pageview and event.
+  plausible.init({ customProperties: window.COEDIT_ATTR_PROPS || {} })
 </script>
 </head>
 <body>

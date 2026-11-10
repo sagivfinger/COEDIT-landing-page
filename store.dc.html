@@ -22,12 +22,16 @@
 html body [class*="omnisend-form-"], html body [class*="omnisend-form-"] *, html body [class*="omnisend-form-"] input::placeholder { font-family: Heebo, Arial, sans-serif !important; }
 html body [class*="omnisend-form-"] button { font-weight: 700 !important; }
 </style>
+<!-- Site settings (text, offer, audiences) and where the visitor came from; both before support.js. -->
+<script src="./site-config.js"></script>
+<script src="./site-attribution.js"></script>
 <script src="./support.js"></script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-hw61AMuMfcT7n7xry4d3u.js"></script>
 <script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-  plausible.init()
+  // Audience and campaign (site-attribution.js) ride along on every pageview and event.
+  plausible.init({ customProperties: window.COEDIT_ATTR_PROPS || {} })
 </script>
 <script>
 (function () {
@@ -184,7 +188,7 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
         <span data-credit-cat-note style="font-size:13px;color:#999;line-height:1.6">{{ catNote }}</span>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
-        <sc-for list="{{ packCards }}" as="k" hint-placeholder-count="4">
+        <sc-for list="{{ packCards }}" as="k" hint-placeholder-count="3">
           <button type="button" onClick="{{ k.toggle }}" aria-pressed="{{ k.on }}" data-pack="{{ k.key }}" style="position:relative;display:flex;flex-direction:column;gap:6px;text-align:right;cursor:pointer;padding:14px;border-radius:10px;background:{{ k.bg }};border:1px solid {{ k.bd }};color:#fff">
             <span style="position:absolute;top:12px;left:12px;width:18px;height:18px;border-radius:5px;border:1px solid {{ k.ring }};background:{{ k.dot }};font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center">{{ k.check }}</span>
             <b dir="ltr" style="font-size:22px;font-weight:900;text-align:right">{{ k.n }}</b>
@@ -273,7 +277,9 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
 <script type="text/x-dc" data-dc-script>
 const W = () => document.defaultView || window;
 const PLANS = [{ name: 'NOOB', m: 99, cap: 30, cuts: 90 }, { name: 'PRO', m: 179, cap: 90, cuts: 300, rec: true }, { name: 'HACKER', m: 349, cap: 500, cuts: '1,000' }];
-const PACKS = [[50, 20], [150, 50], [400, 100], [1000, 200]];
+// Each category has its own packs and prices: site-config.js creditPacks, { cz: [[credits, ₪], …], cuts: … }.
+const PACKS = Object.assign({ cz: [], cuts: [] }, (W().COEDIT_CONFIG || {}).creditPacks || {});
+const packOf = (n, cat) => (PACKS[cat] || []).find(x => x[0] === n) || null;
 // Credits belong to ONE usage category (Terms §8). A cart pack is the key "<size>:<cat>", so the category
 // travels with the pack into the cart, the nav drawer and any future checkout. Older entries without a
 // category are dropped: their category would be a guess.
@@ -283,9 +289,9 @@ const DEFAULT_CAT = 'cz';
 // Only these two values: a lookup like CATS[x] would also accept 'constructor', 'toString', '__proto__'.
 const validCat = c => (c === 'cz' || c === 'cuts') ? c : null;
 const packKey = (n, cat) => n + ':' + cat;
-const parsePack = k => { const m = /^(\d+):(cz|cuts)$/.exec(String(k)); return m && PACKS.some(x => x[0] === +m[1]) ? { n: +m[1], cat: m[2] } : null; };
+const parsePack = k => { const m = /^(\d+):(cz|cuts)$/.exec(String(k)); return m && packOf(+m[1], m[2]) ? { n: +m[1], cat: m[2] } : null; };
 const cleanPacks = a => (Array.isArray(a) ? a : []).filter(k => parsePack(k));
-const packPrice = k => { const p = parsePack(k); return p ? (PACKS.find(x => x[0] === p.n) || [0, 0])[1] : 0; };
+const packPrice = k => { const p = parsePack(k); return p ? packOf(p.n, p.cat)[1] : 0; };
 const VIEWS = ['cart', 'checkout', 'success', 'login', 'signup', 'reset', 'account', '404'];
 class Component extends DCLogic {
   state = { view: 'cart', plan: 'PRO', yearly: false, packs: [], loggedIn: false, cat: DEFAULT_CAT };
@@ -312,7 +318,7 @@ class Component extends DCLogic {
     if (p.has('yearly')) up.yearly = p.get('yearly') === '1';
     const cat = validCat(p.get('cat'));
     if (cat) up.cat = cat; else if (p.has('cat')) up.cat = DEFAULT_CAT;
-    if (p.get('pack')) { const n = +p.get('pack'); up.cat = cat || DEFAULT_CAT; if (PACKS.some(x => x[0] === n)) up.packs = [packKey(n, up.cat)]; if (!p.get('plan')) up.plan = null; }
+    if (p.get('pack')) { const n = +p.get('pack'); up.cat = cat || DEFAULT_CAT; if (packOf(n, up.cat)) up.packs = [packKey(n, up.cat)]; if (!p.get('plan')) up.plan = null; }
     this.setState(st => ({ ...up, packs: up.packs ? Array.from(new Set([...(st.packs || []), ...up.packs])) : st.packs, plan: up.plan === undefined ? st.plan : up.plan }));
   }
   go(view, e) { if (e) e.preventDefault(); const w = W(); try { w.history.replaceState(null, '', '#' + view); } catch (x) {} this.setState({ view }); w.scrollTo(0, 0); }
@@ -326,7 +332,9 @@ class Component extends DCLogic {
     const packsTotal = s.packs.reduce((a, k) => a + packPrice(k), 0);
     const lines = [];
     if (plan) lines.push({ label: 'COEDIT ' + plan.name, sub: s.yearly ? 'שנתי · ₪' + mo(plan) + ' לחודש' : 'חודשי', amount: '₪' + fmt(planDue) + (s.yearly ? ' לשנה' : ' לחודש'), c: '#fff', removable: true, remove: () => this.setState({ plan: null }) });
-    if (plan) lines.push({ label: 'COFRAMES · החלקת קיפריימים', sub: 'מתנת השקה', amount: 'מתנה', c: '#5fd068', removable: false, remove: null });
+    // The launch gift's wording comes from site-config.js (offer.short); with no offer there, no gift line.
+    const offer = (W().COEDIT_CONFIG || {}).offer || {};
+    if (plan && offer.text) lines.push({ label: 'COFRAMES · החלקת קיפריימים', sub: offer.short || 'מתנה', amount: 'מתנה', c: '#5fd068', removable: false, remove: null });
     [...new Set(s.packs)].forEach(key => { const pk = parsePack(key); if (!pk) return; const q = s.packs.filter(x => x === key).length; lines.push({ label: fmt(pk.n) + ' קרדיטים · ' + CATS[pk.cat] + (q > 1 ? ' ×' + q : ''), sub: 'חד פעמי · ' + CAT_ONLY[pk.cat], amount: '₪' + fmt(packPrice(key) * q), c: '#fff', removable: true, remove: () => this.setState(st => ({ packs: st.packs.filter(x => x !== key) })) }); });
     const on = '#fff', off = '#888', onBg = 'linear-gradient(180deg,#e2504a,#c42e2a)';
     return {
@@ -339,7 +347,7 @@ class Component extends DCLogic {
       czOn: s.cat === 'cz' ? 'true' : 'false', cutsOn: s.cat === 'cuts' ? 'true' : 'false',
       czC: s.cat === 'cz' ? on : off, czBg: s.cat === 'cz' ? onBg : 'transparent', cutsC: s.cat === 'cuts' ? on : off, cutsBg: s.cat === 'cuts' ? onBg : 'transparent',
       catNote: 'כל קרדיט שווה לדקה אחת של אודיו שעובד, ונספר רק בקטגוריה שבחרתם. החבילות שתבחרו עכשיו ישמשו ' + CAT_ONLY[s.cat] + '.',
-      packCards: PACKS.map(([n, price]) => { const key = packKey(n, s.cat); const sel = s.packs.includes(key); return { n: fmt(n), price, key, on: sel ? 'true' : 'false', catLabel: CATS[s.cat], check: sel ? '✓' : '', toggle: () => this.setState(st => ({ packs: sel ? st.packs.filter(x => x !== key) : [...st.packs, key] })), bg: sel ? '#1f1414' : '#141414', bd: sel ? '#d93a35' : '#2a2a2a', ring: sel ? '#d93a35' : '#444', dot: sel ? '#d93a35' : 'transparent' }; }),
+      packCards: (PACKS[s.cat] || []).map(([n, price]) => { const key = packKey(n, s.cat); const sel = s.packs.includes(key); return { n: fmt(n), price, key, on: sel ? 'true' : 'false', catLabel: CATS[s.cat], check: sel ? '✓' : '', toggle: () => this.setState(st => ({ packs: sel ? st.packs.filter(x => x !== key) : [...st.packs, key] })), bg: sel ? '#1f1414' : '#141414', bd: sel ? '#d93a35' : '#2a2a2a', ring: sel ? '#d93a35' : '#444', dot: sel ? '#d93a35' : 'transparent' }; }),
       lines, total: fmt(planDue + packsTotal)
     };
   }

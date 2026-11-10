@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COEDIT | הטיימליין שלכם. בלי השומן.</title>
-<meta name="description" content="פלאגין ל Premiere Pro ול After Effects: חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, בכמה לחיצות. נסו בחינם.">
+<meta name="description" content="פלאגין ל-Premiere Pro ול-After Effects: חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, בכמה לחיצות. נסו בחינם.">
 <link rel="canonical" href="https://getcoedit.com/">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -13,28 +13,30 @@
 <meta property="og:locale" content="he_IL">
 <meta property="og:url" content="https://getcoedit.com/">
 <meta property="og:title" content="COEDIT | הטיימליין שלכם. בלי השומן.">
-<meta property="og:description" content="חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, ישירות בתוך Premiere Pro ו After Effects. נסו בחינם.">
+<meta property="og:description" content="חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, ישירות בתוך Premiere Pro ו-After Effects. נסו בחינם.">
 <meta property="og:image" content="https://getcoedit.com/assets/og/coedit-og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="COEDIT, פלאגין עריכה ל Premiere Pro ול After Effects">
+<meta property="og:image:alt" content="COEDIT, פלאגין עריכה ל-Premiere Pro ול-After Effects">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="COEDIT | הטיימליין שלכם. בלי השומן.">
-<meta name="twitter:description" content="חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, ישירות בתוך Premiere Pro ו After Effects. נסו בחינם.">
+<meta name="twitter:description" content="חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, ישירות בתוך Premiere Pro ו-After Effects. נסו בחינם.">
 <meta name="twitter:image" content="https://getcoedit.com/assets/og/coedit-og.jpg">
 <script>
-// The COEDIT panel's "buy minutes" packs land here as ?pack=c150&bucket=editing
-// (the Cloud's pack code and allowance). Forward them to the store cart with that
-// pack in the matching category; anything else stays on this page. utm_* tags
-// travel along, so analytics on the store page still sees the plugin as the source.
+// The COEDIT panel's "buy minutes" packs land here as ?pack=cz100&bucket=caption_zoom
+// (the Cloud's pack code: cz… = Captions + Zooms, ed… = Smart Cuts + Cuts). Forward them to the
+// store cart with that pack in its category. A link with only a bucket, or an old pack code
+// (c50…c1000, before 2026-11-10), opens that category's packs. Anything else stays on this page.
+// utm_* tags travel along, so analytics on the store page still sees the plugin as the source.
 (function () { try {
-  var q = new URLSearchParams(location.search), m = /^c?(50|150|400|1000)$/.exec(q.get('pack') || '');
-  if (!m) return;
+  var q = new URLSearchParams(location.search), code = q.get('pack') || '', bucket = q.get('bucket') || '';
+  var m = /^(cz|ed)(\d+)$/.exec(code);
+  if (!m && !code && !bucket) return;
+  var cat = m ? (m[1] === 'ed' ? 'cuts' : 'cz') : (bucket === 'editing' ? 'cuts' : 'cz');
   var utm = new URLSearchParams();
   q.forEach(function (v, k) { if (/^utm_/.test(k)) utm.append(k, v); });
   var s = utm.toString();
-  location.replace('store.dc.html' + (s ? '?' + s : '') + '#cart?pack=' + m[1] +
-                   '&cat=' + (q.get('bucket') === 'editing' ? 'cuts' : 'cz'));
+  location.replace('store.dc.html' + (s ? '?' + s : '') + '#cart?' + (m ? 'pack=' + m[2] + '&' : '') + 'cat=' + cat);
 } catch (e) {} })();
 </script>
 <!-- Omnisend: page tracking and signup forms (brand 6adb869716c3179619233e43). Same snippet on every page. -->
@@ -53,12 +55,26 @@
 html body [class*="omnisend-form-"], html body [class*="omnisend-form-"] *, html body [class*="omnisend-form-"] input::placeholder { font-family: Heebo, Arial, sans-serif !important; }
 html body [class*="omnisend-form-"] button { font-weight: 700 !important; }
 </style>
+<!-- The raw page template (the x-dc element and its template tags) is never shown, even without JavaScript; support.js
+     adds the same rule when it loads. #static-fallback below is the plain-HTML copy of the page for bots and
+     browsers without JavaScript: with JavaScript it is removed at once and the live page renders instead. -->
+<style>x-dc{display:none!important}html.js #static-fallback{display:none!important}
+#static-fallback{max-width:900px;margin:0 auto;padding:24px;background:#121212;color:#ececec;font-family:Heebo,Arial,sans-serif;line-height:1.6}
+#static-fallback img{max-width:100%;height:auto}</style>
+<script>document.documentElement.className+=' js';document.addEventListener('DOMContentLoaded',function(){var f=document.getElementById('static-fallback');if(f)f.parentNode.removeChild(f);});</script>
+<!-- FAQ-JSONLD:START (written by tools/prerender.mjs; don't edit by hand) -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"זה מתאים גם למי שרק מתחיל לערוך?","acceptedAnswer":{"@type":"Answer","text":"כן. ברירות המחדל כבר מכוונות לתוצאה מקצועית: פותחים את הפאנל, מאשרים, וממשיכים. NOOB נבנה בדיוק בשביל זה."}},{"@type":"Question","name":"האם החיתוכים מתבצעים בלי שאראה אותם?","acceptedAnswer":{"@type":"Answer","text":"לא. כל כלי מציג תצוגה מקדימה: ציר זמן עם החיתוכים או תמליל עם המילים המסומנות. אפשר לבטל סימון, לשנות הגדרות ולאשר רק כשזה נראה נכון."}},{"@type":"Question","name":"זה עובד בעברית?","acceptedAnswer":{"@type":"Answer","text":"כן. התמלול מזהה את השפה אוטומטית ותומך בעברית מלאה, כולל כתוביות מימין לשמאל."}},{"@type":"Question","name":"מה ההבדל בין כתוביות וזומים לבין Smart Cuts?","acceptedAnswer":{"@type":"Answer","text":"לכל מסלול שתי מכסות דקות: אחת לכתוביות וזומים, ואחת לחיתוך שתיקות וטייקים חכמים. הדקות נספרות לפי אורך החומר שעובד."}},{"@type":"Question","name":"אפשר לבטל?","acceptedAnswer":{"@type":"Answer","text":"כן. מבטלים בכל עת, והביטול עוצר את החידושים והחיובים הבאים. הגישה נמשכת עד סוף התקופה שכבר שולמה. אפשר גם לבקש החזר תוך 14 יום מהרכישה. הפרטים בתנאי השימוש."}},{"@type":"Question","name":"מה קורה כשנגמרות לי הדקות?","acceptedAnswer":{"@type":"Answer","text":"אפשר לקנות חבילת קרדיטים חד פעמית בכל רגע, לקטגוריה שבה נגמרו הדקות (כתוביות וזומים, או חיתוכים), או לשדרג מסלול."}},{"@type":"Question","name":"זה עובד גם ב-After Effects, DaVinci Resolve או CapCut?","acceptedAnswer":{"@type":"Answer","text":"COEDIT וCOFRAMES עובדים לפרימיר פרו ואפטר אפקטס נכון לעכשיו, עדכונים לעוד תוכנות עריכה יצאו בהמשך נודיע על כך בהמשך"}},{"@type":"Question","name":"מה זה COFRAMES?","acceptedAnswer":{"@type":"Answer","text":"תוסף נוסף ל-Premiere Pro ול-After Effects שמחליק Keyframes בלחיצה אחת, עם חמש רמות החלקה ועורך עקומה מדויק. COFRAMES במתנה עם כל מנוי בתקופת ההשקה. קישור ההורדה שלו נשלח במייל הרכישה."}}]}</script>
+<!-- FAQ-JSONLD:END -->
+<!-- Site settings (text, offer, audiences) and where the visitor came from; both before support.js. -->
+<script src="./site-config.js"></script>
+<script src="./site-attribution.js"></script>
 <script src="./support.js"></script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-hw61AMuMfcT7n7xry4d3u.js"></script>
 <script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-  plausible.init()
+  // Audience and campaign (site-attribution.js) ride along on every pageview and event.
+  plausible.init({ customProperties: window.COEDIT_ATTR_PROPS || {} })
 </script>
 <script>
 (function () {
@@ -122,6 +138,117 @@ html body [class*="omnisend-form-"] button { font-weight: 700 !important; }
 </script>
 </head>
 <body>
+<!-- STATIC-FALLBACK:START (written by tools/prerender.mjs from the rendered page; don't edit by hand) -->
+<div id="static-fallback" dir="rtl" lang="he">
+<p><a href="/#pricing">🎁 COFRAMES במתנה עם כל מנוי בתקופת ההשקה נגמר בקרוב</a></p>
+<p><a href="store.dc.html#login">התחברות</a></p>
+<p><a href="/#trial">נסו בחינם</a></p>
+<header><p><a href="#reviews">עורכי וידאו ממליצים על COEDIT</a></p>
+<h1>הטיימליין שלכם. בלי השומן.</h1>
+<p>חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, ישירות בתוך Premiere Pro ו-After Effects, בכמה לחיצות.</p>
+<p>כתוביות בעברית, מימין לשמאל, מתוזמנות מילה במילה</p>
+<p><a href="#trial">נסו בחינם עכשיו!</a></p>
+<p>✓ תואם Premiere Pro ו-After Effects ✓ ניסיון חינם ✓ COFRAMES במתנה עם כל מנוי בתקופת ההשקה</p></header>
+<section><p><b>תמר יחזקל אורון</b> צלמת @tamar.yeheskeloron</p>
+<p>חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.</p>
+<p><b>נטע דבח</b> צלמת @neta_photography</p>
+<p>הכתוביות בעברית פשוט עובדות, בלי לתקן כל מילה מחדש.</p>
+<p><b>Solair Motion</b> מושן דיזיינר @solair.motion</p>
+<p>הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.</p>
+<p><b>שקד רחימי</b> עורכת וידאו @_shaked_rahimi</p>
+<p>חסכתי שעות על כתוביות. מסמנים, מאשרים, וזה כבר בטיימליין, בעברית ומעוצב.</p>
+<p><b>שקד דיקשטיין</b> צלם ועורך @_shaked_dickstein</p>
+<p>COEDIT חותך לי את השתיקות ומוסיף זומים, וגם COFRAMES מחליק את התנועה בלחיצה. ביחד הם עושים לי חצי עריכה.</p>
+<p><b>נטי טוליינסונג</b> עורך וידאו @netity123</p>
+<p>חיתוך טייקים שלקח לי ערב שלם נגמר בכמה דקות. ואני מאשר כל חיתוך לפני שמשהו זז.</p></section>
+<section><h2>שעות על חיתוך שתיקות וכתוביות ידניות? זו הדרך הישנה.</h2>
+<p>אתם מכירים את זה: גוללים בטיימליין, מחפשים כל נשימה, חותכים טייק אחרי טייק, מקלידים כתוביות מילה אחר מילה ומזיזים קיפריימים לזום. העבודה השחורה הזאת אוכלת את רוב הזמן, והיא לא מה שעושה את הסרטון טוב. COEDIT לוקח אותה מכם, כדי שתתעסקו בקצב, בסיפור ובלקוח הבא.</p>
+<p><a href="#trial">נסו בחינם עכשיו!</a></p>
+<img src="assets/coedit-panel.png" alt="פאנל COEDIT בתוך Premiere Pro"></section>
+<section><p>חיתוך שתיקות + Smart Cuts</p>
+<h2>חומר גלם נכנס. רק הטייקים הטובים יוצאים.</h2>
+<p>COEDIT מזהה שתיקות, התחלות שווא וטייקים כפולים, ומשאיר רק את הגרסה הטובה. אתם רואים הכל בתצוגה מקדימה ומאשרים בלחיצה.</p>
+<p><a href="#trial">נסו בחינם עכשיו!</a></p></section>
+<section><p>זומים + סאונד + כתוביות</p>
+<h2>נראה כמו עריכה של שעות. לקח דקות.</h2>
+<p>זומים אוטומטיים על הרגעים החזקים עם אפקט סאונד מסונכרן, וכתוביות מעוצבות בעברית עם תזמון מילה אחר מילה, מוכנות לייצוא כקובץ MOGRT או SRT.</p>
+<p><a href="#trial">נסו בחינם עכשיו!</a></p></section>
+<section><p>למה COEDIT</p>
+<h2>לא עוד גימיק. נבנה לחסוך כאב ראש.</h2>
+<b>ישירות בתוך Premiere ו-After Effects</b><p>בלי לייצא ולייבא קבצים. הכל קורה בפאנל, על הרצף או הקומפוזיציה שלכם.</p>
+<b>אתם מאשרים כל חיתוך</b><p>תצוגה מקדימה של כל חיתוך וכל מילה לפני שמשהו נוגע בטיימליין.</p>
+<b>עברית מלאה</b><p>תמלול מדויק וכתוביות מימין לשמאל, כמו שצריך.</p>
+<b>זום עם סאונד מסונכרן</b><p>כל תנועת מצלמה מקבלת אפקט סאונד מתוזמן, בלי לגעת בקיפריים.</p>
+<b>כתוביות שניתנות לעריכה</b><p>בפרמייר MOGRT לעריכה ב-Essential Graphics, באפטר שכבת טקסט עם אותן תבניות, ותמיד גם SRT סטנדרטי.</p>
+<b>COFRAMES במתנה עם כל מנוי בתקופת ההשקה</b><p>תוסף שמחליק קיפריימים כך שזומים ותנועות נראים רכים.</p>
+<p><a href="#trial">נסו בחינם עכשיו!</a></p></section>
+<section><p>נערך עם COEDIT</p>
+<h2>סרטונים אמיתיים. נערכו עם התוסף.</h2>
+<p><a href="#trial">נסו בחינם עכשיו!</a></p></section>
+<section><p>איך זה עובד</p>
+<h2>שלושה שלבים והסרטון מוכן</h2>
+<b>פותחים את הפאנל</b> <p>בוחרים כלי (כתוביות חכמות, זום אוטומטי, טייקים חכמים או חיתוך שתיקות) ומגדירים סגנון. ברירות המחדל כבר מומלצות.</p>
+<b>בודקים את התצוגה המקדימה</b> <p>רואים בדיוק מה ייחתך ומה ייכתב. לחיצה על מילה או קטע משנה את ההחלטה.</p>
+<b>מאשרים, וזה בטיימליין</b> <p>החיתוכים, הזומים והכתוביות נכנסים ישר לרצף. ממשיכים לערוך כרגיל.</p>
+<p><a href="#trial">נסו בחינם עכשיו!</a></p></section>
+<section><h2>המסלול שעובד הכי טוב בשבילכם</h2>
+<p>למי שרק מתחיל</p>
+<p><b>₪99</b> / חודש</p>
+<p>מחויב חודשית</p>
+<p><a href="store.dc.html#cart?plan=NOOB&amp;yearly=0">בחירת NOOB</a></p>
+<p>עובד בתוך Premiere Pro ו-After Effects</p>
+<p>Aa <b>30</b> דק' כתוביות וזומים</p>
+<p>✂ <b>90</b> דק' Smart Cuts + חיתוך רגיל</p>
+<h4>כלול בכל מסלול:</h4>
+<p>✓ חיתוך שתיקות וטייקים חכמים</p>
+<p>✓ זומים אוטומטיים עם אפקטי סאונד</p>
+<p>✓ כתוביות מעוצבות בעברית</p>
+<p>✓ ייצוא MOGRT או SRT</p>
+<p>✓ COFRAMES במתנה עם כל מנוי בתקופת ההשקה</p>
+<p>מומלץ</p>
+<p>לעורכים שעובדים על זה כל יום</p>
+<p><b>₪179</b> / חודש</p>
+<p><a href="store.dc.html#cart?plan=PRO&amp;yearly=0">בחירת PRO</a></p>
+<p>Aa <b>90</b> דק' כתוביות וזומים</p>
+<p>✂ <b>300</b> דק' Smart Cuts + חיתוך רגיל</p>
+<p>לאולפנים ועורכים בנפח גבוה</p>
+<p><b>₪349</b> / חודש</p>
+<p><a href="store.dc.html#cart?plan=HACKER&amp;yearly=0">בחירת HACKER</a></p>
+<p>Aa <b>500</b> דק' כתוביות וזומים</p>
+<p>✂ <b>1,000</b> דק' Smart Cuts + חיתוך רגיל</p>
+<p>✓ בלי התחייבות, מבטלים חידוש בכל עת ✓ אפשר לבקש החזר תוך 14 יום מהרכישה ✓ מפתח רישיון ומדריך התקנה נשלחים במייל</p>
+כל המחירים כוללים מע&quot;מ · <p>תנאי ביטול והחזרים</p></section>
+<section><p>מתנת השקה</p>
+<h2>COFRAMES: תנועה חלקה. בלחיצה.</h2>
+<p>תוסף נוסף ל-Premiere Pro ול-After Effects שמחליק Keyframes, כך שזומים, הזזות ואנימציות נראים רכים ומקצועיים, בלי לשחק עם עקומות ידנית. COFRAMES במתנה עם כל מנוי בתקופת ההשקה.</p>
+<p>עובד ב-Premiere Pro וב-After Effects ✓ החלקת Keyframes בלחיצה אחת ✓ חמש רמות החלקה: לינארי, חד, טבעי, קולנועי ורך ✓ עורך עקומה מדויק עם ידיות והצמדה לרשת ✓ עקומות שמורות שאפשר לשמור, להעתיק ולהדביק</p>
+<p><a href="#pricing">לבחירת מסלול וקבלת COFRAMES</a></p>
+<img src="assets/coframes-panel.png" alt="פאנל COFRAMES, עורך עקומות תנועה"></section>
+<footer><img src="assets/logo.png" alt="COEDIT">
+<p>תנאי שימוש</p>
+<p>מדיניות פרטיות</p>
+<p><a href="info.dc.html#contact">צור קשר</a></p></footer>
+<section id="faq">
+<h2>שאלות נפוצות</h2>
+<h3>זה מתאים גם למי שרק מתחיל לערוך?</h3>
+<p>כן. ברירות המחדל כבר מכוונות לתוצאה מקצועית: פותחים את הפאנל, מאשרים, וממשיכים. NOOB נבנה בדיוק בשביל זה.</p>
+<h3>האם החיתוכים מתבצעים בלי שאראה אותם?</h3>
+<p>לא. כל כלי מציג תצוגה מקדימה: ציר זמן עם החיתוכים או תמליל עם המילים המסומנות. אפשר לבטל סימון, לשנות הגדרות ולאשר רק כשזה נראה נכון.</p>
+<h3>זה עובד בעברית?</h3>
+<p>כן. התמלול מזהה את השפה אוטומטית ותומך בעברית מלאה, כולל כתוביות מימין לשמאל.</p>
+<h3>מה ההבדל בין כתוביות וזומים לבין Smart Cuts?</h3>
+<p>לכל מסלול שתי מכסות דקות: אחת לכתוביות וזומים, ואחת לחיתוך שתיקות וטייקים חכמים. הדקות נספרות לפי אורך החומר שעובד.</p>
+<h3>אפשר לבטל?</h3>
+<p>כן. מבטלים בכל עת, והביטול עוצר את החידושים והחיובים הבאים. הגישה נמשכת עד סוף התקופה שכבר שולמה. אפשר גם לבקש החזר תוך 14 יום מהרכישה. הפרטים בתנאי השימוש.</p>
+<h3>מה קורה כשנגמרות לי הדקות?</h3>
+<p>אפשר לקנות חבילת קרדיטים חד פעמית בכל רגע, לקטגוריה שבה נגמרו הדקות (כתוביות וזומים, או חיתוכים), או לשדרג מסלול.</p>
+<h3>זה עובד גם ב-After Effects, DaVinci Resolve או CapCut?</h3>
+<p>COEDIT וCOFRAMES עובדים לפרימיר פרו ואפטר אפקטס נכון לעכשיו, עדכונים לעוד תוכנות עריכה יצאו בהמשך נודיע על כך בהמשך</p>
+<h3>מה זה COFRAMES?</h3>
+<p>תוסף נוסף ל-Premiere Pro ול-After Effects שמחליק Keyframes בלחיצה אחת, עם חמש רמות החלקה ועורך עקומה מדויק. COFRAMES במתנה עם כל מנוי בתקופת ההשקה. קישור ההורדה שלו נשלח במייל הרכישה.</p>
+</section>
+</div>
+<!-- STATIC-FALLBACK:END -->
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -146,28 +273,30 @@ input[type=range]{accent-color:#d93a35;width:100%}
     <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:22px">
       
       
-      <div style="display:flex;align-items:center;gap:14px">
-        <div style="width:1px;align-self:stretch;background:#3a3a3a"></div>
-      <div style="display:flex;flex-direction:column;gap:4px">
-        <div dir="ltr" style="display:flex;gap:3px;align-self:center"><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;right:0;bottom:0;width:50%;overflow:hidden;display:flex;justify-content:flex-end;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span><span style="position:relative;display:inline-block;width:20px;height:20px"><span style="position:absolute;inset:0;font-size:20px;line-height:20px;color:#3a3a3a">★</span><span style="position:absolute;top:0;left:0;bottom:0;width:100%;overflow:hidden;font-size:20px;line-height:20px;color:#FACC15">★</span></span></div>
-        <span style="font-size:14px;color:#fff">אהוב מאוד אצל עורכי ווידאו</span>
-      </div>
-      </div>
-      <h1 style="margin:0;font-size:clamp(42px,5.6vw,78px);font-weight:900;line-height:1.02;letter-spacing:-.02em">הטיימליין שלכם.<br><span style="color:#e2504a">בלי השומן.</span></h1>
-      <p style="margin:0;font-size:19px;line-height:1.6;color:#bbb;max-width:520px;text-wrap:pretty">חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, ישירות בתוך Premiere Pro ו After Effects, בכמה לחיצות.</p>
+      <!-- Social proof: driven by site-config.js (socialProof). With no real number and no reviewer photos, nothing shows. -->
+      <sc-if value="{{ spOn }}" hint-placeholder-val="{{ true }}">
+      <a href="#reviews" style="display:inline-flex;align-items:center;gap:12px;align-self:flex-start;color:#fff;text-decoration:none">
+        <sc-if value="{{ spFacesOn }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;padding-inline-start:10px"><sc-for list="{{ spFaces }}" as="f" hint-placeholder-count="3"><span role="img" aria-label="{{ f.name }}" title="{{ f.name }}" style="width:34px;height:34px;flex:none;border-radius:50%;border:2px solid #1a0f0f;margin-inline-start:-10px;background:{{ f.av }}"></span></sc-for></span></sc-if>
+        <span style="font-size:14px;line-height:1.4;color:#fff">{{ spText }}</span>
+      </a>
+      </sc-if>
+      <h1 style="margin:0;font-size:clamp(42px,5.6vw,78px);font-weight:900;line-height:1.02;letter-spacing:-.02em">{{ h1a }}<br><span style="color:#e2504a">{{ h1b }}</span></h1>
+      <p style="margin:0;font-size:19px;line-height:1.6;color:#bbb;max-width:520px;text-wrap:pretty">{{ heroSub }}</p>
+      <!-- The Hebrew captions line: site-config.js heroCaptionsLine. -->
+      <sc-if value="{{ hasCapLine }}" hint-placeholder-val="{{ true }}"><div style="display:inline-flex;align-items:center;gap:10px;align-self:flex-start;max-width:100%;background:#1f1414;border:1px solid #5a2220;border-radius:999px;padding:6px 8px 6px 16px;font-size:15px;line-height:1.35;font-weight:700;color:#fff"><span aria-hidden="true" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:24px;padding:0 9px;border-radius:999px;background:#d93a35;font-size:12px;font-weight:800">עב</span>{{ capLine }}</div></sc-if>
       <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
         <a href="#trial" onClick="{{ ctaTrial }}" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:15px;color:#cfcfcf;align-items:center"><span style="display:inline-flex;align-items:center;gap:7px"><span style="color:#e2504a;font-weight:800">✓</span><span style="display:inline-flex;gap:4px"><span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Pr</span><span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Ae</span></span>תואם Premiere Pro ו After Effects</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>ניסיון חינם</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>COFRAMES במתנה בכל רכישה</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:15px;color:#cfcfcf;align-items:center"><span style="display:inline-flex;align-items:center;gap:7px"><span style="color:#e2504a;font-weight:800">✓</span><span style="display:inline-flex;gap:4px"><span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Pr</span><span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Ae</span></span>תואם Premiere Pro ו-After Effects</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>ניסיון חינם</span><sc-if value="{{ hasOffer }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>{{ offerText }}</span></sc-if></div>
 
     </div>
-    <div data-px="-0.08" style="position:relative;flex:1.6 1 560px;min-width:0;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid #3a2222;background:#0c0c0c;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(217,58,53,.12)"><iframe src="https://www.youtube-nocookie.com/embed/wZPgfeMTX3k?enablejsapi=0&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=wZPgfeMTX3k&amp;controls=0&amp;modestbranding=1&amp;rel=0&amp;playsinline=1&amp;disablekb=1&amp;iv_load_policy=3&amp;vq=hd2160&amp;hd=1" title="COEDIT demo" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; web-share" frameborder="0" style="position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%) scale(1.02);border:0;pointer-events:none"></iframe></div>
+    <div data-px="-0.08" onClick="{{ heroVideoPlay }}" style="position:relative;flex:1.6 1 560px;min-width:0;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid #3a2222;background:#0c0c0c {{ heroPosterBg }};box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(217,58,53,.12);cursor:{{ heroCursor }}"><sc-if value="{{ heroVideoOn }}" hint-placeholder-val="{{ false }}"><iframe src="{{ heroVideoSrc }}" title="COEDIT demo" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; web-share" frameborder="0" style="position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%) scale(1.02);border:0;pointer-events:none"></iframe></sc-if></div>
   </div>
 </header>
 
 
 
-<section style="position:relative;overflow:hidden;padding:60px 0 0">
+<section id="reviews" style="position:relative;overflow:hidden;padding:60px 0 0">
   <div dir="ltr" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px">
       <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqL 60s linear infinite" style-hover="animation-play-state:paused">
         <sc-for list="{{ mqRow1 }}" as="r" hint-placeholder-count="8">
@@ -201,12 +330,37 @@ input[type=range]{accent-color:#d93a35;width:100%}
     </div>
     <div style="position:relative;min-height:clamp(420px,95vw,760px);overflow:hidden">
       <div style="position:absolute;left:-10%;right:-10%;bottom:-30%;height:80%;background:radial-gradient(ellipse 60% 55% at 50% 100%,rgba(217,58,53,.45) 0%,rgba(217,58,53,.12) 45%,transparent 75%);pointer-events:none"></div>
-      <img data-px="0.04" src="assets/coedit-panel.png" alt="פאנל COEDIT בתוך Premiere Pro" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(-4deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)">
+      <img data-px="0.04" loading="lazy" decoding="async" src="assets/coedit-panel.png" alt="פאנל COEDIT בתוך Premiere Pro" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(-4deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)">
     </div>
   </div>
 </section>
 
-<section style="padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
+<!-- "למי זה מתאים": one card per audience that is live (site-config.js: audiences, whoFor). Hidden while none is. -->
+<sc-if value="{{ hasWhoFor }}" hint-placeholder-val="{{ false }}">
+<section id="who" style="padding:clamp(64px,10vw,110px) 24px;border-top:1px solid #1f1f1f">
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">{{ whoForEyebrow }}</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance">{{ whoForTitle }}</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+      <sc-for list="{{ whoFor }}" as="a" hint-placeholder-count="3">
+        <a href="{{ a.href }}" onClick="{{ a.click }}" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;color:#ececec;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#8a2c28;transform:translateY(-2px)">
+          <span aria-hidden="true" style="font-size:30px;line-height:1">{{ a.icon }}</span>
+          <b style="font-size:19px;color:#fff">{{ a.title }}</b>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">{{ a.text }}</p>
+          <span style="font-size:14px;font-weight:700;color:#e2504a">לגרסה שלכם ←</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+
+<!-- The two feature sections. An audience page (?for=) can put captions and zooms first (site-config.js featuresFirst). -->
+<div style="display:flex;flex-direction:column">
+<section style="order:{{ cutsOrder }};padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
   <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:64px;align-items:center">
     <div data-px="-0.06" dir="ltr" style="background:#1e1e1e;border:1px solid #2c2c2c;border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);font-family:Heebo,sans-serif;user-select:none">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 12px;background:#262626;border-bottom:1px solid #121212">
@@ -235,7 +389,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
   </div>
 </section>
 
-<section style="padding:clamp(64px,10vw,110px) 24px">
+<section style="order:{{ czOrder }};padding:clamp(64px,10vw,110px) 24px">
   <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:64px;align-items:center">
     <div data-px="0.06" style="display:flex;flex-direction:column;gap:18px">
       <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">זומים + סאונד + כתוביות</span>
@@ -263,20 +417,21 @@ input[type=range]{accent-color:#d93a35;width:100%}
     </div>
   </div>
 </section>
+</div>
 
 <section style="padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
   <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
     <div data-px="0.08" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
       <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">למה COEDIT</span>
-      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;max-width:760px">לא עוד גימיק&nbsp;&nbsp;<span style="color: rgb(226, 80, 74);">נבנה לחסוך כאב ראש&nbsp;</span></h2>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;max-width:760px">לא עוד גימיק.&nbsp;<span style="color: rgb(226, 80, 74);">נבנה לחסוך כאב ראש.</span></h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
-      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">ישירות בתוך Premiere ו After Effects</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">בלי לייצא ולייבא קבצים. הכל קורה בפאנל, על הרצף או הקומפוזיציה שלכם.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">ישירות בתוך Premiere ו-After Effects</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">בלי לייצא ולייבא קבצים. הכל קורה בפאנל, על הרצף או הקומפוזיציה שלכם.</p></div>
       <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">אתם מאשרים כל חיתוך</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">תצוגה מקדימה של כל חיתוך וכל מילה לפני שמשהו נוגע בטיימליין.</p></div>
       <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">עברית מלאה</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">תמלול מדויק וכתוביות מימין לשמאל, כמו שצריך.</p></div>
       <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">זום עם סאונד מסונכרן</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">כל תנועת מצלמה מקבלת אפקט סאונד מתוזמן, בלי לגעת בקיפריים.</p></div>
-      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">כתוביות שניתנות לעריכה</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">בפרמייר MOGRT לעריכה ב Essential Graphics, באפטר שכבת טקסט עם אותן תבניות, ותמיד גם SRT סטנדרטי.</p></div>
-      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px;color:#e2504a">COFRAMES במתנה בתקופת ההשקה</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">תוסף שמחליק קיפריימים כך שזומים ותנועות נראים רכים.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">כתוביות שניתנות לעריכה</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">בפרמייר MOGRT לעריכה ב-Essential Graphics, באפטר שכבת טקסט עם אותן תבניות, ותמיד גם SRT סטנדרטי.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px;color:#e2504a">{{ offerCardTitle }}</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">תוסף שמחליק קיפריימים כך שזומים ותנועות נראים רכים.</p></div>
     </div>
     <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
   </div>
@@ -294,7 +449,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
         <sc-for list="{{ slides }}" as="sl" hint-placeholder-count="7">
           <div onClick="{{ sl.go }}" style="position:absolute;top:0;left:50%;width:280px;height:498px;margin-left:-140px;border-radius:16px;overflow:hidden;background:#0c0c0c;border:1px solid {{ sl.bd }};transform:{{ sl.tf }};z-index:{{ sl.z }};opacity:{{ sl.o }};transition:transform .45s cubic-bezier(.22,.8,.3,1),opacity .4s,border-color .3s;box-shadow:0 30px 70px rgba(0,0,0,.6)">
             <div style="position:absolute;inset:0;background:#0c0c0c center/cover no-repeat;background-image:{{ sl.posterBg }}"></div>
-            <sc-if value="{{ sl.active }}" hint-placeholder-val="{{ false }}"><video src="{{ sl.src }}" onCanPlay="{{ sl.play }}" onEnded="{{ sl.ended }}" autoplay muted playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video></sc-if>
+            <sc-if value="{{ sl.playing }}" hint-placeholder-val="{{ false }}"><video src="{{ sl.src }}" onCanPlay="{{ sl.play }}" onEnded="{{ sl.ended }}" autoplay muted playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video></sc-if>
             <sc-if value="{{ sl.active }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleSound }}" onPointerDown="{{ stopEv }}" aria-label="{{ soundLabel }}" style="position:absolute;bottom:14px;left:14px;z-index:3;height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.6);color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">{{ soundIcon }} {{ soundText }}</button></sc-if>
             <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,{{ sl.shL }}),transparent 60%,rgba(0,0,0,{{ sl.shR }}));pointer-events:none;transition:background .5s"></div>
             <sc-if value="{{ sl.hasTitle }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:0;right:0;bottom:0;padding:50px 18px 16px;background:linear-gradient(0deg,rgba(0,0,0,.85) 20%,transparent);pointer-events:none"><span style="font-size:14px;font-weight:700;color:#fff">{{ sl.title }}</span></div></sc-if>
@@ -374,8 +529,8 @@ input[type=range]{accent-color:#d93a35;width:100%}
             <span style="font-size:13px;color:#777">{{ t.billNote }}</span>
           </div>
           <div style="padding:22px 28px 28px;display:flex;flex-direction:column;gap:0;flex:1">
-            <a href="{{ t.cartHref }}" style="display:block;text-align:center;font-weight:800;font-size:19px;padding:16px;border-radius:12px;color:#fff;background:{{ t.btnBg }};border:1px solid {{ t.btnBd }};box-shadow:{{ t.btnSh }}">בחירת {{ t.name }}</a>
-            <span style="font-size:12px;color:#777;text-align:center;margin-top:8px">עובד בתוך Premiere Pro ו After Effects</span>
+            <a href="{{ t.cartHref }}" onClick="{{ t.click }}" style="display:block;text-align:center;font-weight:800;font-size:19px;padding:16px;border-radius:12px;color:#fff;background:{{ t.btnBg }};border:1px solid {{ t.btnBd }};box-shadow:{{ t.btnSh }}">בחירת {{ t.name }}</a>
+            <span style="font-size:12px;color:#777;text-align:center;margin-top:8px">עובד בתוך Premiere Pro ו-After Effects</span>
             <div style="display:flex;flex-direction:column;gap:12px;padding:22px 0">
               <div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;flex:none;border-radius:7px;background:#2a1716;border:1px solid #5a2220;color:#e2504a;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center">Aa</span><span style="font-size:15px;font-weight:700;color:#ddd"><b dir="ltr" style="color:#fff">{{ t.cap }}</b> דק' כתוביות וזומים</span></div>
               <div style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;flex:none;border-radius:7px;background:#2a1716;border:1px solid #5a2220;color:#e2504a;font-size:14px;display:flex;align-items:center;justify-content:center">✂</span><span style="font-size:15px;font-weight:700;color:#ddd"><b dir="ltr" style="color:#fff">{{ t.cuts }}</b> דק' Smart Cuts + חיתוך רגיל</span></div>
@@ -406,12 +561,12 @@ input[type=range]{accent-color:#d93a35;width:100%}
         <span data-credit-cat-note style="font-size:14px;color:#888;line-height:1.6">{{ catNote }}</span>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px">
-        <sc-for list="{{ packs }}" as="p" hint-placeholder-count="4">
+        <sc-for list="{{ packs }}" as="p" hint-placeholder-count="3">
           <div style="position:relative;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:14px;background:{{ p.bg }};border:1px solid {{ p.bd }}">
             <sc-if value="{{ p.best }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-11px;left:18px;font-size:11px;font-weight:800;background:#d93a35;color:#fff;padding:3px 8px;border-radius:5px">הכי משתלם</span></sc-if>
             <div style="display:flex;flex-direction:column;gap:2px"><b dir="ltr" style="font-size:32px;font-weight:900;text-align:right">{{ p.n }}</b><span style="font-size:14px;color:#888">קרדיטים</span></div>
             <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:24px">₪{{ p.price }}</b><span dir="ltr" style="font-family:Heebo,sans-serif;font-size:12px;color:#777">₪{{ p.per }} / credit</span></div>
-            <a href="{{ p.cartHref }}" style="text-align:center;font-weight:700;font-size:15px;padding:10px;border-radius:7px;background:#232323;border:1px solid #333;color:#eee;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">בחירת חבילה</a>
+            <a href="{{ p.cartHref }}" onClick="{{ p.click }}" style="text-align:center;font-weight:700;font-size:15px;padding:10px;border-radius:7px;background:#232323;border:1px solid #333;color:#eee;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">בחירת חבילה</a>
           </div>
         </sc-for>
       </div>
@@ -444,11 +599,11 @@ input[type=range]{accent-color:#d93a35;width:100%}
   <div data-px="0.4" style="position:absolute;inset:-20% 0 -40%;background:radial-gradient(ellipse 60% 50% at 70% 70%,rgba(217,58,53,.22),transparent 70%);pointer-events:none"></div>
   <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));align-items:stretch">
     <div data-px="0.06" style="display:flex;flex-direction:column;justify-content:center;gap:20px;padding:110px max(24px,calc(50vw - 600px)) 110px 48px;padding-inline-start:max(24px,calc(50vw - 600px));padding-inline-end:48px">
-      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">מתנה בכל רכישה</span>
+      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">{{ offerShort }}</span>
       <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">COFRAMES: <span style="color:#e2504a">תנועה חלקה. בלחיצה.</span></h2>
-      <p style="margin:0;font-size:18px;line-height:1.7;color:#a5a5a5;text-wrap:pretty">תוסף נוסף לPremiere Pro ולAfter Effects שמחליק Keyframes, כך שזומים, הזזות ואנימציות נראים רכים ומקצועיים, בלי לשחק עם עקומות ידנית. הוא מגיע במתנה עם כל מנוי בתקופת ההשקה.</p>
+      <p style="margin:0;font-size:18px;line-height:1.7;color:#a5a5a5;text-wrap:pretty">תוסף נוסף ל-Premiere Pro ול-After Effects שמחליק Keyframes, כך שזומים, הזזות ואנימציות נראים רכים ומקצועיים, בלי לשחק עם עקומות ידנית. {{ offerSentence }}</p>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#fff;font-weight:700"><span style="display:inline-flex;gap:5px"><span aria-hidden="true" style="width:22px;height:22px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Pr</span><span aria-hidden="true" style="width:22px;height:22px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Ae</span></span>עובד בPremiere Pro ובAfter Effects</span>
+        <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#fff;font-weight:700"><span style="display:inline-flex;gap:5px"><span aria-hidden="true" style="width:22px;height:22px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Pr</span><span aria-hidden="true" style="width:22px;height:22px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Ae</span></span>עובד ב-Premiere Pro וב-After Effects</span>
         <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#ddd"><i style="width:22px;height:22px;flex:none;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>החלקת Keyframes בלחיצה אחת</span>
         <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#ddd"><i style="width:22px;height:22px;flex:none;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>חמש רמות החלקה: לינארי, חד, טבעי, קולנועי ורך</span>
         <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#ddd"><i style="width:22px;height:22px;flex:none;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>עורך עקומה מדויק עם ידיות והצמדה לרשת</span>
@@ -459,7 +614,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
     </div>
     <div style="position:relative;min-height:clamp(420px,95vw,760px);overflow:hidden;background:transparent">
       <div style="position:absolute;left:-10%;right:-10%;bottom:-30%;height:80%;background:radial-gradient(ellipse 60% 55% at 50% 100%,rgba(217,58,53,.45) 0%,rgba(217,58,53,.12) 45%,transparent 75%);pointer-events:none"></div>
-      <img data-px="0.04" src="assets/coframes-panel.png" alt="פאנל COFRAMES, עורך עקומות תנועה" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(3deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)">
+      <img data-px="0.04" loading="lazy" decoding="async" src="assets/coframes-panel.png" alt="פאנל COFRAMES, עורך עקומות תנועה" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(3deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)">
       
     </div>
   </div>
@@ -476,7 +631,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
         <h2 id="trial-title" style="margin:0;font-size:clamp(26px,3.6vw,34px);font-weight:900;line-height:1.15">נסו את COEDIT בחינם</h2>
         <p style="margin:0;font-size:16px;color:#aaa;line-height:1.6">השאירו מייל ונשלח לכם מפתח ניסיון, את התוסף ומדריך התקנה עם סרטון.</p>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:15px;color:#cfcfcf;align-items:center"><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>5 דקות כתוביות וזומים</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>10 דקות חיתוכים</span><span style="display:inline-flex;align-items:center;gap:7px"><span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Pr</span>Premiere Pro בWindows ובMac</span><span style="display:inline-flex;align-items:center;gap:7px"><span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Ae</span>After Effects 2026 ומעלה</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:15px;color:#cfcfcf;align-items:center"><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>5 דקות כתוביות וזומים</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>10 דקות חיתוכים</span><span style="display:inline-flex;align-items:center;gap:7px"><span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Pr</span>Premiere Pro ב-Windows וב-Mac</span><span style="display:inline-flex;align-items:center;gap:7px"><span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Ae</span>After Effects 2026 ומעלה</span></div>
       <sc-if value="{{ trialFormShown }}" hint-placeholder-val="{{ true }}">
         <form onSubmit="{{ submitTrialEmail }}" novalidate style="display:flex;flex-wrap:wrap;gap:8px">
           <input id="trial-email" type="email" name="email" required autocomplete="email" inputmode="email" dir="ltr" placeholder="you@example.com" aria-label="כתובת מייל" style="flex:1 1 220px;min-width:0;font:inherit;font-size:16px;color:#fff;background:#0f0f0f;border:1.5px solid #333;border-radius:9px;padding:13px 14px;outline:none" style-focus="border-color:#e2504a">
@@ -494,7 +649,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
     <div style="display:flex;flex-direction:column;gap:6px;padding-left:40px">
       <span style="font-size:13px;font-weight:800;color:#e2504a;letter-spacing:.02em">התקנה בארבעה צעדים</span>
       <h2 id="trial-title" style="margin:0;font-size:clamp(24px,3.4vw,32px);font-weight:900;line-height:1.15">מתקינים את COEDIT</h2>
-      <p style="margin:0;font-size:15px;color:#aaa;line-height:1.6">קובץ אחד מתקין את COEDIT גם בPremiere Pro (Windows ו Mac) וגם בAfter Effects 2026 ומעלה. ההתקנה לוקחת כמה דקות.</p>
+      <p style="margin:0;font-size:15px;color:#aaa;line-height:1.6">קובץ אחד מתקין את COEDIT גם ב-Premiere Pro (Windows ו-Mac) וגם ב-After Effects 2026 ומעלה. ההתקנה לוקחת כמה דקות.</p>
     </div>
 
     <div style="display:flex;gap:14px;align-items:flex-start">
@@ -514,7 +669,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
       <span style="flex:none;width:30px;height:30px;border-radius:50%;background:#2a1716;color:#e2504a;font-weight:900;display:flex;align-items:center;justify-content:center">2</span>
       <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
         <b style="font-size:17px">מורידים את ZXP Installer (חינם)</b>
-        <span style="font-size:14px;color:#aaa;line-height:1.6">התוכנה החינמית שמתקינה תוספים לPremiere ולAfter Effects. בהתקנה מסמנים רק את ZXP/UXP Installer, וצריך להתקין אותה רק פעם אחת.</span>
+        <span style="font-size:14px;color:#aaa;line-height:1.6">התוכנה החינמית שמתקינה תוספים ל-Premiere ול-After Effects. בהתקנה מסמנים רק את ZXP/UXP Installer, וצריך להתקין אותה רק פעם אחת.</span>
         <a href="https://aescripts.com/learn/zxp-installer/" target="_blank" rel="noopener" onClick="{{ trackInstallerClick }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;border:1.5px solid #4a2826;color:#fff;font-weight:700;font-size:15px;padding:11px 18px;border-radius:9px">הורדת ZXP Installer ↗</a>
       </div>
     </div>
@@ -553,11 +708,31 @@ input[type=range]{accent-color:#d93a35;width:100%}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const W = () => document.defaultView || window;
+// ── Site settings ── site-config.js (loaded before support.js): offer wording, social proof, audiences.
+const CFG = W().COEDIT_CONFIG || {};
+const OFFER = CFG.offer || {};
+// The launch offer in one sentence, everywhere on the page. "שווה ₪X" only when a real price is filled in.
+const OFFER_LINE = OFFER.text ? OFFER.text + (OFFER.anchorPrice ? ' (שווה ₪' + OFFER.anchorPrice + ')' : '') : '';
+// ── Audience pages ── ?for=<key> (kept for the visit by site-attribution.js) picks COEDIT_CONFIG.audiences[key].
+// Only audiences marked ready: true, unless the link adds &preview=1. Anything else shows the normal page.
+const AUDIENCES = CFG.audiences || {};
+const AUDIENCE_KEY = (() => { try {
+  const q = new URLSearchParams(W().location.search), k = String(q.get('for') || (W().COEDIT_ATTR || {}).for || '').toLowerCase();
+  return AUDIENCES[k] && (AUDIENCES[k].ready || q.get('preview') === '1') ? k : '';
+} catch (e) { return ''; } })();
+const AUD = AUDIENCES[AUDIENCE_KEY] || {};
+const AUD_PREVIEW = (() => { try { return new URLSearchParams(W().location.search).get('preview') === '1'; } catch (e) { return false; } })();
+// The "למי זה מתאים" cards: audiences that are live (or all of them in a ?preview=1 view).
+const WHO_FOR = Object.keys(AUDIENCES).filter(k => AUDIENCES[k].ready || AUD_PREVIEW).map(k => ({ key: k, ...AUDIENCES[k].card }));
+const HERO_VIDEO = /^[\w-]{6,20}$/.test(AUD.heroVideo || '') ? AUD.heroVideo : 'wZPgfeMTX3k';
+const REC_PLAN = ['NOOB', 'PRO', 'HACKER'].includes(AUD.recommendedPlan) ? AUD.recommendedPlan : 'PRO';
+const SP = CFG.socialProof || {};
 // ── Showcase videos ── videos edited with the plugin, shown in the "נערך עם COEDIT" carousel.
 // { src: 'assets/videos/<name>.mp4', poster: 'assets/videos/<name>.jpg', title: 'short caption or empty' }.
 // Only the centred card plays its video; the others show the poster. It moves on when the video ends.
 // With no videos the section is hidden.
-const SHOWCASE_VIDEOS = [1, 2, 3, 4, 5, 6, 7, 8].map(n => ({ src: 'assets/videos/edit-' + n + '.mp4', poster: 'assets/videos/edit-' + n + '.jpg', title: '' }));
+// An audience page (?for=) can pick which of these it shows: audiences.<key>.gallery = [1, 4, 6].
+const SHOWCASE_VIDEOS = [1, 2, 3, 4, 5, 6, 7, 8].filter(n => !(AUD.gallery && AUD.gallery.length) || AUD.gallery.includes(n)).map(n => ({ src: 'assets/videos/edit-' + n + '.mp4', poster: 'assets/videos/edit-' + n + '.jpg', title: '' }));
 // ── "Try for free" install guide ── the video in step 3 of the popup. Leave src empty to hide it.
 // e.g. { src: 'assets/videos/install-guide.mp4', poster: 'assets/videos/install-guide.jpg' }
 const INSTALL_VIDEO = { src: 'assets/videos/install-guide.mp4', poster: 'assets/videos/install-guide.jpg' };
@@ -586,7 +761,8 @@ const TESTIMONIAL_MARQUEE_2 = [['שקד רחימי', '@_shaked_rahimi', 'חסכ�
 const TESTIMONIAL_MARQUEE = [['תמר יחזקל אורון', '@tamar.yeheskeloron','חתכתי סרטון של 40 דקות חומר גלם בפחות מרבע שעה. החיתוך השקט עובד מושלם.', 'צלמת'], ['נטע דבח', '@neta_photography','הכתוביות בעברית פשוט עובדות, בלי לתקן כל מילה מחדש.', 'צלמת'], ['Solair Motion', '@solair.motion','הזומים עם הסאונד נותנים לסרטון קצב שלא הייתי מגיע אליו לבד.', 'מושן דיזיינר']];
 class Component extends DCLogic {
   state = { yearly: false, after: false, videos: 12, raw: 15, manual: 90, openFaq: 0, tab: 'subs', showBar: false, packCat: 'cz', trialOpen: false, plugin: null, pluginState: 'idle', trialSend: 'idle', trialTo: '' };
-  track(name, props) { try { const w = W(); if (w.plausible) w.plausible(name, props ? { props } : undefined); } catch (e) {} }
+  // Plausible events. Audience and campaign (site-attribution.js) are added to every event's props.
+  track(name, props) { try { const w = W(); const all = Object.assign({}, w.COEDIT_ATTR_PROPS || {}, props || {}); if (w.plausible) w.plausible(name, Object.keys(all).length ? { props: all } : undefined); } catch (e) {} }
   submitTrialEmail(e) {
     e.preventDefault();
     if (this.state.trialSend === 'sending') return;
@@ -595,8 +771,15 @@ class Component extends DCLogic {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s.]+$/.test(email)) { this.setState({ trialSend: 'invalid' }); return; }
     this.setState({ trialSend: 'sending', trialTo: email });
     const done = result => { this.setState({ trialSend: result }); this.track('trial_email', { result }); };
+    // Which button, audience (?for=) and campaign (utm_*) brought this signup. COEDIT Cloud stores
+    // `source` (32 characters), so all four are packed into it: "button|audience|utm_source|utm_campaign".
+    // audience and utm also go as their own fields; the Cloud ignores them until it stores them.
+    const attr = W().COEDIT_ATTR || {};
+    const source = [this._trialSource || 'hero', attr.for, attr.utm_source, attr.utm_campaign]
+      .map(x => String(x || '').replace(/\|/g, '/')).join('|').replace(/\|+$/, '').slice(0, 32);
+    const utm = {}; ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(k => { if (attr[k]) utm[k] = attr[k]; });
     fetch(TRIAL_SIGNUP_API, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, source: this._trialSource || 'hero' }) })
+      body: JSON.stringify({ email, source, audience: attr.for || null, utm }) })
       .then(r => r.json().catch(() => ({})).then(j => {
         if (r.ok && TRIAL_MSG[j.status]) return done(j.status);
         const err = j && j.detail && j.detail.error;
@@ -634,6 +817,7 @@ class Component extends DCLogic {
     const frame = () => {
       const vh = w.innerHeight, sy = w.scrollY || document.documentElement.scrollTop || 0;
       if (!reduce) document.querySelectorAll('[data-px]').forEach(el => { const sp = parseFloat(el.dataset.px) || 0; const host = el.closest('section,header') || el.parentElement; const r = host.getBoundingClientRect(); let y; if (host.tagName === 'HEADER') { y = Math.max(0, -r.top) * sp; } else { const prog = (vh - r.top) / (vh + r.height); y = (Math.max(0, Math.min(1, prog)) - 0.5) * -sp * 1400; } el.style.translate = '0 ' + y.toFixed(1) + 'px'; });
+      if (!this.state.galleryOn && sy > 300) this.setState({ galleryOn: true });
       const p = document.getElementById('pricing');
       if (p) { const r = p.getBoundingClientRect(); if (!this.state.revealed && r.top < vh * 0.85 && r.bottom > 0) this.setState({ revealed: true }); const inP = r.top < vh && r.bottom > 0; const sb = sy > 600 && !inP; if (sb !== this.state.showBar) this.setState({ showBar: sb }); }
     };
@@ -669,6 +853,12 @@ class Component extends DCLogic {
     frame();
     this._t.push(w.setTimeout(frame, 400), w.setTimeout(() => { if (!this.state.revealed) this.setState({ revealed: true }); }, 2500));
     this.setState({ armed: true });
+    // Hero video: the still image shows first; the YouTube player starts a moment after the page has
+    // loaded. With Data Saver on, it waits for a tap.
+    const saveData = !!(w.navigator.connection && w.navigator.connection.saveData);
+    // The gallery's video (several MB) waits until the visitor scrolls (see frame) or a few seconds after load.
+    const startHero = () => { if (!saveData) this._t.push(w.setTimeout(() => this.setState({ heroVideoOn: true }), 800)); this._t.push(w.setTimeout(() => this.setState({ galleryOn: true }), 6000)); };
+    if (document.readyState === 'complete') startHero(); else w.addEventListener('load', startHero, { once: true });
     if (reduce) this.setState({ czStep: 3 }); else { let k = 0; this._cz = w.setInterval(() => { if (document.hidden) return; k = (k + 1) % 6; this.setState({ czStep: [0, 1, 2, 3, 3, 3][k] }); }, 1300); }
     if (!reduce) this._tl = w.setInterval(() => { if (document.hidden || Date.now() < (this._tlHold || 0)) return; this.setState(st => ({ tlAfter: !st.tlAfter })); }, 3600);
     this._car = w.setInterval(() => { const n = SHOWCASE_VIDEOS.length; if (!n || this._carHover || this._vidOn || document.hidden) return; this.setState(st => ({ slide: ((st.slide ?? 0) + 1) % n })); }, 8000);
@@ -703,7 +893,7 @@ class Component extends DCLogic {
     const tdata = SHOWCASE_VIDEOS;
     const N = tdata.length, cur = N ? (s.slide ?? 0) % N : 0;
     const mq = TESTIMONIAL_MARQUEE.map(([name, user, body, role], i) => ({ name, user, role: role || '', body, av: TESTIMONIAL_PHOTOS[i] ? 'center/cover no-repeat url(assets/reviews/' + TESTIMONIAL_PHOTOS[i] + '-avatar.webp)' : 'repeating-linear-gradient(135deg,#2a1716 0 5px,#341c1b 5px 10px)' }));
-    const heroFaces = mq.filter((r, i) => TESTIMONIAL_PHOTOS[i]).map(r => ({ av: r.av }));
+    const heroFaces = mq.filter((r, i) => TESTIMONIAL_PHOTOS[i]).map(r => ({ av: r.av, name: r.name }));
     const rep = (a, n) => Array.from({ length: n }, () => a).flat();
     // The row slides by half its width, so it must hold an even number of copies, each wider than the screen.
     const mqRow1 = rep(mq, Math.max(4, 2 * Math.ceil(12 / Math.max(1, mq.length))));
@@ -713,7 +903,7 @@ class Component extends DCLogic {
     const slides = tdata.map((vid, i) => { let off = i - cur; if (off > N / 2) off -= N; if (off < -N / 2) off += N; const ab = Math.abs(off), sg = Math.sign(off); const active = off === 0;
       // React leaves the muted attribute off, and browsers only autoplay muted video: mute and start it here.
       // While a video plays the timer waits for it to end; if the browser blocks it, the timer moves on.
-      return { src: vid.src, play: e => { const el = e.target; if (this._vid === el && !el.paused) return; this._vid = el; el.muted = !s.sound; const p = el.play(); if (p && p.then) p.then(() => { this._vidOn = true; }, () => { el.muted = true; el.play().then(() => { this._vidOn = true; }, () => {}); }); },
+      return { src: vid.src, playing: active && !!s.galleryOn, play: e => { const el = e.target; if (this._vid === el && !el.paused) return; this._vid = el; el.muted = !s.sound; const p = el.play(); if (p && p.then) p.then(() => { this._vidOn = true; }, () => { el.muted = true; el.play().then(() => { this._vidOn = true; }, () => {}); }); },
         ended: () => { this._vidOn = false; this.setState(st => ({ slide: ((st.slide ?? 0) + 1) % N })); }, posterBg: vid.poster ? 'url(' + vid.poster + ')' : 'none', title: vid.title || '', hasTitle: !!vid.title, active,
         tf: 'translateX(' + (off * (s.vw < 640 ? 120 : 230)) + 'px) translateZ(' + (-ab * (s.vw < 640 ? 160 : 120)) + 'px) rotateY(' + (-sg * Math.min(ab, 1) * 40) + 'deg) scale(' + (s.vw < 640 ? 0.86 : 1) + ')',
         z: 10 - ab, o: ab > (s.vw < 640 ? 1 : 2) ? 0 : 1, bd: active ? '#8a2c28' : '#2a2a2a', shL: off > 0 ? Math.min(.7, ab * .45) : 0, shR: off < 0 ? Math.min(.7, ab * .45) : 0,
@@ -724,30 +914,37 @@ class Component extends DCLogic {
     const hours = Math.max(0, s.videos * (s.manual - 10) / 60);
     const base = [
       { name: 'NOOB', who: 'למי שרק מתחיל', m: 99, cap: 30, cuts: 90 },
-      { name: 'PRO', who: 'לעורכים שעובדים על זה כל יום', m: 179, cap: 90, cuts: 300, rec: true },
+      { name: 'PRO', who: 'לעורכים שעובדים על זה כל יום', m: 179, cap: 90, cuts: 300 },
       { name: 'HACKER', who: 'לאולפנים ועורכים בנפח גבוה', m: 349, cap: 500, cuts: '1,000' }];
-    const tiers = base.map((t, i) => ({ ...t, rec: !!t.rec, cartHref: 'store.dc.html#cart?plan=' + t.name + '&yearly=' + (s.yearly ? 1 : 0), shown: s.anim ? s.anim[t.name] : (s.yearly ? Math.round(t.m * 0.8) : t.m), delay: (1 + i * 0.25) + 's', match: false, showSave: s.yearly, save: Math.round(t.m * 0.2 * 12).toLocaleString(),
+    const tiers = base.map((t, i) => ({ ...t, rec: t.name === REC_PLAN, click: () => this.track('cta_click', { cta: 'plan', plan: t.name, yearly: s.yearly ? 'yes' : 'no' }), cartHref: 'store.dc.html#cart?plan=' + t.name + '&yearly=' + (s.yearly ? 1 : 0), shown: s.anim ? s.anim[t.name] : (s.yearly ? Math.round(t.m * 0.8) : t.m), delay: (1 + i * 0.25) + 's', match: false, showSave: s.yearly, save: Math.round(t.m * 0.2 * 12).toLocaleString(),
       price: s.yearly ? Math.round(t.m * 0.8) : t.m, strike: s.yearly ? '₪' + t.m : '',
       billNote: s.yearly ? 'מחויב שנתית · ₪' + Math.round(t.m * 0.8 * 12).toLocaleString() + ' לשנה' : 'מחויב חודשית',
-      bg: t.rec ? '#1f1414' : '#1a1a1a', bd: t.rec ? '#8a2c28' : '#2a2a2a', sh: t.rec ? '0 0 60px rgba(217,58,53,.18)' : 'none',
-      btnBg: t.rec ? 'linear-gradient(180deg,#e2504a,#c42e2a)' : '#232323', btnBd: t.rec ? '#c42e2a' : '#333', btnSh: t.rec ? '0 0 24px rgba(220,60,55,.4)' : 'none' }));
+      bg: t.name === REC_PLAN ? '#1f1414' : '#1a1a1a', bd: t.name === REC_PLAN ? '#8a2c28' : '#2a2a2a', sh: t.name === REC_PLAN ? '0 0 60px rgba(217,58,53,.18)' : 'none',
+      btnBg: t.name === REC_PLAN ? 'linear-gradient(180deg,#e2504a,#c42e2a)' : '#232323', btnBd: t.name === REC_PLAN ? '#c42e2a' : '#333', btnSh: t.name === REC_PLAN ? '0 0 24px rgba(220,60,55,.4)' : 'none' }));
     // Credits belong to ONE usage category (Terms §8); the chosen category goes to the store with the pack.
     const CAT_ONLY = { cz: 'לכתוביות ולזומים בלבד', cuts: 'לחיתוכים בלבד (Smart Cuts וחיתוך שתיקות)' }, cat = s.packCat === 'cuts' ? 'cuts' : 'cz';
-    const packs = [[50,20],[150,50],[400,100],[1000,200]].map(([n, p], i) => ({ cartHref: 'store.dc.html#cart?pack=' + n + '&cat=' + cat, n: n.toLocaleString(), price: p, per: (p / n).toFixed(2), best: i === 3, bg: i === 3 ? '#1f1414' : '#1a1a1a', bd: i === 3 ? '#8a2c28' : '#2a2a2a' }));
+    // Each category has its own packs and prices (site-config.js creditPacks, the same list as the Cloud's).
+    // ₪ per credit is rounded to 2 decimals; the largest pack of the category is "הכי משתלם".
+    const catPacks = ((CFG.creditPacks || {})[cat] || []);
+    const packs = catPacks.map(([n, p], i) => ({ click: () => this.track('cta_click', { cta: 'pack', pack: n + ':' + cat }), cartHref: 'store.dc.html#cart?pack=' + n + '&cat=' + cat, n: n.toLocaleString(), price: p, per: (Math.round(p / n * 100 + 1e-9) / 100).toFixed(2), best: i === catPacks.length - 1, bg: i === catPacks.length - 1 ? '#1f1414' : '#1a1a1a', bd: i === catPacks.length - 1 ? '#8a2c28' : '#2a2a2a' }));
     const faqData = [
       ['זה מתאים גם למי שרק מתחיל לערוך?', 'כן. ברירות המחדל כבר מכוונות לתוצאה מקצועית: פותחים את הפאנל, מאשרים, וממשיכים. NOOB נבנה בדיוק בשביל זה.'],
       ['האם החיתוכים מתבצעים בלי שאראה אותם?', 'לא. כל כלי מציג תצוגה מקדימה: ציר זמן עם החיתוכים או תמליל עם המילים המסומנות. אפשר לבטל סימון, לשנות הגדרות ולאשר רק כשזה נראה נכון.'],
+      // ✏️ TODO DRAFT for the owner's review (added 2026-11-10): the question and the answer. Shown only
+      // once site-config.js says faqDraftApproved: true.
+      ...(CFG.faqDraftApproved ? [['למה לא להשתמש בכלים המובנים של פרימייר או בפלאגינים אחרים?', 'כי COEDIT נבנה לעברית מההתחלה: תמלול מדויק בעברית וכתוביות מימין לשמאל, כולל סגנונות מילה במילה. אתם מאשרים כל חיתוך לפני שהוא קורה, אחרי תצוגה מקדימה, ושום דבר לא נוגע בטיימליין בלי אישור. הכתוביות נשארות ניתנות לעריכה: MOGRT ב-Premiere, שכבות טקסט עם אותן תבניות ב-After Effects, ותמיד גם SRT. והזומים מגיעים עם אפקטי סאונד מסונכרנים, בלי לגעת בקיפריים.']] : []),
       ['זה עובד בעברית?', 'כן. התמלול מזהה את השפה אוטומטית ותומך בעברית מלאה, כולל כתוביות מימין לשמאל.'],
       ['מה ההבדל בין כתוביות וזומים לבין Smart Cuts?', 'לכל מסלול שתי מכסות דקות: אחת לכתוביות וזומים, ואחת לחיתוך שתיקות וטייקים חכמים. הדקות נספרות לפי אורך החומר שעובד.'],
       ['אפשר לבטל?', 'כן. מבטלים בכל עת, והביטול עוצר את החידושים והחיובים הבאים. הגישה נמשכת עד סוף התקופה שכבר שולמה. אפשר גם לבקש החזר תוך 14 יום מהרכישה. הפרטים בתנאי השימוש.'],
       ['מה קורה כשנגמרות לי הדקות?', 'אפשר לקנות חבילת קרדיטים חד פעמית בכל רגע, לקטגוריה שבה נגמרו הדקות (כתוביות וזומים, או חיתוכים), או לשדרג מסלול.'],
-      ['זה עובד גם בAfter Effects, DaVinci Resolve או CapCut?', 'COEDIT וCOFRAMES עובדים לפרימיר פרו ואפטר אפקטס נכון לעכשיו, עדכונים לעוד תוכנות עריכה יצאו בהמשך נודיע על כך בהמשך'],
-      ['מה זה COFRAMES?', 'תוסף נוסף לPremiere Pro ולAfter Effects שמחליק Keyframes בלחיצה אחת, עם חמש רמות החלקה ועורך עקומה מדויק. בתקופת ההשקה הוא מגיע במתנה עם כל מנוי, וקישור ההורדה שלו נשלח במייל הרכישה.']];
+      ['זה עובד גם ב-After Effects, DaVinci Resolve או CapCut?', 'COEDIT וCOFRAMES עובדים לפרימיר פרו ואפטר אפקטס נכון לעכשיו, עדכונים לעוד תוכנות עריכה יצאו בהמשך נודיע על כך בהמשך'],
+      ['מה זה COFRAMES?', 'תוסף נוסף ל-Premiere Pro ול-After Effects שמחליק Keyframes בלחיצה אחת, עם חמש רמות החלקה ועורך עקומה מדויק. ' + (OFFER_LINE ? OFFER_LINE + '. ' : '') + 'קישור ההורדה שלו נשלח במייל הרכישה.']];
+    W().__COEDIT_FAQ = faqData; // read by tools/prerender.mjs (the static copy and the FAQ structured data)
     const faqs = faqData.map(([q, a], i) => { const open = s.openFaq === i; return { q, a, open, sign: open ? '▴' : '▾', bg: open ? '#1f1414' : '#1a1a1a', bd: open ? '#5a2220' : '#2a2a2a', toggle: () => this.setState({ openFaq: open ? -1 : i }) }; });
     const ba = s.after ? on : off, bb = s.after ? off : on, ym = s.yearly ? on : off, mm = s.yearly ? off : on;
     return {
       rv: (s.revealed || !s.armed) ? { o: 1, b: '0px', y: '0px' } : { o: 0, b: '10px', y: '-20px' }, pillRight: s.yearly ? '144px' : '4px',
-      includes: [{ t: 'חיתוך שתיקות וטייקים חכמים', c: '#bbb' }, { t: 'זומים אוטומטיים עם אפקטי סאונד', c: '#bbb' }, { t: 'כתוביות מעוצבות בעברית', c: '#bbb' }, { t: 'ייצוא MOGRT או SRT', c: '#bbb' }, { t: 'COFRAMES במתנה (השקה)', c: '#fff' }],
+      includes: [{ t: 'חיתוך שתיקות וטייקים חכמים', c: '#bbb' }, { t: 'זומים אוטומטיים עם אפקטי סאונד', c: '#bbb' }, { t: 'כתוביות מעוצבות בעברית', c: '#bbb' }, { t: 'ייצוא MOGRT או SRT', c: '#bbb' }].concat(OFFER_LINE ? [{ t: OFFER_LINE, c: '#fff' }] : []),
       navAccountHref: s.navLogged ? 'store.dc.html#account' : 'store.dc.html#login', navAccountLabel: s.navLogged ? 'החשבון שלי' : 'התחברות', navCartCount: s.navCart || 0, navHasCart: (s.navCart || 0) > 0, showBar: s.showBar, isA: v === 'A', isB: v === 'B', isC: v === 'C',
       panelItems: [{ icon: 'Aa', t: 'כתוביות חכמות', d: 'תמלל, סקור, עצב וייצא' }, { icon: '✳', t: 'טייקים חכמים', d: 'זהה טייקים כפולים' }, { icon: '✂', t: 'חיתוך שתיקות', d: 'הסר חלקים שקטים' }],
       clipsBefore: before, clipsAfter: afterC, afterPct,
@@ -771,12 +968,29 @@ class Component extends DCLogic {
       hoursSaved: hours.toFixed(hours < 10 ? 1 : 0), totalMin: total.toLocaleString(), recTier: rec, recNote,
       carHoverOn: () => { this._carHover = true; }, carHoverOff: () => { this._carHover = false; },
       mqRow1, mqRow2, mqHas2: mqRow2.length > 0, heroFaces, hasVideos: N > 0,
+      // Hero (site-config.js + the ?for= audience)
+      h1a: (AUD.h1 && AUD.h1[0]) || 'הטיימליין שלכם.', h1b: (AUD.h1 && AUD.h1[1]) || 'בלי השומן.',
+      heroSub: AUD.sub || 'חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, ישירות בתוך Premiere Pro ו-After Effects, בכמה לחיצות.',
+      hasCapLine: !!CFG.heroCaptionsLine, capLine: CFG.heroCaptionsLine || '',
+      heroVideoOn: !!s.heroVideoOn, heroCursor: s.heroVideoOn ? 'default' : 'pointer', heroVideoPlay: () => { if (!s.heroVideoOn) this.setState({ heroVideoOn: true }); },
+      heroPosterBg: 'center/cover no-repeat url(' + (AUD.heroVideo && HERO_VIDEO === AUD.heroVideo ? 'https://i.ytimg.com/vi/' + HERO_VIDEO + '/hqdefault.jpg' : 'assets/hero-poster.jpg') + ')',
+      heroVideoSrc: 'https://www.youtube-nocookie.com/embed/' + HERO_VIDEO + '?enablejsapi=0&autoplay=1&mute=1&loop=1&playlist=' + HERO_VIDEO + '&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3',
+      // Social proof: a real user count, and/or the real reviewers' photos. Neither → hidden.
+      spOn: !!(SP.userCount > 0 || (SP.showReviewerFaces && heroFaces.length)),
+      spFacesOn: !!(SP.showReviewerFaces && heroFaces.length), spFaces: heroFaces,
+      spText: SP.userCount > 0 ? Number(SP.userCount).toLocaleString('he-IL') + '+ ' + (SP.userCountText || '') : (SP.facesText || ''),
+      // Feature order: cuts first unless the audience says captions first.
+      cutsOrder: AUD.featuresFirst === 'captions' ? 2 : 1, czOrder: AUD.featuresFirst === 'captions' ? 1 : 2,
+      // "למי זה מתאים"
+      hasWhoFor: WHO_FOR.length > 0, whoFor: WHO_FOR.map(a => ({ ...a, click: () => this.track('cta_click', { cta: 'who_for', target: a.key }), href: '/?for=' + encodeURIComponent(a.key) + (AUD_PREVIEW ? '&preview=1' : '') + '#top' })),
+      whoForEyebrow: (CFG.whoFor || {}).eyebrow || '', whoForTitle: (CFG.whoFor || {}).title || '',
       slides, slideNext: () => { this._vidOn = false; this.setState({ slide: (cur + 1) % N }); }, slidePrev: () => { this._vidOn = false; this.setState({ slide: (cur - 1 + N) % N }); },
       toggleSound: e => { e.stopPropagation(); const on = !s.sound; if (this._vid) { this._vid.muted = !on; if (on && this._vid.paused) this._vid.play().catch(() => {}); } this.setState({ sound: on }); }, stopEv: e => e.stopPropagation(),
       soundIcon: s.sound ? '🔊' : '🔇', soundText: s.sound ? 'כיבוי סאונד' : 'הפעלת סאונד', soundLabel: s.sound ? 'כיבוי סאונד' : 'הפעלת סאונד',
       dragStart: e => { this._dx = e.clientX; }, dragCancel: () => { this._dx = null; },
       dragEnd: e => { if (this._dx == null) return; const d = e.clientX - this._dx; this._dx = null; if (Math.abs(d) > 40) { this._vidOn = false; this.setState({ slide: (cur + (d < 0 ? 1 : -1) + N) % N }); } },
       tiers, packs, faqs,
+      hasOffer: !!OFFER_LINE, offerText: OFFER_LINE, offerShort: OFFER.short || '', offerSentence: OFFER_LINE ? OFFER_LINE + '.' : '', offerCardTitle: OFFER_LINE || 'COFRAMES',
       trialOpen: !!s.trialOpen, emailMode: s.trialMode !== 'guide', guideMode: s.trialMode === 'guide',
       trialSentOk: s.trialSend === 'sent', showGuide: () => this.showGuide(), openTrial: () => this.openTrial('hero'), ctaTrial: e => { e.preventDefault(); const t = e.currentTarget, sec = t && t.closest && t.closest('section,header'); this.openTrial(sec ? (sec.id || (sec.tagName === 'HEADER' ? 'hero' : 'section')) : 'bar'); }, closeTrial: () => this.closeTrial(),
       pluginReady: s.pluginState === 'ready', pluginLoading: s.pluginState === 'loading', pluginFailed: s.pluginState === 'failed',
