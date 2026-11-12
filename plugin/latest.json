@@ -1,7 +1,7 @@
 {
-  "version": "0.1.8",
-  "url": "https://getcoedit.com/download/COEDIT-v0.1.8.zxp",
-  "sha256": "04098964efbb523fc5ff7594c3cc6403e54a1ba64e77553d1eee8747eff5e59a",
-  "bytes": 18206130,
-  "notes": "ב-Mac כבר לא צריך להתקין FFmpeg בנפרד: הוא כלול בתוסף, ל-Premiere ול-After Effects."
+  "version": "0.1.9",
+  "url": "https://getcoedit.com/download/COEDIT-v0.1.9.zxp",
+  "sha256": "eec8a201318639e183e6b223015999c4dc57bb0984d42d8de11c98638e85509b",
+  "bytes": 18229620,
+  "notes": "חדש: בזמן עיצוב הכתוביות, פס LIVE אדום בראש המסך מראה שכתובית לדוגמה נמצאת בתצוגה מקדימה, ואיפה היא. תיקון: בחיתוך של ציר עם כמה מסלולים, כל המסלולים נשארים מסונכרנים. Smart Cuts: המשפט האחרון בסרטון נחתך כשהוא בבירור מיותר, בדיוק כמו המשפט הראשון."
 }
