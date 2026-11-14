@@ -26,7 +26,8 @@ const between = (s, from, to, what) => {
   return [a, b + to.length];
 };
 const PLACEHOLDER = 'border:2px dashed #6b5a1e;border-radius:10px;background:#1c1a10;color:#e8d27a;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:16px;line-height:1.6';
-const DV_BADGE = '<span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:50%;background:conic-gradient(#e64b3c 0 33%,#f2b134 0 66%,#3a8ee6 0);display:inline-block"></span>';
+// The DaVinci Resolve app icon (the image has white corners: the radius clips them, as the icon's own).
+const DV_BADGE = '<img src="assets/davinci-resolve.png" alt="" aria-hidden="true" width="20" height="20" style="width:20px;height:20px;flex:none;border-radius:22%;display:inline-block">';
 
 // ✏️ The answer for Studio users: a draft, factual, every claim from the Blackmagic guide cited below.
 const R_CAPTIONS_ANSWER = 'ב-DaVinci Resolve Studio יש תמלול וכתוביות אוטומטיות, ומגרסה 20 גם עברית, דרך חבילת שפות שלפי Blackmagic חלק מהשפות בה עדיין בבטא. '
