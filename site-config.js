@@ -44,28 +44,25 @@ window.COEDIT_CONFIG = {
   faqDraftApproved: false,
 
   // ── The DaVinci Resolve page: getcoedit.com/resolve (resolve.dc.html) ──────────────────────
-  // A HIDDEN DRAFT until launched: noindex, linked from nowhere, and a "טיוטה" strip on top. While
-  // launched is false every empty slot below shows a marked ✏️ placeholder; once launched, an empty
-  // slot hides instead. The page is built from the main page by tools/build-resolve.mjs (run it again
-  // after changing the main page's pricing or trial popup). Never use Premiere footage here.
+  // THE MAIN PAGE with its copy adapted to DaVinci Resolve: same sections, reviews, gallery, pricing
+  // and trial popup. Built by tools/build-resolve.mjs (run it again after any change to index.html).
+  // A HIDDEN DRAFT until launched: noindex, linked from nowhere, and a "טיוטה" strip on top; while
+  // launched is false the empty slots below show a marked ✏️ placeholder.
   resolve: {
     launched: false,                    // ✏️ launching is a separate approval
-    // ✏️ The hero's before/after video INSIDE DaVinci Resolve: a YouTube id, or an mp4 under assets/.
+    // ✏️ The hero video: the new demo INSIDE DaVinci Resolve. A YouTube id, or an mp4 under assets/.
     heroVideo: { youtube: '', src: '', poster: '' },
-    // ✏️ System requirements (supported editions, versions, Windows/Mac). 'hero' shows it right under
-    // the hero's button, before anyone signs up; 'section' gives it its own block lower down.
+    // ✏️ System requirements (supported editions, versions, Windows/Mac), shown right under the hero's
+    // button ('hero'), before anyone signs up. "short" is the one-liner in the trial popup.
     // Never say it works on the free edition unless that is confirmed for the launch version.
-    requirements: { placement: 'hero', text: '' },
-    // ✏️ Screenshots from DaVinci Resolve only (assets/resolve/...).
-    screenshots: { smartCuts: '', silentCuts: '', captions: '', zooms: '' },
-    // ✏️ Videos edited with COEDIT in Resolve: [{ src: 'assets/videos/resolve-1.mp4', poster: '…jpg' }]
-    gallery: [],
-    // ✏️ Resolve editors only, real, with their approval: [{ name, role, handle, quote, photo }]
-    testimonials: [],
-    // ✏️ FAQ answers that depend on the launch version (the other two answers are in the page).
+    requirements: { placement: 'hero', text: '', short: '' },
+    // ✏️ The panel screenshot from DaVinci Resolve (replaces the main page's Premiere one).
+    screenshots: { panel: '' },
+    // ✏️ FAQ answers that depend on the launch version (the others are in the page).
     faq: { free: '', versions: '', install: '' },
-    // COFRAMES works only in Premiere Pro and After Effects, so its launch gift is off on this page.
-    showCoframesGift: false,
+    // The COFRAMES gift shows here as on the main page (note: COFRAMES works in Premiere Pro and
+    // After Effects, not in DaVinci Resolve). false hides it on this page only.
+    showCoframesGift: true,
   },
 
   // ── Subscription plans: monthly price in ₪ incl. VAT, minutes per month ────────────────────

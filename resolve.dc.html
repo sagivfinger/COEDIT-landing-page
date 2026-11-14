@@ -43,8 +43,9 @@ html body [class*="omnisend-form-"] button { font-weight: 700 !important; }
 <script>document.documentElement.className+=' js';document.addEventListener('DOMContentLoaded',function(){var f=document.getElementById('static-fallback');if(f)f.parentNode.removeChild(f);});</script>
 <!-- Site settings (text, offer, audiences) and where the visitor came from; both before support.js. -->
 <script src="./site-config.js"></script>
+<script>window.COEDIT_PAGE = 'resolve';</script>
 <script src="./site-attribution.js"></script>
-<script>window.COEDIT_PAGE = 'resolve'; (window.COEDIT_ATTR_PROPS = window.COEDIT_ATTR_PROPS || {}).page = 'resolve';</script>
+<script>(window.COEDIT_ATTR_PROPS = window.COEDIT_ATTR_PROPS || {}).page = 'resolve';</script>
 <script src="./support.js"></script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-hw61AMuMfcT7n7xry4d3u.js"></script>
@@ -131,110 +132,234 @@ input[type=range]{accent-color:#d93a35;width:100%}
 <div dir="rtl" style="min-height:100vh;background:#121212;overflow:clip">
 
 <dc-import name="SiteNav" style="position:relative;z-index:40;display:block" hint-size="100%,66px"></dc-import>
-
-<!-- The DaVinci Resolve page's own sections (hero to testimonials). tools/build-resolve.mjs puts them
-     between the shared nav and the main page's pricing section. ✏️ All copy is a draft for review. -->
 <sc-if value="{{ rDraft }}" hint-placeholder-val="{{ true }}">
 <div style="background:#2a2410;border-bottom:1px solid #6b5a1e;color:#f0dc8a;text-align:center;font-size:14px;font-weight:700;padding:10px 16px">טיוטה · הדף לא פורסם ולא מקושר מאף מקום · ✏️ מסמן תוכן שעוד צריך להשלים</div>
 </sc-if>
 
 <header style="position:relative;overflow:hidden;padding:clamp(48px,8vw,90px) 24px clamp(56px,9vw,100px);background:linear-gradient(180deg,#1a0f0f,#121212 70%)">
   <div data-px="0.5" style="position:absolute;inset:-10% -10% auto;height:90%;background:radial-gradient(ellipse 50% 55% at 30% 40%,rgba(217,58,53,.28),transparent 70%);pointer-events:none"></div>
+  <div data-px="0.3" dir="ltr" style="position:absolute;top:40px;left:0;right:0;text-align:center;font-family:Heebo,sans-serif;font-weight:900;font-size:22vw;line-height:1;color:transparent;-webkit-text-stroke:1px #2e1817;pointer-events:none;user-select:none">COEDIT</div>
   <div data-px="0.1" style="position:relative;max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px;align-items:center">
     <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:22px">
-      <span style="display:inline-flex;align-items:center;gap:10px;align-self:flex-start;font-size:14px;font-weight:700;color:#ddd"><span aria-hidden="true" style="width:22px;height:22px;flex:none;border-radius:50%;background:conic-gradient(#e64b3c 0 33%,#f2b134 0 66%,#3a8ee6 0);display:inline-block"></span>DaVinci Resolve</span>
-      <h1 style="margin:0;font-size:clamp(40px,5.2vw,72px);font-weight:900;line-height:1.05;letter-spacing:-.02em">הפלאגין שעורכי <span style="color:#e2504a">דווינצ'י</span> חיכו לו</h1>
-      <p style="margin:0;font-size:19px;line-height:1.6;color:#bbb;max-width:540px;text-wrap:pretty">חיתוך טייקים ושתיקות, כתוביות מעוצבות בעברית וזומים אוטומטיים, ישר בתוך DaVinci Resolve.</p>
+      
+      
+      <!-- Social proof: driven by site-config.js (socialProof). With no real number and no reviewer photos, nothing shows. -->
+      <sc-if value="{{ spOn }}" hint-placeholder-val="{{ true }}">
+      <a href="#reviews" style="display:inline-flex;align-items:center;gap:12px;align-self:flex-start;color:#fff;text-decoration:none">
+        <sc-if value="{{ spFacesOn }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;padding-inline-start:10px"><sc-for list="{{ spFaces }}" as="f" hint-placeholder-count="3"><span role="img" aria-label="{{ f.name }}" title="{{ f.name }}" style="width:34px;height:34px;flex:none;border-radius:50%;border:2px solid #1a0f0f;margin-inline-start:-10px;background:{{ f.av }}"></span></sc-for></span></sc-if>
+        <span style="font-size:14px;line-height:1.4;color:#fff">{{ spText }}</span>
+      </a>
+      </sc-if>
+      <h1 style="margin:0;font-size:clamp(42px,5.6vw,78px);font-weight:900;line-height:1.02;letter-spacing:-.02em">הפלאגין שעורכי <span style="color:#e2504a">דווינצ'י</span> חיכו לו</h1>
+      <p style="margin:0;font-size:19px;line-height:1.6;color:#bbb;max-width:520px;text-wrap:pretty">חיתוך טייקים ושתיקות, כתוביות מעוצבות בעברית וזומים אוטומטיים, ישר בתוך DaVinci Resolve.</p>
+      <!-- The Hebrew captions line: site-config.js heroCaptionsLine. -->
+      <sc-if value="{{ hasCapLine }}" hint-placeholder-val="{{ true }}"><div style="display:inline-flex;align-items:center;gap:10px;align-self:flex-start;max-width:100%;background:#1f1414;border:1px solid #5a2220;border-radius:999px;padding:6px 8px 6px 16px;font-size:15px;line-height:1.35;font-weight:700;color:#fff"><span aria-hidden="true" style="flex:none;display:inline-flex;align-items:center;justify-content:center;height:24px;padding:0 9px;border-radius:999px;background:#d93a35;font-size:12px;font-weight:800">עב</span>{{ capLine }}</div></sc-if>
       <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
         <a href="#trial" onClick="{{ ctaTrial }}" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">התחילו בחינם</a>
       </div>
-      <!-- Requirements, right under the button (resolve.requirements.placement = 'hero'). -->
+      <div style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:15px;color:#cfcfcf;align-items:center"><span style="display:inline-flex;align-items:center;gap:7px"><span style="color:#e2504a;font-weight:800">✓</span><span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:50%;background:conic-gradient(#e64b3c 0 33%,#f2b134 0 66%,#3a8ee6 0);display:inline-block"></span>עובד בתוך DaVinci Resolve</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>ניסיון חינם</span><sc-if value="{{ hasOffer }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>{{ offerText }}</span></sc-if></div>
+      <!-- Requirements, right under the button (site-config.js resolve.requirements, placement 'hero'). -->
       <sc-if value="{{ rReqHero }}" hint-placeholder-val="{{ true }}">
         <div style="align-self:stretch;max-width:560px;background:#1a1a1a;border:1px solid #3a2a2a;border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start"><span aria-hidden="true" style="flex:none;font-size:18px">ⓘ</span><div style="display:flex;flex-direction:column;gap:4px"><b style="font-size:15px;color:#fff">דרישות מערכת</b><span style="font-size:14px;line-height:1.6;color:{{ rReqColor }}">{{ rReqText }}</span></div></div>
       </sc-if>
     </div>
-    <div data-px="-0.08" style="position:relative;flex:1.6 1 560px;min-width:0;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid #3a2222;background:#0c0c0c;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(217,58,53,.12)">
-      <sc-if value="{{ rHeroYt }}" hint-placeholder-val="{{ false }}"><iframe src="{{ rHeroYtSrc }}" title="COEDIT ב-DaVinci Resolve" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" frameborder="0" style="position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none"></iframe></sc-if>
-      <sc-if value="{{ rHeroMp4 }}" hint-placeholder-val="{{ false }}"><video src="{{ rHeroSrc }}" poster="{{ rHeroPoster }}" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video></sc-if>
-      <sc-if value="{{ rHeroPh }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:14px;border:2px dashed #6b5a1e;border-radius:10px;background:#1c1a10;color:#e8d27a;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:16px;line-height:1.6">✏️ סרטון לפני/אחרי של COEDIT בתוך הממשק של DaVinci Resolve<br>(לא צילומי Premiere)</div></sc-if>
-    </div>
+    <div data-px="-0.08" onClick="{{ heroVideoPlay }}" style="position:relative;flex:1.6 1 560px;min-width:0;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid #3a2222;background:#0c0c0c;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(217,58,53,.12);cursor:{{ heroCursor }}"><sc-if value="{{ rHeroYt }}" hint-placeholder-val="{{ false }}"><iframe src="{{ rHeroYtSrc }}" title="COEDIT ב-DaVinci Resolve" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" frameborder="0" style="position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none"></iframe></sc-if><sc-if value="{{ rHeroMp4 }}" hint-placeholder-val="{{ false }}"><video src="{{ rHeroSrc }}" poster="{{ rHeroPoster }}" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video></sc-if><sc-if value="{{ rHeroPh }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:14px;border:2px dashed #6b5a1e;border-radius:10px;background:#1c1a10;color:#e8d27a;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:16px;line-height:1.6">✏️ סרטון דמו חדש של COEDIT בתוך DaVinci Resolve</div></sc-if></div>
   </div>
 </header>
 
-<section style="padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
-  <div style="max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:22px;text-align:center;align-items:center">
-    <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">מכירים את זה?</span>
-    <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance">דווינצ'י מעולה לעריכה. <span style="color:#e2504a">לעברית, פחות.</span></h2>
-    <p style="margin:0;font-size:18px;line-height:1.75;color:#a5a5a5;text-wrap:pretty">כתוביות בעברית מקלידים ומתזמנים ביד, שורה אחרי שורה, ומתקנים כל מילה שנהפכה. טייקים חוזרים ושתיקות מנקים בטיימליין, קליפ אחרי קליפ. וכל הערב הולך על עבודה שאף אחד לא רואה בסרטון הסופי.</p>
-    <a href="#trial" onClick="{{ ctaTrial }}" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4)">התחילו בחינם</a>
+
+
+<section id="reviews" style="position:relative;overflow:hidden;padding:60px 0 0">
+  <div dir="ltr" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px">
+      <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqL 60s linear infinite" style-hover="animation-play-state:paused">
+        <sc-for list="{{ mqRow1 }}" as="r" hint-placeholder-count="8">
+            <div dir="rtl" style="flex:none;width:360px;margin-right:16px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
+              <div style="display:flex;align-items:center;gap:14px"><span style="width:64px;height:64px;flex:none;border-radius:50%;background:{{ r.av }};border:2px solid #3a2222"></span><div style="display:flex;flex-direction:column;gap:2px"><b style="font-size:17px;color:#fff">{{ r.name }}</b><span style="font-size:13px;font-weight:700;color:#e2504a">{{ r.role }}</span><span dir="ltr" style="font-size:14px;color:#999;text-align:right">{{ r.user }}</span></div></div>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:#ddd">{{ r.body }}</p>
+            </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ mqHas2 }}" hint-placeholder-val="{{ false }}">
+      <div dir="ltr" style="display:flex;width:max-content;padding:7px 0;will-change:transform;animation:mqR 70s linear infinite" style-hover="animation-play-state:paused">
+        <sc-for list="{{ mqRow2 }}" as="r" hint-placeholder-count="8">
+            <div dir="rtl" style="flex:none;width:360px;margin-right:16px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;cursor:pointer;transition:border-color .2s" style-hover="border-color:#8a2c28">
+              <div style="display:flex;align-items:center;gap:14px"><span style="width:64px;height:64px;flex:none;border-radius:50%;background:{{ r.av }};border:2px solid #3a2222"></span><div style="display:flex;flex-direction:column;gap:2px"><b style="font-size:17px;color:#fff">{{ r.name }}</b><span style="font-size:13px;font-weight:700;color:#e2504a">{{ r.role }}</span><span dir="ltr" style="font-size:14px;color:#999;text-align:right">{{ r.user }}</span></div></div>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:#ddd">{{ r.body }}</p>
+            </div>
+        </sc-for>
+      </div>
+      </sc-if>
+    <div style="position:absolute;inset:0 auto 0 0;width:22%;background:linear-gradient(90deg,#121212,transparent);pointer-events:none"></div>
+    <div style="position:absolute;inset:0 0 0 auto;width:22%;background:linear-gradient(270deg,#121212,transparent);pointer-events:none"></div>
   </div>
 </section>
 
-<section style="padding:clamp(64px,10vw,110px) 24px">
-  <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
-    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
-      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">מה COEDIT עושה בדווינצ'י</span>
-      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance">ארבעה כלים. <span style="color:#e2504a">פאנל אחד.</span></h2>
+<section style="position:relative;overflow:hidden;padding:0">
+  <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));align-items:stretch">
+    <div data-px="0.06" style="display:flex;flex-direction:column;justify-content:center;gap:22px;padding:clamp(64px,10vw,110px) 24px;padding-inline-start:max(24px,calc(50vw - 600px));padding-inline-end:clamp(24px,4vw,48px)">
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">שעות על חיתוך שתיקות וכתוביות ידניות? <span style="color:#e2504a">זו הדרך הישנה.</span></h2>
+      <p style="margin:0;font-size:18px;line-height:1.7;color:#a5a5a5;text-wrap:pretty">אתם מכירים את זה: גוללים בטיימליין, מחפשים כל נשימה, חותכים טייק אחרי טייק, מקלידים כתוביות מילה אחר מילה ומזיזים קיפריימים לזום. העבודה השחורה הזאת אוכלת את רוב הזמן, והיא לא מה שעושה את הסרטון טוב. COEDIT לוקח אותה מכם, כדי שתתעסקו בקצב, בסיפור ובלקוח הבא.</p>
+      <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:18px">
-      <sc-for list="{{ rFeatures }}" as="f" hint-placeholder-count="4">
-        <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
-          <div style="position:relative;aspect-ratio:16/9;background:#0c0c0c">
-            <sc-if value="{{ f.hasShot }}" hint-placeholder-val="{{ false }}"><img src="{{ f.shot }}" alt="{{ f.title }} ב-DaVinci Resolve" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></sc-if>
-            <sc-if value="{{ f.ph }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:12px;border:2px dashed #6b5a1e;border-radius:10px;background:#1c1a10;color:#e8d27a;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;font-size:14px;line-height:1.6"><span>✏️ צילום מסך מ-DaVinci Resolve: {{ f.title }}</span></div></sc-if>
-          </div>
-          <div style="padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px">
-            <span style="font-size:12px;letter-spacing:.2em;color:#d93a35">{{ f.eyebrow }}</span>
-            <b style="font-size:21px;color:#fff">{{ f.title }}</b>
-            <p style="margin:0;font-size:15px;line-height:1.7;color:#999;text-wrap:pretty">{{ f.text }}</p>
-          </div>
-        </div>
+    <div style="position:relative;min-height:clamp(420px,95vw,760px);overflow:hidden">
+      <div style="position:absolute;left:-10%;right:-10%;bottom:-30%;height:80%;background:radial-gradient(ellipse 60% 55% at 50% 100%,rgba(217,58,53,.45) 0%,rgba(217,58,53,.12) 45%,transparent 75%);pointer-events:none"></div>
+      <sc-if value="{{ rPanelHas }}" hint-placeholder-val="{{ false }}"><img data-px="0.04" loading="lazy" decoding="async" src="{{ rPanelSrc }}" alt="פאנל COEDIT בתוך DaVinci Resolve" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(-4deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)"></sc-if><sc-if value="{{ rPanelPh }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:12% 6%;border:2px dashed #6b5a1e;border-radius:10px;background:#1c1a10;color:#e8d27a;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:16px;line-height:1.6">✏️ צילום מסך של הפאנל של COEDIT בתוך DaVinci Resolve</div></sc-if>
+    </div>
+  </div>
+</section>
+
+<!-- "למי זה מתאים": one card per audience that is live (site-config.js: audiences, whoFor). Hidden while none is. -->
+<sc-if value="{{ hasWhoFor }}" hint-placeholder-val="{{ false }}">
+<section id="who" style="padding:clamp(64px,10vw,110px) 24px;border-top:1px solid #1f1f1f">
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">{{ whoForEyebrow }}</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance">{{ whoForTitle }}</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+      <sc-for list="{{ whoFor }}" as="a" hint-placeholder-count="3">
+        <a href="{{ a.href }}" onClick="{{ a.click }}" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;color:#ececec;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#8a2c28;transform:translateY(-2px)">
+          <span aria-hidden="true" style="font-size:30px;line-height:1">{{ a.icon }}</span>
+          <b style="font-size:19px;color:#fff">{{ a.title }}</b>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">{{ a.text }}</p>
+          <span style="font-size:14px;font-weight:700;color:#e2504a">לגרסה שלכם ←</span>
+        </a>
       </sc-for>
     </div>
   </div>
 </section>
+</sc-if>
 
-<section style="padding:clamp(56px,9vw,96px) 24px;background:#151515;border-top:1px solid #1f1f1f">
-  <div style="max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:18px;text-align:center;align-items:center">
-    <div aria-hidden="true" style="display:flex;gap:8px"><span style="width:34px;height:34px;border-radius:50%;background:conic-gradient(#e64b3c 0 33%,#f2b134 0 66%,#3a8ee6 0);display:inline-block"></span><span style="width:34px;height:34px;border-radius:8px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center">Pr</span><span style="width:34px;height:34px;border-radius:8px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center">Ae</span></div>
-    <h2 style="margin:0;font-size:clamp(28px,3.6vw,44px);font-weight:900;line-height:1.15;text-wrap:balance">עובדים גם בפרימייר או באפטר? <span style="color:#e2504a">אותו מנוי עובד בכולן.</span></h2>
-    <p style="margin:0;font-size:18px;line-height:1.7;color:#a5a5a5">מנוי COEDIT אחד ומפתח אחד, ב-DaVinci Resolve, ב-Premiere Pro וב-After Effects.</p>
+
+<!-- The two feature sections. An audience page (?for=) can put captions and zooms first (site-config.js featuresFirst). -->
+<div style="display:flex;flex-direction:column">
+<section style="order:{{ cutsOrder }};padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:64px;align-items:center">
+    <div data-px="-0.06" dir="ltr" style="background:#1e1e1e;border:1px solid #2c2c2c;border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);font-family:Heebo,sans-serif;user-select:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 12px;background:#262626;border-bottom:1px solid #121212">
+        <div style="display:flex;align-items:baseline;gap:12px;min-width:0"><span style="font-size:12px;color:#cfcfcf;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">interview_final</span><span style="font-size:14px;font-weight:700;color:#4aa3ff;font-variant-numeric:tabular-nums;white-space:nowrap">{{ tlTc }}</span></div>
+        <div dir="rtl" style="display:flex;gap:3px;background:#171717;border:1px solid #2e2e2e;border-radius:8px;padding:3px;flex:none"><button type="button" onClick="{{ tlShowBefore }}" style="border:none;cursor:pointer;font:inherit;font-size:12px;font-weight:700;padding:5px 11px;border-radius:6px;color:{{ tlBeforeC }};background:{{ tlBeforeBg }};transition:background .2s,color .2s">לפני</button><button type="button" onClick="{{ tlShowAfter }}" style="border:none;cursor:pointer;font:inherit;font-size:12px;font-weight:700;padding:5px 11px;border-radius:6px;color:{{ tlAfterC }};background:{{ tlAfterBg }};transition:background .2s,color .2s">אחרי COEDIT</button></div>
+      </div>
+      <div style="position:relative">
+        <div style="display:flex;height:28px;border-bottom:1px solid #121212;background:#1a1a1a"><div style="width:44px;flex:none;background:#232323;border-right:1px solid #121212;font-size:10px;font-weight:700;color:#8a8a8a;display:flex;align-items:center;justify-content:center"></div><div style="position:relative;flex:1;overflow:hidden"><div style="position:absolute;left:0;right:0;bottom:0;height:6px;background:repeating-linear-gradient(90deg,#474747 0 1px,transparent 1px 2.232%)"></div><sc-for list="{{ tlRuler }}" as="r" hint-placeholder-count="8"><span style="position:absolute;top:3px;left:{{ r.l }};height:25px;padding-left:3px;border-left:1px solid #5c5c5c;font-size:9.5px;line-height:1;color:#8c8c8c;font-variant-numeric:tabular-nums">{{ r.t }}</span></sc-for></div></div>
+        <div style="display:flex;height:20px;border-bottom:1px solid #161616"><div style="width:44px;flex:none;background:#232323;border-right:1px solid #121212;font-size:10px;font-weight:700;color:#8a8a8a;display:flex;align-items:center;justify-content:center">V2</div><div style="flex:1;background:#1c1c1c"></div></div>
+        <div style="display:flex;height:46px;border-bottom:1px solid #161616"><div style="width:44px;flex:none;background:#232323;border-right:1px solid #121212;font-size:10px;font-weight:700;color:#8a8a8a;display:flex;align-items:center;justify-content:center;color:#cfcfcf">V1</div><div style="position:relative;flex:1;background:#1c1c1c"><sc-for list="{{ tlSegs }}" as="c" hint-placeholder-count="14"><div style="position:absolute;top:3px;bottom:3px;left:{{ c.l }};width:{{ c.w }};opacity:{{ c.o }};background:#7a6fd0;border-radius:2px;overflow:hidden;box-shadow:inset 1px 0 0 {{ c.edge }},inset -1px 0 0 {{ c.edge }};transition:left .9s cubic-bezier(.65,0,.25,1),width .9s cubic-bezier(.65,0,.25,1),opacity .5s ease"><div style="height:13px;background:#968ceb;font-size:9px;line-height:13px;font-weight:600;color:#1c1636;padding:0 4px;white-space:nowrap;overflow:hidden">{{ c.name }}</div><div style="position:absolute;inset:0;background:{{ c.mark }}"></div></div></sc-for></div></div>
+        <div style="display:flex;height:46px;border-bottom:1px solid #161616"><div style="width:44px;flex:none;background:#232323;border-right:1px solid #121212;font-size:10px;font-weight:700;color:#8a8a8a;display:flex;align-items:center;justify-content:center;color:#cfcfcf">A1</div><div style="position:relative;flex:1;background:#1c1c1c"><sc-for list="{{ tlSegs }}" as="c" hint-placeholder-count="14"><div style="position:absolute;top:3px;bottom:3px;left:{{ c.l }};width:{{ c.w }};opacity:{{ c.o }};background:{{ c.abg }};border-radius:2px;overflow:hidden;box-shadow:inset 1px 0 0 {{ c.edge }},inset -1px 0 0 {{ c.edge }};transition:left .9s cubic-bezier(.65,0,.25,1),width .9s cubic-bezier(.65,0,.25,1),opacity .5s ease"><div style="position:absolute;inset:0;background:{{ c.mark }}"></div></div></sc-for></div></div>
+        <div style="display:flex;height:20px"><div style="width:44px;flex:none;background:#232323;border-right:1px solid #121212;font-size:10px;font-weight:700;color:#8a8a8a;display:flex;align-items:center;justify-content:center">A2</div><div style="flex:1;background:#1c1c1c"></div></div>
+        <div style="position:absolute;top:0;bottom:0;left:calc(44px + (100% - 44px) * .18);width:1px;background:#4aa3ff;pointer-events:none"><div style="position:absolute;top:0;left:-6px;width:13px;height:13px;background:#4aa3ff;clip-path:polygon(0 0,100% 0,100% 55%,50% 100%,0 55%)"></div></div>
+      </div>
+      <div dir="rtl" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px;padding:12px 14px;border-top:1px solid #121212;background:#1a1a1a;font-size:13px;color:#999">
+        <div style="display:flex;gap:16px;flex-wrap:wrap"><span style="display:flex;align-items:center;gap:6px"><i style="width:12px;height:12px;border-radius:2px;background:#b8322e"></i>טייק גרוע</span><span style="display:flex;align-items:center;gap:6px"><i style="width:12px;height:12px;border-radius:2px;background:repeating-linear-gradient(135deg,#555 0 3px,#2a2a2a 3px 6px)"></i>שתיקה</span></div>
+        <span>אורך הטיימליין: <b dir="ltr" style="color:{{ tlDurC }};font-variant-numeric:tabular-nums;transition:color .3s">{{ tlDur }}</b></span>
+      </div>
+    </div>
+    <div data-px="0.06" style="display:flex;flex-direction:column;gap:18px">
+      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">חיתוך שתיקות + Smart Cuts</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">חומר גלם נכנס. <span style="color:#e2504a">רק הטייקים הטובים יוצאים.</span></h2>
+      <p style="margin:0;font-size:18px;line-height:1.65;color:#a5a5a5;text-wrap:pretty">COEDIT מזהה שתיקות, התחלות שווא וטייקים כפולים, ומשאיר רק את הגרסה הטובה. אתם רואים הכל בתצוגה מקדימה ומאשרים בלחיצה.</p>
+      <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
+    </div>
   </div>
 </section>
 
-<!-- Requirements as their own block (resolve.requirements.placement = 'section'). -->
-<sc-if value="{{ rReqSection }}" hint-placeholder-val="{{ false }}">
-<section id="requirements" style="padding:clamp(56px,9vw,90px) 24px">
-  <div style="max-width:820px;margin:0 auto;background:#1a1a1a;border:1px solid #3a2a2a;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px">
-    <h2 style="margin:0;font-size:clamp(24px,3vw,34px);font-weight:900">דרישות מערכת והתקנה</h2>
-    <p style="margin:0;font-size:16px;line-height:1.7;color:{{ rReqColor }}">{{ rReqText }}</p>
+<section style="order:{{ czOrder }};padding:clamp(64px,10vw,110px) 24px">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:64px;align-items:center">
+    <div data-px="0.06" style="display:flex;flex-direction:column;gap:18px">
+      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">זומים + סאונד + כתוביות</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">נראה כמו עריכה של שעות. <span style="color:#e2504a">לקח דקות.</span></h2>
+      <p style="margin:0;font-size:18px;line-height:1.65;color:#a5a5a5;text-wrap:pretty">זומים אוטומטיים על הרגעים החזקים עם אפקט סאונד מסונכרן, וכתוביות מעוצבות בעברית עם תזמון מילה אחר מילה, מוכנות לטיימליין של דווינצ'י, וגם כקובץ SRT.</p>
+      <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
+    </div>
+    <div data-px="-0.06" dir="ltr" style="background:#1e1e1e;border:1px solid #2c2c2c;border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);font-family:Heebo,sans-serif;user-select:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 12px;background:#262626;border-bottom:1px solid #121212">
+        <div style="display:flex;align-items:baseline;gap:12px;min-width:0"><span style="font-size:12px;color:#cfcfcf;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">interview_final</span><span style="font-size:14px;font-weight:700;color:#4aa3ff;font-variant-numeric:tabular-nums;white-space:nowrap">00:02:31:00</span></div>
+        <div dir="rtl" style="display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end"><span style="display:flex;align-items:center;gap:5px;padding:4px 9px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap;color:{{ czCapC }};background:{{ czCapBg }};border:1px solid {{ czCapBd }};transition:all .3s ease"><span style="font-size:10px">✓</span>כתוביות</span><span style="display:flex;align-items:center;gap:5px;padding:4px 9px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap;color:{{ czZoomC }};background:{{ czZoomBg }};border:1px solid {{ czZoomBd }};transition:all .3s ease"><span style="font-size:10px">✓</span>זומים</span><span style="display:flex;align-items:center;gap:5px;padding:4px 9px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap;color:{{ czSfxC }};background:{{ czSfxBg }};border:1px solid {{ czSfxBd }};transition:all .3s ease"><span style="font-size:10px">✓</span>סאונד</span></div>
+      </div>
+      <div style="position:relative">
+        <div style="display:flex;height:28px;border-bottom:1px solid #121212;background:#1a1a1a"><div style="width:44px;flex:none;background:#232323;border-right:1px solid #121212;font-size:10px;font-weight:700;color:#cfcfcf;display:flex;align-items:center;justify-content:center"></div><div style="position:relative;flex:1;overflow:hidden"><div style="position:absolute;left:0;right:0;bottom:0;height:6px;background:repeating-linear-gradient(90deg,#474747 0 1px,transparent 1px 3.311%)"></div><sc-for list="{{ czRuler }}" as="r" hint-placeholder-count="6"><span style="position:absolute;top:3px;left:{{ r.l }};height:25px;padding-left:3px;border-left:1px solid #5c5c5c;font-size:9.5px;line-height:1;color:#8c8c8c;font-variant-numeric:tabular-nums">{{ r.t }}</span></sc-for></div></div>
+        <div style="display:flex;height:34px;border-bottom:1px solid #161616"><div style="width:44px;flex:none;background:#232323;border-right:1px solid #121212;font-size:10px;font-weight:700;color:#cfcfcf;display:flex;align-items:center;justify-content:center">V3</div><div style="position:relative;flex:1;background:#1c1c1c"><sc-for list="{{ czCaps }}" as="x" hint-placeholder-count="18"><div style="position:absolute;top:3px;bottom:3px;left:{{ x.l }};width:{{ x.w }};border-radius:2px;overflow:hidden;box-shadow:inset 1px 0 0 rgba(0,0,0,.8),inset -1px 0 0 rgba(0,0,0,.8);background:#b5508c;opacity:{{ x.o }};transform:{{ x.t }};transition:opacity .35s ease {{ x.d }},transform .35s ease {{ x.d }}"><div style="height:12px;background:#d374ad;font-size:8.5px;line-height:12px;font-weight:600;color:#3a0f28;padding:0 3px;white-space:nowrap;overflow:hidden">כתובית</div></div></sc-for></div></div>
+        <div style="display:flex;height:34px;border-bottom:1px solid #161616"><div style="width:44px;flex:none;background:#232323;border-right:1px solid #121212;font-size:10px;font-weight:700;color:#cfcfcf;display:flex;align-items:center;justify-content:center">V2</div><div style="position:relative;flex:1;background:#1c1c1c"><sc-for list="{{ czZooms }}" as="x" hint-placeholder-count="5"><div style="position:absolute;top:3px;bottom:3px;left:{{ x.l }};width:{{ x.w }};border-radius:2px;overflow:hidden;box-shadow:inset 1px 0 0 rgba(0,0,0,.8),inset -1px 0 0 rgba(0,0,0,.8);background:#3f6fc0;opacity:{{ x.o }};transform:{{ x.t }};transition:opacity .35s ease {{ x.d }},transform .35s ease {{ x.d }}"><div style="height:12px;background:#6b95dd;font-size:8.5px;line-height:12px;font-weight:600;color:#0d1c38;padding:0 3px;white-space:nowrap;overflow:hidden">Zoom</div><svg viewBox="0 0 100 20" preserveAspectRatio="none" style="position:absolute;left:0;right:0;bottom:2px;width:100%;height:14px"><path d="M2 17 L22 4 L78 4 L98 17" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="1" vector-effect="non-scaling-stroke"/></svg><i style="position:absolute;left:1px;bottom:3px;width:6px;height:6px;background:#fff;transform:rotate(45deg)"></i><i style="position:absolute;right:1px;bottom:3px;width:6px;height:6px;background:#fff;transform:rotate(45deg)"></i></div></sc-for></div></div>
+        <div style="display:flex;height:44px;border-bottom:1px solid #161616"><div style="width:44px;flex:none;background:#232323;border-right:1px solid #121212;font-size:10px;font-weight:700;color:#cfcfcf;display:flex;align-items:center;justify-content:center">V1</div><div style="position:relative;flex:1;background:#1c1c1c"><sc-for list="{{ czV }}" as="x" hint-placeholder-count="6"><div style="position:absolute;top:3px;bottom:3px;left:{{ x.l }};width:{{ x.w }};border-radius:2px;overflow:hidden;box-shadow:inset 1px 0 0 rgba(0,0,0,.8),inset -1px 0 0 rgba(0,0,0,.8);background:#7a6fd0"><div style="height:12px;background:#968ceb;font-size:8.5px;line-height:12px;font-weight:600;color:#1c1636;padding:0 3px;white-space:nowrap;overflow:hidden">interview_raw.mp4</div></div></sc-for></div></div>
+        <div style="display:flex;height:40px;border-bottom:1px solid #161616"><div style="width:44px;flex:none;background:#232323;border-right:1px solid #121212;font-size:10px;font-weight:700;color:#cfcfcf;display:flex;align-items:center;justify-content:center">A1</div><div style="position:relative;flex:1;background:#1c1c1c"><sc-for list="{{ czA }}" as="x" hint-placeholder-count="6"><div style="position:absolute;top:3px;bottom:3px;left:{{ x.l }};width:{{ x.w }};border-radius:2px;overflow:hidden;box-shadow:inset 1px 0 0 rgba(0,0,0,.8),inset -1px 0 0 rgba(0,0,0,.8);background:{{ x.abg }}"></div></sc-for></div></div>
+        <div style="display:flex;height:30px"><div style="width:44px;flex:none;background:#232323;border-right:1px solid #121212;font-size:10px;font-weight:700;color:#cfcfcf;display:flex;align-items:center;justify-content:center">A2</div><div style="position:relative;flex:1;background:#1c1c1c"><sc-for list="{{ czSfx }}" as="x" hint-placeholder-count="5"><div style="position:absolute;top:3px;bottom:3px;left:{{ x.l }};width:{{ x.w }};border-radius:2px;overflow:hidden;box-shadow:inset 1px 0 0 rgba(0,0,0,.8),inset -1px 0 0 rgba(0,0,0,.8);background:#1f8f86;opacity:{{ x.o }};transform:{{ x.t }};transition:opacity .35s ease {{ x.d }},transform .35s ease {{ x.d }}"><div style="height:12px;background:#3fb5ab;font-size:8.5px;line-height:12px;font-weight:600;color:#062a27;padding:0 3px;white-space:nowrap;overflow:hidden">whoosh</div></div></sc-for></div></div>
+        <div style="position:absolute;top:0;bottom:0;left:calc(44px + (100% - 44px) * .3);width:1px;background:#4aa3ff;pointer-events:none"><div style="position:absolute;top:0;left:-6px;width:13px;height:13px;background:#4aa3ff;clip-path:polygon(0 0,100% 0,100% 55%,50% 100%,0 55%)"></div></div>
+      </div>
+      <div dir="rtl" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:12px 14px;border-top:1px solid #121212;background:#1a1a1a;font-size:13px;color:#999">
+        <span style="color:#bbb;font-weight:700">COEDIT מוסיף:</span><span style="display:flex;align-items:center;gap:6px"><i style="width:12px;height:12px;border-radius:2px;background:#b5508c"></i>כתוביות</span><span style="display:flex;align-items:center;gap:6px"><i style="width:12px;height:12px;border-radius:2px;background:#3f6fc0"></i>זומים</span><span style="display:flex;align-items:center;gap:6px"><i style="width:12px;height:12px;border-radius:2px;background:#1f8f86"></i>אפקט סאונד</span>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<section style="padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
+    <div data-px="0.08" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">למה COEDIT</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;max-width:760px">לא עוד גימיק.&nbsp;<span style="color: rgb(226, 80, 74);">נבנה לחסוך כאב ראש.</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">ישירות בתוך DaVinci Resolve</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">בלי לייצא ולייבא קבצים. הכל קורה בפאנל, על הטיימליין שלכם.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">אתם מאשרים כל חיתוך</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">תצוגה מקדימה של כל חיתוך וכל מילה לפני שמשהו נוגע בטיימליין.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">עברית מלאה</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">תמלול מדויק וכתוביות מימין לשמאל, כמו שצריך.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">זום עם סאונד מסונכרן</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">כל תנועת מצלמה מקבלת אפקט סאונד מתוזמן, בלי לגעת בקיפריים.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px">כתוביות שניתנות לעריכה</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">הכתוביות נכנסות לטיימליין של דווינצ'י וניתנות לעריכה, ותמיד גם SRT סטנדרטי.</p></div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:10px;min-height:200px;justify-content:center;text-align:center;align-items:center"><b style="font-size:19px;color:#e2504a">{{ offerCardTitle }}</b><p style="margin:0;font-size:15px;line-height:1.6;color:#999;text-wrap:pretty">תוסף שמחליק קיפריימים כך שזומים ותנועות נראים רכים.</p></div>
+    </div>
+    <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
+  </div>
+</section>
+
+<sc-if value="{{ hasVideos }}" hint-placeholder-val="{{ true }}">
+<section style="padding:clamp(64px,10vw,110px) 24px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
+    <div data-px="0.08" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">נערך עם COEDIT</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">סרטונים אמיתיים. <span style="color:#e2504a">נערכו עם התוסף.</span></h2>
+    </div>
+    <div onMouseEnter="{{ carHoverOn }}" onMouseLeave="{{ carHoverOff }}" style="position:relative;width:100%;max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:26px">
+      <div onPointerDown="{{ dragStart }}" onPointerUp="{{ dragEnd }}" onPointerLeave="{{ dragCancel }}" style="position:relative;width:100%;height:clamp(450px,130vw,520px);perspective:1100px;cursor:grab;touch-action:pan-y;user-select:none">
+        <sc-for list="{{ slides }}" as="sl" hint-placeholder-count="7">
+          <div onClick="{{ sl.go }}" style="position:absolute;top:0;left:50%;width:280px;height:498px;margin-left:-140px;border-radius:16px;overflow:hidden;background:#0c0c0c;border:1px solid {{ sl.bd }};transform:{{ sl.tf }};z-index:{{ sl.z }};opacity:{{ sl.o }};transition:transform .45s cubic-bezier(.22,.8,.3,1),opacity .4s,border-color .3s;box-shadow:0 30px 70px rgba(0,0,0,.6)">
+            <div style="position:absolute;inset:0;background:#0c0c0c center/cover no-repeat;background-image:{{ sl.posterBg }}"></div>
+            <sc-if value="{{ sl.playing }}" hint-placeholder-val="{{ false }}"><video src="{{ sl.src }}" onCanPlay="{{ sl.play }}" onEnded="{{ sl.ended }}" autoplay muted playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video></sc-if>
+            <sc-if value="{{ sl.active }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleSound }}" onPointerDown="{{ stopEv }}" aria-label="{{ soundLabel }}" style="position:absolute;bottom:14px;left:14px;z-index:3;height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.6);color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">{{ soundIcon }} {{ soundText }}</button></sc-if>
+            <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,{{ sl.shL }}),transparent 60%,rgba(0,0,0,{{ sl.shR }}));pointer-events:none;transition:background .5s"></div>
+            <sc-if value="{{ sl.hasTitle }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:0;right:0;bottom:0;padding:50px 18px 16px;background:linear-gradient(0deg,rgba(0,0,0,.85) 20%,transparent);pointer-events:none"><span style="font-size:14px;font-weight:700;color:#fff">{{ sl.title }}</span></div></sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px">
+        <button onClick="{{ slideNext }}" style="width:42px;height:42px;border-radius:50%;background:#1d1d1d;border:1px solid #333;color:#eee;font-size:18px;cursor:pointer" style-hover="border-color:#d93a35">›</button>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ slides }}" as="d" hint-placeholder-count="7">
+            <button onClick="{{ d.go }}" style="width:{{ d.dotW }};height:8px;border-radius:999px;border:none;padding:0;cursor:pointer;background:{{ d.dotBg }};transition:width .3s,background .3s"></button>
+          </sc-for>
+        </div>
+        <button onClick="{{ slidePrev }}" style="width:42px;height:42px;border-radius:50%;background:#1d1d1d;border:1px solid #333;color:#eee;font-size:18px;cursor:pointer" style-hover="border-color:#d93a35">‹</button>
+      </div>
+    </div>
+    <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
   </div>
 </section>
 </sc-if>
 
-<section id="reviews" style="padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
-  <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:36px">
-    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
-      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">נערך עם COEDIT</span>
-      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance">סרטונים אמיתיים. <span style="color:#e2504a">עורכי דווינצ'י אמיתיים.</span></h2>
+<section id="how" style="padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
+    <div data-px="0.08" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">איך זה עובד</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">שלושה שלבים&nbsp;<span style="color: rgb(226, 80, 74);">והסרטון מוכן</span></h2>
     </div>
-    <sc-if value="{{ rGalleryHas }}" hint-placeholder-val="{{ false }}">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px">
-        <sc-for list="{{ rGallery }}" as="v" hint-placeholder-count="3"><video src="{{ v.src }}" poster="{{ v.poster }}" controls playsinline preload="none" style="width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:12px;background:#000;border:1px solid #2a2a2a"></video></sc-for>
-      </div>
-    </sc-if>
-    <sc-if value="{{ rGalleryPh }}" hint-placeholder-val="{{ true }}"><div style="border:2px dashed #6b5a1e;border-radius:12px;background:#1c1a10;color:#e8d27a;text-align:center;padding:28px;font-size:15px;line-height:1.6">✏️ סרטונים שנערכו עם COEDIT בתוך DaVinci Resolve</div></sc-if>
-    <sc-if value="{{ rQuotesHas }}" hint-placeholder-val="{{ false }}">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px">
-        <sc-for list="{{ rQuotes }}" as="q" hint-placeholder-count="3">
-          <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px">
-            <div style="display:flex;gap:12px;align-items:center"><span style="width:52px;height:52px;flex:none;border-radius:50%;background:{{ q.av }}"></span><div style="display:flex;flex-direction:column"><b style="color:#fff">{{ q.name }}</b><span style="font-size:13px;color:#888">{{ q.role }}</span><span dir="ltr" style="font-size:12px;color:#777;text-align:right">{{ q.handle }}</span></div></div>
-            <p style="margin:0;font-size:15px;line-height:1.7;color:#ccc">{{ q.quote }}</p>
-          </div>
-        </sc-for>
-      </div>
-    </sc-if>
-    <sc-if value="{{ rQuotesPh }}" hint-placeholder-val="{{ true }}"><div style="border:2px dashed #6b5a1e;border-radius:12px;background:#1c1a10;color:#e8d27a;text-align:center;padding:28px;font-size:15px;line-height:1.6">✏️ המלצות של עורכי DaVinci Resolve בלבד: שם, תפקיד, ציטוט, תמונה ואישור</div></sc-if>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+        <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;min-height:220px;justify-content:center">
+          <span style="width:44px;height:44px;border-radius:50%;background:linear-gradient(180deg,#e2504a,#c42e2a);box-shadow:0 0 16px rgba(217,58,53,.5);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px">{{ s.n }}</span>
+          <b style="font-size:19px">{{ s.t }}</b>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#999">{{ s.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+    <a href="#trial" onClick="{{ ctaTrial }}" style="align-self:center;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">נסו בחינם עכשיו!</a>
   </div>
 </section>
 
@@ -343,6 +468,31 @@ input[type=range]{accent-color:#d93a35;width:100%}
   </div>
 </section>
 
+<section style="position:relative;overflow:hidden;padding:0;background:#151515;border-top:1px solid #1f1f1f">
+  <div data-px="0.4" style="position:absolute;inset:-20% 0 -40%;background:radial-gradient(ellipse 60% 50% at 70% 70%,rgba(217,58,53,.22),transparent 70%);pointer-events:none"></div>
+  <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));align-items:stretch">
+    <div data-px="0.06" style="display:flex;flex-direction:column;justify-content:center;gap:20px;padding:110px max(24px,calc(50vw - 600px)) 110px 48px;padding-inline-start:max(24px,calc(50vw - 600px));padding-inline-end:48px">
+      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">{{ offerShort }}</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance;">COFRAMES: <span style="color:#e2504a">תנועה חלקה. בלחיצה.</span></h2>
+      <p style="margin:0;font-size:18px;line-height:1.7;color:#a5a5a5;text-wrap:pretty">תוסף נוסף ל-Premiere Pro ול-After Effects שמחליק Keyframes, כך שזומים, הזזות ואנימציות נראים רכים ומקצועיים, בלי לשחק עם עקומות ידנית. {{ offerSentence }}</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#fff;font-weight:700"><span style="display:inline-flex;gap:5px"><span aria-hidden="true" style="width:22px;height:22px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Pr</span><span aria-hidden="true" style="width:22px;height:22px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Ae</span></span>עובד ב-Premiere Pro וב-After Effects</span>
+        <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#ddd"><i style="width:22px;height:22px;flex:none;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>החלקת Keyframes בלחיצה אחת</span>
+        <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#ddd"><i style="width:22px;height:22px;flex:none;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>חמש רמות החלקה: לינארי, חד, טבעי, קולנועי ורך</span>
+        <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#ddd"><i style="width:22px;height:22px;flex:none;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>עורך עקומה מדויק עם ידיות והצמדה לרשת</span>
+        <span style="display:flex;align-items:center;gap:10px;font-size:16px;color:#ddd"><i style="width:22px;height:22px;flex:none;border-radius:50%;background:#2a1716;border:1px solid #d93a35;color:#e2504a;font-size:12px;font-style:normal;font-weight:900;display:flex;align-items:center;justify-content:center">✓</i>עקומות שמורות שאפשר לשמור, להעתיק ולהדביק</span>
+      </div>
+      <a href="#pricing" style="align-self:flex-start;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:18px;padding:17px 38px;border-radius:9px;box-shadow:0 0 34px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">לבחירת מסלול וקבלת COFRAMES</a>
+      
+    </div>
+    <div style="position:relative;min-height:clamp(420px,95vw,760px);overflow:hidden;background:transparent">
+      <div style="position:absolute;left:-10%;right:-10%;bottom:-30%;height:80%;background:radial-gradient(ellipse 60% 55% at 50% 100%,rgba(217,58,53,.45) 0%,rgba(217,58,53,.12) 45%,transparent 75%);pointer-events:none"></div>
+      <img data-px="0.04" loading="lazy" decoding="async" src="assets/coframes-panel.png" alt="פאנל COFRAMES, עורך עקומות תנועה" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(3deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)">
+      
+    </div>
+  </div>
+</section>
+
 <sc-if value="{{ trialOpen }}" hint-placeholder-val="{{ false }}">
 <div id="trial-modal" onClick="{{ closeTrial }}" role="dialog" aria-modal="true" aria-labelledby="trial-title" style="position:fixed;inset:0;z-index:60;background:rgba(6,6,6,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;padding:clamp(12px,4vh,48px) 14px;overflow-y:auto">
   <div onClick="{{ stopEv }}" style="position:relative;width:100%;max-width:620px;background:#161616;border:1px solid #2c2c2c;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.6);padding:clamp(20px,4vw,32px);display:flex;flex-direction:column;gap:20px">
@@ -354,7 +504,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
         <h2 id="trial-title" style="margin:0;font-size:clamp(26px,3.6vw,34px);font-weight:900;line-height:1.15">נסו את COEDIT בחינם</h2>
         <p style="margin:0;font-size:16px;color:#aaa;line-height:1.6">השאירו מייל ונשלח לכם מפתח ניסיון, את התוסף ומדריך התקנה עם סרטון.</p>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:15px;color:#cfcfcf;align-items:center"><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>5 דקות כתוביות וזומים</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>10 דקות חיתוכים</span><span style="display:inline-flex;align-items:center;gap:7px"><span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Pr</span>Premiere Pro ב-Windows וב-Mac</span><span style="display:inline-flex;align-items:center;gap:7px"><span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:5px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:10px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Ae</span>After Effects 2026 ומעלה</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:15px;color:#cfcfcf;align-items:center"><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>5 דקות כתוביות וזומים</span><span style="display:inline-flex;align-items:center;gap:6px"><span style="color:#e2504a;font-weight:800">✓</span>10 דקות חיתוכים</span><span style="display:inline-flex;align-items:center;gap:7px"><span aria-hidden="true" style="width:20px;height:20px;flex:none;border-radius:50%;background:conic-gradient(#e64b3c 0 33%,#f2b134 0 66%,#3a8ee6 0);display:inline-block"></span><span style="color:{{ rReqColor }}">{{ rReqShort }}</span></span></div>
       <sc-if value="{{ trialFormShown }}" hint-placeholder-val="{{ true }}">
         <form onSubmit="{{ submitTrialEmail }}" novalidate style="display:flex;flex-wrap:wrap;gap:8px">
           <input id="trial-email" type="email" name="email" required autocomplete="email" inputmode="email" dir="ltr" placeholder="you@example.com" aria-label="כתובת מייל" style="flex:1 1 220px;min-width:0;font:inherit;font-size:16px;color:#fff;background:#0f0f0f;border:1.5px solid #333;border-radius:9px;padding:13px 14px;outline:none" style-focus="border-color:#e2504a">
@@ -448,32 +598,20 @@ const TESTIMONIAL_MARQUEE = [['תמר יחזקל אורון', '@tamar.yeheskelor
 // ── The DaVinci Resolve page (site-config.js resolve) ──
 const R = CFG.resolve || {};
 const R_DRAFT = !R.launched;
-// A slot: its content, or (in the draft only) a marked placeholder.
 const R_TODO = '✏️ יושלם לפני ההשקה, לפי הגרסאות שייתמכו.';
 class Component extends DCLogic {
   resolveVals() {
-    const req = (R.requirements || {}), reqText = req.text || (R_DRAFT ? '✏️ דרישות מערכת (גרסאות נתמכות, Windows/Mac): ' + R_TODO.slice(3) : '');
+    const req = (R.requirements || {});
+    const reqText = req.text || (R_DRAFT ? '✏️ דרישות מערכת (גרסאות DaVinci Resolve נתמכות, Windows/Mac): ' + R_TODO.slice(3) : '');
     const hv = R.heroVideo || {}, yt = /^[\w-]{6,20}$/.test(hv.youtube || '') ? hv.youtube : '';
-    const shots = R.screenshots || {};
-    const feat = (key, eyebrow, title, text) => ({ eyebrow, title, text, shot: shots[key] || '', hasShot: !!shots[key], ph: !shots[key] && R_DRAFT });
-    const gallery = (R.gallery || []).filter(v => v && v.src);
-    const quotes = (R.testimonials || []).filter(q => q && q.name && q.quote).map(q => ({ ...q, role: q.role || '', handle: q.handle || '',
-      av: q.photo ? 'center/cover no-repeat url(' + q.photo + ')' : 'repeating-linear-gradient(135deg,#2a2a2a 0 4px,#1c1c1c 4px 8px)' }));
+    const panel = (R.screenshots || {}).panel || '';
     return {
       rDraft: R_DRAFT,
-      rReqHero: !!reqText && (req.placement || 'hero') === 'hero', rReqSection: !!reqText && req.placement === 'section',
-      rReqText: reqText, rReqColor: req.text ? '#cfcfcf' : '#e8d27a',
+      rReqHero: !!reqText && (req.placement || 'hero') === 'hero', rReqText: reqText, rReqColor: req.text ? '#cfcfcf' : '#e8d27a',
+      rReqShort: req.short || (R_DRAFT ? '✏️ גרסאות DaVinci Resolve נתמכות' : 'DaVinci Resolve'),
       rHeroYt: !!yt, rHeroYtSrc: yt ? 'https://www.youtube-nocookie.com/embed/' + yt + '?autoplay=1&mute=1&loop=1&playlist=' + yt + '&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3' : '',
-      rHeroMp4: !yt && !!hv.src, rHeroSrc: hv.src || '', rHeroPoster: hv.poster || '', rHeroPh: !yt && !hv.src && R_DRAFT,
-      // ✏️ Draft copy for review.
-      rFeatures: [
-        feat('smartCuts', 'SMART CUTS', 'טייקים חכמים', 'COEDIT מזהה טייקים חוזרים והתחלות שווא, ומשאיר את הגרסה הטובה. אתם רואים כל חיתוך בתצוגה מקדימה ומאשרים לפני שמשהו זז.'),
-        feat('silentCuts', 'SILENT CUTS', 'חיתוך שתיקות', 'השתיקות והעצירות הארוכות נחתכות בלחיצה, על הטיימליין שלכם בדווינצ\'י.'),
-        feat('captions', 'כתוביות', 'כתוביות מעוצבות בעברית', 'תמלול בעברית וכתוביות מימין לשמאל, עם סגנונות מוכנים. בודקים, מתקנים מילה אם צריך, ומאשרים.'),
-        feat('zooms', 'זומים', 'זומים אוטומטיים', 'זומים על הרגעים החזקים בסרטון, בלי לגעת בקיפריימים.'),
-      ],
-      rGallery: gallery, rGalleryHas: gallery.length > 0, rGalleryPh: !gallery.length && R_DRAFT,
-      rQuotes: quotes, rQuotesHas: quotes.length > 0, rQuotesPh: !quotes.length && R_DRAFT,
+      rHeroMp4: !yt && !!hv.src, rHeroSrc: hv.src || '', rHeroPoster: hv.poster || '', rHeroPh: !yt && !hv.src,
+      rPanelHas: !!panel, rPanelSrc: panel, rPanelPh: !panel,
     };
   }
   state = { yearly: false, after: false, videos: 12, raw: 15, manual: 90, openFaq: 0, tab: 'subs', showBar: false, packCat: 'cz', trialOpen: false, plugin: null, pluginState: 'idle', trialSend: 'idle', trialTo: '' };
@@ -641,24 +779,34 @@ class Component extends DCLogic {
     const catPacks = ((CFG.creditPacks || {})[cat] || []);
     const packs = catPacks.map(([n, p], i) => ({ click: () => this.track('cta_click', { cta: 'pack', pack: n + ':' + cat }), cartHref: 'store.dc.html#cart?pack=' + n + '&cat=' + cat, n: n.toLocaleString(), price: p, per: (Math.round(p / n * 100 + 1e-9) / 100).toFixed(2), best: i === catPacks.length - 1, bg: i === catPacks.length - 1 ? '#1f1414' : '#1a1a1a', bd: i === catPacks.length - 1 ? '#8a2c28' : '#2a2a2a' }));
     // ✏️ Draft answers for review. The ones that depend on the launch version come from site-config.js.
-    // Sources for the built-in captions answer (checked 2026-11-14): Blackmagic's DaVinci Resolve 18.5
-    // release ("subtitles from audio in Studio"), the Resolve 20 New Features Guide (transcription and
-    // extra languages incl. Hebrew, "Studio Version Only"; AI Animated Subtitles "Studio Version Only").
-    // The Resolve 21 guide does not say which features are Studio only: ✏️ verify on the launch version.
     const rFaq = (k) => (R.faq || {})[k] || (R_DRAFT ? R_TODO : '');
     const faqData = [
       ['זה עובד בגרסה החינמית?', rFaq('free')],
       ['באיזו גרסה של דווינצ\'י זה עובד?', rFaq('versions')],
       ['איך מתקינים?', rFaq('install')],
       ['יש לי כבר מנוי לפרימייר, זה עובד גם בדווינצ\'י?', 'כן. מנוי COEDIT אחד עובד ב-Premiere Pro, ב-After Effects וב-DaVinci Resolve, עם אותו מפתח. לא צריך מנוי נוסף.'],
-      ['מה ההבדל מהכתוביות האוטומטיות של דווינצ\'י עצמו?', 'בגרסת Studio (בתשלום) של דווינצ\'י יש תמלול וכתוביות אוטומטיות, ומגרסה 20 גם עברית, דרך חבילת שפות שחלק מהשפות בה עדיין בבטא. לפי Blackmagic, הכלים האלה שייכים לגרסת Studio. COEDIT נבנה לעברית מההתחלה: כתוביות מימין לשמאל עם עיצובים מוכנים, ואתם בודקים ומאשרים לפני שהן נכנסות לטיימליין. ובאותו פאנל, עם אותו מנוי, גם חיתוך טייקים ושתיקות וזומים אוטומטיים.'],
+      // ✏️ Draft for review, for Studio users. Sources: Blackmagic, DaVinci Resolve 20 New Features
+      // Guide: "Improved Transcription Quality and Support for Additional Languages (Studio Version
+      // Only)", the extended language download lists Hebrew and says "some of these languages are
+      // still in beta" (pp. 35-36); "AI IntelliScript (Studio Version Only)" picks the best take by
+      // matching a script you supply (p. 24). https://documents.blackmagicdesign.com/SupportNotes/
+      // DaVinci_Resolve_20_New_Features_Guide.pdf . The DaVinci Resolve 21 guide does not say which of
+      // these are Studio only, nor whether Hebrew is still beta: ✏️ verify both on 21.
+      ['מה ההבדל מהכתוביות האוטומטיות של דווינצ\'י עצמו?', "ב-DaVinci Resolve Studio יש תמלול וכתוביות אוטומטיות, ומגרסה 20 גם עברית, דרך חבילת שפות שלפי Blackmagic חלק מהשפות בה עדיין בבטא. COEDIT בא מכיוון אחר: התמלול שלו מכוון לעברית מההתחלה, הכתוביות יוצאות בעיצובים מוכנים מימין לשמאל, ואתם בודקים ומאשרים אותן לפני שהן נכנסות לטיימליין. הוא גם מזהה לבד טייקים חוזרים ומשאיר את הטוב, בלי תסריט מראש, וחותך שתיקות ומוסיף זומים, הכל מאותו פאנל."],
+      ['זה מתאים גם למי שרק מתחיל לערוך?', 'כן. ברירות המחדל כבר מכוונות לתוצאה מקצועית: פותחים את הפאנל, מאשרים, וממשיכים. NOOB נבנה בדיוק בשביל זה.'],
+      ['האם החיתוכים מתבצעים בלי שאראה אותם?', 'לא. כל כלי מציג תצוגה מקדימה: ציר זמן עם החיתוכים או תמליל עם המילים המסומנות. אפשר לבטל סימון, לשנות הגדרות ולאשר רק כשזה נראה נכון.'],
+      ['זה עובד בעברית?', 'כן. התמלול מזהה את השפה אוטומטית ותומך בעברית מלאה, כולל כתוביות מימין לשמאל.'],
+      ['מה ההבדל בין כתוביות וזומים לבין Smart Cuts?', 'לכל מסלול שתי מכסות דקות: אחת לכתוביות וזומים, ואחת לחיתוך שתיקות וטייקים חכמים. הדקות נספרות לפי אורך החומר שעובד.'],
+      ['אפשר לבטל?', 'כן. מבטלים בכל עת, והביטול עוצר את החידושים והחיובים הבאים. הגישה נמשכת עד סוף התקופה שכבר שולמה. אפשר גם לבקש החזר תוך 14 יום מהרכישה. הפרטים בתנאי השימוש.'],
+      ['מה קורה כשנגמרות לי הדקות?', 'אפשר לקנות חבילת קרדיטים חד פעמית בכל רגע, לקטגוריה שבה נגמרו הדקות (כתוביות וזומים, או חיתוכים), או לשדרג מסלול.'],
+      ['מה זה COFRAMES?', 'תוסף נוסף ל-Premiere Pro ול-After Effects שמחליק Keyframes בלחיצה אחת, עם חמש רמות החלקה ועורך עקומה מדויק. ' + (OFFER_LINE ? OFFER_LINE + '. ' : '') + 'קישור ההורדה שלו נשלח במייל הרכישה.'],
     ].filter(([, a]) => a);
     W().__COEDIT_FAQ = faqData; // read by tools/prerender.mjs (the static copy and the FAQ structured data)
     const faqs = faqData.map(([q, a], i) => { const open = s.openFaq === i; return { q, a, open, sign: open ? '▴' : '▾', bg: open ? '#1f1414' : '#1a1a1a', bd: open ? '#5a2220' : '#2a2a2a', toggle: () => this.setState({ openFaq: open ? -1 : i }) }; });
     const ba = s.after ? on : off, bb = s.after ? off : on, ym = s.yearly ? on : off, mm = s.yearly ? off : on;
     return {
       rv: (s.revealed || !s.armed) ? { o: 1, b: '0px', y: '0px' } : { o: 0, b: '10px', y: '-20px' }, pillRight: s.yearly ? '144px' : '4px',
-      includes: [{ t: 'חיתוך שתיקות וטייקים חכמים', c: '#bbb' }, { t: 'זומים אוטומטיים עם אפקטי סאונד', c: '#bbb' }, { t: 'כתוביות מעוצבות בעברית', c: '#bbb' }, { t: 'ייצוא MOGRT או SRT', c: '#bbb' }].concat(OFFER_LINE && R.showCoframesGift ? [{ t: OFFER_LINE, c: '#fff' }] : []),
+      includes: [{ t: 'חיתוך שתיקות וטייקים חכמים', c: '#bbb' }, { t: 'זומים אוטומטיים עם אפקטי סאונד', c: '#bbb' }, { t: 'כתוביות מעוצבות בעברית', c: '#bbb' }, { t: 'כתוביות שניתנות לעריכה + SRT', c: '#bbb' }].concat(OFFER_LINE ? [{ t: OFFER_LINE, c: '#fff' }] : []),
       navAccountHref: s.navLogged ? 'store.dc.html#account' : 'store.dc.html#login', navAccountLabel: s.navLogged ? 'החשבון שלי' : 'התחברות', navCartCount: s.navCart || 0, navHasCart: (s.navCart || 0) > 0, showBar: s.showBar, isA: v === 'A', isB: v === 'B', isC: v === 'C',
       panelItems: [{ icon: 'Aa', t: 'כתוביות חכמות', d: 'תמלל, סקור, עצב וייצא' }, { icon: '✳', t: 'טייקים חכמים', d: 'זהה טייקים כפולים' }, { icon: '✂', t: 'חיתוך שתיקות', d: 'הסר חלקים שקטים' }],
       clipsBefore: before, clipsAfter: afterC, afterPct,
@@ -676,7 +824,7 @@ class Component extends DCLogic {
       steps: [
         { n: 1, tab: 'הגדרות', t: 'פותחים את הפאנל', d: 'בוחרים כלי (כתוביות חכמות, זום אוטומטי, טייקים חכמים או חיתוך שתיקות) ומגדירים סגנון. ברירות המחדל כבר מומלצות.', bg: '#d93a35', sh: '0 0 16px rgba(217,58,53,.5)' },
         { n: 2, tab: 'סקירה', t: 'בודקים את התצוגה המקדימה', d: 'רואים בדיוק מה ייחתך ומה ייכתב. לחיצה על מילה או קטע משנה את ההחלטה.', bg: '#2a1716', sh: 'none' },
-        { n: 3, tab: 'סיום', t: 'מאשרים, וזה בטיימליין', d: 'החיתוכים, הזומים והכתוביות נכנסים ישר לרצף. ממשיכים לערוך כרגיל.', bg: '#2a1716', sh: 'none' }],
+        { n: 3, tab: 'סיום', t: 'מאשרים, וזה בטיימליין', d: 'החיתוכים, הזומים והכתוביות נכנסים ישר לטיימליין. ממשיכים לערוך כרגיל.', bg: '#2a1716', sh: 'none' }],
       videos: s.videos, raw: s.raw, manual: s.manual,
       setVideos: e => this.setState({ videos: +e.target.value }), setRaw: e => this.setState({ raw: +e.target.value }), setManual: e => this.setState({ manual: +e.target.value }),
       hoursSaved: hours.toFixed(hours < 10 ? 1 : 0), totalMin: total.toLocaleString(), recTier: rec, recNote,
