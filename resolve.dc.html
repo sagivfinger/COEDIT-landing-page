@@ -204,7 +204,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
     </div>
     <div style="position:relative;min-height:clamp(420px,95vw,760px);overflow:hidden">
       <div style="position:absolute;left:-10%;right:-10%;bottom:-30%;height:80%;background:radial-gradient(ellipse 60% 55% at 50% 100%,rgba(217,58,53,.45) 0%,rgba(217,58,53,.12) 45%,transparent 75%);pointer-events:none"></div>
-      <sc-if value="{{ rPanelHas }}" hint-placeholder-val="{{ false }}"><img data-px="0.04" loading="lazy" decoding="async" src="{{ rPanelSrc }}" alt="פאנל COEDIT בתוך DaVinci Resolve" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(-4deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)"></sc-if><sc-if value="{{ rPanelPh }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:12% 6%;border:2px dashed #6b5a1e;border-radius:10px;background:#1c1a10;color:#e8d27a;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:16px;line-height:1.6">✏️ צילום מסך של הפאנל של COEDIT בתוך DaVinci Resolve</div></sc-if>
+      <img data-px="0.04" loading="lazy" decoding="async" src="assets/coedit-panel.png" alt="פאנל COEDIT" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(-4deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)">
     </div>
   </div>
 </section>
@@ -608,14 +608,12 @@ class Component extends DCLogic {
     const req = (R.requirements || {});
     const reqText = req.text || (R_DRAFT ? '✏️ דרישות מערכת (גרסאות DaVinci Resolve נתמכות, Windows/Mac): ' + R_TODO.slice(3) : '');
     const hv = R.heroVideo || {}, yt = /^[\w-]{6,20}$/.test(hv.youtube || '') ? hv.youtube : '';
-    const panel = (R.screenshots || {}).panel || '';
     return {
       rDraft: R_DRAFT,
       rReqHero: !!reqText && (req.placement || 'hero') === 'hero', rReqText: reqText, rReqColor: req.text ? '#cfcfcf' : '#e8d27a',
       rReqShort: req.short || (R_DRAFT ? '✏️ גרסאות DaVinci Resolve נתמכות' : 'DaVinci Resolve'),
       rHeroYt: !!yt, rHeroYtSrc: yt ? 'https://www.youtube-nocookie.com/embed/' + yt + '?autoplay=1&mute=1&loop=1&playlist=' + yt + '&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3' : '',
       rHeroMp4: !yt && !!hv.src, rHeroSrc: hv.src || '', rHeroPoster: hv.poster || '', rHeroPh: !yt && !hv.src,
-      rPanelHas: !!panel, rPanelSrc: panel, rPanelPh: !panel,
     };
   }
   state = { yearly: false, after: false, videos: 12, raw: 15, manual: 90, openFaq: 0, tab: 'subs', showBar: false, packCat: 'cz', trialOpen: false, plugin: null, pluginState: 'idle', trialSend: 'idle', trialTo: '' };

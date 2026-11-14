@@ -61,8 +61,6 @@ window.COEDIT_CONFIG = {
     // button ('hero'), before anyone signs up. "short" is the one-liner in the trial popup.
     // Never say it works on the free edition unless that is confirmed for the launch version.
     requirements: { placement: 'hero', text: '', short: '' },
-    // ✏️ The panel screenshot from DaVinci Resolve (replaces the main page's Premiere one).
-    screenshots: { panel: '' },
     // ✏️ FAQ answers that depend on the launch version (the others are in the page).
     faq: { free: '', versions: '', install: '' },
     // The COFRAMES gift shows here as on the main page (note: COFRAMES works in Premiere Pro and

@@ -4,8 +4,8 @@
 //
 // Every section of index.html is kept as it is (reviews, features, gallery, how it works, pricing,
 // FAQ, COFRAMES, trial popup); only what is about Premiere Pro or After Effects is rewritten for
-// DaVinci Resolve, and three slots become Resolve placeholders: the hero video, the panel screenshot
-// and the popup's install step. Each rewrite must find its text exactly once, so a change on the main
+// DaVinci Resolve, and two slots become Resolve placeholders: the hero video and the popup's
+// install step (the panel screenshot stays: the panel looks the same in Resolve). Each rewrite must find its text exactly once, so a change on the main
 // page stops this build instead of slipping through. Settings: site-config.js → resolve.
 // Run it again after any change to index.html.
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -13,7 +13,8 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
-const main = readFileSync(join(ROOT, 'index.html'), 'utf8');
+// Line endings normalised: git may check the page out with Windows ones.
+const main = readFileSync(join(ROOT, 'index.html'), 'utf8').replace(/\r\n/g, '\n');
 const once = (s, from, to, what) => {
   const n = s.split(from).length - 1;
   if (n !== 1) throw new Error('index.html changed: ' + what + ' (found ' + n + ' times)');
@@ -103,15 +104,9 @@ T('\n\n    </div>\n    <div data-px="-0.08" onClick="{{ heroVideoPlay }}"',
     + page.slice(b);
 }
 T(' {{ heroPosterBg }}', '', 'the hero still');
-// The panel screenshot (a Premiere screenshot on the main page).
-{
-  const [a, b] = between(page, '<img data-px="0.04" loading="lazy" decoding="async" src="assets/coedit-panel.png"', '>', 'the panel screenshot');
-  const img = page.slice(a, b);
-  page = page.slice(0, a)
-    + '<sc-if value="{{ rPanelHas }}" hint-placeholder-val="{{ false }}">' + img.replace('src="assets/coedit-panel.png"', 'src="{{ rPanelSrc }}"').replace('alt="פאנל COEDIT בתוך Premiere Pro"', 'alt="פאנל COEDIT בתוך DaVinci Resolve"') + '</sc-if>'
-    + '<sc-if value="{{ rPanelPh }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:12% 6%;' + PLACEHOLDER + '">✏️ צילום מסך של הפאנל של COEDIT בתוך DaVinci Resolve</div></sc-if>'
-    + page.slice(b);
-}
+// The panel screenshot: the COEDIT panel looks the same in DaVinci Resolve as in Premiere Pro, so the
+// main page's image stays; only its description names the app.
+T('alt="פאנל COEDIT בתוך Premiere Pro"', 'alt="פאנל COEDIT"', 'the panel screenshot');
 // Premiere's words for things, in Resolve's.
 T('אורך הרצף: ', 'אורך הטיימליין: ', 'the timeline demo label');
 T('מוכנות לייצוא כקובץ MOGRT או SRT.', 'מוכנות לטיימליין של דווינצ\'י, וגם כקובץ SRT.', 'the captions feature line');
@@ -156,14 +151,12 @@ class Component extends DCLogic {
     const req = (R.requirements || {});
     const reqText = req.text || (R_DRAFT ? '✏️ דרישות מערכת (גרסאות DaVinci Resolve נתמכות, Windows/Mac): ' + R_TODO.slice(3) : '');
     const hv = R.heroVideo || {}, yt = /^[\\w-]{6,20}$/.test(hv.youtube || '') ? hv.youtube : '';
-    const panel = (R.screenshots || {}).panel || '';
     return {
       rDraft: R_DRAFT,
       rReqHero: !!reqText && (req.placement || 'hero') === 'hero', rReqText: reqText, rReqColor: req.text ? '#cfcfcf' : '#e8d27a',
       rReqShort: req.short || (R_DRAFT ? '✏️ גרסאות DaVinci Resolve נתמכות' : 'DaVinci Resolve'),
       rHeroYt: !!yt, rHeroYtSrc: yt ? 'https://www.youtube-nocookie.com/embed/' + yt + '?autoplay=1&mute=1&loop=1&playlist=' + yt + '&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3' : '',
       rHeroMp4: !yt && !!hv.src, rHeroSrc: hv.src || '', rHeroPoster: hv.poster || '', rHeroPh: !yt && !hv.src,
-      rPanelHas: !!panel, rPanelSrc: panel, rPanelPh: !panel,
     };
   }`, 'the Component class');
 S('      tiers, packs, faqs,\n', '      tiers, packs, faqs,\n      ...this.resolveVals(),\n', 'the page values');
@@ -211,7 +204,7 @@ S('JSON.stringify({ email, source, audience: attr.for || null, utm, offer_token:
 script = script.split("'wZPgfeMTX3k'").join("''").split("'assets/hero-poster.jpg'").join("''");
 
 const out = head + '<body>\n' + page + script;
-for (const bad of ['assets/coedit-panel.png', 'wZPgfeMTX3k', 'assets/hero-poster.jpg', 'STATIC-FALLBACK', 'Window → Extensions', 'ZXP Installer'])
+for (const bad of ['wZPgfeMTX3k', 'assets/hero-poster.jpg', 'STATIC-FALLBACK', 'Window → Extensions', 'ZXP Installer'])
   if (out.includes(bad)) throw new Error('Premiere material or main-page-only content leaked into the Resolve page: ' + bad);
 writeFileSync(join(ROOT, 'resolve.dc.html'), out);
 console.log('resolve.dc.html written (' + Math.round(out.length / 1024) + ' KB)');
