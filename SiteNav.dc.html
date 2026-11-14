@@ -17,7 +17,7 @@
     <span style="display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;font-weight:700">נגמר בקרוב<span dir="ltr" style="font-variant-numeric:tabular-nums;border:1px solid transparent;padding:2px 8px;font-weight:800;letter-spacing:.5px">{{ offerClock }}</span></span>
   </div>
 </div>
-<a href="/#pricing" data-launch-offer="1" style="position:fixed;top:0;left:0;right:0;z-index:55;display:block;background:linear-gradient(90deg,#3a1312,#5a1d1b 50%,#3a1312);border-bottom:1px solid #6b2522;color:#fff;text-decoration:none">
+<a href="{{ navPricingHref }}" data-launch-offer="1" style="position:fixed;top:0;left:0;right:0;z-index:55;display:block;background:linear-gradient(90deg,#3a1312,#5a1d1b 50%,#3a1312);border-bottom:1px solid #6b2522;color:#fff;text-decoration:none">
   <div style="max-width:1200px;margin:0 auto;padding:8px clamp(12px,4vw,24px);display:flex;align-items:center;justify-content:center;gap:clamp(8px,2vw,14px);flex-wrap:wrap;font-size:clamp(13px,3.4vw,15px);line-height:1.4;text-align:center">
     <span style="font-weight:800">🎁 {{ offerText }}</span>
     <span style="display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;color:#ffb4ae;font-weight:700">נגמר בקרוב<span dir="ltr" style="font-variant-numeric:tabular-nums;background:rgba(0,0,0,.35);border:1px solid #7a2a27;border-radius:6px;padding:2px 8px;color:#fff;font-weight:800;letter-spacing:.5px">{{ offerClock }}</span></span>
@@ -33,7 +33,7 @@
 
       <button onClick="{{ openDrawer }}" aria-label="סל" style="position:relative;width:42px;height:42px;border-radius:9px;background:#1d1d1d;border:1px solid #333;color:#eee;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:border-color .2s,transform .2s" style-hover="border-color:#d93a35;transform:translateY(-2px)"><svg width="20" height="20" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"></path></svg><sc-if value="{{ hasItems }}" hint-placeholder-val="{{ false }}"><span data-cart-badge="1" style="position:absolute;top:-7px;left:-7px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#d93a35;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(217,58,53,.6)">{{ count }}</span></sc-if></button>
 
-      <a href="/#trial" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:700;font-size:clamp(14px,3.6vw,15px);height:42px;padding:0 clamp(14px,4vw,20px);white-space:nowrap;border-radius:9px;display:flex;align-items:center;box-shadow:0 0 22px rgba(220,60,55,.35);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 34px rgba(220,60,55,.6)">נסו בחינם</a>
+      <a href="{{ navTrialHref }}" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:700;font-size:clamp(14px,3.6vw,15px);height:42px;padding:0 clamp(14px,4vw,20px);white-space:nowrap;border-radius:9px;display:flex;align-items:center;box-shadow:0 0 22px rgba(220,60,55,.35);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 34px rgba(220,60,55,.6)">נסו בחינם</a>
     </div>
   </div>
 </nav>
@@ -53,7 +53,7 @@
       <div style="display:flex;flex-direction:column;align-items:center;gap:14px;padding:30px 0;text-align:center">
         <svg width="64" height="64" viewBox="0 0 24 24" style="fill:none;stroke:#3a3a3a;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"></path></svg>
         <span style="font-size:16px;color:#999">הסל ריק</span>
-        <a href="/#pricing" onClick="{{ closeDrawer }}" style="background:#1d1d1d;border:1px solid #333;color:#eee;font-weight:700;font-size:15px;padding:11px 22px;border-radius:9px;transition:border-color .2s" style-hover="border-color:#d93a35">לבחירת מסלול</a>
+        <a href="{{ navPricingHref }}" onClick="{{ closeDrawer }}" style="background:#1d1d1d;border:1px solid #333;color:#eee;font-weight:700;font-size:15px;padding:11px 22px;border-radius:9px;transition:border-color .2s" style-hover="border-color:#d93a35">לבחירת מסלול</a>
       </div>
     </sc-if>
     <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ false }}">
@@ -89,7 +89,8 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const W = () => document.defaultView || window;
-const PLANS = { NOOB: { m: 99, cap: 30, cuts: 90 }, PRO: { m: 179, cap: 90, cuts: 300 }, HACKER: { m: 349, cap: 500, cuts: '1,000' } };
+// The plans and their prices: site-config.js plans (the same list the home page and the store read).
+const PLANS = Object.fromEntries((((W().COEDIT_CONFIG || {}).plans) || []).map(p => [p.name, { m: p.monthly, cap: p.captions, cuts: (n => Number(n).toLocaleString('en-US'))(p.cuts) }]));
 // Each category has its own packs and prices: site-config.js creditPacks, { cz: [[credits, ₪], …], cuts: … }.
 const PACKS = Object.assign({ cz: [], cuts: [] }, (W().COEDIT_CONFIG || {}).creditPacks || {});
 const packPrice = (n, cat) => ((PACKS[cat] || []).find(x => x[0] === n) || [0, 0])[1];
@@ -100,6 +101,10 @@ const parsePack = k => { const m = /^(\d+):(cz|cuts)$/.exec(String(k)); return m
 // A real deadline: the bar counts down to offer.endsAt and disappears once it has passed (or when it's '').
 // To extend the offer, move that date; to end it early, set a date in the past.
 const OFFER = (W().COEDIT_CONFIG || {}).offer || {};
+// The Resolve page (window.COEDIT_PAGE) has its own pricing and trial; COFRAMES, the launch gift, works
+// only in Premiere Pro and After Effects, so its countdown is off there unless resolve.showCoframesGift.
+const ON_OWN_PAGE = W().COEDIT_PAGE === 'resolve';
+const SHOW_OFFER = !ON_OWN_PAGE || !!(((W().COEDIT_CONFIG || {}).resolve || {}).showCoframesGift);
 const LAUNCH_OFFER_ENDS = (OFFER.text && Date.parse(OFFER.endsAt || '')) || 0;
 const pad2 = n => String(n).padStart(2, '0');
 // Hours only (72:00:00 counts down from three days), never days.
@@ -141,7 +146,9 @@ class Component extends DCLogic {
     const left = LAUNCH_OFFER_ENDS - (s.now || Date.now());
     if (left <= 0 && this._offerT) { W().clearInterval(this._offerT); this._offerT = null; }
     return {
-      offerOn: left > 0, offerClock: offerClock(Math.max(0, left)),
+      // On a page with its own pricing and trial (the Resolve page), the nav's buttons stay on that page.
+      navTrialHref: ON_OWN_PAGE ? '#trial' : '/#trial', navPricingHref: ON_OWN_PAGE ? '#pricing' : '/#pricing',
+      offerOn: left > 0 && SHOW_OFFER, offerClock: offerClock(Math.max(0, left)),
       offerText: (s.vw || 1024) >= 520 ? OFFER.text + (OFFER.anchorPrice ? ' (שווה ₪' + OFFER.anchorPrice + ')' : '') : 'COFRAMES · ' + (OFFER.short || 'במתנה'),
       wide: (s.vw || 1024) >= 520, loginPad: (s.vw || 1024) >= 520 ? '14px' : '0', loginBd: (s.vw || 1024) >= 520 ? 'transparent' : '#333', loggedIn: c.loggedIn, loggedOut: !c.loggedIn, initials, avatarRing: s.menu ? '#fff' : '#121212',
       toggleMenu: () => this.setState(st => ({ menu: !st.menu })), closeMenu: () => this.setState({ menu: false }),

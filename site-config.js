@@ -43,6 +43,40 @@ window.COEDIT_CONFIG = {
   // ✏️ TODO the draft answer is in index.html (faqData). Read it, then set true to show it on the site.
   faqDraftApproved: false,
 
+  // ── The DaVinci Resolve page: getcoedit.com/resolve (resolve.dc.html) ──────────────────────
+  // A HIDDEN DRAFT until launched: noindex, linked from nowhere, and a "טיוטה" strip on top. While
+  // launched is false every empty slot below shows a marked ✏️ placeholder; once launched, an empty
+  // slot hides instead. The page is built from the main page by tools/build-resolve.mjs (run it again
+  // after changing the main page's pricing or trial popup). Never use Premiere footage here.
+  resolve: {
+    launched: false,                    // ✏️ launching is a separate approval
+    // ✏️ The hero's before/after video INSIDE DaVinci Resolve: a YouTube id, or an mp4 under assets/.
+    heroVideo: { youtube: '', src: '', poster: '' },
+    // ✏️ System requirements (supported editions, versions, Windows/Mac). 'hero' shows it right under
+    // the hero's button, before anyone signs up; 'section' gives it its own block lower down.
+    // Never say it works on the free edition unless that is confirmed for the launch version.
+    requirements: { placement: 'hero', text: '' },
+    // ✏️ Screenshots from DaVinci Resolve only (assets/resolve/...).
+    screenshots: { smartCuts: '', silentCuts: '', captions: '', zooms: '' },
+    // ✏️ Videos edited with COEDIT in Resolve: [{ src: 'assets/videos/resolve-1.mp4', poster: '…jpg' }]
+    gallery: [],
+    // ✏️ Resolve editors only, real, with their approval: [{ name, role, handle, quote, photo }]
+    testimonials: [],
+    // ✏️ FAQ answers that depend on the launch version (the other two answers are in the page).
+    faq: { free: '', versions: '', install: '' },
+    // COFRAMES works only in Premiere Pro and After Effects, so its launch gift is off on this page.
+    showCoframesGift: false,
+  },
+
+  // ── Subscription plans: monthly price in ₪ incl. VAT, minutes per month ────────────────────
+  // ⚠ MUST MATCH the Cloud's plans (cloud/app/billing/plans.py PLANS). Yearly = 20% off, computed
+  // by the pages. Read by the main page, the Resolve page, the store and the cart drawer.
+  plans: [
+    { name: 'NOOB',   who: 'למי שרק מתחיל',              monthly: 99,  captions: 30,  cuts: 90 },
+    { name: 'PRO',    who: 'לעורכים שעובדים על זה כל יום', monthly: 179, captions: 90,  cuts: 300, recommended: true },
+    { name: 'HACKER', who: 'לאולפנים ועורכים בנפח גבוה',   monthly: 349, captions: 500, cuts: 1000 },
+  ],
+
   // ── Credit packs: [credits, price in ₪ incl. VAT], per category, smallest first ────────────
   // ⚠ MUST MATCH the Cloud's price list (cloud/app/billing/plans.py CREDIT_PACKS): the Cloud refuses
   // to fulfil an order whose pack or price isn't on its list. Change both together, never one.

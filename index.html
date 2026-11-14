@@ -725,7 +725,11 @@ const AUD_PREVIEW = (() => { try { return new URLSearchParams(W().location.searc
 // The "למי זה מתאים" cards: audiences that are live (or all of them in a ?preview=1 view).
 const WHO_FOR = Object.keys(AUDIENCES).filter(k => AUDIENCES[k].ready || AUD_PREVIEW).map(k => ({ key: k, ...AUDIENCES[k].card }));
 const HERO_VIDEO = /^[\w-]{6,20}$/.test(AUD.heroVideo || '') ? AUD.heroVideo : 'wZPgfeMTX3k';
-const REC_PLAN = ['NOOB', 'PRO', 'HACKER'].includes(AUD.recommendedPlan) ? AUD.recommendedPlan : 'PRO';
+// The plans and their prices: site-config.js plans (the same list the store and the cart read).
+const SITE_PLANS = (CFG.plans || []).map(p => ({ name: p.name, who: p.who, m: p.monthly, cap: p.captions, cuts: (n => Number(n).toLocaleString('en-US'))(p.cuts) }));
+const PLAN_PRICE = Object.fromEntries(SITE_PLANS.map(p => [p.name, p.m]));
+const REC_PLAN = SITE_PLANS.some(p => p.name === AUD.recommendedPlan) ? AUD.recommendedPlan
+  : ((CFG.plans || []).find(p => p.recommended) || {}).name || 'PRO';
 const SP = CFG.socialProof || {};
 // ── Showcase videos ── videos edited with the plugin, shown in the "נערך עם COEDIT" carousel.
 // { src: 'assets/videos/<name>.mp4', poster: 'assets/videos/<name>.jpg', title: 'short caption or empty' }.
@@ -810,7 +814,7 @@ class Component extends DCLogic {
     this.setState({ trialOpen: false });
     try { const w = W(); if (w.location.hash === '#trial' || w.location.hash === '#install') w.history.replaceState(null, '', w.location.pathname + w.location.search); } catch (e) {}
   }
-    shown = { NOOB: 99, PRO: 179, HACKER: 349 };
+    shown = { ...PLAN_PRICE };
   componentDidMount() { { const h0 = W().location.hash || ''; if (h0 === '#trial') this.openTrial('link'); else if (h0 === '#install') this.openTrial('link', 'guide'); } this._esc = e => { if (e.key === 'Escape' && this.state.trialOpen) this.closeTrial(); }; W().addEventListener('keydown', this._esc); this._hash = () => { const h = W().location.hash; if (h === '#trial' && (!this.state.trialOpen || this.state.trialMode === 'guide')) this.openTrial('nav'); else if (h === '#install') this.openTrial('nav', 'guide'); }; W().addEventListener('hashchange', this._hash); { const h = (W().location.hash || '').slice(1); if (h === 'pricing' || h === 'credits') { let n = 0; const go = () => { const el = document.getElementById(h); if (el) { W().setTimeout(() => document.getElementById('pricing').scrollIntoView({ behavior: 'instant' }), 100); return; } if (h === 'credits' && document.getElementById('pricing')) this.setState({ tab: 'credits' }); if (++n < 30) W().setTimeout(go, 100); }; W().setTimeout(go, 50); } } this._vw = () => this.setState({ vw: W().innerWidth }); this._vw(); W().addEventListener('resize', this._vw); try { const c = JSON.parse((document.defaultView || window).localStorage.getItem('ocedit-cart') || '{}'); this.setState({ navCart: (c.plan ? 1 : 0) + (c.packs || []).filter(k => /^\d+:(cz|cuts)$/.test(String(k))).length, navLogged: !!c.loggedIn }); } catch (e) {}
     const w = W(); this._t = [];
     const reduce = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -863,7 +867,7 @@ class Component extends DCLogic {
     if (!reduce) this._tl = w.setInterval(() => { if (document.hidden || Date.now() < (this._tlHold || 0)) return; this.setState(st => ({ tlAfter: !st.tlAfter })); }, 3600);
     this._car = w.setInterval(() => { const n = SHOWCASE_VIDEOS.length; if (!n || this._carHover || this._vidOn || document.hidden) return; this.setState(st => ({ slide: ((st.slide ?? 0) + 1) % n })); }, 8000);
   }
-  animPrices(yearly) { const w = W(), f = yearly ? 0.8 : 1, base = { NOOB: 99, PRO: 179, HACKER: 349 }, from = this.state.anim || (yearly ? base : { NOOB: 79, PRO: 143, HACKER: 279 }), t0 = w.performance.now(); w.cancelAnimationFrame(this._raf); const step = now => { const k = Math.min(1, (now - t0) / 600), e = 1 - Math.pow(1 - k, 3); const next = {}; for (const n in base) next[n] = Math.round(from[n] + (Math.round(base[n] * f) - from[n]) * e); this.setState({ anim: k < 1 ? next : null }); if (k < 1) this._raf = w.requestAnimationFrame(step); }; this._raf = w.requestAnimationFrame(step); }
+  animPrices(yearly) { const w = W(), f = yearly ? 0.8 : 1, base = PLAN_PRICE, from = this.state.anim || (yearly ? base : Object.fromEntries(Object.entries(base).map(([n, m]) => [n, Math.round(m * 0.8)]))), t0 = w.performance.now(); w.cancelAnimationFrame(this._raf); const step = now => { const k = Math.min(1, (now - t0) / 600), e = 1 - Math.pow(1 - k, 3); const next = {}; for (const n in base) next[n] = Math.round(from[n] + (Math.round(base[n] * f) - from[n]) * e); this.setState({ anim: k < 1 ? next : null }); if (k < 1) this._raf = w.requestAnimationFrame(step); }; this._raf = w.requestAnimationFrame(step); }
   componentWillUnmount() { const w = W(); if (this._esc) w.removeEventListener('keydown', this._esc); if (this._hash) w.removeEventListener('hashchange', this._hash); w.removeEventListener('scroll', this._on); document.removeEventListener('scroll', this._on, { capture: true }); w.removeEventListener('resize', this._on); (this._t || []).forEach(t => w.clearTimeout(t)); w.clearInterval(this._car); w.clearInterval(this._tl); w.clearInterval(this._cz); w.cancelAnimationFrame(this._raf); }
   renderVals() {
     const s = this.state, v = this.props.heroVariant ?? 'C';
@@ -912,10 +916,7 @@ class Component extends DCLogic {
     const rec = total <= 90 ? 'NOOB' : total <= 300 ? 'PRO' : 'HACKER';
     const recNote = total > 1000 ? 'יותר מ1,000 דקות בחודש? HACKER + חבילת קרדיטים.' : 'לפי דקות חומר גלם לחיתוך בחודש. הערכה: 10 דקות עבודה לסרטון עם COEDIT.';
     const hours = Math.max(0, s.videos * (s.manual - 10) / 60);
-    const base = [
-      { name: 'NOOB', who: 'למי שרק מתחיל', m: 99, cap: 30, cuts: 90 },
-      { name: 'PRO', who: 'לעורכים שעובדים על זה כל יום', m: 179, cap: 90, cuts: 300 },
-      { name: 'HACKER', who: 'לאולפנים ועורכים בנפח גבוה', m: 349, cap: 500, cuts: '1,000' }];
+    const base = SITE_PLANS;
     const tiers = base.map((t, i) => ({ ...t, rec: t.name === REC_PLAN, click: () => this.track('cta_click', { cta: 'plan', plan: t.name, yearly: s.yearly ? 'yes' : 'no' }), cartHref: 'store.dc.html#cart?plan=' + t.name + '&yearly=' + (s.yearly ? 1 : 0), shown: s.anim ? s.anim[t.name] : (s.yearly ? Math.round(t.m * 0.8) : t.m), delay: (1 + i * 0.25) + 's', match: false, showSave: s.yearly, save: Math.round(t.m * 0.2 * 12).toLocaleString(),
       price: s.yearly ? Math.round(t.m * 0.8) : t.m, strike: s.yearly ? '₪' + t.m : '',
       billNote: s.yearly ? 'מחויב שנתית · ₪' + Math.round(t.m * 0.8 * 12).toLocaleString() + ' לשנה' : 'מחויב חודשית',

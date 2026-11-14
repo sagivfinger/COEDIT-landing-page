@@ -276,7 +276,8 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 const W = () => document.defaultView || window;
-const PLANS = [{ name: 'NOOB', m: 99, cap: 30, cuts: 90 }, { name: 'PRO', m: 179, cap: 90, cuts: 300, rec: true }, { name: 'HACKER', m: 349, cap: 500, cuts: '1,000' }];
+// The plans and their prices: site-config.js plans (the same list the home page and the cart read).
+const PLANS = (((W().COEDIT_CONFIG || {}).plans) || []).map(p => ({ name: p.name, m: p.monthly, cap: p.captions, cuts: (n => Number(n).toLocaleString('en-US'))(p.cuts), rec: !!p.recommended }));
 // Each category has its own packs and prices: site-config.js creditPacks, { cz: [[credits, ₪], …], cuts: … }.
 const PACKS = Object.assign({ cz: [], cuts: [] }, (W().COEDIT_CONFIG || {}).creditPacks || {});
 const packOf = (n, cat) => (PACKS[cat] || []).find(x => x[0] === n) || null;
