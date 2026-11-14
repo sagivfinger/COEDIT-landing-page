@@ -26,17 +26,22 @@ window.COEDIT_CONFIG = {
     facesText: 'עורכי וידאו ממליצים על COEDIT',
   },
 
-  // ── The COFRAMES launch offer: the same wording on every page ─────────────────────────────
+  // ── The COFRAMES gift: each visitor's own 72 hours (site-offer.js) ───────────────────────
+  // Every visitor gets their own deadline, 72 hours from their first visit or trial signup; the site,
+  // the emails and the checkout all use it, and once it passes the offer disappears for that visitor.
+  // {deadline} is replaced by that visitor's deadline ("16.11 בשעה 21:30"). text '' hides the offer on
+  // the site; the one switch that ends it everywhere is COEDIT_COFRAMES_OFFER=0 in COEDIT Cloud.
   offer: {
-    // The full sentence (hero, "למה COEDIT", COFRAMES section, pricing, FAQ, offer bar).
-    text: 'COFRAMES במתנה עם כל מנוי בתקופת ההשקה',
+    // The full sentence (hero, "למה COEDIT", COFRAMES section, pricing, FAQ).
+    text: 'COFRAMES במתנה עם כל מנוי שנרכש עד {deadline}',
     // The short form (cart line, small labels).
-    short: 'מתנת השקה',
+    short: 'מתנה עד {deadline}',
+    // The countdown bar at the top: "🎁 <bar> · נשארו לכם 71:59:12".
+    bar: 'COFRAMES במתנה עם כל מנוי',
+    // The visitor's window, in hours (the Cloud's COEDIT_COFRAMES_OFFER_HOURS decides what is granted).
+    personalHours: 72,
     // ✏️ TODO what COFRAMES is worth on its own, in shekels, e.g. 149 → "שווה ₪149". null = not shown.
     anchorPrice: null,
-    // When the launch offer ends (Israel time). The countdown bar at the top counts down to it
-    // and disappears once it passes. '' = no countdown. To extend the offer, move this date.
-    endsAt: '2026-11-11T13:00:00+02:00',
   },
 
   // ── FAQ: "למה לא להשתמש בכלים המובנים של פרימייר או בפלאגינים אחרים?" ──────────────────────

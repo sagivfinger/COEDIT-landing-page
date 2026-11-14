@@ -14,13 +14,13 @@
 <div aria-hidden="true" style="visibility:hidden;border-bottom:1px solid transparent">
   <div style="max-width:1200px;margin:0 auto;padding:8px clamp(12px,4vw,24px);display:flex;align-items:center;justify-content:center;gap:clamp(8px,2vw,14px);flex-wrap:wrap;font-size:clamp(13px,3.4vw,15px);line-height:1.4;text-align:center">
     <span style="font-weight:800">🎁 {{ offerText }}</span>
-    <span style="display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;font-weight:700">נגמר בקרוב<span dir="ltr" style="font-variant-numeric:tabular-nums;border:1px solid transparent;padding:2px 8px;font-weight:800;letter-spacing:.5px">{{ offerClock }}</span></span>
+    <span style="display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;font-weight:700">נשארו לכם<span dir="ltr" style="font-variant-numeric:tabular-nums;border:1px solid transparent;padding:2px 8px;font-weight:800;letter-spacing:.5px">{{ offerClock }}</span></span>
   </div>
 </div>
 <a href="{{ navPricingHref }}" data-launch-offer="1" style="position:fixed;top:0;left:0;right:0;z-index:55;display:block;background:linear-gradient(90deg,#3a1312,#5a1d1b 50%,#3a1312);border-bottom:1px solid #6b2522;color:#fff;text-decoration:none">
   <div style="max-width:1200px;margin:0 auto;padding:8px clamp(12px,4vw,24px);display:flex;align-items:center;justify-content:center;gap:clamp(8px,2vw,14px);flex-wrap:wrap;font-size:clamp(13px,3.4vw,15px);line-height:1.4;text-align:center">
     <span style="font-weight:800">🎁 {{ offerText }}</span>
-    <span style="display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;color:#ffb4ae;font-weight:700">נגמר בקרוב<span dir="ltr" style="font-variant-numeric:tabular-nums;background:rgba(0,0,0,.35);border:1px solid #7a2a27;border-radius:6px;padding:2px 8px;color:#fff;font-weight:800;letter-spacing:.5px">{{ offerClock }}</span></span>
+    <span style="display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;color:#ffb4ae;font-weight:700">נשארו לכם<span dir="ltr" style="font-variant-numeric:tabular-nums;background:rgba(0,0,0,.35);border:1px solid #7a2a27;border-radius:6px;padding:2px 8px;color:#fff;font-weight:800;letter-spacing:.5px">{{ offerClock }}</span></span>
   </div>
 </a>
 </sc-if>
@@ -97,15 +97,15 @@ const packPrice = (n, cat) => ((PACKS[cat] || []).find(x => x[0] === n) || [0, 0
 // Cart packs are "<size>:<cat>" (see store.dc.html): credits belong to one usage category.
 const CATS = { cz: 'כתוביות וזומים', cuts: 'חיתוכים' };
 const parsePack = k => { const m = /^(\d+):(cz|cuts)$/.exec(String(k)); return m && packPrice(+m[1], m[2]) ? { n: +m[1], cat: m[2] } : null; };
-// The launch offer (COFRAMES free with every plan) comes from site-config.js: its wording and its end.
-// A real deadline: the bar counts down to offer.endsAt and disappears once it has passed (or when it's '').
-// To extend the offer, move that date; to end it early, set a date in the past.
+// The COFRAMES gift: this visitor's own deadline (site-offer.js → window.COEDIT_OFFER), the wording
+// from site-config.js offer. The bar counts down to that visitor's deadline and disappears after it.
 const OFFER = (W().COEDIT_CONFIG || {}).offer || {};
+const offerNow = () => { const o = W().COEDIT_OFFER || {}; return o.active ? o : null; };
+const deadlineText = ms => (W().COEDIT_OFFER_DEADLINE_TEXT || (() => ''))(ms);
 // The Resolve page (window.COEDIT_PAGE) has its own pricing and trial; COFRAMES, the launch gift, works
 // only in Premiere Pro and After Effects, so its countdown is off there unless resolve.showCoframesGift.
 const ON_OWN_PAGE = W().COEDIT_PAGE === 'resolve';
 const SHOW_OFFER = !ON_OWN_PAGE || !!(((W().COEDIT_CONFIG || {}).resolve || {}).showCoframesGift);
-const LAUNCH_OFFER_ENDS = (OFFER.text && Date.parse(OFFER.endsAt || '')) || 0;
 const pad2 = n => String(n).padStart(2, '0');
 // Hours only (72:00:00 counts down from three days), never days.
 const offerClock = ms => { const s = Math.floor(ms / 1000); return pad2(Math.floor(s / 3600)) + ':' + pad2(Math.floor(s % 3600 / 60)) + ':' + pad2(s % 60); };
@@ -123,9 +123,10 @@ class Component extends DCLogic {
     this._key = e => { if (e.key === 'Escape') this.setState({ menu: false, drawer: false }); };
     document.addEventListener('keydown', this._key);
     this._tick = () => this.setState({ now: Date.now() }); this._tick();
-    if (Date.now() < LAUNCH_OFFER_ENDS) this._offerT = w.setInterval(this._tick, 1000);
+    // Every second while the visitor's countdown runs; it stops itself once the deadline has passed.
+    this._offerT = w.setInterval(this._tick, 1000); w.addEventListener('coedit-offer', this._tick);
   }
-  componentWillUnmount() { const w = W(); if (this._offerT) w.clearInterval(this._offerT); w.removeEventListener('ocedit-cart', this._l); w.removeEventListener('storage', this._l); document.removeEventListener('pointerdown', this._doc); document.removeEventListener('keydown', this._key); document.body.style.overflow = ''; }
+  componentWillUnmount() { const w = W(); if (this._offerT) w.clearInterval(this._offerT); w.removeEventListener('coedit-offer', this._tick); w.removeEventListener('ocedit-cart', this._l); w.removeEventListener('storage', this._l); document.removeEventListener('pointerdown', this._doc); document.removeEventListener('keydown', this._key); document.body.style.overflow = ''; }
   componentDidUpdate(pp, ps) { if (!ps) return; if (ps === this._lastPs) return; this._lastPs = ps;
     if (this.count(ps.cart) !== this.count(this.state.cart)) W().requestAnimationFrame(() => { const b = document.querySelector('[data-cart-badge]'); if (b && b.animate) b.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.45)' }, { transform: 'scale(1)' }], { duration: 380, easing: 'cubic-bezier(.34,1.56,.64,1)' }); });
     if (ps.drawer !== this.state.drawer) document.body.style.overflow = this.state.drawer ? 'hidden' : '';
@@ -138,18 +139,19 @@ class Component extends DCLogic {
     const packsTotal = c.packs.reduce((a, k) => { const p = parsePack(k); return a + (p ? packPrice(p.n, p.cat) : 0); }, 0);
     const items = [];
     if (plan) items.push({ icon: 'CO', iconBg: 'linear-gradient(180deg,#e2504a,#c42e2a)', name: 'COEDIT ' + c.plan, sub: (c.yearly ? 'שנתי' : 'חודשי') + ' · ' + plan.cap + "/" + plan.cuts + " דק'", price: '₪' + mo + ' / חודש', priceC: '#fff', bd: '#5a2220', removable: true, remove: () => this.save({ ...c, plan: null }) });
-    if (plan && OFFER.text) items.push({ icon: '◆', iconBg: '#14231a', name: 'COFRAMES', sub: 'החלקת קיפריימים · ' + (OFFER.short || 'מתנה'), price: 'מתנה', priceC: '#5fd068', bd: '#2a2a2a', removable: false, remove: null });
+    const gift = offerNow();
+    if (plan && gift) items.push({ icon: '◆', iconBg: '#14231a', name: 'COFRAMES', sub: 'החלקת קיפריימים · ' + (OFFER.short || 'מתנה').replace('{deadline}', deadlineText(gift.deadline)), price: 'מתנה', priceC: '#5fd068', bd: '#2a2a2a', removable: false, remove: null });
     [...new Set(c.packs)].forEach(k => { const p = parsePack(k); if (!p) return; const q = c.packs.filter(z => z === k).length; items.push({ icon: '⚡', iconBg: '#2a1716', name: fmt(p.n) + ' קרדיטים · ' + CATS[p.cat] + (q > 1 ? ' ×' + q : ''), sub: 'חבילה חד פעמית · ' + (p.cat === 'cz' ? 'לכתוביות ולזומים בלבד' : 'לחיתוכים בלבד'), price: '₪' + fmt(packPrice(p.n, p.cat) * q), priceC: '#fff', bd: '#2a2a2a', removable: true, remove: () => this.save({ ...c, packs: c.packs.filter(x => x !== k) }) }); });
     const planDue = plan ? (c.yearly ? mo * 12 : plan.m) : 0;
     const open = s.drawer, dy = s.dragging ? s.dragY : 0;
     const initials = 'ש';
-    const left = LAUNCH_OFFER_ENDS - (s.now || Date.now());
-    if (left <= 0 && this._offerT) { W().clearInterval(this._offerT); this._offerT = null; }
+    const off = offerNow(), left = off ? off.deadline - (s.now || Date.now()) : 0;
+    if (left <= 0 && this._offerT && W().COEDIT_OFFER && !W().COEDIT_OFFER.local && W().COEDIT_OFFER.deadline) { W().clearInterval(this._offerT); this._offerT = null; }
     return {
       // On a page with its own pricing and trial (the Resolve page), the nav's buttons stay on that page.
       navTrialHref: ON_OWN_PAGE ? '#trial' : '/#trial', navPricingHref: ON_OWN_PAGE ? '#pricing' : '/#pricing',
       offerOn: left > 0 && SHOW_OFFER, offerClock: offerClock(Math.max(0, left)),
-      offerText: (s.vw || 1024) >= 520 ? OFFER.text + (OFFER.anchorPrice ? ' (שווה ₪' + OFFER.anchorPrice + ')' : '') : 'COFRAMES · ' + (OFFER.short || 'במתנה'),
+      offerText: (s.vw || 1024) >= 520 ? (OFFER.bar || 'COFRAMES במתנה') + (OFFER.anchorPrice ? ' (שווה ₪' + OFFER.anchorPrice + ')' : '') : 'COFRAMES במתנה',
       wide: (s.vw || 1024) >= 520, loginPad: (s.vw || 1024) >= 520 ? '14px' : '0', loginBd: (s.vw || 1024) >= 520 ? 'transparent' : '#333', loggedIn: c.loggedIn, loggedOut: !c.loggedIn, initials, avatarRing: s.menu ? '#fff' : '#121212',
       toggleMenu: () => this.setState(st => ({ menu: !st.menu })), closeMenu: () => this.setState({ menu: false }),
       menuVis: s.menu ? 'visible' : 'hidden', menuO: s.menu ? 1 : 0, menuY: s.menu ? '0px' : '20px', menuPE: s.menu ? 'auto' : 'none',

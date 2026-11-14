@@ -207,7 +207,7 @@ ${keep('מה זה COFRAMES?')}
 ` + script.slice(fb);
 }
 S("const source = [this._trialSource || 'hero',", "const source = ['resolve-' + (this._trialSource || 'hero'),", 'the signup source');
-S('JSON.stringify({ email, source, audience: attr.for || null, utm })', "JSON.stringify({ email, source, audience: attr.for || null, utm, page: 'resolve' })", 'the signup body');
+S('JSON.stringify({ email, source, audience: attr.for || null, utm, offer_token: offerToken })', "JSON.stringify({ email, source, audience: attr.for || null, utm, offer_token: offerToken, page: 'resolve' })", 'the signup body');
 script = script.split("'wZPgfeMTX3k'").join("''").split("'assets/hero-poster.jpg'").join("''");
 
 const out = head + '<body>\n' + page + script;

@@ -104,7 +104,8 @@ async function main() {
     ws.onmessage = m => { const d = JSON.parse(m.data); if (waiting.has(d.id)) { waiting.get(d.id)(d); waiting.delete(d.id); } };
     const send = (method, params = {}) => new Promise(r => { const n = ++id; waiting.set(n, r); ws.send(JSON.stringify({ id: n, method, params })); });
 
-    await send('Page.navigate', { url: 'http://127.0.0.1:' + SITE_PORT + '/' });
+    // ?prerender=1: no visitor-specific content (the COFRAMES deadline) in the copy for bots.
+    await send('Page.navigate', { url: 'http://127.0.0.1:' + SITE_PORT + '/?prerender=1' });
     // Wait for the page to render (support.js fetches React and Babel, then draws #dc-root).
     let ready = false;
     for (let i = 0; i < 120 && !ready; i++) {

@@ -25,6 +25,7 @@ html body [class*="omnisend-form-"] button { font-weight: 700 !important; }
 <!-- Site settings (text, offer, audiences) and where the visitor came from; both before support.js. -->
 <script src="./site-config.js"></script>
 <script src="./site-attribution.js"></script>
+<script src="./site-offer.js"></script>
 <script src="./support.js"></script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-hw61AMuMfcT7n7xry4d3u.js"></script>
@@ -301,6 +302,7 @@ class Component extends DCLogic {
     try { const s = JSON.parse(w.localStorage.getItem('ocedit-cart') || '{}'); this.setState({ plan: 'plan' in s ? s.plan : 'PRO', yearly: !!s.yearly, packs: cleanPacks(s.packs), loggedIn: !!s.loggedIn }); } catch (e) {}
     this._cl = () => { try { const c = JSON.parse(w.localStorage.getItem('ocedit-cart') || '{}'); const st = this.state; const cur = JSON.stringify({ plan: st.plan ?? null, yearly: !!st.yearly, packs: st.packs || [], loggedIn: !!st.loggedIn }); const nx = { plan: c.plan ?? null, yearly: !!c.yearly, packs: cleanPacks(c.packs), loggedIn: !!c.loggedIn }; if (cur !== JSON.stringify(nx)) this.setState(nx); } catch (e) {} }; w.addEventListener('ocedit-cart', this._cl);
     this._h = () => this.readHash(); this._h(); w.addEventListener('hashchange', this._h);
+    this._offer = () => this.setState({ offerTick: Date.now() }); w.addEventListener('coedit-offer', this._offer);
     w.requestAnimationFrame(() => w.requestAnimationFrame(() => this.animateIn()));
   }
   animateIn(root) { const w = document.defaultView || window; if (w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches) return; const sel = 'h1, h2, p, aside, form > *, article > *, [style*="border-radius:14px"], [style*="border-radius:12px"], [style*="border-radius:11px"], [style*="border-radius:10px"], main a[style*="linear-gradient(180deg,#e2504a"]'; const all = [...(root || document).querySelectorAll(sel)].filter(el => !el.closest('nav') && !el.closest('[data-sitenav]') && !el.closest('footer')); const set = new Set(all); const items = all.filter(el => { let p = el.parentElement; while (p) { if (set.has(p)) return false; p = p.parentElement; } return true; }).slice(0, 40); items.forEach((el, i) => { if (el.animate) el.animate([{ opacity: 0, filter: 'blur(8px)', transform: 'translateY(-16px)' }, { opacity: 1, filter: 'blur(0px)', transform: 'translateY(0)' }], { duration: 550, delay: Math.min(i * 70, 700), easing: 'cubic-bezier(.22,.8,.3,1)', fill: 'backwards' }); }); }
@@ -333,9 +335,10 @@ class Component extends DCLogic {
     const packsTotal = s.packs.reduce((a, k) => a + packPrice(k), 0);
     const lines = [];
     if (plan) lines.push({ label: 'COEDIT ' + plan.name, sub: s.yearly ? 'שנתי · ₪' + mo(plan) + ' לחודש' : 'חודשי', amount: '₪' + fmt(planDue) + (s.yearly ? ' לשנה' : ' לחודש'), c: '#fff', removable: true, remove: () => this.setState({ plan: null }) });
-    // The launch gift's wording comes from site-config.js (offer.short); with no offer there, no gift line.
-    const offer = (W().COEDIT_CONFIG || {}).offer || {};
-    if (plan && offer.text) lines.push({ label: 'COFRAMES · החלקת קיפריימים', sub: offer.short || 'מתנה', amount: 'מתנה', c: '#5fd068', removable: false, remove: null });
+    // The COFRAMES gift, until THIS visitor's own deadline (site-offer.js); the wording from site-config.js.
+    const offer = (W().COEDIT_CONFIG || {}).offer || {}, gift = W().COEDIT_OFFER || {};
+    const giftOn = !!(offer.text && gift.active);
+    if (plan && giftOn) lines.push({ label: 'COFRAMES · החלקת קיפריימים', sub: (offer.short || 'מתנה').replace('{deadline}', (W().COEDIT_OFFER_DEADLINE_TEXT || (() => ''))(gift.deadline)), amount: 'מתנה', c: '#5fd068', removable: false, remove: null });
     [...new Set(s.packs)].forEach(key => { const pk = parsePack(key); if (!pk) return; const q = s.packs.filter(x => x === key).length; lines.push({ label: fmt(pk.n) + ' קרדיטים · ' + CATS[pk.cat] + (q > 1 ? ' ×' + q : ''), sub: 'חד פעמי · ' + CAT_ONLY[pk.cat], amount: '₪' + fmt(packPrice(key) * q), c: '#fff', removable: true, remove: () => this.setState(st => ({ packs: st.packs.filter(x => x !== key) })) }); });
     const on = '#fff', off = '#888', onBg = 'linear-gradient(180deg,#e2504a,#c42e2a)';
     return {
