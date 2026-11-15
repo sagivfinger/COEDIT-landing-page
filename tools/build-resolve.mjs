@@ -131,7 +131,14 @@ T('עובד בתוך Premiere Pro ו-After Effects</span>', 'עובד ב-DaVinci
     <div style="display:flex;flex-direction:column;gap:10px;padding-left:40px">
       <span style="font-size:13px;font-weight:800;color:#e2504a;letter-spacing:.02em">התקנה ב-DaVinci Resolve</span>
       <h2 id="trial-title" style="margin:0;font-size:clamp(24px,3.4vw,32px);font-weight:900;line-height:1.15">מתקינים את COEDIT</h2>
-      <div style="border:2px dashed #6b5a1e;border-radius:12px;background:#1c1a10;color:#e8d27a;padding:18px;font-size:15px;line-height:1.7">✏️ מדריך ההתקנה ל-DaVinci Resolve והורדה: יושלם לפני ההשקה, לפי הגרסאות שייתמכו.</div>
+      <div style="background:#1a1a1a;border:1px solid #3a2a2a;border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.6;color:#cfcfcf">כרגע ל-Windows 10 ו-11 בלבד. גרסת Mac תגיע בהמשך.</div>
+      <ol style="margin:0;padding-right:20px;display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.7;color:#ddd">
+        <li><b style="color:#fff">מורידים את ההתקנה</b> מהקישור שבמייל ופותחים אותה. <span style="color:#e8d27a">✏️ קישור ההורדה יתווסף בהשקה.</span></li>
+        <li><b style="color:#fff">אם מופיע חלון כחול "Windows הגן על המחשב שלך"</b> (<span dir="ltr">Windows protected your PC</span>): לוחצים על <b>מידע נוסף</b> (<span dir="ltr">More info</span>) ואז על <b>הפעל בכל זאת</b> (<span dir="ltr">Run anyway</span>). זה קורה רק כי ההתקנה חדשה ל-Windows; היא לא נוגעת בשום דבר מלבד COEDIT.
+          <div style="${PLACEHOLDER};margin-top:8px;min-height:120px">✏️ צילום מסך של החלון הכחול (מהבדיקה במחשב הנקי)</div></li>
+        <li><b style="color:#fff">ההתקנה לוקחת כמה שניות.</b> בסיום נפתח דף COEDIT בדפדפן, ומזינים בו את מפתח הרישיון מהמייל. אם DaVinci Resolve היה פתוח, סוגרים ופותחים אותו מחדש כדי שיראה את פונטי הכתוביות.</li>
+        <li><b style="color:#fff">ב-DaVinci Resolve:</b> <span dir="ltr" style="white-space:nowrap">File → Export → Timeline</span> לתיקייה <span dir="ltr" style="white-space:nowrap">Documents\\COEDIT Resolve</span>. COEDIT פותח את ציר הזמן לבד, ובסוף מייבאים את התוצאה: <span dir="ltr" style="white-space:nowrap">File → Import → Timeline</span>. ציר הזמן המקורי לא משתנה.</li>
+      </ol>
       <span style="font-size:14px;color:#aaa">משהו לא ברור? <a href="contact/">כתבו לנו</a>.</span>
     </div>
     </sc-if>
