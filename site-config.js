@@ -69,7 +69,7 @@ window.COEDIT_CONFIG = {
     // draft until the clean-PC test on the free edition passes.
     faq: { free: '',
       versions: 'DaVinci Resolve 20 ו-21, במחשבי Windows 10 ו-11. גרסת Mac עוד לא זמינה, והיא תגיע בהמשך.',
-      install: 'מורידים את קובץ ההתקנה מהקישור שבמייל ופותחים אותו. אם Windows מציג חלון כחול "Windows הגן על המחשב שלך", לוחצים "מידע נוסף" ואז "הפעל בכל זאת". ההתקנה לוקחת כמה שניות, ודף COEDIT נפתח בדפדפן. ב-DaVinci Resolve מייצאים את ציר הזמן (File → Export → Timeline) לתיקייה Documents\\COEDIT Resolve, ובסוף מייבאים את התוצאה (File → Import → Timeline). כרגע ל-Windows בלבד.' },
+      install: 'מורידים את קובץ ההתקנה מהקישור שבמייל ופותחים אותו. אם Windows מציג חלון כחול "Windows הגן על המחשב שלך", לוחצים "מידע נוסף" ואז "הפעל בכל זאת". ההתקנה לוקחת כמה שניות, ונפתח חלון COEDIT קטן. ב-DaVinci Resolve מייצאים את ציר הזמן (File → Export → Timeline) לתיקייה Documents\\COEDIT Resolve, ובסוף מייבאים את התוצאה (File → Import → Timeline). כרגע ל-Windows בלבד.' },
     // The COFRAMES gift shows here as on the main page (note: COFRAMES works in Premiere Pro and
     // After Effects, not in DaVinci Resolve). false hides it on this page only.
     showCoframesGift: true,

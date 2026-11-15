@@ -136,7 +136,7 @@ T('עובד בתוך Premiere Pro ו-After Effects</span>', 'עובד ב-DaVinci
         <li><b style="color:#fff">מורידים את ההתקנה</b> מהקישור שבמייל ופותחים אותה. <span style="color:#e8d27a">✏️ קישור ההורדה יתווסף בהשקה.</span></li>
         <li><b style="color:#fff">אם מופיע חלון כחול "Windows הגן על המחשב שלך"</b> (<span dir="ltr">Windows protected your PC</span>): לוחצים על <b>מידע נוסף</b> (<span dir="ltr">More info</span>) ואז על <b>הפעל בכל זאת</b> (<span dir="ltr">Run anyway</span>). זה קורה רק כי ההתקנה חדשה ל-Windows; היא לא נוגעת בשום דבר מלבד COEDIT.
           <div style="${PLACEHOLDER};margin-top:8px;min-height:120px">✏️ צילום מסך של החלון הכחול (מהבדיקה במחשב הנקי)</div></li>
-        <li><b style="color:#fff">ההתקנה לוקחת כמה שניות.</b> בסיום נפתח דף COEDIT בדפדפן, ומזינים בו את מפתח הרישיון מהמייל. אם DaVinci Resolve היה פתוח, סוגרים ופותחים אותו מחדש כדי שיראה את פונטי הכתוביות.</li>
+        <li><b style="color:#fff">ההתקנה לוקחת כמה שניות.</b> בסיום נפתח חלון COEDIT קטן, ומזינים בו את מפתח הרישיון מהמייל. אם DaVinci Resolve היה פתוח, סוגרים ופותחים אותו מחדש כדי שיראה את פונטי הכתוביות.</li>
         <li><b style="color:#fff">ב-DaVinci Resolve:</b> <span dir="ltr" style="white-space:nowrap">File → Export → Timeline</span> לתיקייה <span dir="ltr" style="white-space:nowrap">Documents\\COEDIT Resolve</span>. COEDIT פותח את ציר הזמן לבד, ובסוף מייבאים את התוצאה: <span dir="ltr" style="white-space:nowrap">File → Import → Timeline</span>. ציר הזמן המקורי לא משתנה.</li>
       </ol>
       <span style="font-size:14px;color:#aaa">משהו לא ברור? <a href="contact/">כתבו לנו</a>.</span>
