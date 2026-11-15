@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COEDIT</title>
+<title>הסל והחשבון · COEDIT</title>
+<meta name="description" content="הסל של COEDIT, וההתחברות לחשבון עם מפתח הרישיון: המסלול, השימוש, ההזמנות וההורדות שלכם.">
+<!-- The cart and the signed-in account: personal pages, not search results. -->
+<meta name="robots" content="noindex, follow">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <!-- Omnisend: page tracking and signup forms (brand 6adb869716c3179619233e43). Same snippet on every page. -->
@@ -232,15 +235,104 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
 </sc-if>
 
 
-<sc-if value="{{ isAcct }}" hint-placeholder-val="{{ false }}">
-<div style="max-width:620px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center">
-  <span style="width:76px;height:76px;border-radius:50%;background:#1f1414;border:1px solid #5a2220;color:#e2504a;display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(217,58,53,.2)"><svg width="34" height="34" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg></span>
-  <h1 style="margin:0;font-size:clamp(30px,4.5vw,46px);font-weight:900;line-height:1.1">אזור החשבון <span style="color:#e2504a">ייפתח בקרוב</span></h1>
-  <p style="margin:0;font-size:17px;color:#aaa;line-height:1.7">התחברות, הרשמה וניהול חשבון באתר עדיין לא זמינים. הם ייפתחו יחד עם הרכישות באתר.</p>
-  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
-    <a href="/#pricing" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:17px;padding:14px 30px;border-radius:9px;box-shadow:0 0 26px rgba(220,60,55,.4);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 0 36px rgba(220,60,55,.6)">למסלולים</a>
-    <a href="/" style="background:#1d1d1d;border:1px solid #333;color:#ddd;font-weight:700;font-size:17px;padding:14px 26px;border-radius:9px;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#d93a35;transform:translateY(-2px)">לדף הבית</a>
+<!-- THE ACCOUNT. Sign-in with the licence key (COEDIT Cloud POST /account/login: read only, it does not
+     activate the key or start a trial), then GET /account. The token is kept in this browser for 12 hours. -->
+<sc-if value="{{ isLogin }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:22px">
+  <div style="display:flex;flex-direction:column;gap:10px;text-align:center;align-items:center">
+    <span style="width:68px;height:68px;border-radius:50%;background:#1f1414;border:1px solid #5a2220;color:#e2504a;display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(217,58,53,.2)"><svg width="30" height="30" viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="8" cy="15" r="4"></circle><path d="M10.8 12.2L20 3M17 6l3 3M14.5 8.5l2 2"></path></svg></span>
+    <h1 style="margin:0;font-size:clamp(30px,4.5vw,42px);font-weight:900;line-height:1.1">התחברות לחשבון</h1>
+    <p style="margin:0;font-size:16px;color:#aaa;line-height:1.7">התחברו עם מפתח הרישיון שלכם, אותו מפתח שמדביקים בפאנל של COEDIT.</p>
   </div>
+  <form onSubmit="{{ submitLogin }}" novalidate style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:clamp(18px,5vw,26px);display:flex;flex-direction:column;gap:12px">
+    <label for="acct-key" style="font-size:15px;font-weight:700;color:#ddd">מפתח רישיון</label>
+    <input id="acct-key" name="license_key" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" dir="ltr" placeholder="COEDIT-XXXXX-XXXXX-XXXXX-XXXXX" style="width:100%;font:inherit;font-size:16px;letter-spacing:.03em;color:#fff;background:#0f0f0f;border:1.5px solid #333;border-radius:9px;padding:13px 14px;outline:none" style-focus="border-color:#e2504a">
+    <button type="submit" disabled="{{ loginSending }}" style="font-family:Heebo;cursor:pointer;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:17px;padding:14px 24px;border:none;border-radius:9px;box-shadow:0 0 24px rgba(220,60,55,.35)">{{ loginLabel }}</button>
+    <sc-if value="{{ loginMsgShown }}" hint-placeholder-val="{{ false }}"><span role="status" style="font-size:15px;line-height:1.6;color:{{ loginMsgColor }}">{{ loginMsg }}</span></sc-if>
+  </form>
+  <div style="background:#161616;border:1px solid #262626;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+    <button type="button" onClick="{{ toggleHelp }}" aria-expanded="{{ helpExpanded }}" style="all:unset;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:15px;font-weight:700;color:#ddd">איפה המפתח שלי?<span aria-hidden="true" style="color:#e2504a;font-size:18px">{{ helpSign }}</span></button>
+    <sc-if value="{{ helpOpen }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0;font-size:14px;color:#aaa;line-height:1.7">המפתח נשלח אליכם במייל כשנרשמתם לניסיון או כשרכשתם מנוי, בנושא "הנה המפתח שלכם". הוא מתחיל ב-<span dir="ltr">COEDIT-</span>. לא מוצאים אותו? כתבו לנו מהכתובת שנרשמתם איתה ל-<a href="mailto:{{ contact }}" dir="ltr" style="overflow-wrap:anywhere">{{ contact }}</a> ונשלח לכם אותו שוב.</p>
+    </sc-if>
+  </div>
+  <p style="margin:0;text-align:center;font-size:15px;color:#999">עוד אין לכם מפתח? <a href="/#trial" style="font-weight:700">התחילו ניסיון חינם</a></p>
+</div>
+</sc-if>
+
+<sc-if value="{{ isAccount }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+      <h1 style="margin:0;font-size:clamp(30px,4.5vw,44px);font-weight:900;line-height:1.1">החשבון שלי</h1>
+      <sc-if value="{{ acctReady }}" hint-placeholder-val="{{ true }}"><span style="font-size:14px;color:#999;display:flex;flex-wrap:wrap;gap:4px 12px"><sc-if value="{{ hasEmail }}" hint-placeholder-val="{{ true }}"><span dir="ltr" style="overflow-wrap:anywhere">{{ acctEmail }}</span></sc-if><span dir="ltr" style="font-family:ui-monospace,Consolas,monospace;color:#777">{{ keyMask }}</span></span></sc-if>
+    </div>
+    <button type="button" onClick="{{ logout }}" style="font-family:Heebo;cursor:pointer;background:#1d1d1d;border:1px solid #333;color:#ddd;font-weight:700;font-size:15px;padding:10px 18px;border-radius:9px" style-hover="border-color:#d93a35">התנתקות</button>
+  </div>
+
+  <sc-if value="{{ acctLoading }}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:28px;text-align:center;color:#999;font-size:16px">טוען את החשבון…</div>
+  </sc-if>
+  <sc-if value="{{ acctError }}" hint-placeholder-val="{{ false }}">
+    <div role="alert" style="background:#1a1a1a;border:1px solid #5a2220;border-radius:14px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center">
+      <span style="font-size:16px;color:#ddd">לא הצלחנו לטעון את החשבון כרגע.</span>
+      <button type="button" onClick="{{ retry }}" style="font-family:Heebo;cursor:pointer;background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:15px;padding:11px 22px;border:none;border-radius:9px">לנסות שוב</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ acctReady }}" hint-placeholder-val="{{ true }}">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:20px;align-items:start">
+
+    <section aria-labelledby="acct-plan" style="background:#1f1414;border:1px solid #5a2220;border-radius:14px;padding:clamp(18px,4.5vw,24px);display:flex;flex-direction:column;gap:14px;box-shadow:0 0 60px rgba(217,58,53,.08)">
+      <span id="acct-plan" style="font-size:14px;font-weight:700;color:#bbb">המסלול שלכם</span>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <b dir="auto" style="font-size:30px;font-weight:900;letter-spacing:.04em">{{ planName }}</b>
+        <span style="font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;color:{{ badgeC }};background:{{ badgeBg }};border:1px solid {{ badgeBd }}">{{ badge }}</span>
+      </div>
+      <sc-if value="{{ hasPlanLine }}" hint-placeholder-val="{{ true }}"><span style="font-size:15px;color:#ccc;line-height:1.6">{{ planLine }}</span></sc-if>
+      <sc-if value="{{ notActivated }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0;font-size:14px;color:#e8c46a;line-height:1.7;background:#221d10;border:1px solid #4a3c17;border-radius:9px;padding:10px 12px">{{ notActivatedText }}</p>
+      </sc-if>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <sc-if value="{{ hasManage }}" hint-placeholder-val="{{ false }}"><a href="{{ manageUrl }}" target="_blank" rel="noopener" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:15px;padding:11px 20px;border-radius:9px">ניהול התשלום והמנוי</a></sc-if>
+        <a href="/#pricing" style="background:{{ upBg }};border:1px solid {{ upBd }};color:#fff;font-weight:{{ upW }};font-size:15px;padding:11px 20px;border-radius:9px">{{ upLabel }}</a>
+      </div>
+      <sc-if value="{{ showWriteIn }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#999;line-height:1.6">לשינוי או לביטול המנוי, כתבו לנו ל-<a href="mailto:{{ contact }}" dir="ltr" style="overflow-wrap:anywhere">{{ contact }}</a></span></sc-if>
+    </section>
+
+    <section aria-labelledby="acct-usage" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:clamp(18px,4.5vw,24px);display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap"><span id="acct-usage" style="font-size:14px;font-weight:700;color:#bbb">{{ usageTitle }}</span><sc-if value="{{ hasRenew }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#888">{{ renewLine }}</span></sc-if></div>
+      <sc-for list="{{ usageRows }}" as="u" hint-placeholder-count="2">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap"><b style="font-size:16px">{{ u.label }}</b><span style="font-size:14px;color:#ccc">{{ u.line }}</span></div>
+          <sc-if value="{{ u.hasBar }}" hint-placeholder-val="{{ true }}"><div role="progressbar" aria-label="{{ u.label }}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ u.pct }}" style="height:8px;border-radius:999px;background:#262626;overflow:hidden"><div style="height:100%;width:{{ u.pctW }};background:{{ u.barC }};border-radius:999px"></div></div></sc-if>
+          <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px;color:#999"><span>{{ u.left }}</span><sc-if value="{{ u.hasCredits }}" hint-placeholder-val="{{ false }}"><span style="color:#5fd068">{{ u.credits }}</span></sc-if></div>
+          <sc-if value="{{ u.canBuy }}" hint-placeholder-val="{{ true }}"><a href="{{ u.buyHref }}" style="align-self:flex-start;font-size:13px;font-weight:700">קנו עוד דקות ל{{ u.label }} ←</a></sc-if>
+        </div>
+      </sc-for>
+    </section>
+
+    <section aria-labelledby="acct-dl" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:clamp(18px,4.5vw,24px);display:flex;flex-direction:column;gap:12px">
+      <span id="acct-dl" style="font-size:14px;font-weight:700;color:#bbb">הורדות</span>
+      <a href="{{ coeditUrl }}" style="display:flex;justify-content:space-between;align-items:center;gap:10px;background:#141414;border:1px solid #2e2e2e;border-radius:10px;padding:13px 15px;color:#fff" style-hover="border-color:#d93a35"><span style="display:flex;flex-direction:column;gap:2px"><b style="font-size:15px">COEDIT, הגרסה האחרונה</b><span style="font-size:12px;color:#888">Premiere Pro ו-After Effects · Windows ו-Mac</span></span><span aria-hidden="true" style="color:#e2504a;font-weight:800">⬇</span></a>
+      <sc-if value="{{ hasCoframes }}" hint-placeholder-val="{{ false }}"><a href="{{ coframesUrl }}" style="display:flex;justify-content:space-between;align-items:center;gap:10px;background:#141414;border:1px solid #2e2e2e;border-radius:10px;padding:13px 15px;color:#fff" style-hover="border-color:#d93a35"><span style="display:flex;flex-direction:column;gap:2px"><b style="font-size:15px">COFRAMES</b><span style="font-size:12px;color:#888">החלקת קיפריימים · כלול במנוי שלכם</span></span><span aria-hidden="true" style="color:#e2504a;font-weight:800">⬇</span></a></sc-if>
+      <a href="/#install" style="font-size:13px;font-weight:700;align-self:flex-start">מדריך ההתקנה ←</a>
+    </section>
+
+    <section aria-labelledby="acct-orders" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:clamp(18px,4.5vw,24px);display:flex;flex-direction:column;gap:12px">
+      <span id="acct-orders" style="font-size:14px;font-weight:700;color:#bbb">הזמנות</span>
+      <sc-if value="{{ noOrders }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;color:#888;line-height:1.6">עוד אין הזמנות מהאתר. הזמנות שתבצעו יופיעו כאן, והחשבוניות נשלחות במייל.</span></sc-if>
+      <sc-for list="{{ orders }}" as="o" hint-placeholder-count="2">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-top:1px solid #242424">
+          <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:15px;font-weight:700;color:#eee">{{ o.item }}</span><span style="font-size:12px;color:#888">{{ o.date }}</span></div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex:none"><b style="font-size:15px">{{ o.amount }}</b><span style="font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;color:{{ o.c }};border:1px solid {{ o.c }}">{{ o.status }}</span></div>
+        </div>
+      </sc-for>
+    </section>
+
+  </div>
+  <p style="margin:0;text-align:center;font-size:14px;color:#888">שאלה על החשבון? כתבו לנו ל-<a href="mailto:{{ contact }}" dir="ltr" style="overflow-wrap:anywhere">{{ contact }}</a></p>
+  </sc-if>
 </div>
 </sc-if>
 
@@ -295,6 +387,25 @@ const parsePack = k => { const m = /^(\d+):(cz|cuts)$/.exec(String(k)); return m
 const cleanPacks = a => (Array.isArray(a) ? a : []).filter(k => parsePack(k));
 const packPrice = k => { const p = parsePack(k); return p ? packOf(p.n, p.cat)[1] : 0; };
 const VIEWS = ['cart', 'checkout', 'success', 'login', 'signup', 'reset', 'account', '404'];
+// ── the account (COEDIT Cloud /account, read only) ──
+// The token from POST /account/login is kept in this browser (localStorage 'coedit-account') until it
+// expires (12 hours) or the visitor signs out; the nav reads the same key. The licence key itself is
+// never stored. On localhost, localStorage 'coedit-dev-api' points the page at a local Cloud for testing.
+const CONTACT = 'coedit@getcoedit.com';
+const ACCOUNT_KEY = 'coedit-account';
+const ACCOUNT_API = (() => { try { const w = W(); if (/^(localhost|127\.0\.0\.1)$/.test(w.location.hostname)) { const d = w.localStorage.getItem('coedit-dev-api'); if (d) return d; } } catch (e) {} return 'https://coedit-cloud.fly.dev/api/v1'; })();
+const readSession = () => { try { const x = JSON.parse(W().localStorage.getItem(ACCOUNT_KEY) || 'null'); return x && x.token && x.exp > Date.now() ? x : null; } catch (e) { return null; } };
+const writeSession = x => { try { if (x) W().localStorage.setItem(ACCOUNT_KEY, JSON.stringify(x)); else W().localStorage.removeItem(ACCOUNT_KEY); } catch (e) {} try { W().dispatchEvent(new CustomEvent('coedit-account')); } catch (e) {} };
+const track = (name, props) => { try { W().plausible(name, { props }); } catch (e) {} };
+const BUCKETS = { caption_zoom: { label: 'כתוביות וזומים', cat: 'cz' }, editing: { label: 'חיתוכים', cat: 'cuts' } };
+const LOGIN_MSG = {
+  invalid: ['הדביקו את המפתח המלא, בפורמט COEDIT-XXXXX-XXXXX-XXXXX-XXXXX.', '#e8c46a'],
+  bad: ['המפתח הזה לא תקין. בדקו שהעתקתם אותו במלואו, או כתבו לנו.', '#ff8a84'],
+  rate_limited: ['יותר מדי ניסיונות. נסו שוב בעוד שעה.', '#ff8a84'],
+  error: ['לא הצלחנו להתחבר כרגע. נסו שוב בעוד רגע.', '#ff8a84'],
+  expired: ['החיבור פג. התחברו שוב עם המפתח.', '#e8c46a'],
+};
+const ORDER_STATUS = { paid: ['שולם', '#5fd068'], processing: ['בטיפול', '#e8c46a'], review: ['בבדיקה', '#e8c46a'], ended: ['הסתיים', '#888'] };
 class Component extends DCLogic {
   state = { view: 'cart', plan: 'PRO', yearly: false, packs: [], loggedIn: false, cat: DEFAULT_CAT };
   componentDidMount() { this._prevSnap = this.state;
@@ -302,13 +413,53 @@ class Component extends DCLogic {
     try { const s = JSON.parse(w.localStorage.getItem('ocedit-cart') || '{}'); this.setState({ plan: 'plan' in s ? s.plan : 'PRO', yearly: !!s.yearly, packs: cleanPacks(s.packs), loggedIn: !!s.loggedIn }); } catch (e) {}
     this._cl = () => { try { const c = JSON.parse(w.localStorage.getItem('ocedit-cart') || '{}'); const st = this.state; const cur = JSON.stringify({ plan: st.plan ?? null, yearly: !!st.yearly, packs: st.packs || [], loggedIn: !!st.loggedIn }); const nx = { plan: c.plan ?? null, yearly: !!c.yearly, packs: cleanPacks(c.packs), loggedIn: !!c.loggedIn }; if (cur !== JSON.stringify(nx)) this.setState(nx); } catch (e) {} }; w.addEventListener('ocedit-cart', this._cl);
     this._h = () => this.readHash(); this._h(); w.addEventListener('hashchange', this._h);
+    this._acct = () => { if (this.state.view === 'account' && !readSession()) this.go('login'); }; w.addEventListener('coedit-account', this._acct);
     this._offer = () => this.setState({ offerTick: Date.now() }); w.addEventListener('coedit-offer', this._offer);
     w.requestAnimationFrame(() => w.requestAnimationFrame(() => this.animateIn()));
   }
   animateIn(root) { const w = document.defaultView || window; if (w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches) return; const sel = 'h1, h2, p, aside, form > *, article > *, [style*="border-radius:14px"], [style*="border-radius:12px"], [style*="border-radius:11px"], [style*="border-radius:10px"], main a[style*="linear-gradient(180deg,#e2504a"]'; const all = [...(root || document).querySelectorAll(sel)].filter(el => !el.closest('nav') && !el.closest('[data-sitenav]') && !el.closest('footer')); const set = new Set(all); const items = all.filter(el => { let p = el.parentElement; while (p) { if (set.has(p)) return false; p = p.parentElement; } return true; }).slice(0, 40); items.forEach((el, i) => { if (el.animate) el.animate([{ opacity: 0, filter: 'blur(8px)', transform: 'translateY(-16px)' }, { opacity: 1, filter: 'blur(0px)', transform: 'translateY(0)' }], { duration: 550, delay: Math.min(i * 70, 700), easing: 'cubic-bezier(.22,.8,.3,1)', fill: 'backwards' }); }); }
   popBadge() { const b = document.querySelector('[data-cart-badge]'); if (b && b.animate) b.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.45)' }, { transform: 'scale(1)' }], { duration: 380, easing: 'cubic-bezier(.34,1.56,.64,1)' }); }
 
-  componentWillUnmount() { W().removeEventListener('hashchange', this._h); W().removeEventListener('ocedit-cart', this._cl); }
+  componentWillUnmount() { W().removeEventListener('hashchange', this._h); W().removeEventListener('ocedit-cart', this._cl); W().removeEventListener('coedit-account', this._acct); }
+  // Where a requested view really goes: the account needs a session, the sign-in page skips to the
+  // account when there is one, and "sign up" is the free trial on the home page.
+  guard(view) {
+    const w = W(), to = v => { try { w.history.replaceState(null, '', '#' + v); } catch (x) {} return v; };
+    if (view === 'signup') { w.location.href = '/#trial'; return 'login'; }
+    if (view === 'account' && !readSession()) return to('login');
+    if ((view === 'login' || view === 'reset') && readSession()) return to('account');
+    return view;
+  }
+  loadAccount() {
+    const sess = readSession(); if (!sess) { this.go('login'); return; }
+    this.setState({ acctLoad: 'loading' });
+    fetch(ACCOUNT_API + '/account', { headers: { Authorization: 'Bearer ' + sess.token } })
+      .then(r => { if (r.status === 401) { writeSession(null); this.setState({ acct: null, acctLoad: null, lg: 'expired' }); this.go('login'); return null; } return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(j => { if (j) this.setState({ acct: j, acctLoad: 'ok' }); })
+      .catch(() => this.setState({ acctLoad: 'error' }));
+  }
+  submitLogin(e) {
+    e.preventDefault();
+    if (this.state.lg === 'sending') return;
+    const el = document.getElementById('acct-key');
+    const key = ((el && el.value) || '').trim();
+    if (key.replace(/[^a-z0-9]/gi, '').length < 12) { this.setState({ lg: 'invalid' }); return; }
+    this.setState({ lg: 'sending' });
+    fetch(ACCOUNT_API + '/account/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ license_key: key }) })
+      .then(r => r.json().catch(() => ({})).then(j => {
+        if (r.ok && j.token) {
+          writeSession({ token: j.token, exp: Date.now() + Math.max(60, (j.expires_in || 3600) - 60) * 1000 });
+          if (el) el.value = '';
+          track('account_login', { result: 'ok' });
+          this.setState({ lg: null, acct: null }); this.go('account'); return;
+        }
+        const err = j && j.detail && j.detail.error;
+        const lg = err === 'rate_limited' ? 'rate_limited' : err === 'invalid_license' ? 'bad' : 'error';
+        track('account_login', { result: lg }); this.setState({ lg });
+      }))
+      .catch(() => { track('account_login', { result: 'error' }); this.setState({ lg: 'error' }); });
+  }
+  logout(e) { if (e) e.preventDefault(); writeSession(null); track('account_logout', {}); this.setState({ acct: null, acctLoad: null, lg: null }); this.go('login'); }
   animOut(key, done) { const el = document.querySelector('[data-ci="' + key + '"]'); if (!el || !el.animate) return done(); el.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(.96)' }], { duration: 180, easing: 'ease', fill: 'forwards' }).finished.then(done, done); }
   tot(s) { return (s.packs || []).reduce((a, k) => a + packPrice(k), 0); }
   flowTo(from, to) { const w = W(), t0 = w.performance.now(); w.cancelAnimationFrame(this._fr); const step = now => { const k = Math.min(1, (now - t0) / 500), e = 1 - Math.pow(1 - k, 3); this.setState({ flow: k < 1 ? Math.round(from + (to - from) * e) : null }); if (k < 1) this._fr = w.requestAnimationFrame(step); }; this._fr = w.requestAnimationFrame(step); }
@@ -316,7 +467,9 @@ class Component extends DCLogic {
   componentDidUpdate(pp, ps) { if (!ps) return; if (ps === this._lastPs) return; this._lastPs = ps; { const a = this.tot(ps), b = this.tot(this.state); if (a !== b && this.state.flow == null) this.flowTo(a, b); else if (a !== b) this.flowTo(this.state.flow, b); } { const before = new Set([...document.querySelectorAll('[data-ci]')].map(e => e.getAttribute('data-ci'))); const prevKeys = this._ciKeys || before; W().requestAnimationFrame(() => { const now = [...document.querySelectorAll('[data-ci]')]; now.forEach(el => { const k = el.getAttribute('data-ci'); if (!prevKeys.has(k) && el.animate) el.animate([{ opacity: 0, transform: 'scale(.96)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 220, easing: 'ease' }); }); this._ciKeys = new Set(now.map(e => e.getAttribute('data-ci'))); }); } const w = W(); if (ps.view !== this.state.view) w.requestAnimationFrame(() => this.animateIn(document.querySelector('main')));  const s = this.state; try { const nv = JSON.stringify({ plan: s.plan ?? null, yearly: !!s.yearly, packs: s.packs || [], loggedIn: !!s.loggedIn }); if (W().localStorage.getItem('ocedit-cart') !== nv) { W().localStorage.setItem('ocedit-cart', nv); W().dispatchEvent(new CustomEvent('ocedit-cart')); } } catch (e) {} }
   readHash() {
     const raw = (W().location.hash || '#cart').slice(1); const [v, q] = raw.split('?'); const p = new URLSearchParams(q || ''); const up = {};
-    up.view = VIEWS.includes(v || 'cart') ? (v || 'cart') : '404';
+    up.view = this.guard(VIEWS.includes(v || 'cart') ? (v || 'cart') : '404');
+    if (up.view === 'reset') up.help = true;
+    if (up.view === 'account' && !this.state.acct) W().setTimeout(() => this.loadAccount(), 0);
     if (p.get('plan') && PLANS.some(x => x.name === p.get('plan'))) up.plan = p.get('plan');
     if (p.has('yearly')) up.yearly = p.get('yearly') === '1';
     const cat = validCat(p.get('cat'));
@@ -324,8 +477,61 @@ class Component extends DCLogic {
     if (p.get('pack')) { const n = +p.get('pack'); up.cat = cat || DEFAULT_CAT; if (packOf(n, up.cat)) up.packs = [packKey(n, up.cat)]; if (!p.get('plan')) up.plan = null; }
     this.setState(st => ({ ...up, packs: up.packs ? Array.from(new Set([...(st.packs || []), ...up.packs])) : st.packs, plan: up.plan === undefined ? st.plan : up.plan }));
   }
-  go(view, e) { if (e) e.preventDefault(); const w = W(); try { w.history.replaceState(null, '', '#' + view); } catch (x) {} this.setState({ view }); w.scrollTo(0, 0); }
+  go(view, e) { if (e) e.preventDefault(); const w = W(); try { w.history.replaceState(null, '', '#' + view); } catch (x) {} view = this.guard(view); this.setState({ view }); w.scrollTo(0, 0); if (view === 'account') this.loadAccount(); }
   _after() { if (this._afterQ) return; this._afterQ = true; (document.defaultView || window).setTimeout(() => { this._afterQ = false; const ps = this._prevSnap || this.state; this._prevSnap = this.state; if (ps !== this.state) this.componentDidUpdate(this.props, ps); }, 0); }
+  accountVals() {
+    const s = this.state, v = s.view, A = s.acct, lg = s.lg, fmt = n => Number(n).toLocaleString('he-IL');
+    const date = t => t ? new Date(t * 1000).toLocaleDateString('he-IL', { day: 'numeric', month: 'numeric', year: 'numeric', timeZone: 'Asia/Jerusalem' }) : '';
+    const mins = sec => Math.max(0, Math.round((sec || 0) / 60));
+    const msg = LOGIN_MSG[lg];
+    const out = {
+      isLogin: v === 'login' || v === 'reset' || v === 'signup', isAccount: v === 'account', contact: CONTACT,
+      submitLogin: e => this.submitLogin(e), logout: e => this.logout(e), retry: () => this.loadAccount(),
+      loginSending: lg === 'sending', loginLabel: lg === 'sending' ? 'מתחברים…' : 'התחברות',
+      loginMsgShown: !!msg, loginMsg: msg ? msg[0] : '', loginMsgColor: msg ? msg[1] : '#aaa',
+      helpOpen: !!s.help, helpExpanded: s.help ? 'true' : 'false', helpSign: s.help ? '−' : '+', toggleHelp: () => this.setState(st => ({ help: !st.help })),
+      acctLoading: v === 'account' && !A && s.acctLoad !== 'error', acctError: v === 'account' && !A && s.acctLoad === 'error', acctReady: !!A,
+    };
+    if (!A) return Object.assign(out, { usageRows: [], orders: [], noOrders: false, hasCoframes: false, hasManage: false, showWriteIn: false, notActivated: false, hasPlanLine: false, hasRenew: false, hasEmail: false });
+    const L = A.license || {}, PL = A.plan || {}, U = A.usage, kind = L.kind;
+    const trialOver = !!(U && U.trial && U.trial.exhausted);
+    const period = U && U.period;
+    const yearly = PL.billing_period === 'yearly';
+    let planName = PL.name, badge = 'פעיל', tone = 'ok', planLine = '';
+    if (kind === 'trial') { planName = 'ניסיון חינם'; badge = trialOver ? 'הניסיון הסתיים' : L.activated ? 'פעיל' : 'מוכן להפעלה'; tone = trialOver ? 'off' : L.activated ? 'ok' : 'wait'; planLine = trialOver ? 'ניצלתם את דקות הניסיון. בחרו מסלול כדי להמשיך לעבוד.' : 'דקות ניסיון חד פעמיות, בלי כרטיס אשראי.'; }
+    else if (kind === 'owner') { badge = 'ללא הגבלה'; }
+    else if (kind === 'free') { planName = 'חינם'; badge = 'ללא דקות'; tone = 'off'; planLine = 'למפתח הזה אין דקות כלולות. בחרו מסלול כדי לעבוד עם COEDIT.'; }
+    else if (PL.subscription_ended) { badge = 'המנוי הסתיים'; tone = 'off'; planLine = 'המנוי הסתיים. אפשר לחדש אותו בכל עת.'; }
+    else { planLine = 'מנוי ' + (yearly ? 'שנתי' : 'חודשי') + (kind === 'fixed' ? ' · הקצאה מיוחדת' : '') + (period && period.renews_at ? ' · מתחדש ב-' + date(period.renews_at) : ''); }
+    if (!L.activated && kind !== 'trial' && !PL.subscription_ended) { badge = 'מוכן להפעלה'; tone = 'wait'; }
+    const TONE = { ok: ['#5fd068', '#14231a', '#24462e'], wait: ['#e8c46a', '#221d10', '#4a3c17'], off: ['#bbb', '#1d1d1d', '#3a3a3a'] }[tone];
+    const paidActive = kind === 'paid' || kind === 'fixed';
+    const buyable = paidActive && !PL.subscription_ended && !PL.unlimited;
+    const rows = U ? (U.buckets || []).map(b => {
+      const meta = BUCKETS[b.bucket] || { label: b.label || b.bucket, cat: 'cz' };
+      const incl = mins(b.included_sec), used = Math.min(mins(b.allowance_used_sec), incl), left = mins(b.allowance_remaining_sec), cr = mins(b.credit_remaining_sec);
+      const pct = PL.unlimited || !incl ? 0 : Math.min(100, Math.round(used / incl * 100));
+      return { label: meta.label, line: PL.unlimited ? 'ללא הגבלה' : fmt(used) + ' מתוך ' + fmt(incl) + " דק'", hasBar: !PL.unlimited && incl > 0, pct: String(pct), pctW: pct + '%',
+        barC: pct >= 90 ? '#e2504a' : pct >= 70 ? '#e8a04a' : '#5fd068',
+        left: PL.unlimited ? '' : incl ? 'נשארו ' + fmt(left) + " דק'" : 'לא כלול במסלול',
+        hasCredits: cr > 0, credits: '+ ' + fmt(cr) + ' קרדיטים שקניתם',
+        canBuy: buyable, buyHref: '#cart?cat=' + meta.cat };
+    }) : (A.includes || []).map(b => { const meta = BUCKETS[b.bucket] || { label: b.bucket, cat: 'cz' }; return { label: meta.label, line: fmt(mins(b.seconds)) + " דק'", hasBar: false, pct: '0', pctW: '0%', barC: '#5fd068', left: kind === 'trial' ? 'כלול בניסיון' : 'כלול בכל תקופת חיוב', hasCredits: false, credits: '', canBuy: false, buyHref: '#cart' }; });
+    const orders = (A.orders || []).map(o => { const st = ORDER_STATUS[o.status] || ORDER_STATUS.processing; const item = o.kind === 'plan' ? 'מנוי COEDIT ' + (o.plan || '') + ' · ' + (o.billing_period === 'yearly' ? 'שנתי' : 'חודשי') : fmt(o.credits || 0) + ' קרדיטים · ' + ((BUCKETS[o.bucket] || {}).label || ''); return { item: item + (o.coframes ? ' + COFRAMES' : ''), date: date(o.created_at), amount: (o.currency === 'ILS' || !o.currency ? '₪' : o.currency + ' ') + fmt((o.amount_agorot || 0) / 100), status: st[0], c: st[1] }; });
+    const manage = (A.links || {}).manage;
+    const needsPlan = kind === 'trial' || kind === 'free' || PL.subscription_ended;
+    return Object.assign(out, {
+      hasEmail: !!L.email, acctEmail: L.email || '', keyMask: String(L.prefix || 'COEDIT').replace(/-+$/, '') + '-•••••-•••••-•••••',
+      planName, badge, badgeC: TONE[0], badgeBg: TONE[1], badgeBd: TONE[2], planLine, hasPlanLine: !!planLine,
+      notActivated: !L.activated && !PL.subscription_ended, notActivatedText: kind === 'trial' ? 'דקות הניסיון יתחילו להיספר כשתדביקו את המפתח בפאנל של COEDIT בפרמייר או באפטר אפקטס.' : 'המפתח עוד לא הופעל. פתחו את COEDIT בפרמייר או באפטר אפקטס והדביקו אותו בפאנל.',
+      hasManage: !!manage && paidActive, manageUrl: manage || '#', showWriteIn: !manage && paidActive && !PL.subscription_ended,
+      upLabel: needsPlan ? 'לבחירת מסלול' : 'שדרוג מסלול', upBg: needsPlan ? 'linear-gradient(180deg,#e2504a,#c42e2a)' : '#1d1d1d', upBd: needsPlan ? 'transparent' : '#333', upW: needsPlan ? '800' : '700',
+      usageTitle: U ? (period && period.kind === 'subscription' ? 'השימוש בתקופה הנוכחית' : 'השימוש שלכם') : 'מה כלול במפתח',
+      hasRenew: !!(period && period.renews_at), renewLine: period && period.renews_at ? 'הדקות מתחדשות ב-' + date(period.renews_at) : '',
+      usageRows: rows, orders, noOrders: !orders.length,
+      coeditUrl: (A.downloads || {}).coedit || '/download/latest/', coframesUrl: (A.downloads || {}).coframes || '#', hasCoframes: !!(A.downloads || {}).coframes,
+    });
+  }
   renderVals() {
     this._after();
     const s = this.state, v = s.view, fmt = n => n.toLocaleString('he-IL');
@@ -343,7 +549,8 @@ class Component extends DCLogic {
     const on = '#fff', off = '#888', onBg = 'linear-gradient(180deg,#e2504a,#c42e2a)';
     return {
       nav: { cart: e => this.go('cart', e) },
-      isCart: v === 'cart', isSoon: v === 'checkout' || v === 'success', isAcct: ['login', 'signup', 'reset', 'account'].includes(v), is404: v === '404',
+      isCart: v === 'cart', isSoon: v === 'checkout' || v === 'success', is404: v === '404',
+      ...this.accountVals(),
       setMonthly: () => this.setState({ yearly: false }), setYearly: () => this.setState({ yearly: true }),
       mC: s.yearly ? off : on, mBg: s.yearly ? 'transparent' : onBg, yC: s.yearly ? on : off, yBg: s.yearly ? onBg : 'transparent',
       planCards: PLANS.map(p => { const sel = p.name === s.plan; return { ...p, rec: !!p.rec, price: mo(p), pick: () => this.setState({ plan: p.name }), bg: sel ? '#1f1414' : '#141414', bd: sel ? '#d93a35' : '#2a2a2a', ring: sel ? '#d93a35' : '#444', dot: sel ? '#d93a35' : 'transparent' }; }),

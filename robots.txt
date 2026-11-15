@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# The plugin installers are downloads, not pages.
+Disallow: /download/*.zxp$
+Disallow: /coframes/*.zxp$
+
+Sitemap: https://getcoedit.com/sitemap.xml
