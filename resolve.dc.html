@@ -42,7 +42,7 @@ html body [class*="omnisend-form-"] button { font-weight: 700 !important; }
 #static-fallback img{max-width:100%;height:auto}</style>
 <script>document.documentElement.className+=' js';document.addEventListener('DOMContentLoaded',function(){var f=document.getElementById('static-fallback');if(f)f.parentNode.removeChild(f);});</script>
 <!-- Organization, website and product (by hand; plan prices from site-config.js) -->
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://getcoedit.com/#org","name":"COEDIT","url":"https://getcoedit.com/","logo":"https://getcoedit.com/assets/logo.png","sameAs":["https://www.instagram.com/coedit_plugin/"]},{"@type":"WebSite","@id":"https://getcoedit.com/#site","url":"https://getcoedit.com/","name":"COEDIT","inLanguage":"he","publisher":{"@id":"https://getcoedit.com/#org"}},{"@type":"SoftwareApplication","name":"COEDIT","url":"https://getcoedit.com/","applicationCategory":"MultimediaApplication","applicationSubCategory":"Video editing plugin","operatingSystem":"Windows, macOS","inLanguage":"he","description":"פלאגין ל-Premiere Pro ול-After Effects: חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד.","image":"https://getcoedit.com/assets/og/coedit-og.jpg","publisher":{"@id":"https://getcoedit.com/#org"},"offers":{"@type":"AggregateOffer","priceCurrency":"ILS","lowPrice":"99","highPrice":"349","offerCount":3,"url":"https://getcoedit.com/#pricing"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://getcoedit.com/#org","name":"COEDIT","url":"https://getcoedit.com/","logo":"https://getcoedit.com/assets/logo.png","sameAs":["https://www.instagram.com/coedit_plugin/"]},{"@type":"WebSite","@id":"https://getcoedit.com/#site","url":"https://getcoedit.com/","name":"COEDIT","inLanguage":"he","publisher":{"@id":"https://getcoedit.com/#org"}},{"@type":"SoftwareApplication","name":"COEDIT","url":"https://getcoedit.com/","applicationCategory":"MultimediaApplication","applicationSubCategory":"Video editing plugin","operatingSystem":"Windows","inLanguage":"he","description":"פלאגין ל-Premiere Pro ול-After Effects: חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד.","image":"https://getcoedit.com/assets/og/coedit-og.jpg","publisher":{"@id":"https://getcoedit.com/#org"},"offers":{"@type":"AggregateOffer","priceCurrency":"ILS","lowPrice":"99","highPrice":"349","offerCount":3,"url":"https://getcoedit.com/#pricing"}}]}</script>
 <!-- Site settings (text, offer, audiences) and where the visitor came from; both before support.js. -->
 <script src="./site-config.js"></script>
 <script>window.COEDIT_PAGE = 'resolve';</script>
@@ -782,7 +782,7 @@ class Component extends DCLogic {
       ['זה עובד בגרסה החינמית?', rFaq('free')],
       ['באיזו גרסה של דווינצ\'י זה עובד?', rFaq('versions')],
       ['איך מתקינים?', rFaq('install')],
-      ['עובד באפל?', 'עדיין לא: הגרסה לדווינצ\'י כרגע ל-Windows בלבד, וגרסת Mac תגיע בהמשך. ב-Premiere Pro וב-After Effects COEDIT עובד גם ב-Mac.'],
+      ['עובד באפל?', 'עדיין לא. כרגע COEDIT עובד ב-Windows בלבד, וגרסת Mac תגיע בעדכון בהמשך.'],
       ['יש לי כבר מנוי לפרימייר, זה עובד גם בדווינצ\'י?', 'כן. מנוי COEDIT אחד עובד ב-Premiere Pro, ב-After Effects וב-DaVinci Resolve, עם אותו מפתח. לא צריך מנוי נוסף.'],
       // ✏️ Draft for review, for Studio users. Sources: Blackmagic, DaVinci Resolve 20 New Features
       // Guide: "Improved Transcription Quality and Support for Additional Languages (Studio Version

@@ -123,7 +123,7 @@ T('עובד בתוך Premiere Pro, After Effects ו-DaVinci Resolve</span>', 'ע
   // From the Pr badge to the end of the Ae one (both start with the same span).
   const a = page.indexOf('<span style="display:inline-flex;align-items:center;gap:7px"><span aria-hidden="true"', m);
   const tail = 'DaVinci Resolve ב-Windows</span>', b = page.indexOf(tail, a) + tail.length;
-  if (a < 0 || b < tail.length || page.indexOf(tail, b) >= 0 || !page.slice(a, b).includes('Premiere Pro ב-Windows וב-Mac'))
+  if (a < 0 || b < tail.length || page.indexOf(tail, b) >= 0 || !page.slice(a, b).includes('Premiere Pro ב-Windows'))
     throw new Error('index.html changed: the popup requirements');
   page = page.slice(0, a) + '<span style="display:inline-flex;align-items:center;gap:7px">' + DV_BADGE + '<span style="color:{{ rReqColor }}">{{ rReqShort }}</span></span>' + page.slice(b);
   // No install guide here: it was removed from the landing pages on 2026-11-16 (the emails carry it).
@@ -170,7 +170,7 @@ S("{ t: 'ייצוא MOGRT או SRT', c: '#bbb' }", "{ t: 'כתוביות שני�
       ['זה עובד בגרסה החינמית?', rFaq('free')],
       ['באיזו גרסה של דווינצ\\'י זה עובד?', rFaq('versions')],
       ['איך מתקינים?', rFaq('install')],
-      ['עובד באפל?', 'עדיין לא: הגרסה לדווינצ\\'י כרגע ל-Windows בלבד, וגרסת Mac תגיע בהמשך. ב-Premiere Pro וב-After Effects COEDIT עובד גם ב-Mac.'],
+      ['עובד באפל?', 'עדיין לא. כרגע COEDIT עובד ב-Windows בלבד, וגרסת Mac תגיע בעדכון בהמשך.'],
       ['יש לי כבר מנוי לפרימייר, זה עובד גם בדווינצ\\'י?', 'כן. מנוי COEDIT אחד עובד ב-Premiere Pro, ב-After Effects וב-DaVinci Resolve, עם אותו מפתח. לא צריך מנוי נוסף.'],
       // ✏️ Draft for review, for Studio users. Sources: Blackmagic, DaVinci Resolve 20 New Features
       // Guide: "Improved Transcription Quality and Support for Additional Languages (Studio Version
