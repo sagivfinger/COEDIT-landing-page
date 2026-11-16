@@ -75,7 +75,7 @@ T('<dc-import name="SiteNav" style="position:relative;z-index:40;display:block" 
 </sc-if>
 `, 'the nav');
 // Hero: the headline, the subheadline, the button, the compatibility line, and the requirements box.
-T('letter-spacing:-.02em">{{ h1a }}<br><span style="color:#e2504a">{{ h1b }}</span></h1>',
+T('letter-spacing:-.02em"><span style="display:block;font-size:clamp(15px,1.7vw,20px);font-weight:700;letter-spacing:0;line-height:1.4;color:#bdbdbd;margin-bottom:14px">פלאגין לפרימייר, אפטר אפקטס ודווינצ\'י ריזולב</span>{{ h1a }}<br><span style="color:#e2504a">{{ h1b }}</span></h1>',
   'letter-spacing:-.02em">הפלאגין שעורכי <span style="color:#e2504a">דווינצ\'י</span> חיכו לו</h1>', 'the headline');
 T('text-wrap:pretty">{{ heroSub }}</p>',
   'text-wrap:pretty">חיתוך טייקים ושתיקות, כתוביות מעוצבות בעברית וזומים אוטומטיים, ישר בתוך DaVinci Resolve.</p>', 'the subheadline');
@@ -107,7 +107,7 @@ T('\n\n    </div>\n    <div data-px="-0.08" onClick="{{ heroVideoPlay }}"',
 T(' {{ heroPosterBg }}', '', 'the hero still');
 // The panel screenshot: the COEDIT panel looks the same in DaVinci Resolve as in Premiere Pro, so the
 // main page's image stays; only its description names the app.
-T('alt="פאנל COEDIT בתוך Premiere Pro"', 'alt="פאנל COEDIT"', 'the panel screenshot');
+T('alt="פלאגין COEDIT בתוך Premiere Pro"', 'alt="פאנל COEDIT"', 'the panel screenshot');
 // Premiere's words for things, in Resolve's.
 T('אורך הרצף: ', 'אורך הטיימליין: ', 'the timeline demo label');
 T('מוכנות לייצוא כקובץ MOGRT או SRT.', 'מוכנות לטיימליין של דווינצ\'י, וגם כקובץ SRT.', 'the captions feature line');

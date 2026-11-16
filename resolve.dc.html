@@ -42,7 +42,7 @@ html body [class*="omnisend-form-"] button { font-weight: 700 !important; }
 #static-fallback img{max-width:100%;height:auto}</style>
 <script>document.documentElement.className+=' js';document.addEventListener('DOMContentLoaded',function(){var f=document.getElementById('static-fallback');if(f)f.parentNode.removeChild(f);});</script>
 <!-- Organization, website and product (by hand; plan prices from site-config.js) -->
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://getcoedit.com/#org","name":"COEDIT","url":"https://getcoedit.com/","logo":"https://getcoedit.com/assets/logo.png","sameAs":["https://www.instagram.com/coedit_plugin/"]},{"@type":"WebSite","@id":"https://getcoedit.com/#site","url":"https://getcoedit.com/","name":"COEDIT","inLanguage":"he","publisher":{"@id":"https://getcoedit.com/#org"}},{"@type":"SoftwareApplication","name":"COEDIT","url":"https://getcoedit.com/","applicationCategory":"MultimediaApplication","applicationSubCategory":"Video editing plugin","operatingSystem":"Windows","inLanguage":"he","description":"פלאגין ל-Premiere Pro ול-After Effects: חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד.","image":"https://getcoedit.com/assets/og/coedit-og.jpg","publisher":{"@id":"https://getcoedit.com/#org"},"offers":{"@type":"AggregateOffer","priceCurrency":"ILS","lowPrice":"99","highPrice":"349","offerCount":3,"url":"https://getcoedit.com/#pricing"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://getcoedit.com/#org","name":"COEDIT","url":"https://getcoedit.com/","logo":"https://getcoedit.com/assets/logo.png","sameAs":["https://www.instagram.com/coedit_plugin/"]},{"@type":"WebSite","@id":"https://getcoedit.com/#site","url":"https://getcoedit.com/","name":"COEDIT","inLanguage":"he","publisher":{"@id":"https://getcoedit.com/#org"}},{"@type":"SoftwareApplication","name":"COEDIT","alternateName":["פלאגין לפרימייר","פלאגין לאפטר אפקטס","פלאגין לדווינצ'י ריזולב","פלאגין לדווינצי ריזולב"],"url":"https://getcoedit.com/","applicationCategory":"MultimediaApplication","applicationSubCategory":"Video editing plugin","operatingSystem":"Windows","inLanguage":"he","description":"פלאגין ל-Premiere Pro ול-After Effects: חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד.","image":"https://getcoedit.com/assets/og/coedit-og.jpg","publisher":{"@id":"https://getcoedit.com/#org"},"offers":{"@type":"AggregateOffer","priceCurrency":"ILS","lowPrice":"99","highPrice":"349","offerCount":3,"url":"https://getcoedit.com/#pricing"}}]}</script>
 <!-- Site settings (text, offer, audiences) and where the visitor came from; both before support.js. -->
 <script src="./site-config.js"></script>
 <script>window.COEDIT_PAGE = 'resolve';</script>
@@ -346,6 +346,34 @@ input[type=range]{accent-color:#d93a35;width:100%}
   </div>
 </section>
 </sc-if>
+
+<!-- The apps COEDIT works in, one card each: "פלאגין לפרימייר" / "פלאגין לאפטר אפקטס" / "פלאגין לדווינצ'י ריזולב". -->
+<section id="apps" style="padding:clamp(64px,10vw,110px) 24px;border-top:1px solid #1f1f1f">
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <span style="font-family:Heebo,sans-serif;font-size:12px;letter-spacing:.3em;color:#d93a35">פלאגין אחד, שלוש תוכנות</span>
+      <h2 style="margin:0;font-size:clamp(30px,4vw,50px);font-weight:900;line-height:1.12;text-wrap:balance">פלאגין לפרימייר, לאפטר אפקטס ולדווינצ'י ריזולב</h2>
+      <p style="margin:0;max-width:640px;font-size:17px;line-height:1.7;color:#a5a5a5;text-wrap:pretty">אותו מפתח ואותו מנוי עובדים בכל התוכנות. בוחרים את התוכנה שלכם ומתחילים לערוך.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px">
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:12px">
+        <span aria-hidden="true" style="width:34px;height:34px;flex:none;border-radius:8px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:14px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Pr</span>
+        <h3 style="margin:0;font-size:21px;font-weight:900;color:#fff">פלאגין לפרימייר פרו</h3>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:#a5a5a5;text-wrap:pretty">חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, ישירות על הרצף בפרמייר. הכתוביות נכנסות כ-MOGRT שאפשר לערוך ב-Essential Graphics.</p>
+      </div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:12px">
+        <span aria-hidden="true" style="width:34px;height:34px;flex:none;border-radius:8px;background:#00005b;border:1.5px solid #9999ff;color:#9999ff;font-size:14px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center">Ae</span>
+        <h3 style="margin:0;font-size:21px;font-weight:900;color:#fff">פלאגין לאפטר אפקטס</h3>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:#a5a5a5;text-wrap:pretty">אותו פלאגין עובד גם באפטר אפקטס 2026 ומעלה: הכתוביות בעברית נכנסות כשכבות טקסט עם אותן תבניות, ישירות בקומפוזיציה.</p>
+      </div>
+      <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:12px">
+        <img src="assets/davinci-resolve.png" alt="" aria-hidden="true" width="34" height="34" style="width:34px;height:34px;flex:none;border-radius:22%;display:inline-block">
+        <h3 style="margin:0;font-size:21px;font-weight:900;color:#fff">פלאגין לדווינצ'י ריזולב</h3>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:#a5a5a5;text-wrap:pretty">חיתוך טייקים ושתיקות, כתוביות בעברית וזומים אוטומטיים גם ב-DaVinci Resolve 20 ומעלה, ב-Windows וגם בגרסה החינמית.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="how" style="padding:clamp(64px,10vw,110px) 24px;background:#151515;border-top:1px solid #1f1f1f">
   <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
@@ -831,7 +859,7 @@ class Component extends DCLogic {
       mqRow1, mqRow2, mqHas2: mqRow2.length > 0, heroFaces, hasVideos: N > 0,
       // Hero (site-config.js + the ?for= audience)
       h1a: (AUD.h1 && AUD.h1[0]) || 'הטיימליין שלכם.', h1b: (AUD.h1 && AUD.h1[1]) || 'בלי השומן.',
-      heroSub: AUD.sub || 'חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, ישירות בתוך Premiere Pro ו-After Effects, בכמה לחיצות.',
+      heroSub: AUD.sub || 'חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, ישירות בתוך Premiere Pro, After Effects ו-DaVinci Resolve, בכמה לחיצות.',
       hasCapLine: !!CFG.heroCaptionsLine, capLine: CFG.heroCaptionsLine || '',
       heroVideoOn: !!s.heroVideoOn, heroCursor: s.heroVideoOn ? 'default' : 'pointer', heroVideoPlay: () => { if (!s.heroVideoOn) this.setState({ heroVideoOn: true }); },
       heroPosterBg: 'center/cover no-repeat url(' + (AUD.heroVideo && HERO_VIDEO === AUD.heroVideo ? 'https://i.ytimg.com/vi/' + HERO_VIDEO + '/hqdefault.jpg' : '') + ')',
