@@ -63,9 +63,16 @@ window.COEDIT_CONFIG = {
     // ✏️ System requirements (supported editions, versions, Windows/Mac), shown right under the hero's
     // button ('hero'), before anyone signs up. "short" is the one-liner in the trial popup.
     // Never say it works on the free edition unless that is confirmed for the launch version.
-    requirements: { placement: 'hero', text: '', short: '' },
-    // ✏️ FAQ answers that depend on the launch version (the others are in the page).
-    faq: { free: '', versions: '', install: '' },
+    // Windows only for now (2026-11-15 decision: launch Windows first, Mac later). The free edition is
+    // NOT named here until the clean-PC test passes.
+    requirements: { placement: 'hero',
+      text: 'מחשב Windows 10 או 11 (64 ביט) ו-DaVinci Resolve 20 ומעלה. גרסת Mac תגיע בהמשך.',
+      short: 'Windows · DaVinci Resolve 20 ומעלה' },
+    // ✏️ FAQ answers that depend on the launch version (the others are in the page). "free" stays a
+    // draft until the clean-PC test on the free edition passes.
+    faq: { free: '',
+      versions: 'DaVinci Resolve 20 ומעלה, ב-Windows 10 ו-11. גרסת Mac תגיע בהמשך.',
+      install: 'מורידים את קובץ ההתקנה מהמייל, פותחים אותו ומדביקים את המפתח בחלון שנפתח.' },
     // The COFRAMES gift shows here as on the main page (note: COFRAMES works in Premiere Pro and
     // After Effects, not in DaVinci Resolve). false hides it on this page only.
     showCoframesGift: true,

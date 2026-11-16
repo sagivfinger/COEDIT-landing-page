@@ -85,7 +85,7 @@ T('text-wrap:pretty">{{ heroSub }}</p>',
   if (a < 0 || a > end) throw new Error('index.html changed: the hero button');
   page = page.slice(0, a) + '>התחילו בחינם</a>' + page.slice(a + '>נסו בחינם עכשיו!</a>'.length);
   const hero = page.slice(h);
-  const [b0, b1] = between(hero, '<span style="display:inline-flex;gap:4px">', 'תואם Premiere Pro ו-After Effects', 'the hero compatibility line');
+  const [b0, b1] = between(hero, '<span style="display:inline-flex;gap:4px">', 'תואם Premiere Pro, After Effects ו-DaVinci Resolve', 'the hero compatibility line');
   page = page.slice(0, h + b0) + DV_BADGE + 'עובד בתוך DaVinci Resolve' + page.slice(h + b1);
 }
 T('\n\n    </div>\n    <div data-px="-0.08" onClick="{{ heroVideoPlay }}"',
@@ -115,29 +115,18 @@ T('ישירות בתוך Premiere ו-After Effects', 'ישירות בתוך DaVi
 T('על הרצף או הקומפוזיציה שלכם.', 'על הטיימליין שלכם.', 'the "why" card text');
 T('בפרמייר MOGRT לעריכה ב-Essential Graphics, באפטר שכבת טקסט עם אותן תבניות, ותמיד גם SRT סטנדרטי.',
   'הכתוביות נכנסות לטיימליין של דווינצ\'י וניתנות לעריכה, ותמיד גם SRT סטנדרטי.', 'the editable captions card');
-T('עובד בתוך Premiere Pro ו-After Effects</span>', 'עובד ב-DaVinci Resolve, ב-Premiere Pro וב-After Effects</span>', 'the plan card line');
-// The trial popup: the requirements line, then the install step for Resolve.
+T('עובד בתוך Premiere Pro, After Effects ו-DaVinci Resolve</span>', 'עובד ב-DaVinci Resolve, ב-Premiere Pro וב-After Effects</span>', 'the plan card line');
+// The trial popup: the requirements line.
 {
   const m = page.indexOf('id="trial-modal"');
   if (m < 0) throw new Error('index.html changed: the trial popup');
   // From the Pr badge to the end of the Ae one (both start with the same span).
   const a = page.indexOf('<span style="display:inline-flex;align-items:center;gap:7px"><span aria-hidden="true"', m);
-  const tail = 'After Effects 2026 ומעלה</span>', b = page.indexOf(tail, a) + tail.length;
+  const tail = 'DaVinci Resolve ב-Windows</span>', b = page.indexOf(tail, a) + tail.length;
   if (a < 0 || b < tail.length || page.indexOf(tail, b) >= 0 || !page.slice(a, b).includes('Premiere Pro ב-Windows וב-Mac'))
     throw new Error('index.html changed: the popup requirements');
   page = page.slice(0, a) + '<span style="display:inline-flex;align-items:center;gap:7px">' + DV_BADGE + '<span style="color:{{ rReqColor }}">{{ rReqShort }}</span></span>' + page.slice(b);
-  const [g0, g1] = between(page, '<sc-if value="{{ guideMode }}"', '</sc-if>\n  </div>\n</div>\n</sc-if>', 'the install step');
-  page = page.slice(0, g0) + `<sc-if value="{{ guideMode }}" hint-placeholder-val="{{ false }}">
-    <div style="display:flex;flex-direction:column;gap:10px;padding-left:40px">
-      <span style="font-size:13px;font-weight:800;color:#e2504a;letter-spacing:.02em">התקנה ב-DaVinci Resolve</span>
-      <h2 id="trial-title" style="margin:0;font-size:clamp(24px,3.4vw,32px);font-weight:900;line-height:1.15">מתקינים את COEDIT</h2>
-      <div style="border:2px dashed #6b5a1e;border-radius:12px;background:#1c1a10;color:#e8d27a;padding:18px;font-size:15px;line-height:1.7">✏️ מדריך ההתקנה ל-DaVinci Resolve והורדה: יושלם לפני ההשקה, לפי הגרסאות שייתמכו.</div>
-      <span style="font-size:14px;color:#aaa">משהו לא ברור? <a href="contact/">כתבו לנו</a>.</span>
-    </div>
-    </sc-if>
-  </div>
-</div>
-</sc-if>` + page.slice(g1);
+  // No install guide here: it was removed from the landing pages on 2026-11-16 (the emails carry it).
 }
 
 // ── the page logic: the main page's, with the Resolve parts ──
@@ -181,6 +170,7 @@ S("{ t: 'ייצוא MOGRT או SRT', c: '#bbb' }", "{ t: 'כתוביות שני�
       ['זה עובד בגרסה החינמית?', rFaq('free')],
       ['באיזו גרסה של דווינצ\\'י זה עובד?', rFaq('versions')],
       ['איך מתקינים?', rFaq('install')],
+      ['עובד באפל?', 'עדיין לא: הגרסה לדווינצ\\'י כרגע ל-Windows בלבד, וגרסת Mac תגיע בהמשך. ב-Premiere Pro וב-After Effects COEDIT עובד גם ב-Mac.'],
       ['יש לי כבר מנוי לפרימייר, זה עובד גם בדווינצ\\'י?', 'כן. מנוי COEDIT אחד עובד ב-Premiere Pro, ב-After Effects וב-DaVinci Resolve, עם אותו מפתח. לא צריך מנוי נוסף.'],
       // ✏️ Draft for review, for Studio users. Sources: Blackmagic, DaVinci Resolve 20 New Features
       // Guide: "Improved Transcription Quality and Support for Additional Languages (Studio Version

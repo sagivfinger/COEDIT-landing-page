@@ -41,6 +41,8 @@ html body [class*="omnisend-form-"] button { font-weight: 700 !important; }
 #static-fallback{max-width:900px;margin:0 auto;padding:24px;background:#121212;color:#ececec;font-family:Heebo,Arial,sans-serif;line-height:1.6}
 #static-fallback img{max-width:100%;height:auto}</style>
 <script>document.documentElement.className+=' js';document.addEventListener('DOMContentLoaded',function(){var f=document.getElementById('static-fallback');if(f)f.parentNode.removeChild(f);});</script>
+<!-- Organization, website and product (by hand; plan prices from site-config.js) -->
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://getcoedit.com/#org","name":"COEDIT","url":"https://getcoedit.com/","logo":"https://getcoedit.com/assets/logo.png","sameAs":["https://www.instagram.com/coedit_plugin/"]},{"@type":"WebSite","@id":"https://getcoedit.com/#site","url":"https://getcoedit.com/","name":"COEDIT","inLanguage":"he","publisher":{"@id":"https://getcoedit.com/#org"}},{"@type":"SoftwareApplication","name":"COEDIT","url":"https://getcoedit.com/","applicationCategory":"MultimediaApplication","applicationSubCategory":"Video editing plugin","operatingSystem":"Windows, macOS","inLanguage":"he","description":"פלאגין ל-Premiere Pro ול-After Effects: חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד.","image":"https://getcoedit.com/assets/og/coedit-og.jpg","publisher":{"@id":"https://getcoedit.com/#org"},"offers":{"@type":"AggregateOffer","priceCurrency":"ILS","lowPrice":"99","highPrice":"349","offerCount":3,"url":"https://getcoedit.com/#pricing"}}]}</script>
 <!-- Site settings (text, offer, audiences) and where the visitor came from; both before support.js. -->
 <script src="./site-config.js"></script>
 <script>window.COEDIT_PAGE = 'resolve';</script>
@@ -204,7 +206,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
     </div>
     <div style="position:relative;min-height:clamp(420px,95vw,760px);overflow:hidden">
       <div style="position:absolute;left:-10%;right:-10%;bottom:-30%;height:80%;background:radial-gradient(ellipse 60% 55% at 50% 100%,rgba(217,58,53,.45) 0%,rgba(217,58,53,.12) 45%,transparent 75%);pointer-events:none"></div>
-      <img data-px="0.04" loading="lazy" decoding="async" src="assets/coedit-panel.png" alt="פאנל COEDIT" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(-4deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)">
+      <img data-px="0.04" loading="lazy" decoding="async" src="assets/coedit-panel.webp" alt="פאנל COEDIT" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(-4deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)">
     </div>
   </div>
 </section>
@@ -488,7 +490,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
     </div>
     <div style="position:relative;min-height:clamp(420px,95vw,760px);overflow:hidden;background:transparent">
       <div style="position:absolute;left:-10%;right:-10%;bottom:-30%;height:80%;background:radial-gradient(ellipse 60% 55% at 50% 100%,rgba(217,58,53,.45) 0%,rgba(217,58,53,.12) 45%,transparent 75%);pointer-events:none"></div>
-      <img data-px="0.04" loading="lazy" decoding="async" src="assets/coframes-panel.png" alt="פאנל COFRAMES, עורך עקומות תנועה" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(3deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)">
+      <img data-px="0.04" loading="lazy" decoding="async" src="assets/coframes-panel.webp" alt="פאנל COFRAMES, עורך עקומות תנועה" style="position:absolute;left:50%;bottom:-18%;height:112%;width:auto;max-width:none;transform:translateX(-50%) rotate(3deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 96%);mask-image:linear-gradient(180deg,#000 72%,transparent 96%)">
       
     </div>
   </div>
@@ -513,19 +515,7 @@ input[type=range]{accent-color:#d93a35;width:100%}
         </form>
       </sc-if>
       <sc-if value="{{ trialMsgShown }}" hint-placeholder-val="{{ false }}"><span role="status" style="font-size:15px;line-height:1.6;color:{{ trialMsgColor }}">{{ trialMsg }}</span></sc-if>
-      <sc-if value="{{ trialSentOk }}" hint-placeholder-val="{{ false }}">
-        <button type="button" onClick="{{ showGuide }}" style="align-self:flex-start;font-family:Heebo;cursor:pointer;background:transparent;color:#fff;font-weight:700;font-size:15px;padding:11px 18px;border-radius:9px;border:1.5px solid #4a2826">פתחו את מדריך ההתקנה כאן ←</button>
-      </sc-if>
       <span style="font-size:12px;color:#777;line-height:1.6">המייל משמש לשליחת המפתח ומדריך ההתקנה. <a href="privacy/" style="color:#888;text-decoration:underline">מדיניות פרטיות</a></span>
-    </sc-if>
-
-    <sc-if value="{{ guideMode }}" hint-placeholder-val="{{ false }}">
-    <div style="display:flex;flex-direction:column;gap:10px;padding-left:40px">
-      <span style="font-size:13px;font-weight:800;color:#e2504a;letter-spacing:.02em">התקנה ב-DaVinci Resolve</span>
-      <h2 id="trial-title" style="margin:0;font-size:clamp(24px,3.4vw,32px);font-weight:900;line-height:1.15">מתקינים את COEDIT</h2>
-      <div style="border:2px dashed #6b5a1e;border-radius:12px;background:#1c1a10;color:#e8d27a;padding:18px;font-size:15px;line-height:1.7">✏️ מדריך ההתקנה ל-DaVinci Resolve והורדה: יושלם לפני ההשקה, לפי הגרסאות שייתמכו.</div>
-      <span style="font-size:14px;color:#aaa">משהו לא ברור? <a href="contact/">כתבו לנו</a>.</span>
-    </div>
     </sc-if>
   </div>
 </div>
@@ -668,7 +658,7 @@ class Component extends DCLogic {
     try { const w = W(); if (w.location.hash === '#trial' || w.location.hash === '#install') w.history.replaceState(null, '', w.location.pathname + w.location.search); } catch (e) {}
   }
     shown = { ...PLAN_PRICE };
-  componentDidMount() { { const h0 = W().location.hash || ''; if (h0 === '#trial') this.openTrial('link'); else if (h0 === '#install') this.openTrial('link', 'guide'); } this._esc = e => { if (e.key === 'Escape' && this.state.trialOpen) this.closeTrial(); }; W().addEventListener('keydown', this._esc); this._hash = () => { const h = W().location.hash; if (h === '#trial' && (!this.state.trialOpen || this.state.trialMode === 'guide')) this.openTrial('nav'); else if (h === '#install') this.openTrial('nav', 'guide'); }; W().addEventListener('hashchange', this._hash); { const h = (W().location.hash || '').slice(1); if (h === 'pricing' || h === 'credits') { let n = 0; const go = () => { const el = document.getElementById(h); if (el) { W().setTimeout(() => document.getElementById('pricing').scrollIntoView({ behavior: 'instant' }), 100); return; } if (h === 'credits' && document.getElementById('pricing')) this.setState({ tab: 'credits' }); if (++n < 30) W().setTimeout(go, 100); }; W().setTimeout(go, 50); } } this._vw = () => this.setState({ vw: W().innerWidth }); this._vw(); W().addEventListener('resize', this._vw); try { const c = JSON.parse((document.defaultView || window).localStorage.getItem('ocedit-cart') || '{}'); this.setState({ navCart: (c.plan ? 1 : 0) + (c.packs || []).filter(k => /^\d+:(cz|cuts)$/.test(String(k))).length, navLogged: !!c.loggedIn }); } catch (e) {}
+  componentDidMount() { { const h0 = W().location.hash || ''; if (h0 === '#trial') this.openTrial('link'); } this._esc = e => { if (e.key === 'Escape' && this.state.trialOpen) this.closeTrial(); }; W().addEventListener('keydown', this._esc); this._hash = () => { const h = W().location.hash; if (h === '#trial' && (!this.state.trialOpen || this.state.trialMode === 'guide')) this.openTrial('nav');  }; W().addEventListener('hashchange', this._hash); { const h = (W().location.hash || '').slice(1); if (h === 'pricing' || h === 'credits') { let n = 0; const go = () => { const el = document.getElementById(h); if (el) { W().setTimeout(() => document.getElementById('pricing').scrollIntoView({ behavior: 'instant' }), 100); return; } if (h === 'credits' && document.getElementById('pricing')) this.setState({ tab: 'credits' }); if (++n < 30) W().setTimeout(go, 100); }; W().setTimeout(go, 50); } } this._vw = () => this.setState({ vw: W().innerWidth }); this._vw(); W().addEventListener('resize', this._vw); try { const c = JSON.parse((document.defaultView || window).localStorage.getItem('ocedit-cart') || '{}'); this.setState({ navCart: (c.plan ? 1 : 0) + (c.packs || []).filter(k => /^\d+:(cz|cuts)$/.test(String(k))).length, navLogged: !!c.loggedIn }); } catch (e) {}
     const w = W(); this._t = [];
     // The visitor's COFRAMES deadline arrives from the Cloud a moment after load, and the offer must
     // disappear the minute it passes: re-render on both.
@@ -792,6 +782,7 @@ class Component extends DCLogic {
       ['זה עובד בגרסה החינמית?', rFaq('free')],
       ['באיזו גרסה של דווינצ\'י זה עובד?', rFaq('versions')],
       ['איך מתקינים?', rFaq('install')],
+      ['עובד באפל?', 'עדיין לא: הגרסה לדווינצ\'י כרגע ל-Windows בלבד, וגרסת Mac תגיע בהמשך. ב-Premiere Pro וב-After Effects COEDIT עובד גם ב-Mac.'],
       ['יש לי כבר מנוי לפרימייר, זה עובד גם בדווינצ\'י?', 'כן. מנוי COEDIT אחד עובד ב-Premiere Pro, ב-After Effects וב-DaVinci Resolve, עם אותו מפתח. לא צריך מנוי נוסף.'],
       // ✏️ Draft for review, for Studio users. Sources: Blackmagic, DaVinci Resolve 20 New Features
       // Guide: "Improved Transcription Quality and Support for Additional Languages (Studio Version
@@ -862,7 +853,7 @@ class Component extends DCLogic {
       tiers, packs, faqs,
       ...this.resolveVals(),
       hasOffer: !!OFFER_LINE, offerText: OFFER_LINE, offerShort: OFFER_LINE ? (OFFER.short || '').replace('{deadline}', offerDeadline()) : '', offerSentence: OFFER_LINE ? OFFER_LINE + '.' : '', offerCardTitle: OFFER_LINE || 'COFRAMES',
-      trialOpen: !!s.trialOpen, emailMode: s.trialMode !== 'guide', guideMode: s.trialMode === 'guide',
+      trialOpen: !!s.trialOpen, emailMode: true,
       trialSentOk: s.trialSend === 'sent', showGuide: () => this.showGuide(), openTrial: () => this.openTrial('hero'), ctaTrial: e => { e.preventDefault(); const t = e.currentTarget, sec = t && t.closest && t.closest('section,header'); this.openTrial(sec ? (sec.id || (sec.tagName === 'HEADER' ? 'hero' : 'section')) : 'bar'); }, closeTrial: () => this.closeTrial(),
       pluginReady: s.pluginState === 'ready', pluginLoading: s.pluginState === 'loading', pluginFailed: s.pluginState === 'failed',
       pluginVersion: s.plugin ? s.plugin.version : '', pluginUrl: s.plugin ? s.plugin.url : '#',
