@@ -33,13 +33,16 @@ window.COEDIT_CONFIG = {
   // the site; the one switch that ends it everywhere is COEDIT_COFRAMES_OFFER=0 in COEDIT Cloud.
   offer: {
     // The full sentence (hero, "למה COEDIT", COFRAMES section, pricing, FAQ).
-    text: 'COFRAMES במתנה עם כל מנוי שנרכש עד {deadline}',
+    text: 'COFRAMES במתנה עם כל מנוי',
     // The short form (cart line, small labels).
-    short: 'מתנה עד {deadline}',
+    short: 'מתנה',
     // The countdown bar at the top: "🎁 <bar> · נשארו לכם 71:59:12".
     bar: 'COFRAMES במתנה עם כל מנוי',
     // The visitor's window, in hours (the Cloud's COEDIT_COFRAMES_OFFER_HOURS decides what is granted).
     personalHours: 72,
+    // When a visitor's hours end, a new period of the same length starts for them, on their own clock
+    // (the Cloud's COEDIT_COFRAMES_OFFER_REPEAT does the same at checkout). false = it ends once.
+    repeat: true,
     // ✏️ TODO what COFRAMES is worth on its own, in shekels, e.g. 149 → "שווה ₪149". null = not shown.
     anchorPrice: null,
   },

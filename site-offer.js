@@ -19,8 +19,19 @@
   // The static copy for bots is rendered without any personal deadline (tools/prerender.mjs).
   var prerender = /[?&]prerender=1\b/.test(location.search);
 
-  function publish(o) {
+  // Repeating (site-config offer.repeat, unless the Cloud says otherwise): once the visitor's period
+  // ends, the next one of the same length starts, so the countdown always shows the current period.
+  var LEN = hours * 3600e3;
+  function repeating(o) { return cfg.repeat !== false && o.repeat !== false; }
+  function roll(o) {
     var now = Date.now();
+    if (repeating(o) && o.deadline && now >= o.deadline) o.deadline += (Math.floor((now - o.deadline) / LEN) + 1) * LEN;
+    return o;
+  }
+  function publish(o) {
+    roll(o);
+    var now = Date.now();
+    o.repeat = repeating(o);
     o.active = !!(cfg.text && !prerender && o.enabled !== false && o.deadline && now < o.deadline);
     window.COEDIT_OFFER = o;
     try { window.dispatchEvent(new CustomEvent('coedit-offer')); } catch (e) {}
@@ -33,6 +44,12 @@
   if (!saved.first) { saved.first = Date.now(); keep(saved); }
   publish({ enabled: saved.enabled, deadline: saved.deadline || saved.first + hours * 3600e3, token: saved.token || null, local: !saved.token });
 
+  // A countdown that reaches zero starts the visitor's next period (checked every second).
+  if (!prerender && cfg.text) setInterval(function () {
+    var o = window.COEDIT_OFFER;
+    if (o && o.repeat && o.enabled !== false && o.deadline && Date.now() >= o.deadline) publish(o);
+  }, 1000);
+
   if (prerender || !cfg.text) return;
   try {
     fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: saved.token || null }) })
@@ -40,7 +57,7 @@
       .then(function (j) {
         if (j.enabled === false) { saved.enabled = false; keep(saved); publish({ enabled: false, deadline: 0, token: null }); return; }
         saved.enabled = true; saved.token = j.token; saved.deadline = j.deadline * 1000; keep(saved);
-        publish({ enabled: true, deadline: saved.deadline, token: saved.token, local: false });
+        publish({ enabled: true, deadline: saved.deadline, token: saved.token, local: false, repeat: j.repeat !== false });
       })
       .catch(function () { /* the Cloud is unreachable: keep the local countdown, grant nothing */ });
   } catch (e) {}

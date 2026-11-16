@@ -148,7 +148,7 @@ class Component extends DCLogic {
     const open = s.drawer, dy = s.dragging ? s.dragY : 0;
     const initials = 'ש';
     const off = offerNow(), left = off ? off.deadline - (s.now || Date.now()) : 0;
-    if (left <= 0 && this._offerT && W().COEDIT_OFFER && !W().COEDIT_OFFER.local && W().COEDIT_OFFER.deadline) { W().clearInterval(this._offerT); this._offerT = null; }
+    if (left <= 0 && this._offerT && W().COEDIT_OFFER && !W().COEDIT_OFFER.local && !W().COEDIT_OFFER.repeat && W().COEDIT_OFFER.deadline) { W().clearInterval(this._offerT); this._offerT = null; }
     const signedIn = (() => { try { const x = JSON.parse(W().localStorage.getItem('coedit-account') || 'null'); return !!(x && x.token && x.exp > Date.now()); } catch (e) { return false; } })();
     return {
       acctHref: signedIn ? 'store.dc.html#account' : 'store.dc.html#login', acctLabel: signedIn ? 'החשבון שלי' : 'התחברות',
