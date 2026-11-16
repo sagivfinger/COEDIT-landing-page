@@ -64,13 +64,13 @@ window.COEDIT_CONFIG = {
     // button ('hero'), before anyone signs up. "short" is the one-liner in the trial popup.
     // Never say it works on the free edition unless that is confirmed for the launch version.
     // Windows only for now (2026-11-15 decision: launch Windows first, Mac later). The free edition is
-    // NOT named here until the clean-PC test passes.
+    // The owner confirmed on 2026-11-16 that it works on the free edition too.
     requirements: { placement: 'hero',
-      text: 'מחשב Windows 10 או 11 (64 ביט) ו-DaVinci Resolve 20 ומעלה. גרסת Mac תגיע בהמשך.',
+      text: 'מחשב Windows 10 או 11 (64 ביט) ו-DaVinci Resolve 20 ומעלה, גם בגרסה החינמית. גרסת Mac תגיע בהמשך.',
       short: 'Windows · DaVinci Resolve 20 ומעלה' },
     // ✏️ FAQ answers that depend on the launch version (the others are in the page). "free" stays a
-    // draft until the clean-PC test on the free edition passes.
-    faq: { free: '',
+    // "free": confirmed by the owner on 2026-11-16.
+    faq: { free: 'כן. COEDIT עובד גם בגרסה החינמית של DaVinci Resolve, וגם ב-Studio.',
       versions: 'DaVinci Resolve 20 ומעלה, ב-Windows 10 ו-11. גרסת Mac תגיע בהמשך.',
       install: 'מורידים את קובץ ההתקנה מהמייל, פותחים אותו ומדביקים את המפתח בחלון שנפתח.' },
     // The COFRAMES gift shows here as on the main page (note: COFRAMES works in Premiere Pro and
