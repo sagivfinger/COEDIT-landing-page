@@ -84,9 +84,10 @@ T('text-wrap:pretty">{{ heroSub }}</p>',
   const a = page.indexOf('>נסו בחינם עכשיו!</a>', h);
   if (a < 0 || a > end) throw new Error('index.html changed: the hero button');
   page = page.slice(0, a) + '>התחילו בחינם</a>' + page.slice(a + '>נסו בחינם עכשיו!</a>'.length);
-  const hero = page.slice(h);
-  const [b0, b1] = between(hero, '<span style="display:inline-flex;gap:4px">', 'תואם Premiere Pro, After Effects ו-DaVinci Resolve</span>', 'the hero compatibility line');
-  page = page.slice(0, h + b0) + DV_BADGE + 'עובד בתוך DaVinci Resolve' + page.slice(h + b1);
+  // The hero checkmark stays the main page's: the Premiere Pro, After Effects and DaVinci logos
+  // (owner, 2026-11-17: "like in the actual site"). It must still be there, logos only.
+  if (!page.slice(h).includes('תואם Premiere Pro, After Effects ו-DaVinci Resolve</span>'))
+    throw new Error('index.html changed: the hero compatibility line');
 }
 T('\n\n    </div>\n    <div data-px="-0.08" onClick="{{ heroVideoPlay }}"',
   `
