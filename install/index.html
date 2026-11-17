@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>התקנת COEDIT</title>
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<!-- The install guide for Premiere Pro and After Effects, with a tab to the DaVinci Resolve guide
+     (/install/davinci/). The Cloud's trial events link here as install_url (COEDIT_TRIAL_INSTALL_URL).
+     Same steps as the trial email's Adobe guide (cloud/emails/build_install_emails.py); change both together. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#121212;--card:#171717;--line:#4a4a4a;--red:#e5403a;--text:#ececec;--muted:#b9b2b1;--dim:#8a8a8a}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Heebo,'Segoe UI',-apple-system,Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:var(--red)}
+main{max-width:640px;margin:0 auto;padding:40px 16px 60px;display:flex;flex-direction:column;gap:22px}
+.logo{height:26px;width:auto;display:block}
+h1{margin:0;font-size:clamp(24px,5.5vw,30px);font-weight:900;text-align:center}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:18px 10px;border-radius:14px;color:#fff;text-decoration:none;font-weight:800;font-size:17px;line-height:1.3}
+.tab.on{background:#333;border:1.5px solid var(--line);box-shadow:inset 0 -4px 0 #fff}
+.tab.dv{background:#2a1716;background-image:linear-gradient(90deg,#5a201d 0%,#2a1716 55%,#1a1212 100%);border:1.5px solid var(--red);opacity:.7}
+.tab.dv:hover{opacity:1}
+.tab img{width:30px;height:30px;border-radius:22%}
+.badges{display:flex;gap:8px}
+.badge{width:30px;height:30px;line-height:30px;border-radius:7px;background:#00005b;color:#9999ff;font-family:Arial,sans-serif;font-weight:800;font-size:14px;text-align:center}
+.sub{margin:0;color:var(--dim);font-size:14px;text-align:center}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:6px 20px 22px;display:flex;flex-direction:column}
+.step{display:flex;gap:14px;align-items:flex-start;padding-top:18px}
+.num{flex:none;width:32px;height:32px;border-radius:50%;background:#2a1716;color:var(--red);font-weight:800;display:flex;align-items:center;justify-content:center}
+.step b{display:block;font-size:17px;color:#fff;line-height:32px}
+.step p{margin:2px 0 0;font-size:15px;line-height:1.75;color:var(--muted)}
+.btn{display:inline-block;margin-top:12px;background:var(--red);color:#fff;font-weight:800;text-decoration:none;padding:13px 22px;border-radius:10px}
+.btn.ghost{background:transparent;border:1.5px solid var(--line);color:#fff}
+.gif{display:block;width:100%;height:auto;border:1px solid #333;border-radius:12px;margin-top:16px}
+.help{color:var(--dim);font-size:14px;line-height:1.7;text-align:center;margin:0}
+</style>
+</head>
+<body>
+<main>
+  <a href="/" aria-label="COEDIT"><img class="logo" src="/assets/logo.png" alt="COEDIT"></a>
+  <h1>התקנת COEDIT</h1>
+  <div class="tabs">
+    <div class="tab on" aria-current="page">COEDIT ל-Adobe<span class="badges"><span class="badge">Pr</span><span class="badge">Ae</span></span></div>
+    <a class="tab dv" href="/install/davinci/">COEDIT ל-DaVinci Resolve<img src="/assets/davinci-resolve.png" alt=""></a>
+  </div>
+  <p class="sub"><bdi>Premiere Pro</bdi> ו-<bdi>After Effects</bdi> · <bdi>Windows</bdi></p>
+  <div class="card">
+    <div class="step"><span class="num">1</span><div><b>מורידים את COEDIT</b><p>קובץ התקנה אחד (‎.zxp‎) לשתי התוכנות, חתום דיגיטלית.</p><a class="btn" href="/download/latest/">⬇ הורדת COEDIT</a></div></div>
+    <div class="step"><span class="num">2</span><div><b>מורידים את ZXP Installer (חינם)</b><p>התוכנה החינמית שמתקינה תוספים ל-Premiere ול-After Effects. בהתקנה שלה מסמנים רק את ZXP/UXP Installer. מתקינים אותה פעם אחת בלבד.</p><a class="btn ghost" href="https://aescripts.com/learn/zxp-installer/" target="_blank" rel="noopener">להורדת ZXP Installer ↗</a></div></div>
+    <div class="step"><span class="num">3</span><div><b>מתקינים את COEDIT</b><p>פותחים את ZXP Installer, גוררים לתוכו את הקובץ של COEDIT שהורדתם, לוחצים Install ומחכים להודעה שההתקנה הצליחה.</p></div></div>
+    <img class="gif" src="/assets/videos/install-guide.gif" width="600" alt="ההתקנה של COEDIT ב-ZXP Installer">
+    <div class="step"><span class="num">4</span><div><b>פותחים את Premiere Pro או After Effects</b><p>בתפריט <span dir="ltr">Window → Extensions → COEDIT</span>, מדביקים את המפתח מהמייל ומתחילים לעבוד. עדכונים עתידיים יותקנו מתוך התוסף בלחיצה אחת.</p></div></div>
+  </div>
+  <p class="help">משהו לא עובד? כתבו לנו ל-<a href="mailto:coedit@getcoedit.com" dir="ltr">coedit@getcoedit.com</a></p>
+</main>
+</body>
+</html>
