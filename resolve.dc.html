@@ -859,7 +859,7 @@ class Component extends DCLogic {
       mqRow1, mqRow2, mqHas2: mqRow2.length > 0, heroFaces, hasVideos: N > 0,
       // Hero (site-config.js + the ?for= audience)
       h1a: (AUD.h1 && AUD.h1[0]) || 'הטיימליין שלכם.', h1b: (AUD.h1 && AUD.h1[1]) || 'בלי השומן.',
-      heroSub: AUD.sub || 'חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, ישירות בתוך Premiere Pro, After Effects ו-DaVinci Resolve, בכמה לחיצות.',
+      heroSub: AUD.sub || 'חיתוך שתיקות וטייקים, כתוביות בעברית וזומים עם סאונד, ישירות בתוך תוכנות העריכה שלכם, בכמה לחיצות.',
       hasCapLine: !!CFG.heroCaptionsLine, capLine: CFG.heroCaptionsLine || '',
       heroVideoOn: !!s.heroVideoOn, heroCursor: s.heroVideoOn ? 'default' : 'pointer', heroVideoPlay: () => { if (!s.heroVideoOn) this.setState({ heroVideoOn: true }); },
       heroPosterBg: 'center/cover no-repeat url(' + (AUD.heroVideo && HERO_VIDEO === AUD.heroVideo ? 'https://i.ytimg.com/vi/' + HERO_VIDEO + '/hqdefault.jpg' : '') + ')',

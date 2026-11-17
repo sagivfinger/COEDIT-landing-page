@@ -85,7 +85,7 @@ T('text-wrap:pretty">{{ heroSub }}</p>',
   if (a < 0 || a > end) throw new Error('index.html changed: the hero button');
   page = page.slice(0, a) + '>התחילו בחינם</a>' + page.slice(a + '>נסו בחינם עכשיו!</a>'.length);
   const hero = page.slice(h);
-  const [b0, b1] = between(hero, '<span style="display:inline-flex;gap:4px">', 'תואם Premiere Pro, After Effects ו-DaVinci Resolve', 'the hero compatibility line');
+  const [b0, b1] = between(hero, '<span style="display:inline-flex;gap:4px">', 'תואם Premiere Pro, After Effects ו-DaVinci Resolve</span>', 'the hero compatibility line');
   page = page.slice(0, h + b0) + DV_BADGE + 'עובד בתוך DaVinci Resolve' + page.slice(h + b1);
 }
 T('\n\n    </div>\n    <div data-px="-0.08" onClick="{{ heroVideoPlay }}"',
@@ -122,7 +122,7 @@ T('עובד בתוך Premiere Pro, After Effects ו-DaVinci Resolve</span>', 'ע
   if (m < 0) throw new Error('index.html changed: the trial popup');
   // From the Pr badge to the end of the Ae one (both start with the same span).
   const a = page.indexOf('<span style="display:inline-flex;align-items:center;gap:7px"><span aria-hidden="true"', m);
-  const tail = 'DaVinci Resolve ב-Windows</span>', b = page.indexOf(tail, a) + tail.length;
+  const tail = 'DaVinci Resolve ב-Windows</span></span>', b = page.indexOf(tail, a) + tail.length;
   if (a < 0 || b < tail.length || page.indexOf(tail, b) >= 0 || !page.slice(a, b).includes('Premiere Pro ב-Windows'))
     throw new Error('index.html changed: the popup requirements');
   page = page.slice(0, a) + '<span style="display:inline-flex;align-items:center;gap:7px">' + DV_BADGE + '<span style="color:{{ rReqColor }}">{{ rReqShort }}</span></span>' + page.slice(b);
