@@ -297,7 +297,23 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
         <sc-if value="{{ hasManage }}" hint-placeholder-val="{{ false }}"><a href="{{ manageUrl }}" target="_blank" rel="noopener" style="background:linear-gradient(180deg,#e2504a,#c42e2a);color:#fff;font-weight:800;font-size:15px;padding:11px 20px;border-radius:9px">ניהול התשלום והמנוי</a></sc-if>
         <a href="/#pricing" style="background:{{ upBg }};border:1px solid {{ upBd }};color:#fff;font-weight:{{ upW }};font-size:15px;padding:11px 20px;border-radius:9px">{{ upLabel }}</a>
       </div>
-      <sc-if value="{{ showWriteIn }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#999;line-height:1.6">לשינוי או לביטול המנוי, כתבו לנו ל-<a href="mailto:{{ contact }}" dir="ltr" style="overflow-wrap:anywhere">{{ contact }}</a></span></sc-if>
+      <!-- Cancelling (COEDIT Cloud POST /account/cancel, /account/cancel/undo). -->
+      <sc-if value="{{ cxShowButton }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ cxAsk }}" style="align-self:flex-start;font-family:Heebo;cursor:pointer;background:transparent;border:1px solid #3a3a3a;color:#cfcfcf;font-weight:700;font-size:14px;padding:9px 16px;border-radius:9px">ביטול המנוי</button></sc-if>
+      <sc-if value="{{ cxAsking }}" hint-placeholder-val="{{ false }}">
+        <div role="group" aria-label="ביטול המנוי" style="background:#141010;border:1px solid #4a2826;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:10px">
+          <b style="font-size:15px;color:#fff">לבטל את המנוי?</b>
+          <span style="font-size:14px;line-height:1.7;color:#cfcfcf">{{ cxWhat }}</span>
+          <input id="cx-reason" type="text" maxlength="500" placeholder="למה אתם מבטלים? (לא חובה)" style="font:inherit;font-size:14px;color:#fff;background:#0f0f0f;border:1px solid #333;border-radius:8px;padding:9px 11px;outline:none">
+          <div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" onClick="{{ cxConfirm }}" disabled="{{ cxBusy }}" style="font-family:Heebo;cursor:pointer;background:linear-gradient(180deg,#e2504a,#c42e2a);border:none;color:#fff;font-weight:800;font-size:14px;padding:10px 18px;border-radius:9px">{{ cxConfirmLabel }}</button><button type="button" onClick="{{ cxNo }}" style="font-family:Heebo;cursor:pointer;background:transparent;border:1px solid #3a3a3a;color:#cfcfcf;font-weight:700;font-size:14px;padding:9px 16px;border-radius:9px">לא, להשאיר את המנוי</button></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ cxDone }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="background:#141010;border:1px solid #4a2826;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:14px;line-height:1.7;color:#e8c46a">{{ cxDoneText }}</span>
+          <button type="button" onClick="{{ cxUndo }}" disabled="{{ cxBusy }}" style="align-self:flex-start;font-family:Heebo;cursor:pointer;background:transparent;border:1px solid #3a3a3a;color:#cfcfcf;font-weight:700;font-size:14px;padding:9px 16px;border-radius:9px">ביטלתי בטעות, להשאיר את המנוי</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ acctMsgShown }}" hint-placeholder-val="{{ false }}"><span role="status" style="font-size:13px;line-height:1.6;color:{{ acctMsgColor }}">{{ acctMsg }}</span></sc-if>
     </section>
 
     <section aria-labelledby="acct-usage" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:clamp(18px,4.5vw,24px);display:flex;flex-direction:column;gap:16px">
@@ -322,9 +338,19 @@ input,textarea,select,button{font-family:Heebo,sans-serif}
       <span id="acct-orders" style="font-size:14px;font-weight:700;color:#bbb">הזמנות</span>
       <sc-if value="{{ noOrders }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;color:#888;line-height:1.6">עוד אין הזמנות מהאתר. הזמנות שתבצעו יופיעו כאן, והחשבוניות נשלחות במייל.</span></sc-if>
       <sc-for list="{{ orders }}" as="o" hint-placeholder-count="2">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-top:1px solid #242424">
+        <div style="display:flex;flex-direction:column;gap:8px;padding:10px 0;border-top:1px solid #242424">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
           <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:15px;font-weight:700;color:#eee">{{ o.item }}</span><span style="font-size:12px;color:#888">{{ o.date }}</span></div>
           <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex:none"><b style="font-size:15px">{{ o.amount }}</b><span style="font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;color:{{ o.c }};border:1px solid {{ o.c }}">{{ o.status }}</span></div>
+        </div>
+        <sc-if value="{{ o.canRefund }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ o.askRefund }}" style="align-self:flex-start;font-family:Heebo;cursor:pointer;background:none;border:none;padding:0;color:#e2504a;font-weight:700;font-size:13px">בקשת החזר ←</button></sc-if>
+        <sc-if value="{{ o.asking }}" hint-placeholder-val="{{ false }}">
+          <div role="group" aria-label="בקשת החזר" style="background:#141010;border:1px solid #4a2826;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:10px">
+            <span style="font-size:14px;line-height:1.7;color:#cfcfcf">{{ o.refundWhat }}</span>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" onClick="{{ o.confirmRefund }}" disabled="{{ o.busy }}" style="font-family:Heebo;cursor:pointer;background:linear-gradient(180deg,#e2504a,#c42e2a);border:none;color:#fff;font-weight:800;font-size:14px;padding:10px 18px;border-radius:9px">{{ o.confirmLabel }}</button><button type="button" onClick="{{ o.noRefund }}" style="font-family:Heebo;cursor:pointer;background:transparent;border:1px solid #3a3a3a;color:#cfcfcf;font-weight:700;font-size:14px;padding:9px 16px;border-radius:9px">ביטול</button></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ o.requested }}" hint-placeholder-val="{{ false }}"><span style="align-self:flex-start;font-size:12px;font-weight:700;color:#e8c46a">בקשת ההחזר התקבלה. ההחזר יגיע לאמצעי התשלום שבו שילמתם.</span></sc-if>
         </div>
       </sc-for>
     </section>
@@ -403,6 +429,8 @@ const LOGIN_MSG = {
   rate_limited: ['יותר מדי ניסיונות. נסו שוב בעוד שעה.', '#ff8a84'],
   error: ['לא הצלחנו להתחבר כרגע. נסו שוב בעוד רגע.', '#ff8a84'],
   expired: ['החיבור פג. התחברו שוב עם המפתח.', '#e8c46a'],
+  // After a cancellation or refund that ended the key at once (it no longer signs in).
+  ended: ['המנוי בוטל והמפתח הפסיק לעבוד. אם ביקשתם החזר, הוא יגיע לאמצעי התשלום שבו שילמתם.', '#e8c46a'],
 };
 const ORDER_STATUS = { paid: ['שולם', '#5fd068'], processing: ['בטיפול', '#e8c46a'], review: ['בבדיקה', '#e8c46a'], ended: ['הסתיים', '#888'] };
 class Component extends DCLogic {
@@ -458,6 +486,21 @@ class Component extends DCLogic {
       }))
       .catch(() => { track('account_login', { result: 'error' }); this.setState({ lg: 'error' }); });
   }
+  // Cancel / undo / refund: POST to COEDIT Cloud, then show the account again. A request that
+  // ended the key at once signs the visitor out with a message that says so.
+  acctPost(path, body, after) {
+    const sess = readSession(); if (!sess) { this.go('login'); return; }
+    this.setState({ cxBusy: true, acctMsg: null });
+    fetch(ACCOUNT_API + '/account' + path, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + sess.token }, body: JSON.stringify(body || {}) })
+      .then(r => r.json().catch(() => ({})).then(j => {
+        this.setState({ cxBusy: false });
+        if (r.ok) { track('account_' + path.replace(/\W+/g, '_').replace(/^_/, ''), {}); after && after(j); return; }
+        if (r.status === 401) { writeSession(null); this.setState({ acct: null, lg: 'expired' }); this.go('login'); return; }
+        this.setState({ acctMsg: 'לא הצלחנו לבצע את הפעולה. נסו שוב, או כתבו לנו ל-' + CONTACT });
+      }))
+      .catch(() => this.setState({ cxBusy: false, acctMsg: 'לא הצלחנו לבצע את הפעולה. נסו שוב בעוד רגע.' }));
+  }
+  endedNow() { writeSession(null); this.setState({ acct: null, acctLoad: null, lg: 'ended', cx: null, rfAsk: null }); this.go('login'); }
   logout(e) { if (e) e.preventDefault(); writeSession(null); track('account_logout', {}); this.setState({ acct: null, acctLoad: null, lg: null }); this.go('login'); }
   animOut(key, done) { const el = document.querySelector('[data-ci="' + key + '"]'); if (!el || !el.animate) return done(); el.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(.96)' }], { duration: 180, easing: 'ease', fill: 'forwards' }).finished.then(done, done); }
   tot(s) { return (s.packs || []).reduce((a, k) => a + packPrice(k), 0); }
@@ -503,6 +546,7 @@ class Component extends DCLogic {
     else if (PL.subscription_ended) { badge = 'המנוי הסתיים'; tone = 'off'; planLine = 'המנוי הסתיים. אפשר לחדש אותו בכל עת.'; }
     else { planLine = 'מנוי ' + (yearly ? 'שנתי' : 'חודשי') + (kind === 'fixed' ? ' · הקצאה מיוחדת' : '') + (period && period.renews_at ? ' · מתחדש ב-' + date(period.renews_at) : ''); }
     if (!L.activated && kind !== 'trial' && !PL.subscription_ended) { badge = 'מוכן להפעלה'; tone = 'wait'; }
+    if (PL.cancel) { badge = 'מסתיים ב-' + date(PL.cancel.effective_at); tone = 'wait'; planLine = 'מנוי ' + (yearly ? 'שנתי' : 'חודשי') + ' · בוטל, לא יתחדש'; }
     const TONE = { ok: ['#5fd068', '#14231a', '#24462e'], wait: ['#e8c46a', '#221d10', '#4a3c17'], off: ['#bbb', '#1d1d1d', '#3a3a3a'] }[tone];
     const paidActive = kind === 'paid' || kind === 'fixed';
     const buyable = paidActive && !PL.subscription_ended && !PL.unlimited;
@@ -516,17 +560,31 @@ class Component extends DCLogic {
         hasCredits: cr > 0, credits: '+ ' + fmt(cr) + ' קרדיטים שקניתם',
         canBuy: buyable, buyHref: '#cart?cat=' + meta.cat };
     }) : (A.includes || []).map(b => { const meta = BUCKETS[b.bucket] || { label: b.bucket, cat: 'cz' }; return { label: meta.label, line: fmt(mins(b.seconds)) + " דק'", hasBar: false, pct: '0', pctW: '0%', barC: '#5fd068', left: kind === 'trial' ? 'כלול בניסיון' : 'כלול בכל תקופת חיוב', hasCredits: false, credits: '', canBuy: false, buyHref: '#cart' }; });
-    const orders = (A.orders || []).map(o => { const st = ORDER_STATUS[o.status] || ORDER_STATUS.processing; const item = o.kind === 'plan' ? 'מנוי COEDIT ' + (o.plan || '') + ' · ' + (o.billing_period === 'yearly' ? 'שנתי' : 'חודשי') : fmt(o.credits || 0) + ' קרדיטים · ' + ((BUCKETS[o.bucket] || {}).label || ''); return { item: item + (o.coframes ? ' + COFRAMES' : ''), date: date(o.created_at), amount: (o.currency === 'ILS' || !o.currency ? '₪' : o.currency + ' ') + fmt((o.amount_agorot || 0) / 100), status: st[0], c: st[1] }; });
+    const orders = (A.orders || []).map(o => { const st = ORDER_STATUS[o.status] || ORDER_STATUS.processing; const item = o.kind === 'plan' ? 'מנוי COEDIT ' + (o.plan || '') + ' · ' + (o.billing_period === 'yearly' ? 'שנתי' : 'חודשי') : fmt(o.credits || 0) + ' קרדיטים · ' + ((BUCKETS[o.bucket] || {}).label || ''); const asking = s.rfAsk === o.id;
+      return { item: item + (o.coframes ? ' + COFRAMES' : ''), date: date(o.created_at), amount: (o.currency === 'ILS' || !o.currency ? '₪' : o.currency + ' ') + fmt((o.amount_agorot || 0) / 100), status: st[0], c: st[1],
+        canRefund: !!o.refundable && !asking, asking: !!o.refundable && asking, requested: !!o.refund_requested, busy: !!s.cxBusy,
+        refundWhat: o.kind === 'plan' ? 'נבטל את המנוי מיד, המפתח יפסיק לעבוד, ונחזיר את התשלום לאמצעי התשלום שבו שילמתם.' : 'נחזיר את התשלום על החבילה לאמצעי התשלום שבו שילמתם.',
+        confirmLabel: s.cxBusy ? 'שולחים…' : (o.kind === 'plan' ? 'כן, לבטל ולקבל החזר' : 'כן, לבקש החזר'),
+        askRefund: () => this.setState({ rfAsk: o.id, acctMsg: null }), noRefund: () => this.setState({ rfAsk: null }),
+        confirmRefund: () => this.acctPost('/refund', { order_id: o.id }, j => { if (j.ends_now) return this.endedNow(); this.setState({ rfAsk: null }); this.loadAccount(); }) }; });
     const manage = (A.links || {}).manage;
     const needsPlan = kind === 'trial' || kind === 'free' || PL.subscription_ended;
     return Object.assign(out, {
       hasEmail: !!L.email, acctEmail: L.email || '', keyMask: String(L.prefix || 'COEDIT').replace(/-+$/, '') + '-•••••-•••••-•••••',
       planName, badge, badgeC: TONE[0], badgeBg: TONE[1], badgeBd: TONE[2], planLine, hasPlanLine: !!planLine,
       notActivated: !L.activated && !PL.subscription_ended, notActivatedText: kind === 'trial' ? 'דקות הניסיון יתחילו להיספר כשתדביקו את המפתח בפאנל של COEDIT בפרמייר או באפטר אפקטס.' : 'המפתח עוד לא הופעל. פתחו את COEDIT בפרמייר או באפטר אפקטס והדביקו אותו בפאנל.',
-      hasManage: !!manage && paidActive, manageUrl: manage || '#', showWriteIn: !manage && paidActive && !PL.subscription_ended,
+      hasManage: !!manage && paidActive, manageUrl: manage || '#', showWriteIn: false,
+      cxShowButton: !!PL.cancellable && s.cx !== 'ask', cxAsking: !!PL.cancellable && s.cx === 'ask', cxDone: !!PL.cancel,
+      cxWhat: L.activated && period && period.renews_at ? 'המנוי לא יתחדש. הוא יישאר פעיל, עם כל הדקות שלו, עד ' + date(period.renews_at) + ', ואז המפתח יפסיק לעבוד. עד אז אפשר לחזור בכם.' : 'עוד לא התחלתם להשתמש במפתח, ולכן הוא יפסיק לעבוד מיד.',
+      cxDoneText: PL.cancel ? 'המנוי בוטל ולא יתחדש. הוא פעיל עד ' + date(PL.cancel.effective_at) + ', ועד אז הכל עובד כרגיל.' : '',
+      cxConfirmLabel: s.cxBusy ? 'מבטלים…' : 'כן, לבטל את המנוי', cxBusy: !!s.cxBusy,
+      cxAsk: () => this.setState({ cx: 'ask', acctMsg: null }), cxNo: () => this.setState({ cx: null }),
+      cxConfirm: () => { const el = document.getElementById('cx-reason'); this.acctPost('/cancel', { reason: (el && el.value || '').trim() || null }, j => { if (j.immediate) return this.endedNow(); this.setState({ cx: null }); this.loadAccount(); }); },
+      cxUndo: () => this.acctPost('/cancel/undo', {}, () => this.loadAccount()),
+      acctMsgShown: !!s.acctMsg, acctMsg: s.acctMsg || '', acctMsgColor: '#ff8a84',
       upLabel: needsPlan ? 'לבחירת מסלול' : 'שדרוג מסלול', upBg: needsPlan ? 'linear-gradient(180deg,#e2504a,#c42e2a)' : '#1d1d1d', upBd: needsPlan ? 'transparent' : '#333', upW: needsPlan ? '800' : '700',
       usageTitle: U ? (period && period.kind === 'subscription' ? 'השימוש בתקופה הנוכחית' : 'השימוש שלכם') : 'מה כלול במפתח',
-      hasRenew: !!(period && period.renews_at), renewLine: period && period.renews_at ? 'הדקות מתחדשות ב-' + date(period.renews_at) : '',
+      hasRenew: !!(period && period.renews_at), renewLine: PL.cancel ? 'המנוי מסתיים ב-' + date(PL.cancel.effective_at) : period && period.renews_at ? 'הדקות מתחדשות ב-' + date(period.renews_at) : '',
       usageRows: rows, orders, noOrders: !orders.length,
       coeditUrl: (A.downloads || {}).coedit || '/download/latest/', coframesUrl: (A.downloads || {}).coframes || '#', hasCoframes: !!(A.downloads || {}).coframes,
     });
