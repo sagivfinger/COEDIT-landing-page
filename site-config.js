@@ -59,7 +59,7 @@ window.COEDIT_CONFIG = {
   resolve: {
     launched: false,                    // ✏️ launching is a separate approval
     // ✏️ The hero video: the new demo INSIDE DaVinci Resolve. A YouTube id, or an mp4 under assets/.
-    heroVideo: { youtube: '', src: '', poster: '' },
+    heroVideo: { youtube: '2lXLFJN4fFc', src: '', poster: '' },
     // ✏️ System requirements (supported editions, versions, Windows/Mac), shown right under the hero's
     // button ('hero'), before anyone signs up. "short" is the one-liner in the trial popup.
     // Never say it works on the free edition unless that is confirmed for the launch version.

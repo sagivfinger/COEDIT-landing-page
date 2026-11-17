@@ -99,7 +99,7 @@ T('\n\n    </div>\n    <div data-px="-0.08" onClick="{{ heroVideoPlay }}"',
 {
   const [a, b] = between(page, '<sc-if value="{{ heroVideoOn }}"', '</iframe></sc-if>', 'the hero video');
   page = page.slice(0, a)
-    + '<sc-if value="{{ rHeroYt }}" hint-placeholder-val="{{ false }}"><iframe src="{{ rHeroYtSrc }}" title="COEDIT ב-DaVinci Resolve" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" frameborder="0" style="position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none"></iframe></sc-if>'
+    + '<sc-if value="{{ rHeroYt }}" hint-placeholder-val="{{ false }}"><iframe src="{{ rHeroYtSrc }}" title="COEDIT ב-DaVinci Resolve" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" frameborder="0" tabindex="-1" style="position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%) scale(1.02);border:0;pointer-events:none"></iframe></sc-if>'
     + '<sc-if value="{{ rHeroMp4 }}" hint-placeholder-val="{{ false }}"><video src="{{ rHeroSrc }}" poster="{{ rHeroPoster }}" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video></sc-if>'
     + '<sc-if value="{{ rHeroPh }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:14px;' + PLACEHOLDER + '">✏️ סרטון דמו חדש של COEDIT בתוך DaVinci Resolve</div></sc-if>'
     + page.slice(b);
@@ -145,7 +145,7 @@ class Component extends DCLogic {
       rDraft: R_DRAFT,
       rReqHero: !!reqText && (req.placement || 'hero') === 'hero', rReqText: reqText, rReqColor: req.text ? '#cfcfcf' : '#e8d27a',
       rReqShort: req.short || (R_DRAFT ? '✏️ גרסאות DaVinci Resolve נתמכות' : 'DaVinci Resolve'),
-      rHeroYt: !!yt, rHeroYtSrc: yt ? 'https://www.youtube-nocookie.com/embed/' + yt + '?autoplay=1&mute=1&loop=1&playlist=' + yt + '&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3' : '',
+      rHeroYt: !!yt, rHeroYtSrc: yt ? 'https://www.youtube-nocookie.com/embed/' + yt + '?enablejsapi=0&autoplay=1&mute=1&loop=1&playlist=' + yt + '&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3' : '',
       rHeroMp4: !yt && !!hv.src, rHeroSrc: hv.src || '', rHeroPoster: hv.poster || '', rHeroPh: !yt && !hv.src,
     };
   }`, 'the Component class');
