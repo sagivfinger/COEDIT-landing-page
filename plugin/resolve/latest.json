@@ -1,12 +1,12 @@
 {
   "product": "coedit-resolve",
-  "version": "0.1.2",
-  "notes": "שינוי אנימציה ועיצוב לכתובית שבחרת, ישירות ב-DaVinci Resolve, בלי ציר זמן חדש · תצוגה חיה של כל האנימציות בתוך DaVinci Resolve, בלי תצוגה בתוך הפלאגין · הכנסת התוצאה ל-DaVinci Resolve מהירה יותר, בלי חלונות קופצים · תיקון: ייבוא שלא הצליח כבר לא עובר בשקט, ותיקון קריסה בפתיחת פרויקט עם כתוביות",
+  "version": "0.1.3",
+  "notes": "תיקון: ציר זמן חדש עם אותו שם (למשל Timeline 1) כבר לא נחתך לפי סרטון ישן",
   "installer": {
     "windows": {
-      "url": "https://getcoedit.com/download/COEDIT_Resolve_Setup_0.1.2.exe",
-      "sha256": "be1fb3cdae09464690e431932e35b33b160b6f14b584a332e76623da292c89ea",
-      "bytes": 28288000
+      "url": "https://getcoedit.com/download/COEDIT_Resolve_Setup_0.1.3.exe",
+      "sha256": "f0a5ec653bfc258e9e0cce6aeb4ee04748596f1c8387e09bc1d1f64201e83fd0",
+      "bytes": 28290560
     }
   }
 }
