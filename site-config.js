@@ -72,7 +72,7 @@ window.COEDIT_CONFIG = {
     // "free": confirmed by the owner on 2026-11-16.
     faq: { free: 'כן. COEDIT עובד גם בגרסה החינמית של DaVinci Resolve, וגם ב-Studio.',
       versions: 'DaVinci Resolve 20 ומעלה, ב-Windows 10 ו-11. גרסת Mac תגיע בהמשך.',
-      install: 'מורידים את קובץ ההתקנה מהמייל, פותחים אותו ומדביקים את המפתח בחלון שנפתח.' },
+      install: 'מורידים את קובץ ההתקנה מהמייל, פותחים אותו ומדביקים את המפתח בחלון שנפתח. שימו לב ❤️: בגלל שהפלאגין חדש, הוא עלול להקפיץ אזהרה של ווינדוס. זה תקין: לוחצים "מידע נוסף" ואז "הפעל בכל זאת".' },
     // The COFRAMES gift shows here as on the main page (note: COFRAMES works in Premiere Pro and
     // After Effects, not in DaVinci Resolve). false hides it on this page only.
     showCoframesGift: true,

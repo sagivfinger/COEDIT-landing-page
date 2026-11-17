@@ -93,7 +93,7 @@ T('\n\n    </div>\n    <div data-px="-0.08" onClick="{{ heroVideoPlay }}"',
   `
       <!-- Requirements, right under the button (site-config.js resolve.requirements, placement 'hero'). -->
       <sc-if value="{{ rReqHero }}" hint-placeholder-val="{{ true }}">
-        <div style="align-self:stretch;max-width:560px;background:#1a1a1a;border:1px solid #3a2a2a;border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start"><span aria-hidden="true" style="flex:none;font-size:18px">ⓘ</span><div style="display:flex;flex-direction:column;gap:4px"><b style="font-size:15px;color:#fff">דרישות מערכת</b><span style="font-size:14px;line-height:1.6;color:{{ rReqColor }}">{{ rReqText }}</span></div></div>
+        <div style="align-self:stretch;max-width:560px;background:#1a1a1a;border:1px solid #3a2a2a;border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start"><span aria-hidden="true" style="flex:none;font-size:18px">ⓘ</span><div style="display:flex;flex-direction:column;gap:4px"><b style="font-size:15px;color:#fff">דרישות מערכת</b><span style="font-size:14px;line-height:1.6;color:{{ rReqColor }}">{{ rReqText }}</span><span style="font-size:14px;line-height:1.6;color:#f3c1be">שימו לב ❤️: בגלל שהפלאגין חדש, הוא עלול להקפיץ אזהרה של ווינדוס. זה תקין: לוחצים "מידע נוסף" ואז "הפעל בכל זאת".</span></div></div>
       </sc-if>
     </div>
     <div data-px="-0.08" onClick="{{ heroVideoPlay }}"`, 'the hero layout');
